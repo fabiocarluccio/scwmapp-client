@@ -1,0 +1,44 @@
+<p>users works!</p>
+<h3>Users page</h3>
+<div *ngFor="let user of users">
+  <h1>{{user.username}}</h1>
+  <ul *ngIf="showDetails">
+    <li>{{user.email}}</li>
+    <li>{{user.role}}</li>
+    <!--<li>{{user.birthDate | date: 'shortDate'}}</li>-->
+    <button routerLink="/about/{{user.id}}">about</button>
+    <button (click)="goToDetail(user.id)">about_businessLogic</button>
+  </ul>
+</div>
+
+
+<button [disabled]="isDisabled" (click)="fireEvent($event)" type="button" [ngClass]="currentClass" class="btn" >Click me</button>
+
+
+<form #userForm="ngForm" (ngSubmit)="onsubmit(userForm)">
+  <div class="form-group">
+    <label for="exampleInputUsername">Username</label>
+    <input
+      [(ngModel)]="user.username" name="username"
+      required
+      minlength="2"
+      pattern="*"
+      #inputName = "ngModel"
+      [ngClass]="{'is-invalid': inputName.errors && inputName.touched}"
+      type="text" class="form-control" id="exampleInputUsername" placeholder="Enter username">
+    <!--{{user.name}}-->
+    <div class="invalid-feedback">
+      Please, provide a username.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail">email</label>
+    <input
+      [(ngModel)]="user.email" name="email"
+      type="text" class="form-control" id="exampleInputEmail" placeholder="Enter email">
+  </div>
+  <!--[disabled]="user.name == '' || user.surname == ''"-->
+  <button
+    [disabled] = "!userForm.valid"
+    type="submit" class="btn btn-primary" (click)="addNewUser()">Submit</button>
+</form>
