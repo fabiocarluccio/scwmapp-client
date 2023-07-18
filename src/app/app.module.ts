@@ -10,13 +10,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
