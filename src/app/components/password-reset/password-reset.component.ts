@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {User} from "../../models/user";
+import {UsersService} from "../../services/users.service";
+import {Router} from "@angular/router";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-password-reset',
@@ -7,4 +11,25 @@ import { Component } from '@angular/core';
 })
 export class PasswordResetComponent {
 
+  user:User = {} as User;
+
+  constructor(private userService:UserService, private route:Router) {
+  }
+
+  onSubmit(emailForm: any) {
+    console.log("onSubmit() called")
+    // TODO  qui se quella variabile non è true, rimani su sta pagina.
+
+    this.userService.user = this.user
+    this.route.navigateByUrl('/password-reset-token-validation');
+    // this.route.navigateByUrl('/about/' + id);
+  }
+
+  sendEmailToken() { // questo viene chiamato prima di onSubmit()
+    console.log("sendEmailToken() called")
+    // Contatto API per invio token via mail
+    this.userService.sendPasswordResetToken(this.user);
+
+    // qui avvalorare una variabile a true se non ci sono errori e mostrare eventuali errori.
+  }
 }

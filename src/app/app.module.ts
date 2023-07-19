@@ -12,6 +12,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { PasswordResetTokenValidationComponent } from './components/password-reset-token-validation/password-reset-token-validation.component';
+import { PasswordResetByTokenComponent } from './components/password-reset-by-token/password-reset-by-token.component';
 
 @NgModule({
   declarations: [
@@ -20,17 +22,19 @@ import { PasswordResetComponent } from './components/password-reset/password-res
     AboutComponent,
     ContactComponent,
     LoginPageComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    PasswordResetTokenValidationComponent,
+    PasswordResetByTokenComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        RouterOutlet,
+        RouterLink,
+        RouterLinkActive
+    ],
   providers: [UsersService],
   bootstrap: [AppComponent]
 })
