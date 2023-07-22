@@ -14,6 +14,10 @@ export class PasswordResetByTokenComponent implements OnInit {
   user:User = {} as User;
 
   constructor(private userService:UserService, private route: Router, private exceptionManager: ExceptionManagerService) {
+    if(userService.user.username == null || userService.user.passwordResetToken == null) {
+      this.route.navigateByUrl('/login-page');
+    }
+
     this.user = userService.user
   }
 
@@ -25,6 +29,11 @@ export class PasswordResetByTokenComponent implements OnInit {
   }
 
   setNewPassword() {
+    if(this.user.newPassword != this.user.passwordConfirm) {
+      window.alert("Password not matching")
+      return
+    }
+
     this.userService.updatePasswordByToken(this.user)
       .then(response => {
         // Gestisci il successo della richiesta POST qui

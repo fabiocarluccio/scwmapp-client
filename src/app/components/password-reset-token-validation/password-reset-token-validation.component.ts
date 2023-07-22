@@ -13,6 +13,10 @@ export class PasswordResetTokenValidationComponent {
   user:User = {} as User;
 
   constructor(private userService:UserService, private route:Router) {
+    if(userService.user.username == null) {
+      this.route.navigateByUrl('/login-page');
+    }
+
     this.user = userService.user
   }
 
