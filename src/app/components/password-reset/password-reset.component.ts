@@ -30,15 +30,11 @@ export class PasswordResetComponent {
     // Contatto API per invio token via mail
     this.userService.sendPasswordResetToken(this.user)
       .then(response => {
-        // Gestisci il successo della richiesta POST qui
-        console.log('Richiesta POST riuscita:', response);
         // Vado a schermata successiva
         this.userService.user = this.user
         this.route.navigateByUrl('/password-reset-token-validation');
       })
       .catch(error => {
-        // Gestisci l'errore della richiesta POST qui
-        console.error('Errore durante la richiesta POST:', error);
         // Mostro errore
         window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
       });

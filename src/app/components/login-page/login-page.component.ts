@@ -32,16 +32,12 @@ export class LoginPageComponent {
     console.log("loginUser() called")
     console.log(this.user)
     this.userService.authenticate(this.user)
-      .then(response => {// TODO
-        // Gestisci il successo della richiesta POST qui
-        console.log('Richiesta POST riuscita:', response);
-        // Vado a schermata successiva
+      .then(response => {
+        // TODO Vado a schermata successiva a seconda del RUOLO
         //this.userService.user = this.user
         //this.route.navigateByUrl('/password-reset-token-validation');
       })
       .catch(error => {
-        // Gestisci l'errore della richiesta POST qui
-        console.error('Errore durante la richiesta POST:', error);
         // Mostro errore
         window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
       });

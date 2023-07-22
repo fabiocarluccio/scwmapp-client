@@ -11,7 +11,7 @@
         [(ngModel)]="user.username" name="username"
         required
         minlength="1"
-        pattern="*"
+        pattern=".*"
         #inputName = "ngModel"
         [ngClass]="{'is-invalid': inputName.errors && inputName.touched}"
         type="text" class="form-control" id="inputUsername" placeholder="Enter username">
@@ -26,7 +26,7 @@
         [(ngModel)]="user.password" name="password"
         required
         minlength="1"
-        pattern="*"
+        pattern=".*"
         #inputPassword = "ngModel"
         [ngClass]="{'is-invalid': inputPassword.errors && inputPassword.touched}"
         type="password" class="form-control" id="inputPassword" placeholder="Enter password">

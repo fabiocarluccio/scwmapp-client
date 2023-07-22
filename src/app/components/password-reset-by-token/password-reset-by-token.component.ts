@@ -36,16 +36,12 @@ export class PasswordResetByTokenComponent implements OnInit {
 
     this.userService.updatePasswordByToken(this.user)
       .then(response => {
-        // Gestisci il successo della richiesta POST qui
-        console.log('Richiesta POST riuscita:', response);
         // Show alert and go back to login page
         window.alert('Password reimpostata.');
         this.userService.user = {} as User;
         this.route.navigateByUrl('/login-page');
       })
       .catch(error => {
-        // Gestisci l'errore della richiesta POST qui
-        console.error('Errore durante la richiesta POST:', error);
         // Mostro errore
         if(error.error.code != 1) {
           window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
