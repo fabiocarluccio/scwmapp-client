@@ -18,15 +18,10 @@ export class PasswordResetComponent {
   }
 
   onSubmit(emailForm: any) {
-    console.log("onSubmit() called")
-    // TODO  qui se quella variabile non è true, rimani su sta pagina.
 
-
-    // this.route.navigateByUrl('/about/' + id);
   }
 
   sendEmailToken() { // questo viene chiamato prima di onSubmit()
-    console.log("sendEmailToken() called")
     // Contatto API per invio token via mail
     this.userService.sendPasswordResetToken(this.user)
       .then(response => {
