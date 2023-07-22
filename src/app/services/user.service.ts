@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {User} from "../models/user";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {catchError, firstValueFrom, tap, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -30,48 +31,48 @@ export class UserService {
     };*/
   }
 
-  sendPasswordResetToken(user: User) {
-    // Effettua la richiesta POST
-    this.http.post(this.baseUrl + 'password_reset_token', user, this.httpOptions)
-      .subscribe(
-        response => {
-          console.log('Richiesta POST riuscita:', response);
-          // Gestisci la risposta dal server qui
-        },
-        error => {
-          console.error('Errore durante la richiesta POST:', error);
-          // Gestisci l'errore qui
-        }
-      );
+  sendPasswordResetToken(user: User): Promise<any> {
+    // Effettua la richiesta POST e restituisci la promessa
+    return firstValueFrom(this.http.post(this.baseUrl + 'password_reset_token', user, this.httpOptions).pipe(
+      tap(response => {
+        console.log('Richiesta POST riuscita:', response);
+        // Gestisci la risposta dal server qui, se necessario
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        // Gestisci l'errore qui, se necessario
+        throw error; // Rilancia l'errore come promessa respinta
+      })
+    )); // firstValueFrom() è meglio rispetto a toPromise (deprecato). https://stackoverflow.com/questions/67044273/rxjs-topromise-deprecated
   }
 
   updatePasswordByToken(user: User) {
-    this.http.post(this.baseUrl + 'password_reset', user, this.httpOptions)
-      .subscribe(
-        response => {
-          console.log('Richiesta POST riuscita:', response);
-          // Gestisci la risposta dal server qui
-        },
-        error => {
-          console.error('Errore durante la richiesta POST:', error);
-          // Gestisci l'errore qui
-        }
-      );
+    return firstValueFrom(this.http.post(this.baseUrl + 'password_reset', user, this.httpOptions).pipe(
+      tap(response => {
+        console.log('Richiesta POST riuscita:', response);
+        // Gestisci la risposta dal server qui, se necessario
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        // Gestisci l'errore qui, se necessario
+        throw error; // Rilancia l'errore come promessa respinta
+      })
+    ));
   }
 
   authenticate(user: User) {
-    this.http.post<MyResponse>(this.baseUrl + 'authenticate', user, this.httpOptions)
-      .subscribe(
-        response => {
-          console.log('Richiesta POST riuscita:', response);
-          // Gestisci la risposta dal server qui
-          console.log(response.jwt)
-        },
-        error => {
-          console.error('Errore durante la richiesta POST:', error);
-          // Gestisci l'errore qui
-        }
-      );
+    return firstValueFrom(this.http.post<MyResponse>(this.baseUrl + 'authenticate', user, this.httpOptions).pipe(
+      tap(response => {
+        console.log('Richiesta POST riuscita:', response);
+        // Gestisci la risposta dal server qui, se necessario
+        console.log(response.jwt)
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        // Gestisci l'errore qui, se necessario
+        throw error; // Rilancia l'errore come promessa respinta
+      })
+    ));
   }
 }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {User} from "../../models/user";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {ExceptionManagerService} from "../../services/exception-manager.service";
 
 @Component({
   selector: 'app-login-page',
@@ -11,7 +12,7 @@ import {UserService} from "../../services/user.service";
 export class LoginPageComponent {
   user:User = {} as User;
 
-  constructor(private userService:UserService, private route:Router) {
+  constructor(private userService:UserService, private route:Router, private exceptionManager:ExceptionManagerService) {
   }
 
 
@@ -30,6 +31,19 @@ export class LoginPageComponent {
   loginUser() {
     console.log("loginUser() called")
     console.log(this.user)
-    this.userService.authenticate(this.user);
+    this.userService.authenticate(this.user)
+      .then(response => {// TODO
+        // Gestisci il successo della richiesta POST qui
+        console.log('Richiesta POST riuscita:', response);
+        // Vado a schermata successiva
+        //this.userService.user = this.user
+        //this.route.navigateByUrl('/password-reset-token-validation');
+      })
+      .catch(error => {
+        // Gestisci l'errore della richiesta POST qui
+        console.error('Errore durante la richiesta POST:', error);
+        // Mostro errore
+        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      });
   }
 }

@@ -3,6 +3,7 @@ import {User} from "../../models/user";
 import {UsersService} from "../../services/users.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {ExceptionManagerService} from "../../services/exception-manager.service";
 
 @Component({
   selector: 'app-password-reset',
@@ -13,22 +14,34 @@ export class PasswordResetComponent {
 
   user:User = {} as User;
 
-  constructor(private userService:UserService, private route:Router) {
+  constructor(private userService:UserService, private route:Router, private exceptionManager: ExceptionManagerService) {
   }
 
   onSubmit(emailForm: any) {
     console.log("onSubmit() called")
     // TODO  qui se quella variabile non è true, rimani su sta pagina.
 
-    this.userService.user = this.user
-    this.route.navigateByUrl('/password-reset-token-validation');
+
     // this.route.navigateByUrl('/about/' + id);
   }
 
   sendEmailToken() { // questo viene chiamato prima di onSubmit()
     console.log("sendEmailToken() called")
     // Contatto API per invio token via mail
-    this.userService.sendPasswordResetToken(this.user);
+    this.userService.sendPasswordResetToken(this.user)
+      .then(response => {
+        // Gestisci il successo della richiesta POST qui
+        console.log('Richiesta POST riuscita:', response);
+        // Vado a schermata successiva
+        this.userService.user = this.user
+        this.route.navigateByUrl('/password-reset-token-validation');
+      })
+      .catch(error => {
+        // Gestisci l'errore della richiesta POST qui
+        console.error('Errore durante la richiesta POST:', error);
+        // Mostro errore
+        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      });
 
     // qui avvalorare una variabile a true se non ci sono errori e mostrare eventuali errori.
   }
