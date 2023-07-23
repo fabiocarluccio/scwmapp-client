@@ -33,8 +33,12 @@ export class LoginPageComponent {
     console.log(this.user)
     this.userService.authenticate(this.user)
       .then(response => {
-        // TODO Vado a schermata successiva a seconda del RUOLO
-        //this.userService.user = this.user
+        // Salvataggio token jwt in localstorage e inizializzazione utente corrente con username
+        localStorage.setItem('currentUser', JSON.stringify({token: response.jwt}))
+        this.userService.user = {} as User
+        this.userService.user.username = this.user.username
+        console.log(this.userService.user)
+        // TODO: vado a schermata successiva a seconda del RUOLO
         //this.route.navigateByUrl('/password-reset-token-validation');
       })
       .catch(error => {

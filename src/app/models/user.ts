@@ -1,10 +1,10 @@
 export interface User {
   id?: string
   username: string
-  email: string
-  role: string
+  email?: string
+  role?: string
 
-  password: string
+  password?: string
 
   passwordConfirm?: string
   oldPassword?: string

@@ -20,7 +20,7 @@ export class UserService {
 
   constructor(private http:HttpClient) {
     // TODO il token va preso mediante chiamata API diretta (authentication)
-    localStorage.setItem('currentUser', JSON.stringify({token:'sduinyqwec789d23ycueqwibhceqdijuy'}))
+    //localStorage.setItem('currentUser', JSON.stringify({token:'sduinyqwec789d23ycueqwibhceqdijuy'}))
 
     /*this.user = {
         id: "1",

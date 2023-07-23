@@ -14,6 +14,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { PasswordResetTokenValidationComponent } from './components/password-reset-token-validation/password-reset-token-validation.component';
 import { PasswordResetByTokenComponent } from './components/password-reset-by-token/password-reset-by-token.component';
+import { PasswordMatchDirective } from './directives/password-match.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PasswordResetByTokenComponent } from './components/password-reset-by-to
     LoginPageComponent,
     PasswordResetComponent,
     PasswordResetTokenValidationComponent,
-    PasswordResetByTokenComponent
+    PasswordResetByTokenComponent,
+    PasswordMatchDirective
   ],
     imports: [
         BrowserModule,
