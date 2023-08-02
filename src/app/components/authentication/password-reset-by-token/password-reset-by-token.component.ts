@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../../models/user";
+import {User} from "../../../models/user";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../../services/user.service";
-import {ExceptionManagerService} from "../../services/exception-manager.service";
+import {UserService} from "../../../services/user.service";
+import {ExceptionManagerService} from "../../../services/exception-manager.service";
 
 @Component({
   selector: 'app-password-reset-by-token',

@@ -74,6 +74,21 @@ export class UserService {
       })
     ));
   }
+
+  getInfo(user: User) {
+    return firstValueFrom(this.http.get(this.baseUrl + 'get_info/' + user.username, this.httpOptions).pipe(
+      tap(response => {
+        console.log('Richiesta GET riuscita:', response);
+        // Gestisci la risposta dal server qui, se necessario
+        console.log(response)
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        // Gestisci l'errore qui, se necessario
+        throw error; // Rilancia l'errore come promessa respinta
+      })
+    ));
+  }
 }
 
 interface MyResponse {

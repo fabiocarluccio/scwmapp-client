@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Router, RouterModule, Routes} from "@angular/router";
-import {UsersComponent} from "./components/users/users.component";
-import {AboutComponent} from "./components/about/about.component";
-import {ContactComponent} from "./components/contact/contact.component";
-import {LoginPageComponent} from "./components/login-page/login-page.component";
-import {PasswordResetComponent} from "./components/password-reset/password-reset.component";
+import {UsersComponent} from "./components/unused/users/users.component";
+import {AboutComponent} from "./components/unused/about/about.component";
+import {ContactComponent} from "./components/unused/contact/contact.component";
+import {LoginPageComponent} from "./components/authentication/login-page/login-page.component";
+import {PasswordResetComponent} from "./components/authentication/password-reset/password-reset.component";
 import {
   PasswordResetTokenValidationComponent
-} from "./components/password-reset-token-validation/password-reset-token-validation.component";
-import {PasswordResetByTokenComponent} from "./components/password-reset-by-token/password-reset-by-token.component";
+} from "./components/authentication/password-reset-token-validation/password-reset-token-validation.component";
+import {PasswordResetByTokenComponent} from "./components/authentication/password-reset-by-token/password-reset-by-token.component";
+import {
+  MenuMunicipalOfficeComponent
+} from "./components/municipal_office/menu-municipal-office/menu-municipal-office.component";
 
 const routes: Routes = [ // questo sarà un array di hops (di paths che sono supportati dall'applicazione)
   { path: '', component: UsersComponent },              // Ogni route è definita da due attributi:
@@ -19,7 +22,8 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'login-page', component: LoginPageComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'password-reset-token-validation', component: PasswordResetTokenValidationComponent },
-  { path: 'password-reset-by-token', component: PasswordResetByTokenComponent }
+  { path: 'password-reset-by-token', component: PasswordResetByTokenComponent },
+  { path: 'municipal_office/menu', component: MenuMunicipalOfficeComponent }
 ]
 
 @NgModule({
