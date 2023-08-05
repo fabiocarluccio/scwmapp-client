@@ -1,0 +1,118 @@
+<body>
+  <h1>Allocazione SmartBins</h1>
+
+  <div class="layout">
+
+    <div class="bin-list">
+      <h2>SmartBins attivi</h2>
+      <div class="bin-item" id="{{smartbin.id}}" *ngFor="let smartbin of this.smartBins">
+        <h4>{{smartbin.name}}</h4>
+        <ul>
+          <li><div class="bin-indicator {{this.smartBinService.getBinTypeColor(smartbin.type!)}}"></div>{{smartbin.type}}</li>
+          <li>Capacità: {{smartbin.current_capacity}}/{{smartbin.total_capacity}} kg</li>
+          <!--<button routerLink="/about/{{user.id}}">about</button>
+          <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
+          <!--<button (click)="locateSmartBin(smartbin)" class="button">Localizza</button>-->
+        </ul>
+      </div>
+    </div>
+
+    <div class="right-column">
+      <app-map></app-map>
+      <p class="info">Per posizionare un nuovo SmartBin, effettua un click su un punto vuoto della mappa.</p>
+      <!--<button *ngFor="let smartbin of this.smartBins" (click)="highlightBinItem(smartbin.id!)">Evidenzia {{smartbin.name}}</button>-->
+
+      <form #allocateNewBinForm="ngForm" *ngIf="this.markerService.markers.length == 1">
+        <!--<p>Now, type your new, fresh password 😊</p>-->
+
+        <h5>Alloca nuovo SmartBin</h5>
+
+        <div class="form-group">
+          <label for="inputSmartBinName">Nome SmartBin</label>
+          <input
+            [(ngModel)]="newSmartBin.name" name="smartBinName"
+            required
+            minlength="3"
+            pattern=".*"
+            #inputSmartBinName = "ngModel"
+            [ngClass]="{'is-invalid': inputSmartBinName.errors && inputSmartBinName.touched}"
+            type="text" class="form-control" id="inputSmartBinName" placeholder="Inserisci nome dello SmartBin">
+
+          <div class="invalid-feedback">
+            Inserire il nome.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputSmartBinType">Tipologia rifiuto</label>
+
+
+          <select
+            [(ngModel)]="newSmartBin.type" name="SmartBinType"
+            required
+            #inputSmartBinName = "ngModel"
+            class="form-control" id="inputSmartBinType">
+            <option value="" disabled selected>Seleziona tipologia di rifiuto</option>
+            <option value="Indifferenziata">Indifferenziata</option>
+            <option value="Vetro">Vetro</option>
+            <option value="Plastica">Plastica</option>
+          </select>
+
+
+          <div class="invalid-feedback">
+            Selezionare la tipologia.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputSmartBinCapacity">Capienza (in kg)</label>
+          <input
+            [(ngModel)]="newSmartBin.total_capacity" name="SmartBinCapacity"
+            required
+            minlength="3"
+            pattern=".*"
+            #inputSmartBinCapacity = "ngModel"
+            [ngClass]="{'is-invalid': inputSmartBinCapacity.errors && inputSmartBinCapacity.touched}"
+            type="number" class="form-control" id="inputSmartBinCapacity" placeholder="Capienza">
+
+          <div class="invalid-feedback">
+            Inserire la capienza.
+          </div>
+        </div>
+
+        <!--[disabled]="this.markerService.markers.length != 1"-->
+        <button
+          [disabled] = "!allocateNewBinForm.valid"
+          type="submit" (click)="allocateNewBin()" class="btn btn-primary">📍 Alloca nuovo SmartBin</button>
+
+      </form>
+      <div class="request-list">
+        <h2>Richieste in attesa️</h2>
+
+        <div class="request-item">
+          <h4>SmartBin Via Vittorio Veneto</h4>
+          <ul>
+            <li><div class="bin-indicator green"></div>Vetro</li>
+            <li>Capacità: 30 kg</li>
+            <!--<button routerLink="/about/{{user.id}}">about</button>
+            <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
+          </ul>
+        </div>
+
+        <div class="request-item">
+          <h4>SmartBin Via Panoramica</h4>
+          <ul>
+            <li><div class="bin-indicator black"></div>Indifferenziata</li>
+            <li>Capacità: 55 kg</li>
+            <!--<button routerLink="/about/{{user.id}}">about</button>
+            <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+</body>

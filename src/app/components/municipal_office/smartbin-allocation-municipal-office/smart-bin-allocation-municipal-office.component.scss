@@ -1,0 +1,217 @@
+body {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  padding-top: 1rem;
+  padding-left: 2rem;
+  font-weight: 700;
+}
+h2 {
+  padding-bottom: 0.5rem;
+}
+h5 {
+  padding-top: 1rem;
+  padding-left: 2rem;
+  margin-bottom: 0;
+}
+
+
+.layout {
+  display: flex;
+  //border: 10px solid cyan;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  gap: 3rem;
+
+}
+
+.right-column {
+  //height: 30rem;
+  //border: 2px solid green;
+  flex-grow: 1;
+  //height: 200px;
+
+  display: flex;
+  flex-direction: column;
+}
+app-map {
+  //flex-grow: 1;
+  //height: 100px;
+  flex-basis: 400px;
+  flex-shrink: 0;
+}
+
+.info {
+  margin: 6px 15px;
+}
+
+.bin-list {
+  flex-grow: 1;
+}
+.bin-item {
+  //width: 400px;
+  background: #eee;
+  //background: #00eeff33;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.request-item {
+  //width: 400px;
+  background: #9afa;
+  //background: #00eeff33;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.bin-indicator {
+  width: 15px;
+  height: 15px;
+  //background: red;
+  border-radius: 4px;
+}
+
+h4 {
+  font-weight: 700;
+  //color: #000000dd;
+}
+
+ul, li {
+  list-style: none;
+}
+
+ul {
+
+  display: flex;
+  gap: 32px;
+  //background: pink;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: space-between;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  //background: red;
+}
+
+.highlighted {
+  background-color: #ffcc0066;
+}
+
+button {
+  width: 100%;
+}
+/*
+.animated-background {
+  width: 200px;
+  height: 200px;
+  background-color: #ff0000; // Colore di partenza
+  animation: backgroundAnimation 2s ; // Applica l'animazione per 2 secondi in modo continuo
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background-color: #ff0000; // Colore di partenza
+  }
+  50% {
+    background-color: #00ff00; // Colore intermedio
+  }
+  100% {
+    background-color: #ff0000; // Colore finale (uguale al colore di partenza)
+  }
+}
+*/
+
+.green {
+  background-color: green;
+}
+.black {
+  background-color: black;
+}
+.purple {
+  background-color: purple;
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 30rem;
+  align-items: center;
+  margin-top: 0.5rem;
+  background-color: #9af2;
+  border: 1px solid #0007;
+  border-radius: 8px;
+  align-self: center;
+}
+
+.form-group {
+  //background: yellow;
+  margin: 0.8rem;
+  margin-inline: 2rem;
+  align-self: stretch;
+  //height: 4rem;
+}
+
+.form-group > label {
+  margin-left: 0.5rem;
+  color: #000;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+form > button {
+  margin: 1rem;
+  margin-inline: 2rem;
+  //width: 50%;
+}
+
+p {
+  text-align: justify;
+  margin-inline: 4rem;
+}
+
+#inputSmartBinName {
+  width: 16rem;
+}
+#inputSmartBinType {
+  width: 10rem;
+}
+#inputSmartBinCapacity {
+  width: 10rem;
+}
+
+
+
+.request-list {
+  margin-top: 5rem;
+}

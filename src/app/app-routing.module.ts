@@ -13,6 +13,9 @@ import {PasswordResetByTokenComponent} from "./components/authentication/passwor
 import {
   MenuMunicipalOfficeComponent
 } from "./components/municipal_office/menu-municipal-office/menu-municipal-office.component";
+import {
+  SmartBinAllocationMunicipalOfficeComponent
+} from "./components/municipal_office/smartbin-allocation-municipal-office/smart-bin-allocation-municipal-office.component";
 
 const routes: Routes = [ // questo sarà un array di hops (di paths che sono supportati dall'applicazione)
   { path: '', component: UsersComponent },              // Ogni route è definita da due attributi:
@@ -23,7 +26,8 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'password-reset-token-validation', component: PasswordResetTokenValidationComponent },
   { path: 'password-reset-by-token', component: PasswordResetByTokenComponent },
-  { path: 'municipal_office/menu', component: MenuMunicipalOfficeComponent }
+  { path: 'municipal_office/menu', component: MenuMunicipalOfficeComponent },
+  { path: 'municipal_office/smartbin-allocation', component: SmartBinAllocationMunicipalOfficeComponent }
 ]
 
 @NgModule({

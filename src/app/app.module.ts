@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './components/unused/users/users.component';
 import {FormsModule} from "@angular/forms";
-import {UsersService} from "./services/users.service";
+import {UsersService} from "./services/unused/users.service";
 import {HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './components/unused/about/about.component';
@@ -16,6 +16,11 @@ import { PasswordResetTokenValidationComponent } from './components/authenticati
 import { PasswordResetByTokenComponent } from './components/authentication/password-reset-by-token/password-reset-by-token.component';
 import { PasswordMatchDirective } from './directives/password-match.directive';
 import { MenuMunicipalOfficeComponent } from './components/municipal_office/menu-municipal-office/menu-municipal-office.component';
+import { SmartBinAllocationMunicipalOfficeComponent } from './components/municipal_office/smartbin-allocation-municipal-office/smart-bin-allocation-municipal-office.component';
+import { MapComponent } from './components/map/map.component';
+import {MarkerService} from "./services/marker.service";
+import {SmartBinService} from "./services/smart-bin.service";
+import {PopupService} from "./services/popup.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +33,9 @@ import { MenuMunicipalOfficeComponent } from './components/municipal_office/menu
     PasswordResetTokenValidationComponent,
     PasswordResetByTokenComponent,
     PasswordMatchDirective,
-    MenuMunicipalOfficeComponent
+    MenuMunicipalOfficeComponent,
+    SmartBinAllocationMunicipalOfficeComponent,
+    MapComponent
   ],
     imports: [
         BrowserModule,
@@ -39,7 +46,14 @@ import { MenuMunicipalOfficeComponent } from './components/municipal_office/menu
         RouterLink,
         RouterLinkActive
     ],
-  providers: [UsersService],
-  bootstrap: [AppComponent]
+  providers: [
+    UsersService,
+    MarkerService,
+    PopupService,
+    SmartBinService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
