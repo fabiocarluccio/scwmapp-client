@@ -18,7 +18,6 @@ import { PasswordMatchDirective } from './directives/password-match.directive';
 import { MenuMunicipalOfficeComponent } from './components/municipal_office/menu-municipal-office/menu-municipal-office.component';
 import { SmartBinAllocationMunicipalOfficeComponent } from './components/municipal_office/smartbin-allocation-municipal-office/smart-bin-allocation-municipal-office.component';
 import { MapComponent } from './components/map/map.component';
-import {MarkerService} from "./services/marker.service";
 import {SmartBinService} from "./services/smart-bin.service";
 import {PopupService} from "./services/popup.service";
 
@@ -48,7 +47,7 @@ import {PopupService} from "./services/popup.service";
     ],
   providers: [
     UsersService,
-    MarkerService,
+    //MarkerService,
     PopupService,
     SmartBinService
   ],

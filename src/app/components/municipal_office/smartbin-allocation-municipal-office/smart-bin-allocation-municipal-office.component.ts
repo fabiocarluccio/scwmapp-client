@@ -14,12 +14,14 @@ import * as L from "leaflet";
 })
 export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, AfterViewInit {
 
+
   smartBins: SmartBin[] = []
   newSmartBin: SmartBin = {} as SmartBin;
 
+  showRequestForm = false
+
   constructor(private http: HttpClient,
               public smartBinService: SmartBinService,
-              public markerService: MarkerService,
               private exceptionManager: ExceptionManagerService) {
   }
 
@@ -30,7 +32,6 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
       // Mostro errore
       window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
     });
-
   }
 
   ngAfterViewInit(): void {
@@ -54,11 +55,11 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   }
 
   allocateNewBin() {
-    if(this.markerService.markers.length != 1) {
+    /*if(this.markerService.markers.length != 1) {
       console.log("dio1")
     } else {
       console.log(this.markerService.markers.length)
-    }
+    }*/
 
     //this.mapComponent.setFocus(1,1)
   }
@@ -72,5 +73,13 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   moveMapToNewCenter(): void {
     //const newCenter: L.LatLngExpression = [42, -71]; // Nuove coordinate in cui spostare il centro
     //this.map.setView(newCenter, 10); // Cambia il centro della mappa alle nuove coordinate
+  }
+
+  handleMarkerUpdate(showRequestForm: boolean) {
+    this.showRequestForm = showRequestForm
+  }
+
+  toggleMapView() {
+    console.log("mostro/nascondo la mappa relativa alla richiesta")
   }
 }

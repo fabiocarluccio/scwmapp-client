@@ -2,22 +2,17 @@ body {
   display:flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 1rem;
 }
 
-h1 {
-  padding-top: 1rem;
-  padding-left: 2rem;
-  font-weight: 700;
+/* non consigliato perche lascia un sacco di spazio sotto la pagina
+body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
+  //-moz-transform: scale(0.8); // Firefox
+  //-webkit-transform: scale(0.8); // Chrome, Safari, Opera
+  //transform: scale(0.8);
+  //transform-origin: top; // Imposta l'origine del trasformazione
 }
-h2 {
-  padding-bottom: 0.5rem;
-}
-h5 {
-  padding-top: 1rem;
-  padding-left: 2rem;
-  margin-bottom: 0;
-}
-
+*/
 
 .layout {
   display: flex;
@@ -40,38 +35,102 @@ h5 {
   display: flex;
   flex-direction: column;
 }
-app-map {
+app-map, #SmartBinsMap, #RequestMap1 {
   //flex-grow: 1;
   //height: 100px;
   flex-basis: 400px;
   flex-shrink: 0;
+  border-radius: 8px;
+  border: 2px solid #0007;
+}
+#RequestMap1 {
+  flex-basis: 200px;
+  margin-bottom: 10px;
 }
 
-.info {
+.info {// se disattivo questo, la mappa si ingrandisce, questo perche la mappa dipende dalla lunghezza delle parole di questo elemento
   margin: 6px 15px;
+  cursor: default;
 }
 
 .bin-list {
   flex-grow: 1;
+  cursor: default;
 }
-.bin-item {
+.bin-item-card {
+  position: relative; // necessario per il number-banner
   //width: 400px;
   background: #eee;
   //background: #00eeff33;
-  border: 1px solid #ccc;
+  border: 1px solid #0004;
+  border-radius: 4px;
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.bin-item-content {
+  //width: 400px;
+  background: #eee;
+  //background: #00eeff33;
+  //border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 10px;
 
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  //justify-content: space-between;
 
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  flex-grow: 1;
+
+  //padding-top: 10px;
+  padding-left: 15px;
+  //padding-right: 10px;
 }
+.bin-item-description {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}
+.bin-type {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.number-banner {
+  font-size: 0.8rem;
+  font-weight: 700;
+  position: absolute;
+  top: -5px;
+  left: -12px;
+
+  background-color: #0073dd;
+  color: white;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+
+  border-radius: 16px;
+  user-select: none;
+}
+
+.request-list {
+  cursor: default;
+}
+
 .request-item {
   //width: 400px;
-  background: #9afa;
+  background: #eee;
   //background: #00eeff33;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -89,12 +148,15 @@ app-map {
   height: 15px;
   //background: red;
   border-radius: 4px;
+  display: inline-block;
+}
+.clickable {
+  cursor: pointer;
+}
+.clickable > h4 {
+  cursor: pointer;
 }
 
-h4 {
-  font-weight: 700;
-  //color: #000000dd;
-}
 
 ul, li {
   list-style: none;
@@ -124,26 +186,18 @@ li {
 button {
   width: 100%;
 }
-/*
-.animated-background {
-  width: 200px;
-  height: 200px;
-  background-color: #ff0000; // Colore di partenza
-  animation: backgroundAnimation 2s ; // Applica l'animazione per 2 secondi in modo continuo
+
+.cool-background {
+  background: linear-gradient(45deg,
+    #3c31,
+    #09c1,
+    #30c1,
+    #60c1,
+    #90c1);
+  background-size: 150% 150%;
 }
 
-@keyframes backgroundAnimation {
-  0% {
-    background-color: #ff0000; // Colore di partenza
-  }
-  50% {
-    background-color: #00ff00; // Colore intermedio
-  }
-  100% {
-    background-color: #ff0000; // Colore finale (uguale al colore di partenza)
-  }
-}
-*/
+
 
 .green {
   background-color: green;
@@ -168,6 +222,11 @@ form {
   border: 1px solid #0007;
   border-radius: 8px;
   align-self: center;
+}
+
+form > h5 {
+  margin-top: 20px;
+  margin-left: 35px;
 }
 
 .form-group {
@@ -197,7 +256,6 @@ form > button {
 
 p {
   text-align: justify;
-  margin-inline: 4rem;
 }
 
 #inputSmartBinName {
@@ -213,5 +271,38 @@ p {
 
 
 .request-list {
-  margin-top: 5rem;
+  margin-top: 2rem;
+}
+
+
+
+.indicator {
+  position: relative;
+  width: 20px;
+  //margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 25px;
+  margin-right: 15px;
+  //height: 60px;
+}
+
+.background-rectangle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Altezza maggiore rispetto al rettangolo anteriore */
+  background-color: #0004;
+  border-radius: 4px;
+}
+
+.foreground-rectangle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%; /* Altezza minore rispetto al rettangolo posteriore */
+  background-color: #4e8;
+  border-radius: 4px;
 }

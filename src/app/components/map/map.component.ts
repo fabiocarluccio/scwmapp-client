@@ -1,6 +1,7 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
 import * as L from 'leaflet';
 import {MarkerService} from "../../services/marker.service";
+import {GeoJSON, LatLngExpression} from "leaflet";
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -20,16 +21,37 @@ L.Marker.prototype.options.icon = iconDefault;
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
+  providers: [MarkerService]
 })
 export class MapComponent implements AfterViewInit {
+  @Input() mapId!: string; //SmartBinsMap | RequestMap3289183 | RequestMap128491
+  @Input() focusLocation: LatLngExpression | undefined;
+
+  @Output() markerEvent = new EventEmitter<any>();
+
+
   private map: any;
 
   private initMap(): void {
-    this.map = L.map('map', {
-      center: [ 40.0017, 18.42517 ],
-      zoom: 17
-    });
+    if(typeof this.focusLocation === 'undefined') {
+      this.focusLocation = [ 40.0017, 18.42517 ]
+    }
+
+    if(this.mapId == "SmartBinsMap") {
+      this.map = L.map(this.mapId, {
+        center: this.focusLocation,
+        zoom: 17
+      });
+    } else {
+      this.map = L.map(this.mapId, {
+        center: this.focusLocation,
+        dragging: false,
+        scrollWheelZoom: false,
+        zoomControl: false,
+        zoom: 17
+      });
+    }
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -45,9 +67,14 @@ export class MapComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.initMap();
 
-    this.markerService.makeBinCircleMarkers(this.map);
+    if(this.mapId == "SmartBinsMap") { // inserisco markers posizione smartbins attivi
+      this.markerService.makeBinCircleMarkers(this.map);
+      this.addMapClickEvent();
+    } else { // inserisco marker posizione richiesta allocazione
+      const marker = L.marker(this.focusLocation!).addTo(this.map);
+      this.markerService.markers.push(marker);
+    }
 
-    this.addMapClickEvent();
   }
 
   private addMapClickEvent(): void {
@@ -58,11 +85,12 @@ export class MapComponent implements AfterViewInit {
       if(this.markerService.markers.length == 0) {
         // Rimuovi tutti i marker esistenti
         this.removeMarkers();
-
         this.addMarker([lat, lng]);
+        this.markerEvent.emit(true);
       } else {
         // Rimuovi tutti i marker esistenti
         this.removeMarkers();
+        this.markerEvent.emit(false);
       }
     });
   }

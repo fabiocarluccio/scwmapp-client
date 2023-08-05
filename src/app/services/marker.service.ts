@@ -3,16 +3,17 @@ import {HttpClient} from "@angular/common/http";
 import * as L from 'leaflet';
 import {SmartBinService} from "./smart-bin.service";
 import {PopupService} from "./popup.service";
+import {LatLngExpression} from "leaflet";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class MarkerService {
 
   public markers: L.Marker[] = []; // Array per memorizzare i marker aggiunti
 
 
-  constructor(private http: HttpClient, private popupService: PopupService, private smartBinService: SmartBinService) {
+  constructor(private http: HttpClient,
+              private popupService: PopupService,
+              private smartBinService: SmartBinService) {
 
   }
 
