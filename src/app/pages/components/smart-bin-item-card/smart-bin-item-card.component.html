@@ -1,0 +1,20 @@
+<div class="bin-item-card" id="smartBinCard_{{smartBin.id}}">
+  <div class="number-banner" *ngIf="isSelected">
+    1
+  </div>
+  <div class="bin-item-content">
+    <h4>{{this.smartBin.name}}</h4>
+
+    <div class="bin-item-description">
+      <div class="bin-type"><div class="bin-indicator {{this.smartBinService.getBinTypeColor(smartBin.type!)}}"></div>{{smartBin.type}}</div>
+      <div>Capacità: <b>{{this.smartBin.current_capacity}}/{{smartBin.total_capacity}} kg</b></div>
+    </div>
+    <!--<button routerLink="/about/{{user.id}}">about</button>
+    <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
+    <!--<button (click)="locateSmartBin(smartbin)" class="button">Localizza</button>-->
+  </div>
+  <div class="indicator">
+    <div class="background-rectangle"></div>
+    <div class="foreground-rectangle"></div>
+  </div>
+</div>

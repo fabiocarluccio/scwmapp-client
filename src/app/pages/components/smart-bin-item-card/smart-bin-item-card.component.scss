@@ -1,0 +1,118 @@
+.bin-item-card {
+  position: relative; // necessario per il number-banner
+  //width: 400px;
+  background: #eee;
+  //background: #00eeff33;
+  border: 1px solid #0004;
+  border-radius: 4px;
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.bin-item-content {
+  //width: 400px;
+  background: #eee;
+  //background: #00eeff33;
+  //border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  //justify-content: space-between;
+
+  flex-grow: 1;
+
+  //padding-top: 10px;
+  padding-left: 15px;
+  //padding-right: 10px;
+}
+.bin-item-description {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}
+.bin-type {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.number-banner {
+  font-size: 0.8rem;
+  font-weight: 700;
+  position: absolute;
+  top: -5px;
+  left: -12px;
+
+  background-color: #0073dd;
+  color: white;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+
+  border-radius: 16px;
+  user-select: none;
+}
+
+
+.bin-indicator {
+  width: 15px;
+  height: 15px;
+  //background: red;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+
+.indicator {
+  position: relative;
+  width: 20px;
+  //margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 25px;
+  margin-right: 15px;
+  //height: 60px;
+}
+
+.background-rectangle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Altezza maggiore rispetto al rettangolo anteriore */
+  background-color: #0004;
+  border-radius: 4px;
+}
+
+.foreground-rectangle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%; /* Altezza minore rispetto al rettangolo posteriore */
+  background-color: #4e8;
+  border-radius: 4px;
+}
+
+
+.green {
+  background-color: green;
+}
+.black {
+  background-color: black;
+}
+.purple {
+  background-color: purple;
+}

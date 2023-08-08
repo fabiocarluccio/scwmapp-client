@@ -1,0 +1,13 @@
+<div class="request-item clickable" (click)="toggleMapView()">
+  <h4>SmartBin Via Vittorio Veneto</h4>
+
+  <ul>
+    <li><div class="bin-indicator green"></div>Vetro</li>
+    <li>Capacità: <b>30 kg</b></li>
+    <!--<button routerLink="/about/{{user.id}}">about</button>
+    <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
+  </ul>
+  <div id="RequestMap1" *ngIf="this.showMapView">
+    <app-map  [mapId]="'RequestMap1'" [focusLocation]="[ 40.01002, 18.42572 ]"></app-map>
+  </div>
+</div>

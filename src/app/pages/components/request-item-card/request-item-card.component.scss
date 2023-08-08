@@ -1,0 +1,73 @@
+app-map {
+  //flex-grow: 1;
+  //height: 100px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 2px solid #0007;
+}
+
+#RequestMap1 {
+  flex-basis: 200px;
+  margin-bottom: 10px;
+}
+
+.request-item {
+  //width: 400px;
+  background: #eee;
+  //background: #00eeff33;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.bin-indicator {
+  width: 15px;
+  height: 15px;
+  //background: red;
+  border-radius: 4px;
+  display: inline-block;
+}
+.clickable {
+  cursor: pointer;
+}
+.clickable > h4 {
+  cursor: pointer;
+}
+
+
+ul, li {
+  list-style: none;
+}
+
+ul {
+
+  display: flex;
+  gap: 32px;
+  //background: pink;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: space-between;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  //background: red;
+}
+
+
+.green {
+  background-color: green;
+}
+.black {
+  background-color: black;
+}
+.purple {
+  background-color: purple;
+}

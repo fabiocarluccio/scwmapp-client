@@ -3,9 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {SmartBinService} from "../../../services/smart-bin.service";
 import {ExceptionManagerService} from "../../../services/exception-manager.service";
 import {SmartBin} from "../../../models/smartbin";
-import {MarkerService} from "../../../services/marker.service";
-import {MapComponent} from "../../map/map.component";
-import * as L from "leaflet";
 
 @Component({
   selector: 'app-smartbin-allocation-municipal-office',
@@ -79,7 +76,4 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
     this.showRequestForm = showRequestForm
   }
 
-  toggleMapView() {
-    console.log("mostro/nascondo la mappa relativa alla richiesta")
-  }
 }

@@ -5,26 +5,7 @@
 
     <div class="bin-list">
       <h2>SmartBins attivi</h2>
-      <div class="bin-item-card" id="{{smartbin.id}}" *ngFor="let smartbin of this.smartBins">
-        <div class="number-banner">
-          1
-        </div>
-        <div class="bin-item-content">
-          <h4>{{smartbin.name}}</h4>
-
-          <div class="bin-item-description">
-            <div class="bin-type"><div class="bin-indicator {{this.smartBinService.getBinTypeColor(smartbin.type!)}}"></div>{{smartbin.type}}</div>
-            <div>Capacità: <b>{{smartbin.current_capacity}}/{{smartbin.total_capacity}} kg</b></div>
-          </div>
-          <!--<button routerLink="/about/{{user.id}}">about</button>
-          <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
-          <!--<button (click)="locateSmartBin(smartbin)" class="button">Localizza</button>-->
-        </div>
-        <div class="indicator">
-          <div class="background-rectangle"></div>
-          <div class="foreground-rectangle"></div>
-        </div>
-      </div>
+      <app-smart-bin-item-card [isSelected]="false" [smartBin]=smartbin *ngFor="let smartbin of this.smartBins"></app-smart-bin-item-card>
     </div>
 
     <div class="right-column">
@@ -103,19 +84,9 @@
       <div class="request-list">
         <h2>Richieste in attesa️</h2>
 
-        <div class="request-item clickable" (click)="toggleMapView()">
-          <h4>SmartBin Via Vittorio Veneto</h4>
 
-          <ul>
-            <li><div class="bin-indicator green"></div>Vetro</li>
-            <li>Capacità: <b>30 kg</b></li>
-            <!--<button routerLink="/about/{{user.id}}">about</button>
-            <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
-          </ul>
-          <div id="RequestMap1" >
-            <app-map  [mapId]="'RequestMap1'" [focusLocation]="[ 40.01002, 18.42572 ]"></app-map>
-          </div>
-        </div>
+        <app-request-item-card></app-request-item-card>
+        <app-request-item-card></app-request-item-card>
 
         <div class="request-item clickable">
           <h4>SmartBin Via Panoramica</h4>
