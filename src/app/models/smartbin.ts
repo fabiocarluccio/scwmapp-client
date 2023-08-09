@@ -4,8 +4,8 @@ export interface SmartBin {
   id?: string
   name?: string
   type?: string
-  location?: GeoJSON
+  position?: GeoJSON
 
-  current_capacity?: string
-  total_capacity?: string
+  currentCapacity?: number
+  totalCapacity?: number
 }

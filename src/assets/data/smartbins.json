@@ -1,203 +1,92 @@
-{
-  "type": "BinsCollection",
-  "features": [
+[
     {
-      "id": "bin001",
-      "name": "Smart Bin 1",
-      "type": "Vetro",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0020]
-      },
-      "current_capacity": "50",
-      "total_capacity": "100"
+        "id": "64cf7a830ee4d83a647e879a",
+        "name": "SmartBin0",
+        "position": {
+            "type": "Point",
+            "coordinates": [
+                18.4236,
+                40.0010
+            ]
+        },
+        "state": "ALLOCATED",
+        "type": "Plastica",
+        "totalCapacity": 50,
+        "currentCapacity": 50
     },
     {
-      "id": "bin002",
-      "name": "Smart Bin 2",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
+        "id": "64cf7a830ee4d83a647e872f",
+        "name": "SmartBin1",
+        "position": {
+            "type": "Point",
+            "coordinates": [
+                18.4263,
+                40.0020
+            ]
+        },
+        "state": "ALLOCATED",
+        "type": "Vetro",
+        "totalCapacity": 100,
+        "currentCapacity": 90.8
     },
     {
-      "id": "bin003",
-      "name": "Smart Bin 3",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
+        "id": "64d0bcfa4a41b04c4d8a1629",
+        "name": "SmartBin2",
+        "position": {
+            "type": "Point",
+            "coordinates": [
+                18.4263,
+                40.0030
+            ]
+        },
+        "state": "ALLOCATED",
+        "type": "Indifferenziata",
+        "totalCapacity": 100.0,
+        "currentCapacity": 73.2
     },
     {
-      "id": "bin004",
-      "name": "Smart Bin 4",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
+        "id": "64d0bcfa4a41b04c4d8a1630",
+        "name": "SmartBin3",
+        "position": {
+            "type": "Point",
+            "coordinates": [
+                18.4262,
+                40.0030
+            ]
+        },
+        "state": "ALLOCATED",
+        "type": "Indifferenziata",
+        "totalCapacity": 100.0,
+        "currentCapacity": 48.2
     },
     {
-      "id": "bin005",
-      "name": "Smart Bin 5",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
+        "id": "64d0bcfa4a41b04c4d8a1631",
+        "name": "SmartBin4",
+        "position": {
+            "type": "Point",
+            "coordinates": [
+                18.4261,
+                40.0030
+            ]
+        },
+        "state": "ALLOCATED",
+        "type": "Vetro",
+        "totalCapacity": 100.0,
+        "currentCapacity": 10.8
     },
     {
-      "id": "bin006",
-      "name": "Smart Bin 6",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin007",
-      "name": "Smart Bin 7",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin008",
-      "name": "Smart Bin 8",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin009",
-      "name": "Smart Bin 9",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin0010",
-      "name": "Smart Bin 10",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin0011",
-      "name": "Smart Bin 11",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin0012",
-      "name": "Smart Bin 12",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin0013",
-      "name": "Smart Bin 13",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin0014",
-      "name": "Smart Bin 14",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin0015",
-      "name": "Smart Bin 15",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin0016",
-      "name": "Smart Bin 16",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin0017",
-      "name": "Smart Bin 17",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
-    },
-    {
-      "id": "bin0018",
-      "name": "Smart Bin 18",
-      "type": "Indifferenziata",
-      "location": {
-        "type": "Point",
-        "coordinates": [18.4263, 40.0030]
-      },
-      "current_capacity": "20",
-      "total_capacity": "100"
+        "id": "64d0bcfa4a41b04c4d8a1632",
+        "name": "SmartBin4",
+        "position": {
+            "type": "Point",
+            "coordinates": [
+                18.4269,
+                40.0032
+            ]
+        },
+        "state": "ALLOCATED",
+        "type": "Plastica",
+        "totalCapacity": 100.0,
+        "currentCapacity": 0
     }
-  ]
-}
+]

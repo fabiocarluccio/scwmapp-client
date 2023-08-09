@@ -11,6 +11,6 @@ export class PopupService {
     return `` +
       `<div><b>${ data.name }</b></div>` +
       `<div>Tipo: ${ data.type }</div>` +
-      `<div>Capacità: ${ data.current_capacity }/${ data.total_capacity } kg</div>`
+      `<div>Capacità: ${ data.currentCapacity }/${ data.totalCapacity } kg</div>`
   }
 }

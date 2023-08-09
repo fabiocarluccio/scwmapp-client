@@ -1,17 +1,17 @@
 app-map {
-  //flex-grow: 1;
-  //height: 100px;
   flex-shrink: 0;
-  border-radius: 8px;
-  border: 2px solid #0007;
 }
 
-#RequestMap1 {
+.map-frame {
   flex-basis: 200px;
+  //margin-top: 10px;
   margin-bottom: 10px;
+
+  border-radius: 8px;
+  border: 2px solid #0003;
 }
 
-.request-item {
+.request-item-card {
   //width: 400px;
   background: #eee;
   //background: #00eeff33;
@@ -20,10 +20,42 @@ app-map {
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
+  gap: 8px;
 
-  padding-top: 10px;
+  padding-top: 15px;
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 10px;
+}
+.bin-item-content {
+  //width: 400px;
+  background: #eee;
+  //background: #00eeff33;
+  //border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  //justify-content: space-between;
+
+  flex-grow: 1;
+
+  //padding-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.bin-item-description {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}
+.bin-type {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 .bin-indicator {
   width: 15px;
@@ -60,6 +92,22 @@ li {
   gap: 8px;
   //background: red;
 }
+
+.allocation-decision {
+  display: flex;
+  justify-content: space-around;
+
+  margin-top: 0px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 5px;
+}
+.allocation-decision > * {
+  flex-grow: 1;
+  border-radius: 0;
+}
+
+
 
 
 .green {

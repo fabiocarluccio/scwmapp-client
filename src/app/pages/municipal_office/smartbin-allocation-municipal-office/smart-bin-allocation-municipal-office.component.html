@@ -62,7 +62,7 @@
         <div class="form-group">
           <label for="inputSmartBinCapacity">Capienza (in kg)</label>
           <input
-            [(ngModel)]="newSmartBin.total_capacity" name="SmartBinCapacity"
+            [(ngModel)]="newSmartBin.totalCapacity" name="SmartBinCapacity"
             required
             minlength="3"
             pattern=".*"
@@ -84,19 +84,11 @@
       <div class="request-list">
         <h2>Richieste in attesa️</h2>
 
+        <app-request-item-card
+          [smartBinRequest]=smartbinRequest
+          *ngFor="let smartbinRequest of this.smartBinRequests">
+        </app-request-item-card>
 
-        <app-request-item-card></app-request-item-card>
-        <app-request-item-card></app-request-item-card>
-
-        <div class="request-item clickable">
-          <h4>SmartBin Via Panoramica</h4>
-          <ul>
-            <li><div class="bin-indicator black"></div>Indifferenziata</li>
-            <li>Capacità: <b>55 kg</b></li>
-            <!--<button routerLink="/about/{{user.id}}">about</button>
-            <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
-          </ul>
-        </div>
       </div>
 
 

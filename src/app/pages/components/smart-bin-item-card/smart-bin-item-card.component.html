@@ -6,8 +6,12 @@
     <h4>{{this.smartBin.name}}</h4>
 
     <div class="bin-item-description">
-      <div class="bin-type"><div class="bin-indicator {{this.smartBinService.getBinTypeColor(smartBin.type!)}}"></div>{{smartBin.type}}</div>
-      <div>Capacità: <b>{{this.smartBin.current_capacity}}/{{smartBin.total_capacity}} kg</b></div>
+      <div class="bin-type">
+        <div class="bin-indicator"
+             [style.background-color]="this.smartBinService.getBinTypeColor(smartBin.type!)">
+        </div>{{smartBin.type}}
+      </div>
+      <div>Capacità: <b>{{this.smartBin.currentCapacity}}/{{smartBin.totalCapacity}} kg</b></div>
     </div>
     <!--<button routerLink="/about/{{user.id}}">about</button>
     <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
@@ -15,6 +19,9 @@
   </div>
   <div class="indicator">
     <div class="background-rectangle"></div>
-    <div class="foreground-rectangle"></div>
+    <div class="foreground-rectangle"
+         [style.height]="this.getCapacityPercentage()"
+         [style.background-color]="this.getColorCapacity()">
+    </div>
   </div>
 </div>

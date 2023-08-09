@@ -25,7 +25,7 @@ L.Marker.prototype.options.icon = iconDefault;
   providers: [MarkerService]
 })
 export class MapComponent implements AfterViewInit {
-  @Input() mapId!: string; //SmartBinsMap | RequestMap3289183 | RequestMap128491
+  @Input() mapId!: string; //SmartBinsMap | RequestMap-3289183 | RequestMap-128491
   @Input() focusLocation: LatLngExpression | undefined;
 
   @Output() markerEvent = new EventEmitter<any>();

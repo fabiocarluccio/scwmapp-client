@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {SmartBin} from "../models/smartbin";
+import {AllocationRequest} from "../models/allocationRequest";
+import {HttpClient} from "@angular/common/http";
 import {catchError, firstValueFrom, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SmartBinService {
+export class SmartBinRequestService {
 
-  path: string = '/assets/data/smartbins.json';
-  smartBins: SmartBin[] = [] as SmartBin[];
+  path: string = '/assets/data/allocation_requests.json';
+  smartBinRequests: AllocationRequest[] = [] as AllocationRequest[];
 
   constructor(private http: HttpClient) { }
 
-  loadBins() {
+  loadRequests() {
     return firstValueFrom(this.http.get(this.path).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
-        this.smartBins = response
+        this.smartBinRequests = response
       }),
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);

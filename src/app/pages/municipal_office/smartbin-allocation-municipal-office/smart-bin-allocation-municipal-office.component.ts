@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {SmartBinService} from "../../../services/smart-bin.service";
 import {ExceptionManagerService} from "../../../services/exception-manager.service";
 import {SmartBin} from "../../../models/smartbin";
+import {SmartBinRequestService} from "../../../services/smart-bin-request.service";
+import {AllocationRequest} from "../../../models/allocationRequest";
 
 @Component({
   selector: 'app-smartbin-allocation-municipal-office',
@@ -15,16 +17,29 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   smartBins: SmartBin[] = []
   newSmartBin: SmartBin = {} as SmartBin;
 
+  smartBinRequests: AllocationRequest[] = []
+
   showRequestForm = false
 
   constructor(private http: HttpClient,
               public smartBinService: SmartBinService,
+              public smartBinRequestService: SmartBinRequestService,
               private exceptionManager: ExceptionManagerService) {
   }
 
   ngOnInit(): void {
     this.smartBinService.loadBins().then(response => {
-      this.smartBins = this.smartBinService.smartBins
+
+      this.smartBins = this.smartBinService.smartBins                             // load smartbins
+
+      this.smartBinRequestService.loadRequests().then(response => {
+
+        this.smartBinRequests = this.smartBinRequestService.smartBinRequests      // load allocation requests
+
+        }).catch(error => {
+          // Mostro errore
+          window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+        });
     }).catch(error => {
       // Mostro errore
       window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
@@ -63,7 +78,7 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
 
 
   locateSmartBin(smartbin: SmartBin) {
-    console.log(smartbin.location)
+    console.log(smartbin.position)
     //this.moveMapToNewCenter()
   }
 

@@ -18,22 +18,25 @@ export class MarkerService {
   }
 
   static scaledRadius(val: number, maxVal: number): number {
+    if(20 * (val / maxVal) < 8) {
+        return 8;
+    }
     return 20 * (val / maxVal);
   }
 
 
   makeBinCircleMarkers(map: L.Map): void {
     this.smartBinService.loadBins().then(response => {
-      for (const bin of response.features) {
-        const lon = bin.location.coordinates[0];
-        const lat = bin.location.coordinates[1];
+      for (const bin of response) {
+        const lon = bin.position.coordinates[0];
+        const lat = bin.position.coordinates[1];
 
         const circleOptions: L.CircleMarkerOptions = {
           color: this.getColor(bin.type), // Imposta il colore del cerchio su rosso
           opacity: 0.8,
           fillColor: this.getColor(bin.type),
           fillOpacity: 0.4, //0.2,
-          radius: MarkerService.scaledRadius(bin.current_capacity, bin.total_capacity),//6, // Imposta il raggio del cerchio a 6 (o qualsiasi altro valore desiderato)
+          radius: MarkerService.scaledRadius(bin.currentCapacity, bin.totalCapacity),//6, // Imposta il raggio del cerchio a 6 (o qualsiasi altro valore desiderato)
           weight: 4
         };
         const circle = L.circleMarker([lat, lon], circleOptions);

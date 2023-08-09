@@ -35,13 +35,13 @@ body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
   display: flex;
   flex-direction: column;
 }
-app-map, #SmartBinsMap {
+#SmartBinsMap {
   //flex-grow: 1;
   //height: 100px;
   flex-basis: 400px;
   flex-shrink: 0;
   border-radius: 8px;
-  border: 2px solid #0007;
+  border: 2px solid #0003;
 }
 
 .info {// se disattivo questo, la mappa si ingrandisce, questo perche la mappa dipende dalla lunghezza delle parole di questo elemento
@@ -59,28 +59,6 @@ app-map, #SmartBinsMap {
   margin-top: 2rem;
 }
 
-.request-item {
-  //width: 400px;
-  background: #eee;
-  //background: #00eeff33;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 10px;
-
-  display: flex;
-  flex-direction: column;
-
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.bin-indicator {
-  width: 15px;
-  height: 15px;
-  //background: red;
-  border-radius: 4px;
-  display: inline-block;
-}
 .clickable {
   cursor: pointer;
 }
