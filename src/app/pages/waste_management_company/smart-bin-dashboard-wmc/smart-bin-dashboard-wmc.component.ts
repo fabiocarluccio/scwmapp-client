@@ -14,6 +14,10 @@ import {ExceptionManagerService} from "../../../services/exception-manager.servi
 export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
   smartBins: SmartBin[] = []
+  get smartBinsSorted(): SmartBin[] {
+    this.sortBins();
+    return this.smartBins;
+  }
 
   smartBinRequests: AllocationRequest[] = []
 
@@ -56,7 +60,7 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
   handleSelectionEvent(smartBin: SmartBin) {
 
-    if(this.smartBinCleaningPath.indexOf(smartBin) != -1) {
+    if (this.smartBinCleaningPath.indexOf(smartBin) != -1) {
       this.smartBinCleaningPath = this.smartBinCleaningPath.filter(item => item !== smartBin)
     } else {
       this.smartBinCleaningPath.push(smartBin)
@@ -70,8 +74,24 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
   }
 
   executeCleaningPath() {
-    // TODO - Inserire qui comunicazione con MS
-
+    this.cleanPath()
     this.toggleCleaningMode()
   }
+
+  cleanPath() { // TODO - Da riaggiornare con comunicazione con MS
+
+    for (const smartBin of this.smartBins) {
+      if (this.smartBinCleaningPath.includes(smartBin)) {
+        smartBin.currentCapacity = 0
+        // TODO - come aggiorno la mappa?
+      }
+    }
+
+  }
+
+  private sortBins() {
+    // La funzione per ordinare gli SmartBin
+    this.smartBins.sort((a, b) => b.currentCapacity! - a.currentCapacity!);
+  }
+
 }

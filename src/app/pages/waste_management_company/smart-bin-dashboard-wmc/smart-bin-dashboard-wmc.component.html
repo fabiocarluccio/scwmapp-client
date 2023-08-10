@@ -6,7 +6,7 @@
   <div class="bin-list">
     <h2>SmartBins attivi</h2>
     <app-smart-bin-item-card
-      *ngFor="let smartbin of this.smartBins"
+      *ngFor="let smartbin of this.smartBinsSorted"
       [smartBin]=smartbin
       [isInSelectionMode]="cleaningMode"
       [isSelected]="this.smartBinCleaningPath.indexOf(smartbin) != -1"

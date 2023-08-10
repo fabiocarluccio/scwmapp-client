@@ -31,6 +31,7 @@ body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
   //border: 2px solid green;
   flex-grow: 1;
   //height: 200px;
+  flex-basis: 400px;
 
   display: flex;
   flex-direction: column;
@@ -50,8 +51,12 @@ body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
 }
 
 .bin-list {
+  flex-basis: 500px;
   flex-grow: 1;
   cursor: default;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .request-list {

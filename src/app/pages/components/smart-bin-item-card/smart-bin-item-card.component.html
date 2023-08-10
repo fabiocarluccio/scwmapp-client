@@ -11,7 +11,7 @@
              [style.background-color]="this.smartBinService.getBinTypeColor(smartBin.type!)">
         </div>{{smartBin.type}}
       </div>
-      <div>Capacità: <b>{{this.smartBin.currentCapacity}}/{{smartBin.totalCapacity}} kg</b></div>
+      <div class="capacity">Capacità: <b>{{this.smartBin.currentCapacity}}/{{smartBin.totalCapacity}} kg</b></div>
     </div>
     <!--<button routerLink="/about/{{user.id}}">about</button>
     <button (click)="goToDetail(user.id)">about_businessLogic</button>-->

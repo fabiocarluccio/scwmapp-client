@@ -31,6 +31,7 @@ body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
   //border: 2px solid green;
   flex-grow: 1;
   //height: 200px;
+  flex-basis: 400px;
 
   display: flex;
   flex-direction: column;
@@ -44,14 +45,18 @@ body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
   border: 2px solid #0003;
 }
 
-.info {// se disattivo questo, la mappa si ingrandisce, questo perche la mappa dipende dalla lunghezza delle parole di questo elemento
+.info { // se disattivo questo, la mappa si ingrandisce, questo perche la mappa dipende dalla lunghezza delle parole di questo elemento
   margin: 6px 15px;
   cursor: default;
 }
 
 .bin-list {
+  flex-basis: 500px;
   flex-grow: 1;
   cursor: default;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .request-list {
