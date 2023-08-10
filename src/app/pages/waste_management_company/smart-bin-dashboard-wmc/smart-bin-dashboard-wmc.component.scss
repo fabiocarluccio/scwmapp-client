@@ -1,0 +1,191 @@
+body {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+/* non consigliato perche lascia un sacco di spazio sotto la pagina
+body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
+  //-moz-transform: scale(0.8); // Firefox
+  //-webkit-transform: scale(0.8); // Chrome, Safari, Opera
+  //transform: scale(0.8);
+  //transform-origin: top; // Imposta l'origine del trasformazione
+}
+*/
+
+.layout {
+  display: flex;
+  //border: 10px solid cyan;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  gap: 3rem;
+
+}
+
+.right-column {
+  //height: 30rem;
+  //border: 2px solid green;
+  flex-grow: 1;
+  //height: 200px;
+
+  display: flex;
+  flex-direction: column;
+}
+#SmartBinsMap {
+  //flex-grow: 1;
+  //height: 100px;
+  flex-basis: 400px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 2px solid #0003;
+}
+
+.info {// se disattivo questo, la mappa si ingrandisce, questo perche la mappa dipende dalla lunghezza delle parole di questo elemento
+  margin: 6px 15px;
+  cursor: default;
+}
+
+.bin-list {
+  flex-grow: 1;
+  cursor: default;
+}
+
+.request-list {
+  cursor: default;
+  margin-top: 2rem;
+}
+
+.clickable {
+  cursor: pointer;
+}
+.clickable > h4 {
+  cursor: pointer;
+}
+
+
+ul, li {
+  list-style: none;
+}
+
+ul {
+
+  display: flex;
+  gap: 32px;
+  //background: pink;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: space-between;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  //background: red;
+}
+
+.highlighted {
+  background-color: #ffcc0066;
+}
+
+button {
+  width: 100%;
+}
+
+.cool-background {
+  background: linear-gradient(45deg,
+    #3c31,
+    #09c1,
+    #30c1,
+    #60c1,
+    #90c1);
+  background-size: 150% 150%;
+}
+
+
+
+.green {
+  background-color: green;
+}
+.black {
+  background-color: black;
+}
+.purple {
+  background-color: purple;
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 30rem;
+  align-items: center;
+  margin-top: 0.5rem;
+  background-color: #9af2;
+  border: 1px solid #0007;
+  border-radius: 8px;
+  align-self: center;
+}
+
+form > h5 {
+  margin-top: 20px;
+  margin-left: 35px;
+}
+
+.form-group {
+  //background: yellow;
+  margin: 0.8rem;
+  margin-inline: 2rem;
+  align-self: stretch;
+  //height: 4rem;
+}
+
+.form-group > label {
+  margin-left: 0.5rem;
+  color: #000;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+form > button {
+  margin: 1rem;
+  margin-inline: 2rem;
+  //width: 50%;
+}
+
+p {
+  text-align: justify;
+}
+
+#inputSmartBinName {
+  width: 16rem;
+}
+#inputSmartBinType {
+  width: 10rem;
+}
+#inputSmartBinCapacity {
+  width: 10rem;
+}
+
+
+// serve solo per impostare la width della mappa ad una grandezza accettabile, altrimenti il layout salta. Se resta tempo sistemo io (fabio)
+.info {
+  opacity: 0;
+  user-select: none;
+}
+
+
+.cleaning-buttons {
+  display: flex;
+  gap: 10px;
+}

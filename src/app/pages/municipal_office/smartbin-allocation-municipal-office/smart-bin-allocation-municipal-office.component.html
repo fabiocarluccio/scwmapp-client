@@ -5,13 +5,13 @@
 
     <div class="bin-list">
       <h2>SmartBins attivi</h2>
-      <app-smart-bin-item-card [isSelected]="false" [smartBin]=smartbin *ngFor="let smartbin of this.smartBins"></app-smart-bin-item-card>
+      <app-smart-bin-item-card [smartBin]=smartbin *ngFor="let smartbin of this.smartBins"></app-smart-bin-item-card>
     </div>
 
     <div class="right-column">
 
       <div id="SmartBinsMap">
-        <app-map [mapId]="'SmartBinsMap'" (markerEvent)="handleMarkerUpdate($event)"></app-map>
+        <app-map [mapId]="'SmartBinsMap'" [handleMarkerClickEvent]="true" (markerEvent)="handleMarkerUpdate($event)"></app-map>
       </div>
 
       <p class="info">Per posizionare un nuovo SmartBin, effettua un click su un punto vuoto della mappa.</p>

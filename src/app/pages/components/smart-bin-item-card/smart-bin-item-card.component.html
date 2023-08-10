@@ -1,6 +1,6 @@
-<div class="bin-item-card" id="smartBinCard_{{smartBin.id}}">
-  <div class="number-banner" *ngIf="isSelected">
-    1
+<div class="bin-item-card {{getCardStyle()}}" id="smartBinCard_{{smartBin.id}}" (click)="cardSelected()">
+  <div class="number-banner {{getBannerStyle()}}" *ngIf="isInSelectionMode">
+    {{getSelectionOrder()}}
   </div>
   <div class="bin-item-content">
     <h4>{{this.smartBin.name}}</h4>

@@ -28,6 +28,8 @@ export class MapComponent implements AfterViewInit {
   @Input() mapId!: string; //SmartBinsMap | RequestMap-3289183 | RequestMap-128491
   @Input() focusLocation: LatLngExpression | undefined;
 
+  @Input() handleMarkerClickEvent = false
+
   @Output() markerEvent = new EventEmitter<any>();
 
 
@@ -69,7 +71,9 @@ export class MapComponent implements AfterViewInit {
 
     if(this.mapId == "SmartBinsMap") { // inserisco markers posizione smartbins attivi
       this.markerService.makeBinCircleMarkers(this.map);
-      this.addMapClickEvent();
+      if(this.handleMarkerClickEvent) {
+        this.addMapClickEvent();
+      }
     } else { // inserisco marker posizione richiesta allocazione
       const marker = L.marker(this.focusLocation!).addTo(this.map);
       this.markerService.markers.push(marker);

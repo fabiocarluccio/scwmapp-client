@@ -52,6 +52,7 @@ export class MarkerService {
     switch (type) {
       case 'Vetro': return 'green'
       case 'Indifferenziata': return 'black'
+      case 'Plastica': return 'purple'
       default: return 'blue'
     }
   }

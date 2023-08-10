@@ -16,6 +16,9 @@ import {
 import {
   SmartBinAllocationMunicipalOfficeComponent
 } from "./pages/municipal_office/smartbin-allocation-municipal-office/smart-bin-allocation-municipal-office.component";
+import {
+  SmartBinDashboardWmcComponent
+} from "./pages/waste_management_company/smart-bin-dashboard-wmc/smart-bin-dashboard-wmc.component";
 
 const routes: Routes = [ // questo sarà un array di hops (di paths che sono supportati dall'applicazione)
   { path: '', component: UsersComponent },              // Ogni route è definita da due attributi:
@@ -27,7 +30,8 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'password-reset-token-validation', component: PasswordResetTokenValidationComponent },
   { path: 'password-reset-by-token', component: PasswordResetByTokenComponent },
   { path: 'municipal_office/menu', component: MenuMunicipalOfficeComponent },
-  { path: 'municipal_office/smartbin-allocation', component: SmartBinAllocationMunicipalOfficeComponent }
+  { path: 'municipal_office/smartbin-allocation', component: SmartBinAllocationMunicipalOfficeComponent },
+  { path: 'waste_management_company/smartbin-dashboard', component: SmartBinDashboardWmcComponent }
 ]
 
 @NgModule({

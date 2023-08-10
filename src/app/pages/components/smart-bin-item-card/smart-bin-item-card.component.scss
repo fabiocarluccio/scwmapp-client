@@ -17,9 +17,16 @@
   padding-right: 10px;
   padding-bottom: 10px;
 }
+.bin-item-card-selection-mode {
+  border: 1px solid #0004;
+  user-select: none;
+}
+.bin-item-card-selected {
+  border: 1px solid #0073dd;
+  background: #0073dd33;
+}
 .bin-item-content {
   //width: 400px;
-  background: #eee;
   //background: #00eeff33;
   //border: 1px solid #ccc;
   border-radius: 4px;
@@ -52,9 +59,11 @@
   font-weight: 700;
   position: absolute;
   top: -5px;
-  left: -12px;
+  left: -18px;
 
-  background-color: #0073dd;
+
+  background-color: #eee;
+  border: 1px solid gray;
   color: white;
   padding: 5px;
   padding-left: 15px;
@@ -63,6 +72,17 @@
 
   border-radius: 16px;
   user-select: none;
+
+  width: 2.5rem;
+  height: 1.8rem;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number-banner-selected {
+  background-color: #0073dd;
+  border: none;
 }
 
 

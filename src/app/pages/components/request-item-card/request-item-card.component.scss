@@ -15,7 +15,7 @@ app-map {
   //width: 400px;
   background: #eee;
   //background: #00eeff33;
-  border: 1px solid #ccc;
+  border: 1px solid #0004;
   border-radius: 4px;
   margin-bottom: 10px;
   display: flex;
@@ -97,6 +97,8 @@ li {
   display: flex;
   justify-content: space-around;
 
+  gap: 10px;
+
   margin-top: 0px;
   margin-left: 15px;
   margin-right: 15px;
@@ -104,7 +106,6 @@ li {
 }
 .allocation-decision > * {
   flex-grow: 1;
-  border-radius: 0;
 }
 
 

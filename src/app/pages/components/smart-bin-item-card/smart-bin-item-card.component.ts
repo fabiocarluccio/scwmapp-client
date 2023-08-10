@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {SmartBin} from "../../../models/smartbin";
 import {SmartBinService} from "../../../services/smart-bin.service";
 
@@ -10,7 +10,13 @@ import {SmartBinService} from "../../../services/smart-bin.service";
 export class SmartBinItemCardComponent {
   @Input() smartBin!: SmartBin
 
-  @Input() isSelected!: boolean
+  @Input() isInSelectionMode = false
+  @Input() isSelected = false
+
+  @Input() selectionOrder?: number
+
+  @Output() selectionEvent = new EventEmitter<any>();
+
 
   constructor(public smartBinService: SmartBinService) { }
 
@@ -30,5 +36,29 @@ export class SmartBinItemCardComponent {
       case capacityPercentage < 1 && capacityPercentage != 1: return "tomato";
       default: return "purple"
     }
+  }
+
+  cardSelected() {
+    if(this.isInSelectionMode) {
+      this.isSelected = !this.isSelected
+      this.selectionEvent.emit(this.smartBin)
+    }
+  }
+
+  getBannerStyle(): string {
+    if(this.isSelected) return "number-banner-selected"
+    return ""
+  }
+
+  getSelectionOrder(): string {
+    if (this.selectionOrder != undefined && this.selectionOrder != -1) return this.selectionOrder+1+""
+    else return ""
+  }
+
+  getCardStyle() {
+    let style = ""
+    if(this.isInSelectionMode) style += " bin-item-card-selection-mode "
+    if(this.isSelected) style += " bin-item-card-selected "
+    return style
   }
 }

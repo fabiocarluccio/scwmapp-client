@@ -9,9 +9,10 @@ import {SmartBinRequestService} from "../../../services/smart-bin-request.servic
 })
 export class RequestItemCardComponent {
   @Input() smartBinRequest!: AllocationRequest
+  @Input() showDecisionControls = false
 
   showMapView = false
-  showDecisionControls = true
+
 
   constructor(public smartBinRequestService: SmartBinRequestService) { }
 
