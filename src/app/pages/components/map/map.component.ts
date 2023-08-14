@@ -2,6 +2,7 @@ import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/co
 import * as L from 'leaflet';
 import {MarkerService} from "../../../services/marker.service";
 import {GeoJSON, LatLngExpression} from "leaflet";
+import {SmartBin} from "../../../models/smartbin";
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -29,6 +30,8 @@ export class MapComponent implements AfterViewInit {
   @Input() focusLocation: LatLngExpression | undefined;
 
   @Input() handleMarkerClickEvent = false
+
+  @Input() smartBins: SmartBin[] = []
 
   @Output() markerEvent = new EventEmitter<any>();
 
@@ -80,7 +83,9 @@ export class MapComponent implements AfterViewInit {
     }
 
   }
-
+// TODO - al posto di far reperire i bins tramite api, li faccio reperire tramite @Input() in modo
+  // TODO - da evitare di fare la doppia richiesta api e in modo da aggiornare la mappa ogni volta un array/proprieta dello
+  // TODO - smartbin varia
   private addMapClickEvent(): void {
     this.map.on('click', (event: L.LeafletMouseEvent) => {
       const lat = event.latlng.lat;

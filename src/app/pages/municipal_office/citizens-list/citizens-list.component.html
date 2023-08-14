@@ -1,0 +1,227 @@
+<body>
+  <div>
+    <h1>Elenco Cittadini</h1>
+
+
+    <div id="actionButtonsDiv">
+      <button class="btn btn-primary"
+              [disabled]="this.showCitizenForm"
+              (click)="toggleCitizenForm()">
+        Inserisci Cittadini
+      </button>
+
+      <div class="dropdown">
+        <button class="arrange_button">Ordina per</button>
+        <div class="dropdown-content">
+          <a href="#">↘ Performance: alta-bassa</a>
+          <a href="#">↗ Performance: bassa-alta</a>
+          <a href="#">Nessun ordinamento</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="arrange_button">Filtra per</button>
+        <div class="dropdown-content">
+          <a href="#">✓ Tasse pagate</a>
+          <a href="#">✕ Tasse non pagate</a>
+          <a href="#">⚠ Cittadini da richiamare (performance bassa)</a>
+          <a href="#">Nessun filtro</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-layout">
+
+      <div class="item-list">
+        <div routerLink="/municipal_office/citizen-info/CAOALS34DPXO928E" class="item-card clickable">
+
+          <div class="item-content">
+            <h4 class="clickable">Fabio Carluccio</h4>
+
+            <div class="item-description">
+              <div class="item-type">
+                <div class="item-indicator">
+                </div>
+                Performance Separazione: <b>Bassa</b>
+              </div>
+
+              <div class="item-type">
+                <div class="item-indicator" style="background: seagreen;">
+                </div>
+                Stato Tasse: <b>Pagato</b>
+              </div>
+              <!--<button routerLink="/about/{{user.id}}">about</button>
+              <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
+            </div>
+          </div>
+          <!--
+          <div class="allocation-decision" *ngIf="this.showDecisionControls">
+            <button class="btn btn-danger">Rifiuta</button>
+            <button class="btn btn-primary">Accetta</button>
+          </div>-->
+        </div>
+      </div>
+
+      <div class="form-container">
+        <form #addCitizenForm="ngForm" *ngIf="this.showCitizenForm" class="cool-background">
+        <!--Street name, street number, postal code, city-->
+        <div class="header-form">
+          <h5>Inserisci nuovo cittadino</h5>
+
+          <button class="btn btn-warning"
+                  (click)="importCitizensFile()">
+            Importa file Cittadini (.csv)
+          </button>
+        </div>
+
+
+        <div class="form-group">
+          <label for="inputCitizenName">Nome</label>
+          <input
+            [(ngModel)]="citizen_name" name="citizenName"
+            required
+            minlength="3"
+            pattern=".*"
+            #inputCitizenName = "ngModel"
+            [ngClass]="{'is-invalid': inputCitizenName.errors && inputCitizenName.touched}"
+            type="text" class="form-control" id="inputCitizenName" placeholder="Nome">
+
+          <div class="invalid-feedback">
+            Inserire il nome.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputCitizenSurname">Cognome</label>
+          <input
+            [(ngModel)]="citizen_surname" name="citizenSurname"
+            required
+            minlength="3"
+            pattern=".*"
+            #inputCitizenSurname = "ngModel"
+            [ngClass]="{'is-invalid': inputCitizenSurname.errors && inputCitizenSurname.touched}"
+            type="text" class="form-control" id="inputCitizenSurname" placeholder="Cognome">
+
+          <div class="invalid-feedback">
+            Inserire il cognome.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputCitizenFiscalCode">Codice Fiscale</label>
+          <input
+            [(ngModel)]="citizen_fiscalCode" name="citizenFiscalCode"
+            required
+            minlength="16"
+            maxlength="16"
+            pattern=".*"
+            #inputCitizenFiscalCode = "ngModel"
+            [ngClass]="{'is-invalid': inputCitizenFiscalCode.errors && inputCitizenFiscalCode.touched}"
+            type="text" class="form-control" id="inputCitizenFiscalCode" placeholder="Codice fiscale">
+
+          <div class="invalid-feedback">
+            Inserire un codice fiscale valido.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputCitizenEmail">Email</label>
+          <input
+            [(ngModel)]="citizen_email" name="citizenEmail"
+            required
+            minlength="3"
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            #inputCitizenEmail = "ngModel"
+            [ngClass]="{'is-invalid': inputCitizenEmail.errors && inputCitizenEmail.touched}"
+            type="email" class="form-control" id="inputCitizenEmail" placeholder="Email">
+
+          <div class="invalid-feedback">
+            Inserire una email valida.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputCitizenStreetName">Via/Viale</label>
+          <input
+            [(ngModel)]="citizen_streetName" name="citizenStreetName"
+            required
+            minlength="3"
+            pattern=".*"
+            #inputCitizenStreetName = "ngModel"
+            [ngClass]="{'is-invalid': inputCitizenStreetName.errors && inputCitizenStreetName.touched}"
+            type="text" class="form-control" id="inputCitizenStreetName" placeholder="Residenza">
+
+          <div class="invalid-feedback">
+            Inserire la residenza.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputCitizenStreetNumber">Numero via</label>
+          <input
+            [(ngModel)]="citizen_streetNumber" name="citizenStreetNumber"
+            required
+            minlength="1"
+            pattern=".*"
+            #inputCitizenStreetNumber = "ngModel"
+            [ngClass]="{'is-invalid': inputCitizenStreetNumber.errors && inputCitizenStreetNumber.touched}"
+            type="text" class="form-control" id="inputCitizenStreetNumber" placeholder="Numero via">
+
+          <div class="invalid-feedback">
+            Inserire il numero della via.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputCitizenPostalCode">Codice postale</label>
+          <input
+            [(ngModel)]="citizen_postalCode" name="citizenPostalCode"
+            required
+            minlength="3"
+            pattern=".*"
+            #inputCitizenPostalCode = "ngModel"
+            [ngClass]="{'is-invalid': inputCitizenPostalCode.errors && inputCitizenPostalCode.touched}"
+            type="text" class="form-control" id="inputCitizenPostalCode" placeholder="Codice Postale">
+
+          <div class="invalid-feedback">
+            Inserire il codice postale.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputCitizenCity">Città</label>
+          <input
+            [(ngModel)]="citizen_city" name="citizenCity"
+            required
+            minlength="3"
+            pattern=".*"
+            #inputCitizenCity = "ngModel"
+            [ngClass]="{'is-invalid': inputCitizenCity.errors && inputCitizenCity.touched}"
+            type="text" class="form-control" id="inputCitizenCity" placeholder="Città">
+
+          <div class="invalid-feedback">
+            Inserire la città.
+          </div>
+        </div>
+
+
+        <div class="form-buttons">
+          <button
+            (click)="toggleCitizenForm()" class="btn btn-danger">Annulla
+          </button>
+
+          <button
+            [disabled] = "!addCitizenForm.valid"
+            type="submit" (click)="addNewCitizen()" class="btn btn-primary">Aggiungi Cittadino
+          </button>
+        </div>
+
+
+      </form>
+      </div>
+
+    </div>
+
+
+  </div>
+</body>

@@ -1,0 +1,73 @@
+body {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //border: 1px solid red;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+table {
+  width: 100%;
+  margin-top: 10px;
+
+}
+
+.column-border {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  //background: red;
+}
+
+td {
+  //border: 10px solid #0000;
+  //width: 132px;
+  height: 18px;
+  //margin-right: 20px
+}
+
+.separator {
+  height: 2px;
+  width: 100%;
+  background: cadetblue;
+}
+
+.table-header {
+  color: #444;
+  font-weight: bold;
+
+}
+
+h2 {
+  margin-top: 32px;
+}
+
+p {
+  margin-bottom: 0;
+  color: #444;
+}
+.piechart {
+  margin-top: 30px;
+
+  width: 300px;
+  height: 300px;
+  background: black;
+  border-radius: 300px;
+
+}
+
+
+body {
+  font-size: 0.8rem;
+}
+button {
+  font-size: 0.8rem;
+}
+
+
+h4{
+  font-size: 1.2rem;
+}

@@ -23,6 +23,8 @@ import {PopupService} from "./services/popup.service";
 import { SmartBinItemCardComponent } from './pages/components/smart-bin-item-card/smart-bin-item-card.component';
 import { RequestItemCardComponent } from './pages/components/request-item-card/request-item-card.component';
 import { SmartBinDashboardWmcComponent } from './pages/waste_management_company/smart-bin-dashboard-wmc/smart-bin-dashboard-wmc.component';
+import { CitizensListComponent } from './pages/municipal_office/citizens-list/citizens-list.component';
+import { CitizenInfoComponent } from './pages/municipal_office/citizen-info/citizen-info.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { SmartBinDashboardWmcComponent } from './pages/waste_management_company/
     MapComponent,
     SmartBinItemCardComponent,
     RequestItemCardComponent,
-    SmartBinDashboardWmcComponent
+    SmartBinDashboardWmcComponent,
+    CitizensListComponent,
+    CitizenInfoComponent
   ],
     imports: [
         BrowserModule,

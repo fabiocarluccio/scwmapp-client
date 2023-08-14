@@ -1,0 +1,248 @@
+// TODO - da aggiungere agli stili globali e uniformare anche le schede dei bins a questo
+
+.item-card {
+  max-width: 380px;
+  width: auto;
+  background: #eee;
+  border: 1px solid #0004;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+
+}
+.item-content {
+  //width: 400px;
+  background: #eee;
+  //background: #00eeff33;
+  //border: 1px solid #ccc;
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  //justify-content: space-between;
+
+  flex-grow: 1;
+
+}
+.item-description {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+.clickable {
+  cursor: pointer;
+}
+.clickable > h4 {
+  cursor: pointer;
+}
+
+// Local styles
+body {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //border: 1px solid red;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+body > div {
+  width: 100%;
+}
+
+.item-description {
+  flex-direction: column;
+}
+
+
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  //max-width: 600px;
+  //width: auto;
+
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  align-items: center;
+  background-color: #9af2;
+  border: 1px solid #0007;
+  border-radius: 8px;
+}
+.cool-background {
+  background: linear-gradient(45deg,
+    #3c31,
+    #09c1,
+    #30c1,
+    #60c1,
+    #90c1);
+  background-size: 150% 150%;
+}
+
+form > h5 {
+  margin-top: 20px;
+  margin-left: 35px;
+}
+.header-form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.form-group {
+  //background: yellow;
+  margin: 0.8rem;
+  margin-inline: 2rem;
+  align-self: stretch;
+  //height: 4rem;
+}
+
+.form-group > label {
+  margin-left: 0.5rem;
+  color: #000;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+form > button {
+  margin: 1rem;
+  margin-inline: 2rem;
+  //width: 50%;
+}
+
+
+.form-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+  margin-bottom: 18px;
+}
+
+
+#actionButtonsDiv {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 18px;
+  gap: 8px;
+}
+
+
+
+/* Stili base per il dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  //border: 0.5px solid #999;
+  border-radius: 8px;
+  //box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* Stile dei link nell'elenco a discesa */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+
+  font-size: 12px;
+}
+
+/* Cambia il colore del link quando ci passi sopra con il mouse */
+.dropdown-content a:hover {
+  //background-color: #eee;
+  color: #888888;
+}
+
+/* Mostra il menu dropdown quando il cursore è sopra il pulsante */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.arrange_button {
+  border: 0;
+  background: #0000;
+  padding: 8px;
+  //font-weight: normal;
+}
+
+
+.main-layout {
+  display: flex;
+  flex-direction: row;
+  //border: 1px solid red;
+  gap: 10px;
+  flex-wrap: wrap-reverse;
+}
+.item-list {
+  //border: 1px solid blue;
+  flex-grow: 0;
+  //flex-basis: 380px;
+  max-width: 380px;
+  flex-basis: 380px;
+  width: auto;
+
+}
+.item-type {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.item-indicator {
+  width: 15px;
+  height: 15px;
+  //background: red;
+  border-radius: 4px;
+  display: inline-block;
+  background: tomato;
+}
+
+.form-container {
+  flex-basis: 600px;
+  flex-grow: 1;
+  //border: 1px solid cyan;
+  display: flex;
+  justify-content: end;
+}
+
+
+
+
+body {
+  font-size: 0.8rem;
+}
+button {
+  font-size: 0.8rem;
+}
+
+
+h4{
+  font-size: 1.2rem;
+}
+
