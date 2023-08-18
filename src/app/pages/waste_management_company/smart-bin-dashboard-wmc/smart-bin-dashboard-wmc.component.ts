@@ -31,11 +31,11 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.smartBinService.loadBins().then(response => {
+    this.smartBinService.loadAllocatedBins().then(response => {
 
       this.smartBins = this.smartBinService.smartBins                             // load smartbins
 
-      this.smartBinRequestService.loadRequests().then(response => {
+      this.smartBinRequestService.loadPendingRequests().then(response => {
 
         this.smartBinRequests = this.smartBinRequestService.smartBinRequests      // load allocation requests
 

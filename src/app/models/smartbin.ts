@@ -1,4 +1,3 @@
-import {GeoJSON} from "leaflet";
 
 export interface SmartBin {
   id?: string
@@ -8,4 +7,9 @@ export interface SmartBin {
 
   currentCapacity?: number
   totalCapacity?: number
+}
+
+interface GeoJSON {
+  type: string;
+  coordinates: [number, number];
 }

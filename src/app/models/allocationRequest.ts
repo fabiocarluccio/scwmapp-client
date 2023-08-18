@@ -1,4 +1,3 @@
-import {GeoJSON} from "leaflet";
 
 export interface AllocationRequest {
   id?: string
@@ -11,4 +10,9 @@ export interface AllocationRequest {
   "status"?: string
   "requestedDate"?: string
   "decisionDate"?: string
+}
+
+interface GeoJSON {
+  type: string;
+  coordinates: [number, number];
 }

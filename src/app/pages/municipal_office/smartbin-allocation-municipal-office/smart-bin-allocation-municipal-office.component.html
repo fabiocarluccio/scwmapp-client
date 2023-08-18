@@ -25,7 +25,7 @@
         <div class="form-group">
           <label for="inputSmartBinName">Nome SmartBin</label>
           <input
-            [(ngModel)]="newSmartBin.name" name="smartBinName"
+            [(ngModel)]="newRequest.smartBin_name" name="smartBinName"
             required
             minlength="3"
             pattern=".*"
@@ -43,14 +43,12 @@
 
 
           <select
-            [(ngModel)]="newSmartBin.type" name="SmartBinType"
+            [(ngModel)]="newRequest.type" name="SmartBinType"
             required
             #inputSmartBinName = "ngModel"
             class="form-control" id="inputSmartBinType">
             <option value="" disabled selected>Seleziona tipologia di rifiuto</option>
-            <option value="Indifferenziata">Indifferenziata</option>
-            <option value="Vetro">Vetro</option>
-            <option value="Plastica">Plastica</option>
+            <option *ngFor="let wasteType of this.wasteTypes" value="{{wasteType.name}}">{{wasteType.name}}</option>
           </select>
 
 
@@ -62,7 +60,7 @@
         <div class="form-group">
           <label for="inputSmartBinCapacity">Capienza (in kg)</label>
           <input
-            [(ngModel)]="newSmartBin.totalCapacity" name="SmartBinCapacity"
+            [(ngModel)]="newRequest.totalCapacity" name="SmartBinCapacity"
             required
             minlength="3"
             pattern=".*"

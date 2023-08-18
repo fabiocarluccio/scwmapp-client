@@ -5,6 +5,8 @@ import {ExceptionManagerService} from "../../../services/exception-manager.servi
 import {SmartBin} from "../../../models/smartbin";
 import {SmartBinRequestService} from "../../../services/smart-bin-request.service";
 import {AllocationRequest} from "../../../models/allocationRequest";
+import {WasteType} from "../../../models/wasteType";
+import {GeoJSON} from "leaflet";
 
 @Component({
   selector: 'app-smartbin-allocation-municipal-office',
@@ -15,11 +17,13 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
 
 
   smartBins: SmartBin[] = []
-  newSmartBin: SmartBin = {} as SmartBin;
+  newRequest: AllocationRequest = {} as AllocationRequest;
 
   smartBinRequests: AllocationRequest[] = []
 
   showRequestForm = false
+
+  wasteTypes: WasteType[] = [] as WasteType[];
 
   constructor(private http: HttpClient,
               public smartBinService: SmartBinService,
@@ -28,14 +32,22 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   }
 
   ngOnInit(): void {
-    this.smartBinService.loadBins().then(response => {
+    this.smartBinService.loadAllocatedBins().then(response => {
 
       this.smartBins = this.smartBinService.smartBins                             // load smartbins
 
-      this.smartBinRequestService.loadRequests().then(response => {
+      this.smartBinRequestService.loadPendingRequests().then(response => {
 
         this.smartBinRequests = this.smartBinRequestService.smartBinRequests      // load allocation requests
 
+          this.smartBinService.loadWasteTypes().then(response => {
+
+            this.wasteTypes = this.smartBinService.wasteTypes                     // load waste types
+
+          }).catch(error => {
+            // Mostro errore
+            window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+          });
         }).catch(error => {
           // Mostro errore
           window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
@@ -67,13 +79,18 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   }
 
   allocateNewBin() {
-    /*if(this.markerService.markers.length != 1) {
-      console.log("dio1")
-    } else {
-      console.log(this.markerService.markers.length)
-    }*/
+    console.log(JSON.stringify(this.newRequest))
 
-    //this.mapComponent.setFocus(1,1)
+
+    this.smartBinRequestService.sendAllocationRequest(this.newRequest)
+      .then(response => {
+        console.log(response)
+
+      })
+      .catch(error => {
+        // Mostro errore
+        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      });
   }
 
 
@@ -87,8 +104,23 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
     //this.map.setView(newCenter, 10); // Cambia il centro della mappa alle nuove coordinate
   }
 
-  handleMarkerUpdate(showRequestForm: boolean) {
-    this.showRequestForm = showRequestForm
+  /*
+  * event[0]: boolean <- indica se bisogna mostrare o meno il form di richiesta allocazione
+  * event[1]: [lat, long] <- indica la posizione selezionata sulla mappa, qualora event[0] sia true
+  */
+  handleMarkerUpdate(event: any) {
+    this.showRequestForm = event[0]
+    this.newRequest.position = {
+      type: 'Point',
+      coordinates: event[1]
+    };
+
+    if(!this.showRequestForm) { // resetto i campi del form
+      this.newRequest = {} as AllocationRequest
+    }
+
   }
+
+
 
 }

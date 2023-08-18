@@ -95,7 +95,7 @@ export class MapComponent implements AfterViewInit {
         // Rimuovi tutti i marker esistenti
         this.removeMarkers();
         this.addMarker([lat, lng]);
-        this.markerEvent.emit(true);
+        this.markerEvent.emit([true, [lng, lat]]);
       } else {
         // Rimuovi tutti i marker esistenti
         this.removeMarkers();
