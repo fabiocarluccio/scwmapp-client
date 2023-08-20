@@ -46,18 +46,18 @@ export class LoginPageComponent {
 
             // Vado a schermata successiva a seconda del RUOLO
             switch (this.userService.user.role) {
-              case "ADMIN":
-                console.log("i am an ADMIN")
+              case "Admin":
+                console.log("i am an Admin")
                 break
-              case "MUNICIPAL_OFFICE":
-                console.log("i am a MUNICIPAL_OFFICE")
+              case "MunicipalOffice":
+                console.log("i am a MunicipalOffice")
                 this.route.navigateByUrl('municipal_office/menu');
                 break
-              case "WASTE_MANAGEMENT_COMPANY":
-                console.log("i am a WASTE_MANAGEMENT_COMPANY")
+              case "WasteManagementCompany":
+                console.log("i am a WasteManagementCompany")
                 break
-              case "CITIZEN":
-                console.log("i am a CITIZEN")
+              case "Citizen":
+                console.log("i am a Citizen")
                 break
               default:
                 window.alert(this.exceptionManager.getExceptionMessage(0, "A"));

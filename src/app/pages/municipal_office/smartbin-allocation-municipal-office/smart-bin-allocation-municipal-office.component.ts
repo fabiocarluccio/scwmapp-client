@@ -7,6 +7,7 @@ import {SmartBinRequestService} from "../../../services/smart-bin-request.servic
 import {AllocationRequest} from "../../../models/allocationRequest";
 import {WasteType} from "../../../models/wasteType";
 import {GeoJSON} from "leaflet";
+import {CommunicationService} from "../../../services/communication.service";
 
 @Component({
   selector: 'app-smartbin-allocation-municipal-office',
@@ -19,7 +20,7 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   smartBins: SmartBin[] = []
   newRequest: AllocationRequest = {} as AllocationRequest;
 
-  smartBinRequests: AllocationRequest[] = []
+  //smartBinRequests: AllocationRequest[] = []
 
   showRequestForm = false
 
@@ -28,7 +29,8 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   constructor(private http: HttpClient,
               public smartBinService: SmartBinService,
               public smartBinRequestService: SmartBinRequestService,
-              private exceptionManager: ExceptionManagerService) {
+              private exceptionManager: ExceptionManagerService,
+              private communicationService: CommunicationService) {
   }
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
 
       this.smartBinRequestService.loadPendingRequests().then(response => {
 
-        this.smartBinRequests = this.smartBinRequestService.smartBinRequests      // load allocation requests
+        //this.smartBinRequests = this.smartBinRequestService.smartBinRequests      // load allocation requests
 
           this.smartBinService.loadWasteTypes().then(response => {
 
@@ -59,7 +61,6 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   }
 
   ngAfterViewInit(): void {
-
   }
 
   highlightBinItem(binId: string) {
@@ -85,7 +86,16 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
     this.smartBinRequestService.sendAllocationRequest(this.newRequest)
       .then(response => {
         console.log(response)
+        // aggiungo richiesta in lista
+        console.log(this.newRequest)
+        console.log("diooooo")
+        this.smartBinRequestService.loadPendingRequests()
+        //this.smartBinRequests.unshift(this.newRequest)
 
+        // Reimposto i campi e rimuovo marker
+        this.newRequest = {} as AllocationRequest;
+        this.showRequestForm = false
+        this.communicationService.sendMessage('Message: remove marker');
       })
       .catch(error => {
         // Mostro errore

@@ -18,7 +18,7 @@
   <div class="right-column">
 
     <div id="SmartBinsMap">
-      <app-map [mapId]="'SmartBinsMap'" [smartBins]="this.smartBins"></app-map>
+      <app-map [mapId]="'SmartBinsMap'"></app-map>
     </div>
 
     <p class="info">Per posizionare un nuovo SmartBin, effettua un click su un punto vuoto della mappa.</p>
@@ -35,7 +35,7 @@
 
       <app-request-item-card
         [smartBinRequest]=smartbinRequest
-        *ngFor="let smartbinRequest of this.smartBinRequests"
+        *ngFor="let smartbinRequest of this.smartBinRequestService.smartBinRequests"
         [showDecisionControls]="true">
       </app-request-item-card>
 

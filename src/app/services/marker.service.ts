@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import * as L from 'leaflet';
 import {SmartBinService} from "./smart-bin.service";
 import {PopupService} from "./popup.service";
-import {LatLngExpression} from "leaflet";
 
 @Injectable()
 export class MarkerService {

@@ -4,6 +4,7 @@ import {SmartBin} from "../models/smartbin";
 import {catchError, firstValueFrom, tap} from "rxjs";
 import {AllocationRequest} from "../models/allocationRequest";
 import {WasteType} from "../models/wasteType";
+import {CommunicationService} from "./communication.service";
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,8 @@ export class SmartBinService {
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
         this.smartBins = response
+
+
       }),
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);

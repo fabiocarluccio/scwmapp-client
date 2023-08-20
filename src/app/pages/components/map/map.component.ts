@@ -3,6 +3,9 @@ import * as L from 'leaflet';
 import {MarkerService} from "../../../services/marker.service";
 import {GeoJSON, LatLngExpression} from "leaflet";
 import {SmartBin} from "../../../models/smartbin";
+import {Router} from "@angular/router";
+import {CommunicationService} from "../../../services/communication.service";
+import {Subscription} from "rxjs";
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -31,12 +34,15 @@ export class MapComponent implements AfterViewInit {
 
   @Input() handleMarkerClickEvent = false
 
-  @Input() smartBins: SmartBin[] = []
+  //@Input() smartBins: SmartBin[] = []
 
   @Output() markerEvent = new EventEmitter<any>();
 
 
   private map: any;
+
+  receivedMessage: string = '';
+  private subscription: Subscription;
 
   private initMap(): void {
     if(typeof this.focusLocation === 'undefined') {
@@ -67,7 +73,21 @@ export class MapComponent implements AfterViewInit {
     tiles.addTo(this.map);
   }
 
-  constructor(private markerService: MarkerService) { }
+  constructor(private markerService: MarkerService,
+              private router: Router,
+              private communicationService: CommunicationService) {
+    this.subscription = this.communicationService.message$.subscribe(message => {
+      this.receivedMessage = message;
+      if (this.receivedMessage == "Message: update Smartbins map") {
+        console.log(this.receivedMessage + " - aggiorno mappa")
+        this.reloadComponent()
+      } else if (this.receivedMessage == "Message: remove marker") {
+        console.log(this.receivedMessage + " - rimuovo marker")
+        this.removeMarkers()
+      }
+
+    });
+  }
 
   ngAfterViewInit(): void {
     this.initMap();
@@ -82,6 +102,12 @@ export class MapComponent implements AfterViewInit {
       this.markerService.markers.push(marker);
     }
 
+  }
+  reloadComponent() {
+    const currentRoute = this.router.url; // Ottieni l'URL corrente
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentRoute]); // Naviga alla stessa route
+    });
   }
 // TODO - al posto di far reperire i bins tramite api, li faccio reperire tramite @Input() in modo
   // TODO - da evitare di fare la doppia richiesta api e in modo da aggiornare la mappa ogni volta un array/proprieta dello

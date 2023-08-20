@@ -13,13 +13,14 @@ import {ExceptionManagerService} from "../../../services/exception-manager.servi
 })
 export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
-  smartBins: SmartBin[] = []
+  //smartBins: SmartBin[] = []
   get smartBinsSorted(): SmartBin[] {
     this.sortBins();
-    return this.smartBins;
+    //return this.smartBins;
+    return this.smartBinService.smartBins;
   }
 
-  smartBinRequests: AllocationRequest[] = []
+  //smartBinRequests: AllocationRequest[] = []
 
   cleaningMode = false
   smartBinCleaningPath: SmartBin[] = []
@@ -33,11 +34,11 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.smartBinService.loadAllocatedBins().then(response => {
 
-      this.smartBins = this.smartBinService.smartBins                             // load smartbins
+      //this.smartBins = this.smartBinService.smartBins                             // load smartbins
 
       this.smartBinRequestService.loadPendingRequests().then(response => {
 
-        this.smartBinRequests = this.smartBinRequestService.smartBinRequests      // load allocation requests
+        //this.smartBinRequests = this.smartBinRequestService.smartBinRequests      // load allocation requests
 
       }).catch(error => {
         // Mostro errore
@@ -80,7 +81,7 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
   cleanPath() { // TODO - Da riaggiornare con comunicazione con MS
 
-    for (const smartBin of this.smartBins) {
+    for (const smartBin of this.smartBinService.smartBins) {
       if (this.smartBinCleaningPath.includes(smartBin)) {
         smartBin.currentCapacity = 0
         // TODO - come aggiorno la mappa?
@@ -91,7 +92,7 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
   private sortBins() {
     // La funzione per ordinare gli SmartBin
-    this.smartBins.sort((a, b) => b.currentCapacity! - a.currentCapacity!);
+    this.smartBinService.smartBins.sort((a, b) => b.currentCapacity! - a.currentCapacity!);
   }
 
 }
