@@ -1,0 +1,17 @@
+<!--<div class="pie-chart">
+  <div *ngFor="let slice of slices; let i = index" class="slice" [style.transform]="'rotate(' + calculateRotation(slice.startAngle) + 'deg)'">
+    <div class="triangle" [style.border-bottom-color]="slice.color"></div>
+  </div>
+</div>
+-->
+<div>
+  <canvas
+    baseChart
+    [type]="'doughnut'"
+    [legend]="true"
+    [datasets]="chartData"
+    [labels]="chartLabels"
+    [options]="chartOptions"
+  >
+  </canvas>
+</div>

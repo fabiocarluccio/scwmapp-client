@@ -25,6 +25,8 @@ import { RequestItemCardComponent } from './pages/components/request-item-card/r
 import { SmartBinDashboardWmcComponent } from './pages/waste_management_company/smart-bin-dashboard-wmc/smart-bin-dashboard-wmc.component';
 import { CitizensListComponent } from './pages/municipal_office/citizens-list/citizens-list.component';
 import { CitizenInfoComponent } from './pages/municipal_office/citizen-info/citizen-info.component';
+import { PieChartComponent } from './pages/components/pie-chart/pie-chart.component';
+import {NgChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { CitizenInfoComponent } from './pages/municipal_office/citizen-info/citi
     RequestItemCardComponent,
     SmartBinDashboardWmcComponent,
     CitizensListComponent,
-    CitizenInfoComponent
+    CitizenInfoComponent,
+    PieChartComponent
   ],
     imports: [
         BrowserModule,
@@ -53,7 +56,8 @@ import { CitizenInfoComponent } from './pages/municipal_office/citizen-info/citi
         AppRoutingModule,
         RouterOutlet,
         RouterLink,
-        RouterLinkActive
+        RouterLinkActive,
+        NgChartsModule
     ],
   providers: [
     UsersService,
