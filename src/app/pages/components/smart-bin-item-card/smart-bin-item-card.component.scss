@@ -1,8 +1,8 @@
 .bin-item-card {
-  max-width: 380px;
+  //min-width: 380px;
   width: auto;
   position: relative; // necessario per il number-banner
-  width: 100%;//500px;
+  //width: 100%;//500px;
   flex-grow: 1;
 
   background: #eee;
@@ -30,7 +30,7 @@
   background: #0073dd33;
 }
 .bin-item-content {
-  width: 350px;
+  min-width: 300px;
   //background: #00eeff33;
   //border: 1px solid #ccc;
   border-radius: 4px;

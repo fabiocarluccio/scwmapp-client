@@ -21,11 +21,10 @@
       <app-map [mapId]="'SmartBinsMap'"></app-map>
     </div>
 
-    <p class="info">Per posizionare un nuovo SmartBin, effettua un click su un punto vuoto della mappa.</p>
     <!--<button *ngFor="let smartbin of this.smartBins" (click)="highlightBinItem(smartbin.id!)">Evidenzia {{smartbin.name}}</button>-->
 
-    <button class="btn btn-primary" (click)="toggleCleaningMode()" *ngIf="!cleaningMode">🧹Istanzia Pulizia</button>
-    <div class ="cleaning-buttons" *ngIf="cleaningMode">
+    <button style="margin-top: 10px;" class="btn btn-primary" (click)="toggleCleaningMode()" *ngIf="!cleaningMode">🧹Istanzia Pulizia</button>
+    <div style="margin-top: 10px;" class ="cleaning-buttons" *ngIf="cleaningMode">
       <button class="btn btn-danger" (click)="toggleCleaningMode()">Annulla</button>
       <button class="btn btn-primary" (click)="executeCleaningPath()" style="flex-grow: 1; flex-basis: 200%;">🧹Avvia Pulizia</button>
     </div>

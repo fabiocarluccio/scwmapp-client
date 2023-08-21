@@ -29,26 +29,27 @@ body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
 }
 
 .right-column {
+
   //height: 30rem;
   //border: 2px solid green;
   flex-grow: 1;
   //height: 200px;
-  flex-basis: 400px;
+  flex-basis: 300px;
 
   display: flex;
   flex-direction: column;
 }
 #SmartBinsMap {
-  //flex-grow: 1;
+  min-width: 450px;
   //height: 100px;
-  flex-basis: 300px;
+  flex-basis: 350px;
   flex-shrink: 0;
   border-radius: 8px;
   border: 2px solid #0003;
 }
 
-.info {// se disattivo questo, la mappa si ingrandisce, questo perche la mappa dipende dalla lunghezza delle parole di questo elemento
-  margin: 6px 15px;
+.info {// il <p> da problemi. come sta adesso va bene, ma se si fa un confronto tra quando commento il <p> e quando lo abilito, si noterà che la mappa cambia larghezza
+  padding: 6px 15px;
   cursor: default;
 }
 
@@ -111,8 +112,8 @@ form {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 30rem;
-  align-items: center;
+  width: 450px;
+  //align-items: center;
   margin-top: 0.5rem;
   background-color: #9af2;
   border: 1px solid #0007;
