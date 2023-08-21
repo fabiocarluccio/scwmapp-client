@@ -1,117 +1,115 @@
 <body>
+  <div style="margin-bottom: 10px;">
+    <a routerLink="/municipal_office/citizens-list">◂ Indietro</a>
+  </div>
+
+  <h4>Fabio Carluccio</h4>
+  <p>🏠 <b>Via Fattelicazzi Tua, 23</b></p>
+  <p>🐌 <i>fabio.carluccio@fattelistracazzitua.it</i></p>
+
+
+  <h2>Stato tasse</h2>
   <div>
-    <div style="margin-bottom: 10px;">
-      <a routerLink="/municipal_office/citizens-list">◂ Indietro</a>
+    <table>
+      <tr class="table-header">
+        <th>Codice Tassa<div class="column-border"></div></th>
+        <th>Anno<div class="column-border"></div></th>
+        <th>Importo (€)<div class="column-border"></div></th>
+        <th>Scadenza pagamento<div class="column-border"></div></th>
+        <th>Data pagamento<div class="column-border"></div></th>
+        <th>Stato</th>
+      </tr>
+
+      <tr>
+        <td colspan="6"><div class="separator"></div></td>
+      </tr>
+      <tr>
+        <td>HT-4897</td><td>2023</td><td>223.43</td><td>21/5/2024</td><td>-</td><td>Non pagato</td>
+      </tr>
+      <tr>
+        <td>HT-2992</td><td>2022</td><td>188.99</td><td>21/5/2023</td><td>12/2/2023</td><td>Pagato</td>
+      </tr>
+      <tr>
+        <td>HT-127</td><td>2021</td><td>230.97</td><td>21/5/2022</td><td>29/1/2022</td><td>Pagato</td>
+      </tr>
+
+    </table>
+
+
+  </div>
+
+
+  <h2>Ultimi conferimenti</h2>
+  <div>
+    <table>
+      <tr class="table-header">
+        <th>Data</th>
+        <th>Codice Conferimento<div class="column-border"></div></th>
+        <th>Tipologia rifiuto<div class="column-border"></div></th>
+        <th>Volume (kg)<div class="column-border"></div></th>
+      </tr>
+      <tr>
+        <td colspan="4"><div class="separator"></div></td>
+      </tr>
+      <tr>
+        <td>21/08/2023</td><td>CF-9581</td><td>Plastica</td><td>2.8 kg</td>
+      </tr>
+      <tr>
+        <td>19/08/2023</td><td>CF-1930</td><td>Vetro</td><td>3.3 kg</td>
+      </tr>
+      <tr>
+        <td>27/07/2023</td><td>CF-3891</td><td>Carta</td><td>0.5 kg</td>
+      </tr>
+      <tr>
+        <td>05/07/2023</td><td>CF-0391</td><td>Indifferenziata</td><td>22 kg</td>
+      </tr>
+
+    </table>
+  </div>
+  <div style="margin-top: 10px">
+    <a href="https://google.it">Mostra conferimenti meno recenti</a>
+  </div>
+
+
+
+  <h2>Performance separazione rifiuti (77%)</h2>
+  <div>
+    <table>
+      <tr class="table-header">
+        <th>Tipologia rifiuto<div class="column-border"></div></th>
+        <th>Volume generato (kg)<div class="column-border"></div></th>
+        <th>Percentuale su totale<div class="column-border"></div></th>
+        <th>Percentuale su indifferenziata</th>
+      </tr>
+      <tr>
+        <td colspan="4"><div class="separator"></div></td>
+      </tr>
+      <tr>
+        <td>Plastica</td><td>180.2</td><td>38%</td><td>44%</td>
+      </tr>
+      <tr>
+        <td>Vetro</td><td>92.8</td><td>13%</td><td>24%</td>
+      </tr>
+      <tr>
+        <td>Carta</td><td>34.77</td><td>3%</td><td>12%</td>
+      </tr>
+      <tr>
+        <td>Indifferenziata</td><td>550.22</td><td>75%</td><td>-</td>
+      </tr>
+
+    </table>
+
+    <!--Grafico a torta con testo che indica se è un bravo cittadino-->
+    <div style="display: flex;">
+      <app-pie-chart></app-pie-chart>
     </div>
 
-    <h4>Fabio Carluccio</h4>
-    <p>🏠 <b>Via Fattelicazzi Tua, 23</b></p>
-    <p>🐌 <i>fabio.carluccio@fattelistracazzitua.it</i></p>
-
-
-    <h2>Stato tasse</h2>
-    <div>
-      <table>
-        <tr class="table-header">
-          <th>Codice Tassa<div class="column-border"></div></th>
-          <th>Anno<div class="column-border"></div></th>
-          <th>Importo (€)<div class="column-border"></div></th>
-          <th>Scadenza pagamento<div class="column-border"></div></th>
-          <th>Data pagamento<div class="column-border"></div></th>
-          <th>Stato</th>
-        </tr>
-
-        <tr>
-          <td colspan="6"><div class="separator"></div></td>
-        </tr>
-        <tr>
-          <td>HT-4897</td><td>2023</td><td>223.43</td><td>21/5/2024</td><td>-</td><td>Non pagato</td>
-        </tr>
-        <tr>
-          <td>HT-2992</td><td>2022</td><td>188.99</td><td>21/5/2023</td><td>12/2/2023</td><td>Pagato</td>
-        </tr>
-        <tr>
-          <td>HT-127</td><td>2021</td><td>230.97</td><td>21/5/2022</td><td>29/1/2022</td><td>Pagato</td>
-        </tr>
-
-      </table>
-
-
-    </div>
-
-
-    <h2>Ultimi conferimenti</h2>
-    <div>
-      <table>
-        <tr class="table-header">
-          <th>Data</th>
-          <th>Codice Conferimento<div class="column-border"></div></th>
-          <th>Tipologia rifiuto<div class="column-border"></div></th>
-          <th>Volume (kg)<div class="column-border"></div></th>
-        </tr>
-        <tr>
-          <td colspan="4"><div class="separator"></div></td>
-        </tr>
-        <tr>
-          <td>21/08/2023</td><td>CF-9581</td><td>Plastica</td><td>2.8 kg</td>
-        </tr>
-        <tr>
-          <td>19/08/2023</td><td>CF-1930</td><td>Vetro</td><td>3.3 kg</td>
-        </tr>
-        <tr>
-          <td>27/07/2023</td><td>CF-3891</td><td>Carta</td><td>0.5 kg</td>
-        </tr>
-        <tr>
-          <td>05/07/2023</td><td>CF-0391</td><td>Indifferenziata</td><td>22 kg</td>
-        </tr>
-
-      </table>
-    </div>
-    <div style="margin-top: 10px">
-      <a href="https://google.it">Mostra conferimenti meno recenti</a>
-    </div>
-
-
-
-    <h2>Performance separazione rifiuti (77%)</h2>
-    <div>
-      <table>
-        <tr class="table-header">
-          <th>Tipologia rifiuto<div class="column-border"></div></th>
-          <th>Volume generato (kg)<div class="column-border"></div></th>
-          <th>Percentuale su totale<div class="column-border"></div></th>
-          <th>Percentuale su indifferenziata</th>
-        </tr>
-        <tr>
-          <td colspan="4"><div class="separator"></div></td>
-        </tr>
-        <tr>
-          <td>Plastica</td><td>180.2</td><td>38%</td><td>44%</td>
-        </tr>
-        <tr>
-          <td>Vetro</td><td>92.8</td><td>13%</td><td>24%</td>
-        </tr>
-        <tr>
-          <td>Carta</td><td>34.77</td><td>3%</td><td>12%</td>
-        </tr>
-        <tr>
-          <td>Indifferenziata</td><td>550.22</td><td>75%</td><td>-</td>
-        </tr>
-
-      </table>
-
-      <!--Grafico a torta con testo che indica se è un bravo cittadino-->
-      <div style="display: flex;">
-        <app-pie-chart></app-pie-chart>
-      </div>
 
 
 
 
 
+    <div style="height: 100px;"></div>
 
-      <div style="height: 100px;"></div>
-
-    </div>
   </div>
 </body>

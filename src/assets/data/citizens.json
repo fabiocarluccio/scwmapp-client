@@ -12,8 +12,15 @@
       "postalCode": "05535"
     },
     "token": "CJJENELA03",
-    "separationPerformance": 22.7,
-    "taxesStatus": true
+    "taxesStatus": true,
+    "generatedVolume": {
+      "mixedWaste": 1000,
+      "sortedWaste": {
+        "plastica": 20,
+        "vetro": 45,
+        "carta": 1.5
+      }
+    }
   },
   {
     "id": "28349441958490acee98fec99",
@@ -28,8 +35,15 @@
       "postalCode": "777"
     },
     "token": "C93JDIDF08",
-    "separationPerformance": 66.7,
-    "taxesStatus": false
+    "taxesStatus": false,
+    "generatedVolume": {
+      "mixedWaste": 1200,
+      "sortedWaste": {
+        "plastica": 290,
+        "vetro": 95,
+        "carta": 22.5
+      }
+    }
   },
   {
     "id": "28349441958490acee98fed100",
@@ -44,7 +58,14 @@
       "postalCode": "20093"
     },
     "token": "C93JDIDF09",
-    "separationPerformance": 78.5,
-    "taxesStatus": true
+    "taxesStatus": true,
+    "generatedVolume": {
+      "mixedWaste": 500,
+      "sortedWaste": {
+        "plastica": 239,
+        "vetro": 459,
+        "carta": 15
+      }
+    }
   }
 ]

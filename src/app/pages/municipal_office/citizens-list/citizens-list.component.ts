@@ -28,6 +28,8 @@ export class CitizensListComponent implements OnInit {
   ngOnInit() {
     this.citizenService.loadCitizens().then(response => {
       this.orderByName()
+      console.log('dio')
+      console.log(this.citizenService.citizens)
       // nothing to do
     }).catch(error => {
       // Mostro errore
@@ -131,6 +133,10 @@ export class CitizensListComponent implements OnInit {
   }
 
   filterCitizenList() {
+    function getSeparationPerformance(citizen: Citizen) {
+      return 9
+    }
+
     switch (this.sorting) {
       case CitizenSorting.alphabetical:
         this.citizenService.citizens.sort((a, b) => {
@@ -145,11 +151,11 @@ export class CitizensListComponent implements OnInit {
         this.citizens = this.citizenService.citizens
         break
       case CitizenSorting.performanceDescending:
-        this.citizenService.citizens.sort((a, b) => b.separationPerformance! - a.separationPerformance!)
+        this.citizenService.citizens.sort((a, b) => Citizen.getSeparationPerformance(b) - Citizen.getSeparationPerformance(a))
         this.citizens = this.citizenService.citizens
         break
       case CitizenSorting.performanceAscending:
-        this.citizenService.citizens.sort((a, b) => a.separationPerformance! - b.separationPerformance!)
+        this.citizenService.citizens.sort((a, b) => Citizen.getSeparationPerformance(a) - Citizen.getSeparationPerformance(b))
         this.citizens = this.citizenService.citizens
         break
     }
@@ -166,7 +172,7 @@ export class CitizensListComponent implements OnInit {
           this.citizens = this.citizens.filter(citizen => citizen.taxesStatus == false)
           break
         case CitizenFilter.lowPerformance:
-          this.citizens = this.citizens.filter(citizen => citizen.separationPerformance! < 50)
+          this.citizens = this.citizens.filter(citizen => Citizen.getSeparationPerformance(citizen) < 50)
       }
     }
 
@@ -177,4 +183,5 @@ export class CitizensListComponent implements OnInit {
 
   protected readonly CitizenSorting = CitizenSorting;
   protected readonly CitizenFilter = CitizenFilter;
+  protected readonly Citizen = Citizen;
 }

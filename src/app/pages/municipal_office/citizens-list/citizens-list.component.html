@@ -80,9 +80,9 @@
 
             <div class="item-description">
               <div class="item-type">
-                <div class="item-indicator {{citizen.separationPerformance! >= 50 ? 'green' : 'red'}}">
+                <div class="item-indicator {{Citizen.getSeparationPerformance(citizen) >= 50 ? 'green' : 'red'}}">
                 </div>
-                Performance Separazione: <b>{{citizen.separationPerformance + "%"}}</b>
+                Performance Separazione: <b>{{Citizen.getSeparationPerformance(citizen) + "%"}}</b>
               </div>
 
               <div class="item-type">
