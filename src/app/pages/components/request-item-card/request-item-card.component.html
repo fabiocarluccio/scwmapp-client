@@ -1,26 +1,28 @@
-<div class="request-item-card ">
+<body>
+  <div class="request-item-card ">
 
-  <div class="bin-item-content clickable" (click)="toggleMapView()">
-    <h4>{{this.smartBinRequest.smartBin_name}}</h4>
+    <div class="bin-item-content clickable" (click)="toggleMapView()">
+      <h4>{{this.smartBinRequest.smartBin_name}}</h4>
 
-    <div class="bin-item-description">
-      <div class="bin-type">
-        <div class="bin-indicator"
-             [style.background-color]="this.smartBinRequestService.getBinTypeColor(smartBinRequest.type!)">
-        </div>{{this.smartBinRequest.type}}
+      <div class="bin-item-description">
+        <div class="bin-type">
+          <div class="bin-indicator"
+               [style.background-color]="this.smartBinRequestService.getBinTypeColor(smartBinRequest.type!)">
+          </div>{{this.smartBinRequest.type}}
+        </div>
+        <div>Capacità: <b>{{this.smartBinRequest.totalCapacity}} kg</b></div>
+        <!--<button routerLink="/about/{{user.id}}">about</button>
+        <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
       </div>
-      <div>Capacità: <b>{{this.smartBinRequest.totalCapacity}} kg</b></div>
-      <!--<button routerLink="/about/{{user.id}}">about</button>
-      <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
+    </div>
+
+    <div class="map-frame" id="RequestMap-{{this.smartBinRequest.id}}" *ngIf="this.showMapView">
+      <app-map  [mapId]="'RequestMap-' + this.smartBinRequest.id" [focusLocation]="[this.smartBinRequest.position!.coordinates[1], this.smartBinRequest.position!.coordinates[0]]"></app-map>
+    </div>
+
+    <div class="allocation-decision" *ngIf="this.showDecisionControls">
+      <button class="btn btn-danger" (click)="revokeRequest()">Rifiuta</button>
+      <button class="btn btn-primary" (click)="acceptRequest()">Accetta</button>
     </div>
   </div>
-
-  <div class="map-frame" id="RequestMap-{{this.smartBinRequest.id}}" *ngIf="this.showMapView">
-    <app-map  [mapId]="'RequestMap-' + this.smartBinRequest.id" [focusLocation]="[this.smartBinRequest.position!.coordinates[1], this.smartBinRequest.position!.coordinates[0]]"></app-map>
-  </div>
-
-  <div class="allocation-decision" *ngIf="this.showDecisionControls">
-    <button class="btn btn-danger" (click)="revokeRequest()">Rifiuta</button>
-    <button class="btn btn-primary" (click)="acceptRequest()">Accetta</button>
-  </div>
-</div>
+</body>

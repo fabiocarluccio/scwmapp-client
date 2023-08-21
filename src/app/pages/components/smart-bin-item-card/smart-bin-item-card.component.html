@@ -1,27 +1,29 @@
-<div class="bin-item-card {{getCardStyle()}}" id="smartBinCard_{{smartBin.id}}" (click)="cardSelected()">
-  <div class="number-banner {{getBannerStyle()}}" *ngIf="isInSelectionMode">
-    {{getSelectionOrder()}}
-  </div>
-  <div class="bin-item-content">
-    <h4>{{this.smartBin.name}}</h4>
+<body>
+  <div class="bin-item-card {{getCardStyle()}}" id="smartBinCard_{{smartBin.id}}" (click)="cardSelected()">
+    <div class="number-banner {{getBannerStyle()}}" *ngIf="isInSelectionMode">
+      {{getSelectionOrder()}}
+    </div>
+    <div class="bin-item-content">
+      <h4>{{this.smartBin.name}}</h4>
 
-    <div class="bin-item-description">
-      <div class="bin-type">
-        <div class="bin-indicator"
-             [style.background-color]="this.smartBinService.getBinTypeColor(smartBin.type!)">
-        </div>{{smartBin.type}}
+      <div class="bin-item-description">
+        <div class="bin-type">
+          <div class="bin-indicator"
+               [style.background-color]="this.smartBinService.getBinTypeColor(smartBin.type!)">
+          </div>{{smartBin.type}}
+        </div>
+        <div class="capacity">Capacità: <b>{{this.smartBin.currentCapacity}}/{{smartBin.totalCapacity}} kg</b></div>
       </div>
-      <div class="capacity">Capacità: <b>{{this.smartBin.currentCapacity}}/{{smartBin.totalCapacity}} kg</b></div>
+      <!--<button routerLink="/about/{{user.id}}">about</button>
+      <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
+      <!--<button (click)="locateSmartBin(smartbin)" class="button">Localizza</button>-->
     </div>
-    <!--<button routerLink="/about/{{user.id}}">about</button>
-    <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
-    <!--<button (click)="locateSmartBin(smartbin)" class="button">Localizza</button>-->
-  </div>
-  <div class="indicator">
-    <div class="background-rectangle"></div>
-    <div class="foreground-rectangle"
-         [style.height]="this.getCapacityPercentage()"
-         [style.background-color]="this.getColorCapacity()">
+    <div class="indicator">
+      <div class="background-rectangle"></div>
+      <div class="foreground-rectangle"
+           [style.height]="this.getCapacityPercentage()"
+           [style.background-color]="this.getColorCapacity()">
+      </div>
     </div>
   </div>
-</div>
+</body>

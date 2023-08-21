@@ -3,6 +3,8 @@ body {
   flex-direction: column;
   align-items: center;
   padding-top: 1rem;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 /* non consigliato perche lascia un sacco di spazio sotto la pagina
@@ -39,7 +41,7 @@ body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
 #SmartBinsMap {
   //flex-grow: 1;
   //height: 100px;
-  flex-basis: 400px;
+  flex-basis: 300px;
   flex-shrink: 0;
   border-radius: 8px;
   border: 2px solid #0003;
@@ -51,7 +53,7 @@ body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
 }
 
 .bin-list {
-  flex-basis: 500px;
+  //flex-basis: 500px;
   flex-grow: 1;
   cursor: default;
 
@@ -72,26 +74,7 @@ body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
 }
 
 
-ul, li {
-  list-style: none;
-}
 
-ul {
-
-  display: flex;
-  gap: 32px;
-  //background: pink;
-  padding-left: 10px;
-  padding-right: 10px;
-  justify-content: space-between;
-}
-
-li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  //background: red;
-}
 
 .highlighted {
   background-color: #ffcc0066;
@@ -193,4 +176,18 @@ p {
 .cleaning-buttons {
   display: flex;
   gap: 10px;
+}
+
+
+h1 {
+  margin-bottom: 20px;
+}
+
+
+body, button {
+  font-size: 0.8rem;
+}
+
+button {
+  height: auto;
 }
