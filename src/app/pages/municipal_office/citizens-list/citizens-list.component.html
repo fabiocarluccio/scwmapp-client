@@ -13,19 +13,19 @@
       <div class="dropdown">
         <button class="arrange_button">Ordina per</button>
         <div class="dropdown-content">
-          <a href="#">↘ Performance: alta-bassa</a>
-          <a href="#">↗ Performance: bassa-alta</a>
-          <a href="#">Nessun ordinamento</a>
+          <a (click)="orderByPerformanceDescendent()" class="clickable">{{CitizenSorting.performanceDescending}}</a>
+          <a (click)="orderByPerformanceAscendent()" class="clickable">{{CitizenSorting.performanceAscending}}</a>
+          <a (click)="orderByName()" class="clickable">{{CitizenSorting.alphabetical}}</a>
         </div>
       </div>
 
       <div class="dropdown">
         <button class="arrange_button">Filtra per</button>
         <div class="dropdown-content">
-          <a href="#">✓ Tasse pagate</a>
-          <a href="#">✕ Tasse non pagate</a>
-          <a href="#">⚠ Cittadini da richiamare (performance bassa)</a>
-          <a href="#">Nessun filtro</a>
+          <a (click)="toggleFilterByTaxesPayed()" class="clickable">{{CitizenFilter.taxesPayed}}</a>
+          <a (click)="toggleFilterByTaxesUnpayed()" class="clickable">{{CitizenFilter.taxesUnpayed}}</a>
+          <a (click)="toggleFilterByLowPerformance()" class="clickable">{{CitizenFilter.lowPerformance}}</a>
+          <a (click)="(filterByNothing())" class="clickable">{{CitizenFilter.noFilter}}</a>
         </div>
       </div>
     </div>
@@ -33,22 +33,22 @@
     <div class="main-layout">
 
       <div class="item-list">
-        <div routerLink="/municipal_office/citizen-info/CAOALS34DPXO928E" class="item-card clickable">
+        <div *ngFor="let citizen of this.citizens" routerLink="/municipal_office/citizen-info/{{citizen.id}}" class="item-card clickable">
 
           <div class="item-content">
-            <h4 class="clickable">Fabio Carluccio</h4>
+            <h4 class="clickable">{{citizen.surname + " " + citizen.name}}</h4>
 
             <div class="item-description">
               <div class="item-type">
-                <div class="item-indicator">
+                <div class="item-indicator {{citizen.separationPerformance! >= 50 ? 'green' : 'red'}}">
                 </div>
-                Performance Separazione: <b>Bassa</b>
+                Performance Separazione: <b>{{citizen.separationPerformance + "%"}}</b>
               </div>
 
               <div class="item-type">
-                <div class="item-indicator" style="background: seagreen;">
+                <div class="item-indicator {{citizen.taxesStatus ? 'green' : 'red'}}">
                 </div>
-                Stato Tasse: <b>Pagato</b>
+                Stato Tasse: <b>{{citizen.taxesStatus ? "Pagato" : "Non Pagato"}}</b>
               </div>
               <!--<button routerLink="/about/{{user.id}}">about</button>
               <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
@@ -78,7 +78,7 @@
         <div class="form-group">
           <label for="inputCitizenName">Nome</label>
           <input
-            [(ngModel)]="citizen_name" name="citizenName"
+            [(ngModel)]="this.citizen.name" name="citizenName"
             required
             minlength="3"
             pattern=".*"
@@ -94,7 +94,7 @@
         <div class="form-group">
           <label for="inputCitizenSurname">Cognome</label>
           <input
-            [(ngModel)]="citizen_surname" name="citizenSurname"
+            [(ngModel)]="this.citizen.surname" name="citizenSurname"
             required
             minlength="3"
             pattern=".*"
@@ -110,7 +110,7 @@
         <div class="form-group">
           <label for="inputCitizenFiscalCode">Codice Fiscale</label>
           <input
-            [(ngModel)]="citizen_fiscalCode" name="citizenFiscalCode"
+            [(ngModel)]="this.citizen.ssn" name="citizenFiscalCode"
             required
             minlength="16"
             maxlength="16"
@@ -127,7 +127,7 @@
         <div class="form-group">
           <label for="inputCitizenEmail">Email</label>
           <input
-            [(ngModel)]="citizen_email" name="citizenEmail"
+            [(ngModel)]="this.citizen.email" name="citizenEmail"
             required
             minlength="3"
             pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
@@ -143,7 +143,7 @@
         <div class="form-group">
           <label for="inputCitizenStreetName">Via/Viale</label>
           <input
-            [(ngModel)]="citizen_streetName" name="citizenStreetName"
+            [(ngModel)]="this.citizen.address!.streetName" name="citizenStreetName"
             required
             minlength="3"
             pattern=".*"
@@ -159,7 +159,7 @@
         <div class="form-group">
           <label for="inputCitizenStreetNumber">Numero via</label>
           <input
-            [(ngModel)]="citizen_streetNumber" name="citizenStreetNumber"
+            [(ngModel)]="this.citizen.address!.streetNumber" name="citizenStreetNumber"
             required
             minlength="1"
             pattern=".*"
@@ -175,7 +175,7 @@
         <div class="form-group">
           <label for="inputCitizenPostalCode">Codice postale</label>
           <input
-            [(ngModel)]="citizen_postalCode" name="citizenPostalCode"
+            [(ngModel)]="this.citizen.address!.postalCode" name="citizenPostalCode"
             required
             minlength="3"
             pattern=".*"
@@ -191,7 +191,7 @@
         <div class="form-group">
           <label for="inputCitizenCity">Città</label>
           <input
-            [(ngModel)]="citizen_city" name="citizenCity"
+            [(ngModel)]="this.citizen.address!.city" name="citizenCity"
             required
             minlength="3"
             pattern=".*"

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "28349441958490acee98fec98",
+    "name": "Fabio",
+    "surname": "Carluccio",
+    "ssn": "CRL4567890123456",
+    "email": "fabio98.ccarluccio@gmail.com",
+    "address": {
+      "streetName": "Via della Mignotta",
+      "streetNumber": "69",
+      "city": "Lecco",
+      "postalCode": "05535"
+    },
+    "token": "CJJENELA03",
+    "separationPerformance": 22.7,
+    "taxesStatus": true
+  },
+  {
+    "id": "28349441958490acee98fec99",
+    "name": "Carmine",
+    "surname": "Accogli",
+    "ssn": "ACG4567890123456",
+    "email": "carmine@jacoajoscjas",
+    "address": {
+      "streetName": "Via del pesce",
+      "streetNumber": "33",
+      "city": "Gerusalemme",
+      "postalCode": "777"
+    },
+    "token": "C93JDIDF08",
+    "separationPerformance": 66.7,
+    "taxesStatus": false
+  }
+]

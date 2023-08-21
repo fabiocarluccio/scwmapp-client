@@ -51,8 +51,8 @@ body {
   justify-content: center;
   align-items: center;
   //border: 1px solid red;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 body > div {
   width: 100%;
@@ -208,6 +208,10 @@ form > button {
   flex-basis: 380px;
   width: auto;
 
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
 }
 .item-type {
   display: flex;
@@ -220,7 +224,6 @@ form > button {
   //background: red;
   border-radius: 4px;
   display: inline-block;
-  background: tomato;
 }
 
 .form-container {
@@ -246,3 +249,10 @@ h4{
   font-size: 1.2rem;
 }
 
+
+.green {
+  background: seagreen;
+}
+.red {
+  background: tomato;
+}
