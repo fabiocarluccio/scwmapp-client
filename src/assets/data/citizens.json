@@ -30,5 +30,21 @@
     "token": "C93JDIDF08",
     "separationPerformance": 66.7,
     "taxesStatus": false
+  },
+  {
+    "id": "28349441958490acee98fed100",
+    "name": "Lorenzo",
+    "surname": "Santo",
+    "ssn": "SNT4567890123456",
+    "email": "lorenzo@jacoajoscjas",
+    "address": {
+      "streetName": "Via del pisello",
+      "streetNumber": "33",
+      "city": "Torino",
+      "postalCode": "20093"
+    },
+    "token": "C93JDIDF09",
+    "separationPerformance": 78.5,
+    "taxesStatus": true
   }
 ]

@@ -13,19 +13,59 @@
       <div class="dropdown">
         <button class="arrange_button">Ordina per</button>
         <div class="dropdown-content">
-          <a (click)="orderByPerformanceDescendent()" class="clickable">{{CitizenSorting.performanceDescending}}</a>
-          <a (click)="orderByPerformanceAscendent()" class="clickable">{{CitizenSorting.performanceAscending}}</a>
-          <a (click)="orderByName()" class="clickable">{{CitizenSorting.alphabetical}}</a>
+          <div class="dropdown-item clickable" (click)="orderByPerformanceDescendent()">
+
+            <div class="radioButton {{this.sorting == CitizenSorting.performanceDescending ? 'active' : ''}}"></div>
+            {{CitizenSorting.performanceDescending}}
+
+          </div>
+
+          <div class="dropdown-item clickable" (click)="orderByPerformanceAscendent()">
+
+            <div class="radioButton {{this.sorting == CitizenSorting.performanceAscending ? 'active' : ''}}"></div>
+            {{CitizenSorting.performanceAscending}}
+
+          </div>
+
+          <div class="dropdown-item clickable" (click)="orderByName()">
+
+            <div class="radioButton {{this.sorting == CitizenSorting.alphabetical ? 'active' : ''}}"></div>
+            {{CitizenSorting.alphabetical}}
+
+          </div>
         </div>
       </div>
 
       <div class="dropdown">
         <button class="arrange_button">Filtra per</button>
         <div class="dropdown-content">
-          <a (click)="toggleFilterByTaxesPayed()" class="clickable">{{CitizenFilter.taxesPayed}}</a>
-          <a (click)="toggleFilterByTaxesUnpayed()" class="clickable">{{CitizenFilter.taxesUnpayed}}</a>
-          <a (click)="toggleFilterByLowPerformance()" class="clickable">{{CitizenFilter.lowPerformance}}</a>
-          <a (click)="(filterByNothing())" class="clickable">{{CitizenFilter.noFilter}}</a>
+          <div class="dropdown-item clickable" (click)="toggleFilterByTaxesPayed()">
+
+            <div class="radioButton {{this.filters.includes(CitizenFilter.taxesPayed) ? 'active' : ''}}"></div>
+            {{CitizenFilter.taxesPayed}}
+
+          </div>
+
+          <div class="dropdown-item clickable" (click)="toggleFilterByTaxesUnpayed()">
+
+            <div class="radioButton {{this.filters.includes(CitizenFilter.taxesUnpayed) ? 'active' : ''}}"></div>
+            {{CitizenFilter.taxesUnpayed}}
+
+          </div>
+
+          <div class="dropdown-item clickable" (click)="toggleFilterByLowPerformance()">
+
+            <div class="radioButton {{this.filters.includes(CitizenFilter.lowPerformance) ? 'active' : ''}}"></div>
+            {{CitizenFilter.lowPerformance}}
+
+          </div>
+
+          <div class="dropdown-item clickable" (click)="filterByNothing()">
+
+            <div class="radioButton {{this.filters.includes(CitizenFilter.noFilter) ? 'active' : ''}}"></div>
+            {{CitizenFilter.noFilter}}
+
+          </div>
         </div>
       </div>
     </div>
