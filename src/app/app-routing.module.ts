@@ -21,6 +21,7 @@ import {
 } from "./pages/waste_management_company/smart-bin-dashboard-wmc/smart-bin-dashboard-wmc.component";
 import {CitizensListComponent} from "./pages/municipal_office/citizens-list/citizens-list.component";
 import {CitizenInfoComponent} from "./pages/municipal_office/citizen-info/citizen-info.component";
+import {EmitTaxesComponent} from "./pages/municipal_office/emit-taxes/emit-taxes.component";
 
 const routes: Routes = [ // questo sarà un array di hops (di paths che sono supportati dall'applicazione)
   { path: '', component: UsersComponent },              // Ogni route è definita da due attributi:
@@ -35,7 +36,8 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'municipal_office/smartbin-allocation', component: SmartBinAllocationMunicipalOfficeComponent },
   { path: 'waste_management_company/smartbin-dashboard', component: SmartBinDashboardWmcComponent },
   { path: 'municipal_office/citizens-list', component: CitizensListComponent },
-  { path: 'municipal_office/citizen-info/:citizenId', component: CitizenInfoComponent }
+  { path: 'municipal_office/citizen-info/:citizenId', component: CitizenInfoComponent },
+  { path: 'municipal_office/emit-taxes', component: EmitTaxesComponent }
 ]
 
 @NgModule({

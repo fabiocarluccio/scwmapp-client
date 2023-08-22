@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Color} from "chart.js";
 
 @Component({
@@ -7,22 +7,14 @@ import {Color} from "chart.js";
   styleUrls: ['./pie-chart.component.scss']
 })
 export class PieChartComponent {  // https://www.digitalocean.com/community/tutorials/angular-chartjs-ng2-charts
-  customColors: Color[] = ['#FF5733', '#36A2EB', '#55aa44', '#333', '#FFC107', '#9C27B0']
+  @Input() separationPerformancePercentage: number = 0
+  @Input() wasteTypes!: string[]
+  @Input() wasteVolumeGenerated!: number[]
 
-  chartData = [
-    {
-      data: [330, 218, 52, 880],
-      backgroundColor: this.customColors,
-      label: 'Volume generato (kg)'
-    }
-  ];
-  chartLabels = [
-    'Plastica',
-    'Carta',
-    'Vetro',
-    'Indifferenziata'
-  ];
 
+  customColors: Color[] = ['#333', '#FF5733', '#36A2EB', '#55aa44', '#FFC107', '#9C27B0']
+
+  /* spostato in html dato che da problemi quando aggiungo altri plugins
   chartOptions = {
     responsive: true,
     plugins: {
@@ -30,8 +22,7 @@ export class PieChartComponent {  // https://www.digitalocean.com/community/tuto
         display: true,
         text: 'Performance di separazione',
       },
-
     },
   }
-
+  */
 }

@@ -33,6 +33,7 @@ import {SmartBinRequestService} from "./services/smart-bin-request.service";
 import {ExceptionManagerService} from "./services/exception-manager.service";
 import {CommunicationService} from "./services/communication.service";
 import {TaxService} from "./services/tax.service";
+import { EmitTaxesComponent } from './pages/municipal_office/emit-taxes/emit-taxes.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {TaxService} from "./services/tax.service";
     SmartBinDashboardWmcComponent,
     CitizensListComponent,
     CitizenInfoComponent,
-    PieChartComponent
+    PieChartComponent,
+    EmitTaxesComponent
   ],
     imports: [
         BrowserModule,

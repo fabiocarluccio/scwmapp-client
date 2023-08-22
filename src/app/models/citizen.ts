@@ -18,6 +18,23 @@ export class Citizen {
     }
   }
 
+  static getWasteTypeNames(citizen: Citizen): string[] {
+    let wasteTypeNames: string[] = ["Indifferenziata"]
+
+    for(let typeName of Object.keys(citizen.generatedVolume.sortedWaste)) {
+      wasteTypeNames.push(typeName)
+    }
+    return wasteTypeNames
+  }
+
+  static getWasteVolumeGenerated(citizen: Citizen): number[] {
+    let wasteVolumeGenerated: number[] = [citizen.generatedVolume.mixedWaste]
+
+    for(let typeName of Object.keys(citizen.generatedVolume.sortedWaste)) {
+      wasteVolumeGenerated.push(citizen.generatedVolume.sortedWaste[typeName])
+    }
+    return wasteVolumeGenerated
+  }
 
 
   static getSeparationPerformance(citizen: Citizen): number {

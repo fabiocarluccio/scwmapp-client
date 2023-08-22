@@ -1,29 +1,36 @@
 .container {
-  width: 350px;
-  margin-top: 30px;
+  height: 300px;
 
   position: relative;
   z-index: 0;
+  margin-left: -10px;
+  margin-top: 20px;
+  //background: red;
 }
 
 canvas {
   z-index: 2;
   position: relative;
+
 }
 
 .percentage
  {
   z-index: 1;
   position: absolute;
-  bottom: 69px;
-  left: 125px;
+  bottom: 87px;
+  left: 99px;
   background: #6a9;
 
   //border: 1px solid red;
   border-radius: 50%;
 
-  width: 100px;
-  height: 100px;
+  ///width: 125px;
+  //height: 125px;
+  max-width: 125px;
+  max-height: 125px;
+  width: 100%;
+  height: 100%;
 
   display: flex;
   justify-content: center;

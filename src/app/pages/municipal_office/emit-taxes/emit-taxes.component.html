@@ -1,0 +1,59 @@
+<body>
+  <div style="margin-bottom: 10px;">
+    <a routerLink="/municipal_office/menu">◂ Menu</a>
+  </div>
+
+  <h1>Emissione Tasse</h1>
+
+  <p>Imposta la tariffa per kg di rifiuto.</p>
+
+  <form #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)">
+    <div class="form-inputs-container">
+      <div class="form-group">
+        <label for="inputMixedWaste">Tariffa indifferenziata (per kg)</label>
+        <input
+          [(ngModel)]="indifferenziata" name="mixedWaste"
+          required
+          #inputMixedWaste = "ngModel"
+          [ngClass]="{'is-invalid': inputMixedWaste.errors && inputMixedWaste.touched}"
+          type="number" class="form-control" id="inputMixedWaste" placeholder="Valore (€)">
+        <!--{{user.name}}-->
+        <div class="invalid-feedback">
+          Inserisci un valore valido.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputGlass">Tariffa Vetro (per kg)</label>
+        <input
+          [(ngModel)]="glass" name="glass"
+          required
+          #inputGlass = "ngModel"
+          [ngClass]="{'is-invalid': inputGlass.errors && inputGlass.touched}"
+          type="number" class="form-control" id="inputGlass" placeholder="Valore (€)">
+        <!--{{user.name}}-->
+        <div class="invalid-feedback">
+          Inserisci un valore valido.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPlastic">Tariffa Plastica (per kg)</label>
+        <input
+          [(ngModel)]="plastic" name="plastic"
+          required
+          #inputPlastic = "ngModel"
+          [ngClass]="{'is-invalid': inputPlastic.errors && inputPlastic.touched}"
+          type="number" class="form-control" id="inputPlastic" placeholder="Valore (€)">
+        <!--{{user.name}}-->
+        <div class="invalid-feedback">
+          Inserisci un valore valido.
+        </div>
+      </div>
+    </div>
+
+
+    <button
+      [disabled] = "!emitTaxesForm.valid"
+      type="submit"
+      class="btn btn-primary">Emetti tasse per anno 2023</button>
+  </form>
+</body>

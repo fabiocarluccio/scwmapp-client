@@ -8,15 +8,34 @@
   <canvas
     baseChart
     [type]="'doughnut'"
-    [legend]="true"
-    [datasets]="chartData"
-    [labels]="chartLabels"
-    [options]="chartOptions"
+    [legend]="false"
+    [datasets]="[
+      {
+        data: this.wasteVolumeGenerated,
+        backgroundColor: this.customColors,
+        label: 'Volume generato (kg)'
+      }
+    ]"
+    [labels]="this.wasteTypes"
+    [options]="
+     {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right'
+        }
+      },
+      elements: {
+        arc: {
+          borderWidth: 0
+        }
+      }
+    }"
   >
   </canvas>
 
   <div class="percentage">
-    <h1>77%</h1>
+    <h1>{{separationPerformancePercentage}}%</h1>
   </div>
 
 </div>
