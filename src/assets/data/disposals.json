@@ -1,0 +1,26 @@
+[
+  {
+    "id": "CF-9581",
+    "date": "21/08/2023",
+    "wasteType": "Plastica",
+    "disposalVolume": 2.8
+  },
+  {
+    "id": "CF-1930",
+    "date": "19/08/2023",
+    "wasteType": "Vetro",
+    "disposalVolume": 3.3
+  },
+  {
+    "id": "CF-1794",
+    "date": "27/07/2023",
+    "wasteType": "Carta",
+    "disposalVolume": 0.5
+  },
+  {
+    "id": "CF-0391",
+    "date": "05/07/2023",
+    "wasteType": "Indifferenziata",
+    "disposalVolume": 22
+  }
+]

@@ -27,6 +27,12 @@ import { CitizensListComponent } from './pages/municipal_office/citizens-list/ci
 import { CitizenInfoComponent } from './pages/municipal_office/citizen-info/citizen-info.component';
 import { PieChartComponent } from './pages/components/pie-chart/pie-chart.component';
 import {NgChartsModule} from "ng2-charts";
+import {CitizenService} from "./services/citizen.service";
+import {DisposalService} from "./services/disposal.service";
+import {SmartBinRequestService} from "./services/smart-bin-request.service";
+import {ExceptionManagerService} from "./services/exception-manager.service";
+import {CommunicationService} from "./services/communication.service";
+import {TaxService} from "./services/tax.service";
 
 @NgModule({
   declarations: [
@@ -61,9 +67,15 @@ import {NgChartsModule} from "ng2-charts";
     ],
   providers: [
     UsersService,
+    ExceptionManagerService,
     //MarkerService,
     PopupService,
-    SmartBinService
+    SmartBinService,
+    SmartBinRequestService,
+    CommunicationService,
+    CitizenService,
+    DisposalService,
+    TaxService
   ],
   bootstrap: [
     AppComponent

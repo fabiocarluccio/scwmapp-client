@@ -1,18 +1,3 @@
-/*export interface Citizen {
-  id?: string
-  name?: string
-  surname?: string
-  ssn?: string
-  address?: Address
-  email?: string
-
-  // non aggiunte da carmine
-  token?: string
-  taxesStatus?: boolean
-  generatedVolume: GeneratedVolume
-
-}*/
-
 export class Citizen {
   id?: string
   name?: string

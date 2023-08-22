@@ -1,0 +1,23 @@
+[
+  {
+    "id": "HT-4897",
+    "year": 2023,
+    "amount": 223.43,
+    "expireDate": "21/05/2024",
+    "paymentDate": null
+  },
+  {
+    "id": "HT-2992",
+    "year": 2022,
+    "amount": 188.99,
+    "expireDate": "21/05/2023",
+    "paymentDate": "12/02/2023"
+  },
+  {
+    "id": "HT-127",
+    "year": 2021,
+    "amount": 230.97,
+    "expireDate": "21/05/2022",
+    "paymentDate": "29/01/2022"
+  }
+]
