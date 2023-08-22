@@ -3,9 +3,9 @@
     <a routerLink="/municipal_office/citizens-list">◂ Indietro</a>
   </div>
 
-  <h4>Fabio Carluccio</h4>
-  <p>🏠 <b>Via Fattelicazzi Tua, 23</b></p>
-  <p>🐌 <i>fabio.carluccio@fattelistracazzitua.it</i></p>
+  <h4>{{citizen.surname + " " + citizen.name}}</h4>
+  <p>🏠 <b>{{citizen.address?.city + " - " + citizen.address?.streetName + ", " + citizen.address?.streetNumber}}</b></p>
+  <p>🐌 <i>{{citizen.email}}</i></p>
 
 
   <h2>Stato tasse</h2>
@@ -72,7 +72,7 @@
 
 
 
-  <h2>Performance separazione rifiuti (77%)</h2>
+  <h2>Performance separazione rifiuti ({{Citizen.getSeparationPerformance(citizen)}}%)</h2>
   <div>
     <table>
       <tr class="table-header">
@@ -84,17 +84,16 @@
       <tr>
         <td colspan="4"><div class="separator"></div></td>
       </tr>
-      <tr>
-        <td>Plastica</td><td>180.2</td><td>38%</td><td>44%</td>
+      <tr *ngFor="let key of Object.keys(citizen.generatedVolume.sortedWaste)">
+        <td>{{key}}</td>
+        <td>{{citizen.generatedVolume.sortedWaste[key]}}</td>
+        <td>{{Citizen.getPercentageOfTotalWaste(citizen.generatedVolume.sortedWaste[key], citizen)}}%</td>
+        <td>{{Number(citizen.generatedVolume.sortedWaste[key] / citizen.generatedVolume.mixedWaste * 100).toFixed(1)}}%</td>
       </tr>
       <tr>
-        <td>Vetro</td><td>92.8</td><td>13%</td><td>24%</td>
-      </tr>
-      <tr>
-        <td>Carta</td><td>34.77</td><td>3%</td><td>12%</td>
-      </tr>
-      <tr>
-        <td>Indifferenziata</td><td>550.22</td><td>75%</td><td>-</td>
+        <td>Indifferenziata</td><td>{{citizen.generatedVolume.mixedWaste}}</td>
+        <td>{{Citizen.getPercentageOfTotalWaste(citizen.generatedVolume.mixedWaste, citizen)}}%</td>
+        <td>-</td>
       </tr>
 
     </table>

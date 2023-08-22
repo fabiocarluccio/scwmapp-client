@@ -8,7 +8,8 @@ import {catchError, firstValueFrom, tap} from "rxjs";
 })
 export class CitizenService {
 
-  path: string = '/assets/data/citizens.json';
+  citizensPath: string = '/assets/data/citizens.json';
+  citizenPath: string = '/assets/data/citizen.json';
   citizens: Citizen[] = [] as Citizen[];
   citizen: Citizen = {} as Citizen // sarà usato per caricare le info del cittadino nella schermata delle sue info
 
@@ -24,10 +25,25 @@ export class CitizenService {
   constructor(private http: HttpClient) { }
 
   loadCitizens() {
-    return firstValueFrom(this.http.get(this.path).pipe(
+    return firstValueFrom(this.http.get(this.citizensPath).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
         this.citizens = response
+        console.log(response)
+
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        throw error; // Rilancia l'errore come promessa respinta
+      })
+    ));
+  }
+
+  loadCitizen(citizenId: string) {
+    return firstValueFrom(this.http.get(this.citizenPath).pipe(
+      tap((response: any) => {
+        console.log('Richiesta GET riuscita:', response);
+        this.citizen = response
         console.log(response)
 
       }),

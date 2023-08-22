@@ -1,0 +1,23 @@
+{
+  "id": "28349441958490acee98fec98",
+  "name": "Fabio",
+  "surname": "Carluccio",
+  "ssn": "CRL4567890123456",
+  "email": "fabio98.ccarluccio@gmail.com",
+  "address": {
+    "streetName": "Via della Mignotta",
+    "streetNumber": "69",
+    "city": "Lecco",
+    "postalCode": "05535"
+  },
+  "token": "CJJENELA03",
+  "taxesStatus": true,
+  "generatedVolume": {
+    "mixedWaste": 1000,
+    "sortedWaste": {
+      "Plastica": 20,
+      "Vetro": 45,
+      "Carta": 1.5
+    }
+  }
+}

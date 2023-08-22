@@ -16,9 +16,9 @@
     "generatedVolume": {
       "mixedWaste": 1000,
       "sortedWaste": {
-        "plastica": 20,
-        "vetro": 45,
-        "carta": 1.5
+        "Plastica": 20,
+        "Vetro": 45,
+        "Carta": 1.5
       }
     }
   },
@@ -39,9 +39,9 @@
     "generatedVolume": {
       "mixedWaste": 1200,
       "sortedWaste": {
-        "plastica": 290,
-        "vetro": 95,
-        "carta": 22.5
+        "Plastica": 290,
+        "Vetro": 95,
+        "Carta": 22.5
       }
     }
   },
@@ -62,9 +62,9 @@
     "generatedVolume": {
       "mixedWaste": 500,
       "sortedWaste": {
-        "plastica": 239,
-        "vetro": 459,
-        "carta": 15
+        "Plastica": 239,
+        "Vetro": 459,
+        "Carta": 15
       }
     }
   }
