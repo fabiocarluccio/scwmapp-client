@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import {User} from "../../../models/user";
 import {UserService} from "../../../services/user.service";
 import {Router} from "@angular/router";
+import {User} from "../../../models/user";
 
 @Component({
-  selector: 'app-menu-municipal-office',
-  templateUrl: './menu-municipal-office.component.html',
-  styleUrls: ['./menu-municipal-office.component.scss']
+  selector: 'app-navbar-municipal-office',
+  templateUrl: './navbar-municipal-office.component.html',
+  styleUrls: ['./navbar-municipal-office.component.scss']
 })
-export class MenuMunicipalOfficeComponent {
+export class NavbarMunicipalOfficeComponent {
 
   constructor(private userService:UserService, private route:Router) {
   }

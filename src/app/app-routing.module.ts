@@ -11,9 +11,6 @@ import {
 } from "./pages/authentication/password-reset-token-validation/password-reset-token-validation.component";
 import {PasswordResetByTokenComponent} from "./pages/authentication/password-reset-by-token/password-reset-by-token.component";
 import {
-  MenuMunicipalOfficeComponent
-} from "./pages/municipal_office/menu-municipal-office/menu-municipal-office.component";
-import {
   SmartBinAllocationMunicipalOfficeComponent
 } from "./pages/municipal_office/smartbin-allocation-municipal-office/smart-bin-allocation-municipal-office.component";
 import {
@@ -32,7 +29,6 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'password-reset-token-validation', component: PasswordResetTokenValidationComponent },
   { path: 'password-reset-by-token', component: PasswordResetByTokenComponent },
-  { path: 'municipal_office/menu', component: MenuMunicipalOfficeComponent },
   { path: 'municipal_office/smartbin-allocation', component: SmartBinAllocationMunicipalOfficeComponent },
   { path: 'waste_management_company/smartbin-dashboard', component: SmartBinDashboardWmcComponent },
   { path: 'municipal_office/citizens-list', component: CitizensListComponent },

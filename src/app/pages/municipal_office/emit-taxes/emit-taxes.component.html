@@ -1,13 +1,11 @@
-<body>
-  <div style="margin-bottom: 10px;">
-    <a routerLink="/municipal_office/menu">◂ Menu</a>
-  </div>
+<app-navbar-municipal-office></app-navbar-municipal-office>
 
+<body>
   <h1>Emissione Tasse</h1>
 
   <p>Imposta la tariffa per kg di rifiuto.</p>
 
-  <form #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)">
+  <form #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)" class="cool-background">
     <div class="form-inputs-container">
       <div class="form-group">
         <label for="inputMixedWaste">Tariffa indifferenziata (per kg)</label>

@@ -1,20 +1,13 @@
 body {
-  display:flex;
+  margin-top: 32px;
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 1rem;
-  padding-left: 40px;
-  padding-right: 40px;
+  justify-content: center;
+  //align-items: center;
+  //border: 1px solid red;
+  padding-left: 15vw;
+  padding-right: 15vw;
 }
-
-/* non consigliato perche lascia un sacco di spazio sotto la pagina
-body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
-  //-moz-transform: scale(0.8); // Firefox
-  //-webkit-transform: scale(0.8); // Chrome, Safari, Opera
-  //transform: scale(0.8);
-  //transform-origin: top; // Imposta l'origine del trasformazione
-}
-*/
 
 .layout {
   display: flex;

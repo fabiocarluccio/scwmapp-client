@@ -15,7 +15,6 @@ import { PasswordResetComponent } from './pages/authentication/password-reset/pa
 import { PasswordResetTokenValidationComponent } from './pages/authentication/password-reset-token-validation/password-reset-token-validation.component';
 import { PasswordResetByTokenComponent } from './pages/authentication/password-reset-by-token/password-reset-by-token.component';
 import { PasswordMatchDirective } from './directives/password-match.directive';
-import { MenuMunicipalOfficeComponent } from './pages/municipal_office/menu-municipal-office/menu-municipal-office.component';
 import { SmartBinAllocationMunicipalOfficeComponent } from './pages/municipal_office/smartbin-allocation-municipal-office/smart-bin-allocation-municipal-office.component';
 import { MapComponent } from './pages/components/map/map.component';
 import {SmartBinService} from "./services/smart-bin.service";
@@ -34,6 +33,7 @@ import {ExceptionManagerService} from "./services/exception-manager.service";
 import {CommunicationService} from "./services/communication.service";
 import {TaxService} from "./services/tax.service";
 import { EmitTaxesComponent } from './pages/municipal_office/emit-taxes/emit-taxes.component';
+import { NavbarMunicipalOfficeComponent } from './pages/municipal_office/navbar-municipal-office/navbar-municipal-office.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,6 @@ import { EmitTaxesComponent } from './pages/municipal_office/emit-taxes/emit-tax
     PasswordResetTokenValidationComponent,
     PasswordResetByTokenComponent,
     PasswordMatchDirective,
-    MenuMunicipalOfficeComponent,
     SmartBinAllocationMunicipalOfficeComponent,
     MapComponent,
     SmartBinItemCardComponent,
@@ -55,7 +54,8 @@ import { EmitTaxesComponent } from './pages/municipal_office/emit-taxes/emit-tax
     CitizensListComponent,
     CitizenInfoComponent,
     PieChartComponent,
-    EmitTaxesComponent
+    EmitTaxesComponent,
+    NavbarMunicipalOfficeComponent
   ],
     imports: [
         BrowserModule,
