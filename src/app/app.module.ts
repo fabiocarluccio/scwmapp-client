@@ -33,7 +33,7 @@ import {ExceptionManagerService} from "./services/exception-manager.service";
 import {CommunicationService} from "./services/communication.service";
 import {TaxService} from "./services/tax.service";
 import { EmitTaxesComponent } from './pages/municipal_office/emit-taxes/emit-taxes.component';
-import { NavbarMunicipalOfficeComponent } from './pages/municipal_office/navbar-municipal-office/navbar-municipal-office.component';
+import { NavbarMunicipalOfficeComponent } from './pages/components/navbar-municipal-office/navbar-municipal-office.component';
 
 @NgModule({
   declarations: [

@@ -58,6 +58,12 @@ body > div {
   width: 100%;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 .item-description {
   flex-direction: column;
 }

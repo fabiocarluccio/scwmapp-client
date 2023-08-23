@@ -51,7 +51,7 @@ export class LoginPageComponent {
                 break
               case "MunicipalOffice":
                 console.log("i am a MunicipalOffice")
-                this.route.navigateByUrl('municipal_office/menu');
+                this.route.navigateByUrl('municipal_office/citizens-list');
                 break
               case "WasteManagementCompany":
                 console.log("i am a WasteManagementCompany")
