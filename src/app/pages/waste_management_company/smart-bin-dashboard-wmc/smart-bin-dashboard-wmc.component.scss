@@ -1,20 +1,12 @@
 body {
+  margin-top: 32px;
   display:flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 1rem;
-  padding-left: 40px;
-  padding-right: 40px;
+  justify-content: center;
+  //align-items: center;
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
-
-/* non consigliato perche lascia un sacco di spazio sotto la pagina
-body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
-  //-moz-transform: scale(0.8); // Firefox
-  //-webkit-transform: scale(0.8); // Chrome, Safari, Opera
-  //transform: scale(0.8);
-  //transform-origin: top; // Imposta l'origine del trasformazione
-}
-*/
 
 .layout {
   display: flex;
@@ -22,8 +14,6 @@ body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
   flex-wrap: wrap-reverse;
   justify-content: space-between;
   align-items: flex-end;
-  margin-left: 2rem;
-  margin-right: 2rem;
   gap: 3rem;
 
 }
@@ -32,7 +22,7 @@ body { // per rimpicciolire il tutto visto che è troppo gigante la schermata
 
   //height: 30rem;
   //border: 2px solid green;
-  flex-grow: 1;
+  flex-grow: 100;
   //height: 200px;
   flex-basis: 300px;
 
@@ -176,6 +166,10 @@ p {
 
 h1 {
   margin-bottom: 20px;
+}
+h2 {
+  font-size: 1rem;
+  color: #000e;
 }
 
 

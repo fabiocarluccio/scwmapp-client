@@ -1,4 +1,5 @@
 export interface WasteType {
-  name?: string
-  description?: string
+  name: string
+  description: string
+  color: string
 }

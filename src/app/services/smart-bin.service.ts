@@ -58,7 +58,7 @@ export class SmartBinService {
     ));
   }
 
-  getBinTypeColor(type: string): string {
+  getBinTypeColor(type: string): string { //TODO da rimuovere
     switch(type) {
       case "Indifferenziata": return "black";
       case "Vetro": return "green"
@@ -67,4 +67,23 @@ export class SmartBinService {
   }
 
 
+  getWasteColorByName(wasteName: string): string {
+    // 1. ricerca in array e restituire se esiste
+    // 2. get tramite API dei tipi (nel caso in cui non sia stato ancora fatto) - approccio lazy
+    // 3. ricerca (di nuovo) in array e restituire se esiste
+    // 4. se non esiste, restituire purple
+    let type = this.wasteTypes.filter(type => type.name === wasteName)
+    if (type.length == 1) {
+      return type[0].color
+    }
+
+    this.loadWasteTypes()
+
+    type = this.wasteTypes.filter(type => type.name === wasteName)
+    if (type.length == 1) {
+      return type[0].color
+    }
+
+    return "purple"
+  }
 }

@@ -21,7 +21,9 @@ export class RequestItemCardComponent {
   constructor(public smartBinRequestService: SmartBinRequestService,
               public smartBinService: SmartBinService,
               public exceptionManagerService: ExceptionManagerService,
-              private communicationService: CommunicationService) { }
+              private communicationService: CommunicationService) {
+
+  }
 
   toggleMapView() {
     console.log("mostro/nascondo la mappa relativa alla richiesta")

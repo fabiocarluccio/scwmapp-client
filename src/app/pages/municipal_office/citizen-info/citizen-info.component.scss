@@ -5,8 +5,8 @@ body {
   //justify-content: center;
   //align-items: center;
   //border: 1px solid red;
-  padding-left: 15vw;
-  padding-right: 15vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
 }
 
 table {
@@ -39,6 +39,15 @@ td {
   color: #444;
   font-weight: bold;
 
+}
+
+.wasteType-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: black;
+  display: inline-block;
+  margin-right: 3px;
 }
 
 h2 {

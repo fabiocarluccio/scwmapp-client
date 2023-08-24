@@ -1,3 +1,5 @@
+import {WasteType} from "./wasteType";
+
 export class Citizen {
   id?: string
   name?: string
@@ -64,6 +66,20 @@ export class Citizen {
     const totalWaste = sortedWaste + mixedWaste
     const percentageOfTotal = weight/totalWaste * 100
     return Number(percentageOfTotal.toFixed(1))
+  }
+
+  static getWasteTypeColors(wasteTypeNames: string[], wasteTypes: WasteType[]): string[] {
+
+    let wasteTypeColors: string[] = []
+
+    for(const wasteTypeName of wasteTypeNames) {
+      const typeColor = wasteTypes.filter(type => type.name === wasteTypeName)
+      if (typeColor.length == 1) {
+        wasteTypeColors.push(typeColor[0].color)
+      }
+    }
+
+    return wasteTypeColors;
   }
 }
 

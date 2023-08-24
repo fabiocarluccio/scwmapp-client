@@ -1,7 +1,7 @@
 
 export interface AllocationRequest {
   id?: string
-  smartBin_name?: string
+  smartBinName?: string
   type?: string
   position?: GeoJSON
 

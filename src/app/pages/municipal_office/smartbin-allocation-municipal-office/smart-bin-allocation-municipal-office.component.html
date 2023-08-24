@@ -27,13 +27,13 @@
         <div class="form-group">
           <label for="inputSmartBinName">Nome SmartBin</label>
           <input
-            [(ngModel)]="newRequest.smartBin_name" name="smartBinName"
-            required
-            minlength="3"
-            pattern=".*"
-            #inputSmartBinName = "ngModel"
-            [ngClass]="{'is-invalid': inputSmartBinName.errors && inputSmartBinName.touched}"
-            type="text" class="form-control" id="inputSmartBinName" placeholder="Inserisci nome dello SmartBin">
+                  [(ngModel)]="newRequest.smartBinName" name="smartBinName"
+                  required
+                  minlength="3"
+                  pattern=".*"
+                  #inputSmartBinName = "ngModel"
+                  [ngClass]="{'is-invalid': inputSmartBinName.errors && inputSmartBinName.touched}"
+                  type="text" class="form-control" id="inputSmartBinName" placeholder="Inserisci nome dello SmartBin">
 
           <div class="invalid-feedback">
             Inserire il nome.

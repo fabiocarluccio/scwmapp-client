@@ -12,9 +12,7 @@ export class MarkerService {
 
   constructor(private http: HttpClient,
               private popupService: PopupService,
-              private smartBinService: SmartBinService) {
-
-  }
+              private smartBinService: SmartBinService) {}
 
   static scaledRadius(val: number, maxVal: number): number {
     if(20 * (val / maxVal) < 8) {
@@ -31,11 +29,11 @@ export class MarkerService {
         const lat = bin.position.coordinates[1];
 
         const circleOptions: L.CircleMarkerOptions = {
-          color: this.getColor(bin.type), // Imposta il colore del cerchio su rosso
+          color: this.smartBinService.getWasteColorByName(bin.type),
           opacity: 0.8,
-          fillColor: this.getColor(bin.type),
+          fillColor: this.smartBinService.getWasteColorByName(bin.type),
           fillOpacity: 0.4, //0.2,
-          radius: MarkerService.scaledRadius(bin.currentCapacity, bin.totalCapacity),//6, // Imposta il raggio del cerchio a 6 (o qualsiasi altro valore desiderato)
+          radius: MarkerService.scaledRadius(bin.currentCapacity, bin.totalCapacity),
           weight: 4
         };
         const circle = L.circleMarker([lat, lon], circleOptions);
@@ -47,6 +45,7 @@ export class MarkerService {
     })
   }
 
+  /*
   getColor(type: string): string {
     switch (type) {
       case 'Vetro': return 'green'
@@ -54,5 +53,5 @@ export class MarkerService {
       case 'Plastica': return 'purple'
       default: return 'blue'
     }
-  }
+  }*/
 }

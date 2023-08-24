@@ -9,7 +9,7 @@
       <div class="bin-item-description">
         <div class="bin-type">
           <div class="bin-indicator"
-               [style.background-color]="this.smartBinService.getBinTypeColor(smartBin.type!)">
+               [style.background-color]="this.smartBinService.getWasteColorByName(smartBin.type!)">
           </div>{{smartBin.type}}
         </div>
         <div class="capacity">Capacità: <b>{{this.smartBin.currentCapacity}}/{{smartBin.totalCapacity}} kg</b></div>

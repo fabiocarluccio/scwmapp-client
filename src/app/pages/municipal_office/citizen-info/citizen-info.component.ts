@@ -7,6 +7,7 @@ import {DisposalService} from "../../../services/disposal.service";
 import {Disposal} from "../../../models/disposal";
 import {TaxService} from "../../../services/tax.service";
 import {Tax} from "../../../models/tax";
+import {SmartBinService} from "../../../services/smart-bin.service";
 
 @Component({
   selector: 'app-citizen-info',
@@ -25,7 +26,8 @@ export class CitizenInfoComponent implements OnInit {
               private citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService,
               private disposalService: DisposalService,
-              private taxService: TaxService) { }
+              private taxService: TaxService,
+              public smartBinService: SmartBinService) { }
 
   ngOnInit(): void {
     this.citizenId = this.route.snapshot.paramMap.get('citizenId');
@@ -46,7 +48,16 @@ export class CitizenInfoComponent implements OnInit {
 
           console.log(this.taxService.taxes)
           this.taxes = this.taxService.taxes
-          // nothing to do
+
+          this.smartBinService.loadWasteTypes().then(response => {
+
+            // nothing to do
+
+          }).catch(error => {
+            // Mostro errore
+            window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+          });
+
         }).catch(error => {
           // Mostro errore
           window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));

@@ -11,8 +11,8 @@ export class PieChartComponent {  // https://www.digitalocean.com/community/tuto
   @Input() wasteTypes!: string[]
   @Input() wasteVolumeGenerated!: number[]
 
+  @Input() customColors: Color[] = ['#333', '#FF5733', '#36A2EB', '#55aa44', '#FFC107', '#9C27B0']
 
-  customColors: Color[] = ['#333', '#FF5733', '#36A2EB', '#55aa44', '#FFC107', '#9C27B0']
 
   /* spostato in html dato che da problemi quando aggiungo altri plugins
   chartOptions = {

@@ -42,7 +42,7 @@ export class SmartBinRequestService {
     /*return firstValueFrom(this.http.get(this.path).pipe(*/
     return firstValueFrom(this.http.get(this.baseUrl + 'request/allocation?status=PENDING').pipe(
       tap((response: any) => {
-        console.log('Richiesta GET riuscita:', response);
+        console.log('Richiesta GET pending request riuscita:', response);
         this.smartBinRequests = response
       }),
       catchError(error => {

@@ -2,12 +2,12 @@
   <div class="request-item-card ">
 
     <div class="bin-item-content clickable" (click)="toggleMapView()">
-      <h4>{{this.smartBinRequest.smartBin_name}}</h4>
+      <h4>{{this.smartBinRequest.smartBinName}}</h4>
 
       <div class="bin-item-description">
         <div class="bin-type">
           <div class="bin-indicator"
-               [style.background-color]="this.smartBinRequestService.getBinTypeColor(smartBinRequest.type!)">
+               [style.background-color]="this.smartBinService.getWasteColorByName(smartBinRequest.type!)">
           </div>{{this.smartBinRequest.type}}
         </div>
         <div>Capacità: <b>{{this.smartBinRequest.totalCapacity}} kg</b></div>

@@ -1,13 +1,13 @@
 nav {
-  height: 60px;
+  //height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   //background: #4874;
   background: lightblue;
-
-
   background: gainsboro;
+
+  flex-wrap: wrap;
 }
 
 .buttons-container > * {
