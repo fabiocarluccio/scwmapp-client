@@ -38,4 +38,19 @@ export class DisposalService {
       })
     ));
   }
+
+  loadDisposals(s: string) {
+    return firstValueFrom(this.http.get(this.disposalsPath).pipe(
+      tap((response: any) => {
+        console.log('Richiesta GET riuscita:', response);
+        this.disposals = response
+        console.log(response)
+
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        throw error; // Rilancia l'errore come promessa respinta
+      })
+    ));
+  }
 }

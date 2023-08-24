@@ -1,0 +1,29 @@
+<app-navbar-citizen></app-navbar-citizen>
+
+<body>
+  <!--
+  <div style="margin-bottom: 10px;">
+    <a routerLink="/citizen">◂ Indietro</a>
+  </div>
+  -->
+  <h2>Conferimenti</h2>
+  <div>
+    <table>
+      <tr class="table-header">
+        <th>Data</th>
+        <th>Codice Conferimento<div class="column-border"></div></th>
+        <th>Tipologia rifiuto<div class="column-border"></div></th>
+        <th>Volume (kg)<div class="column-border"></div></th>
+      </tr>
+      <tr>
+        <td colspan="4"><div class="separator"></div></td>
+      </tr>
+      <tr *ngFor="let disposal of this.disposals">
+        <td>{{disposal.date}}</td>
+        <td>{{disposal.id}}</td>
+        <td>{{disposal.wasteType}}</td>
+        <td>{{disposal.disposalVolume}} kg</td>
+      </tr>
+    </table>
+  </div>
+</body>

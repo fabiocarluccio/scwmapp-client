@@ -23,7 +23,7 @@ import { SmartBinItemCardComponent } from './pages/components/smart-bin-item-car
 import { RequestItemCardComponent } from './pages/components/request-item-card/request-item-card.component';
 import { SmartBinDashboardWmcComponent } from './pages/waste_management_company/smart-bin-dashboard-wmc/smart-bin-dashboard-wmc.component';
 import { CitizensListComponent } from './pages/municipal_office/citizens-list/citizens-list.component';
-import { CitizenInfoComponent } from './pages/municipal_office/citizen-info/citizen-info.component';
+import { CitizenInfoMunicipalOfficeComponent } from './pages/municipal_office/citizen-info-municipal-office/citizen-info-municipal-office.component';
 import { PieChartComponent } from './pages/components/pie-chart/pie-chart.component';
 import {NgChartsModule} from "ng2-charts";
 import {CitizenService} from "./services/citizen.service";
@@ -35,6 +35,10 @@ import {TaxService} from "./services/tax.service";
 import { EmitTaxesComponent } from './pages/municipal_office/emit-taxes/emit-taxes.component';
 import { NavbarMunicipalOfficeComponent } from './pages/components/navbar-municipal-office/navbar-municipal-office.component';
 import { CitizenItemCardComponent } from './pages/components/citizen-item-card/citizen-item-card.component';
+import { CitizenInfoComponent } from './pages/citizen/citizen-info/citizen-info.component';
+import { DisposalsComponent } from './pages/citizen/disposals/disposals.component';
+import { CitizenDisposalsMunicipalOfficeComponent } from './pages/municipal_office/citizen-disposals-municipal-office/citizen-disposals-municipal-office.component';
+import { NavbarCitizenComponent } from './pages/components/navbar-citizen/navbar-citizen.component';
 
 @NgModule({
   declarations: [
@@ -53,11 +57,15 @@ import { CitizenItemCardComponent } from './pages/components/citizen-item-card/c
     RequestItemCardComponent,
     SmartBinDashboardWmcComponent,
     CitizensListComponent,
-    CitizenInfoComponent,
+    CitizenInfoMunicipalOfficeComponent,
     PieChartComponent,
     EmitTaxesComponent,
     NavbarMunicipalOfficeComponent,
-    CitizenItemCardComponent
+    CitizenItemCardComponent,
+    CitizenInfoComponent,
+    DisposalsComponent,
+    CitizenDisposalsMunicipalOfficeComponent,
+    NavbarCitizenComponent
   ],
     imports: [
         BrowserModule,

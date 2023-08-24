@@ -17,8 +17,13 @@ import {
   SmartBinDashboardWmcComponent
 } from "./pages/waste_management_company/smart-bin-dashboard-wmc/smart-bin-dashboard-wmc.component";
 import {CitizensListComponent} from "./pages/municipal_office/citizens-list/citizens-list.component";
-import {CitizenInfoComponent} from "./pages/municipal_office/citizen-info/citizen-info.component";
+import {CitizenInfoMunicipalOfficeComponent} from "./pages/municipal_office/citizen-info-municipal-office/citizen-info-municipal-office.component";
 import {EmitTaxesComponent} from "./pages/municipal_office/emit-taxes/emit-taxes.component";
+import {CitizenInfoComponent} from "./pages/citizen/citizen-info/citizen-info.component";
+import {DisposalsComponent} from "./pages/citizen/disposals/disposals.component";
+import {
+  CitizenDisposalsMunicipalOfficeComponent
+} from "./pages/municipal_office/citizen-disposals-municipal-office/citizen-disposals-municipal-office.component";
 
 const routes: Routes = [ // questo sarà un array di hops (di paths che sono supportati dall'applicazione)
   { path: '', component: UsersComponent },              // Ogni route è definita da due attributi:
@@ -32,8 +37,11 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'municipal_office/smartbin-allocation', component: SmartBinAllocationMunicipalOfficeComponent },
   { path: 'waste_management_company/smartbin-dashboard', component: SmartBinDashboardWmcComponent },
   { path: 'municipal_office/citizens-list', component: CitizensListComponent },
-  { path: 'municipal_office/citizen-info/:citizenId', component: CitizenInfoComponent },
-  { path: 'municipal_office/emit-taxes', component: EmitTaxesComponent }
+  { path: 'municipal_office/citizen-info/:citizenId', component: CitizenInfoMunicipalOfficeComponent },
+  { path: 'municipal_office/emit-taxes', component: EmitTaxesComponent },
+  { path: 'citizen', component: CitizenInfoComponent },
+  { path: 'citizen/disposals', component: DisposalsComponent },
+  { path: 'municipal_office/citizen-info/disposals/:citizenId', component: CitizenDisposalsMunicipalOfficeComponent }
 ]
 
 @NgModule({

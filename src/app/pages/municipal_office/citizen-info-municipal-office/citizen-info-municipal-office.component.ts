@@ -10,11 +10,11 @@ import {Tax} from "../../../models/tax";
 import {SmartBinService} from "../../../services/smart-bin.service";
 
 @Component({
-  selector: 'app-citizen-info',
-  templateUrl: './citizen-info.component.html',
-  styleUrls: ['./citizen-info.component.scss']
+  selector: 'app-citizen-info-municipal-office',
+  templateUrl: './citizen-info-municipal-office.component.html',
+  styleUrls: ['./citizen-info-municipal-office.component.scss']
 })
-export class CitizenInfoComponent implements OnInit {
+export class CitizenInfoMunicipalOfficeComponent implements OnInit {
 
   citizenId: string | null = null
   citizen: Citizen = new Citizen()

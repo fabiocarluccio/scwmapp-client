@@ -11,14 +11,13 @@
       "city": "Lecco",
       "postalCode": "05535"
     },
-    "token": "CJJENELA03",
     "taxesStatus": true,
     "generatedVolume": {
-      "mixedWaste": 1000,
+      "mixedWaste": 100,
       "sortedWaste": {
         "Plastica": 20,
         "Vetro": 45,
-        "Carta": 1.5
+        "Carta": 9.5
       }
     }
   },
@@ -34,7 +33,6 @@
       "city": "Gerusalemme",
       "postalCode": "777"
     },
-    "token": "C93JDIDF08",
     "taxesStatus": false,
     "generatedVolume": {
       "mixedWaste": 1200,
@@ -57,7 +55,6 @@
       "city": "Torino",
       "postalCode": "20093"
     },
-    "token": "C93JDIDF09",
     "taxesStatus": true,
     "generatedVolume": {
       "mixedWaste": 500,

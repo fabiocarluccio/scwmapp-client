@@ -1,0 +1,43 @@
+nav {
+  //height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //background: #4874;
+  background: lightblue;
+  background: gainsboro;
+  background: #575B6839;
+
+  flex-wrap: wrap;
+}
+
+.buttons-container > * {
+  padding-inline: 20px;
+  margin-inline: 20px;
+}
+
+button {
+  border: 0;
+  height: 60px;
+
+  background: #0000;
+
+  color: #000b
+
+}
+button:hover {
+  color: #000f;
+  //text-shadow: 0px 0px 19px #ffff;
+}
+
+.logo-container {
+  height: 60px;
+  width: 200px;
+}
+.logout-button {
+  width: 100px;
+  margin-left: 100px;
+}
+.logout-button:hover {
+  color: red;
+}
