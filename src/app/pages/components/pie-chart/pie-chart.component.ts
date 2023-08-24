@@ -14,6 +14,23 @@ export class PieChartComponent {  // https://www.digitalocean.com/community/tuto
   @Input() customColors: Color[] = ['#333', '#FF5733', '#36A2EB', '#55aa44', '#FFC107', '#9C27B0']
 
 
+  getSeparationPerformanceColor(): string {
+
+    if(this.separationPerformancePercentage > 80) {
+      return "#18AC91"
+    }
+    if(this.separationPerformancePercentage > 60) {
+      return "#78BC81"
+    }
+    if(this.separationPerformancePercentage > 40) {
+      return "#FFBE60"
+    }
+    if(this.separationPerformancePercentage > 20) {
+      return "#FF8961"
+    }
+    return "#FF6961"
+  }
+
   /* spostato in html dato che da problemi quando aggiungo altri plugins
   chartOptions = {
     responsive: true,
