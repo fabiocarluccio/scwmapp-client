@@ -81,6 +81,23 @@ export class Citizen {
 
     return wasteTypeColors;
   }
+
+  static getSeparationPerformanceColor(separationPerformancePercentage: number): string {
+
+    if(separationPerformancePercentage > 80) {
+      return "#18AC91"
+    }
+    if(separationPerformancePercentage > 60) {
+      return "#78BC81"
+    }
+    if(separationPerformancePercentage > 40) {
+      return "#FFBE60"
+    }
+    if(separationPerformancePercentage > 20) {
+      return "#FF8961"
+    }
+    return "#FF6961"
+  }
 }
 
 interface Address {

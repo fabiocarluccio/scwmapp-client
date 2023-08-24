@@ -5,13 +5,13 @@
 
     <div class="item-description">
       <div class="item-type">
-        <div class="item-indicator {{Citizen.getSeparationPerformance(citizen) >= 50 ? 'green' : 'red'}}">
+        <div class="item-indicator" style="{{'background: '+ Citizen.getSeparationPerformanceColor(Citizen.getSeparationPerformance(citizen))}};">
         </div>
         Performance Separazione: <b>{{Citizen.getSeparationPerformance(citizen) + "%"}}</b>
       </div>
 
       <div class="item-type">
-        <div class="item-indicator {{citizen.taxesStatus ? 'green' : 'red'}}">
+        <div class="item-indicator" style="{{'background: ' + (citizen.taxesStatus ? 'seagreen' : 'tomato')}}">
         </div>
         Stato Tasse: <b>{{citizen.taxesStatus ? "Pagato" : "Non Pagato"}}</b>
       </div>

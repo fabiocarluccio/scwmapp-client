@@ -30,10 +30,10 @@ export class SmartBinItemCardComponent {
     const capacityPercentage = this.smartBin.currentCapacity! / this.smartBin.totalCapacity!
 
     switch(true) {
-      case capacityPercentage < 0.25: return "green";
-      case capacityPercentage < 0.5: return "gold";
-      case capacityPercentage < 0.75: return "orange";
-      case capacityPercentage < 1 && capacityPercentage != 1: return "tomato";
+      case capacityPercentage < 0.25: return "#78BC81";
+      case capacityPercentage < 0.5: return "#FFBE60";
+      case capacityPercentage < 0.75: return "#FF8961";
+      case capacityPercentage < 1 && capacityPercentage != 1: return "#FF6961";
       default: return "purple"
     }
   }
