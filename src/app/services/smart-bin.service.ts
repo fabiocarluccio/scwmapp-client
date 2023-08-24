@@ -32,7 +32,8 @@ export class SmartBinService {
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
         this.smartBins = response
-
+        // ordino per percentuale di capienza
+        this.smartBins = this.smartBins.sort((a, b) => b.currentCapacity! / b.totalCapacity! - a.currentCapacity! / a.totalCapacity!)
 
       }),
       catchError(error => {
