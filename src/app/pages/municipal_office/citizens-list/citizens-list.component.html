@@ -75,33 +75,10 @@
     <div class="main-layout">
 
       <div class="item-list">
-        <div *ngFor="let citizen of this.citizens" routerLink="/municipal_office/citizen-info/{{citizen.id}}" class="item-card clickable">
-
-          <div class="item-content">
-            <h4 class="clickable">{{citizen.surname + " " + citizen.name}}</h4>
-
-            <div class="item-description">
-              <div class="item-type">
-                <div class="item-indicator {{Citizen.getSeparationPerformance(citizen) >= 50 ? 'green' : 'red'}}">
-                </div>
-                Performance Separazione: <b>{{Citizen.getSeparationPerformance(citizen) + "%"}}</b>
-              </div>
-
-              <div class="item-type">
-                <div class="item-indicator {{citizen.taxesStatus ? 'green' : 'red'}}">
-                </div>
-                Stato Tasse: <b>{{citizen.taxesStatus ? "Pagato" : "Non Pagato"}}</b>
-              </div>
-              <!--<button routerLink="/about/{{user.id}}">about</button>
-              <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
-            </div>
-          </div>
-          <!--
-          <div class="allocation-decision" *ngIf="this.showDecisionControls">
-            <button class="btn btn-danger">Rifiuta</button>
-            <button class="btn btn-primary">Accetta</button>
-          </div>-->
-        </div>
+        <app-citizen-item-card *ngFor="let citizen of this.citizens"
+                               routerLink="/municipal_office/citizen-info/{{citizen.id}}"
+                               [citizen] = "citizen">
+        </app-citizen-item-card>
       </div>
 
       <div class="form-container">
@@ -264,6 +241,8 @@
 
     </div>
 
-
   </div>
+
+  <div style="height: 50px;"></div>
+
 </body>

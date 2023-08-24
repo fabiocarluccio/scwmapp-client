@@ -1,0 +1,22 @@
+<div class="item-card clickable">
+
+  <div class="item-content">
+    <h4 class="clickable">{{citizen.surname + " " + citizen.name}}</h4>
+
+    <div class="item-description">
+      <div class="item-type">
+        <div class="item-indicator {{Citizen.getSeparationPerformance(citizen) >= 50 ? 'green' : 'red'}}">
+        </div>
+        Performance Separazione: <b>{{Citizen.getSeparationPerformance(citizen) + "%"}}</b>
+      </div>
+
+      <div class="item-type">
+        <div class="item-indicator {{citizen.taxesStatus ? 'green' : 'red'}}">
+        </div>
+        Stato Tasse: <b>{{citizen.taxesStatus ? "Pagato" : "Non Pagato"}}</b>
+      </div>
+      <!--<button routerLink="/about/{{user.id}}">about</button>
+      <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
+    </div>
+  </div>
+</div>

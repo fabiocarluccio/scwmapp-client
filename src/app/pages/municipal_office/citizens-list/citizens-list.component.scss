@@ -1,48 +1,3 @@
-// TODO - da aggiungere agli stili globali e uniformare anche le schede dei bins a questo
-
-.item-card {
-  max-width: 380px;
-  width: auto;
-  background: #eee;
-  border: 1px solid #0004;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-
-  padding-top: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-bottom: 8px;
-
-}
-.item-content {
-  //width: 400px;
-  background: #eee;
-  //background: #00eeff33;
-  //border: 1px solid #ccc;
-  border-radius: 4px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-  //justify-content: space-between;
-
-  flex-grow: 1;
-
-}
-.item-description {
-  flex-grow: 1;
-  display: flex;
-  justify-content: space-between;
-  gap: 4px;
-}
-.clickable {
-  cursor: pointer;
-}
-.clickable > h4 {
-  cursor: pointer;
-}
-
 // Local styles
 body {
   margin-top: 32px;
@@ -62,10 +17,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-}
-
-.item-description {
-  flex-direction: column;
 }
 
 
@@ -235,20 +186,6 @@ form > button {
   gap: 8px;
 
 }
-.item-type {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.item-indicator {
-  width: 15px;
-  height: 15px;
-  //background: red;
-  border-radius: 4px;
-  display: inline-block;
-}
-
-
 
 
 body, input {
@@ -261,12 +198,4 @@ button {
 
 h4{
   font-size: 1.2rem;
-}
-
-
-.green {
-  background: seagreen;
-}
-.red {
-  background: tomato;
 }

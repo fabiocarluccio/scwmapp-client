@@ -34,6 +34,7 @@ import {CommunicationService} from "./services/communication.service";
 import {TaxService} from "./services/tax.service";
 import { EmitTaxesComponent } from './pages/municipal_office/emit-taxes/emit-taxes.component';
 import { NavbarMunicipalOfficeComponent } from './pages/components/navbar-municipal-office/navbar-municipal-office.component';
+import { CitizenItemCardComponent } from './pages/components/citizen-item-card/citizen-item-card.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { NavbarMunicipalOfficeComponent } from './pages/components/navbar-munici
     CitizenInfoComponent,
     PieChartComponent,
     EmitTaxesComponent,
-    NavbarMunicipalOfficeComponent
+    NavbarMunicipalOfficeComponent,
+    CitizenItemCardComponent
   ],
     imports: [
         BrowserModule,

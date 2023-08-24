@@ -1,48 +1,49 @@
 <body>
-<h1>Allocazione SmartBins</h1>
+  <h1>Allocazione SmartBins</h1>
 
-<div class="layout">
+  <div class="layout">
 
-  <div class="bin-list">
-    <h2>SmartBins attivi</h2>
-    <app-smart-bin-item-card
-      *ngFor="let smartbin of this.smartBinsSorted"
-      [smartBin]=smartbin
-      [isInSelectionMode]="cleaningMode"
-      [isSelected]="this.smartBinCleaningPath.indexOf(smartbin) != -1"
-      (selectionEvent)="handleSelectionEvent($event)"
-      [selectionOrder]="getSelectionOrder(smartbin)">
-    </app-smart-bin-item-card>
+    <div class="bin-list">
+      <h2>SmartBins attivi</h2>
+      <app-smart-bin-item-card
+        *ngFor="let smartbin of this.smartBinsSorted"
+        [smartBin]=smartbin
+        [isInSelectionMode]="cleaningMode"
+        [isSelected]="this.smartBinCleaningPath.indexOf(smartbin) != -1"
+        (selectionEvent)="handleSelectionEvent($event)"
+        [selectionOrder]="getSelectionOrder(smartbin)">
+      </app-smart-bin-item-card>
+    </div>
+
+    <div class="right-column">
+
+      <div id="SmartBinsMap">
+        <app-map [mapId]="'SmartBinsMap'"></app-map>
+      </div>
+
+      <!--<button *ngFor="let smartbin of this.smartBins" (click)="highlightBinItem(smartbin.id!)">Evidenzia {{smartbin.name}}</button>-->
+
+      <button style="margin-top: 10px;" class="btn btn-primary" (click)="toggleCleaningMode()" *ngIf="!cleaningMode">🧹Istanzia Pulizia</button>
+      <div style="margin-top: 10px;" class ="cleaning-buttons" *ngIf="cleaningMode">
+        <button class="btn btn-danger" (click)="toggleCleaningMode()">Annulla</button>
+        <button class="btn btn-primary" (click)="executeCleaningPath()" style="flex-grow: 1; flex-basis: 200%;">🧹Avvia Pulizia</button>
+      </div>
+
+      <div class="request-list">
+        <h2>Richieste in attesa️</h2>
+
+        <app-request-item-card
+          [smartBinRequest]=smartbinRequest
+          *ngFor="let smartbinRequest of this.smartBinRequestService.smartBinRequests"
+          [showDecisionControls]="true">
+        </app-request-item-card>
+
+      </div>
+
+
+    </div>
   </div>
 
-  <div class="right-column">
-
-    <div id="SmartBinsMap">
-      <app-map [mapId]="'SmartBinsMap'"></app-map>
-    </div>
-
-    <!--<button *ngFor="let smartbin of this.smartBins" (click)="highlightBinItem(smartbin.id!)">Evidenzia {{smartbin.name}}</button>-->
-
-    <button style="margin-top: 10px;" class="btn btn-primary" (click)="toggleCleaningMode()" *ngIf="!cleaningMode">🧹Istanzia Pulizia</button>
-    <div style="margin-top: 10px;" class ="cleaning-buttons" *ngIf="cleaningMode">
-      <button class="btn btn-danger" (click)="toggleCleaningMode()">Annulla</button>
-      <button class="btn btn-primary" (click)="executeCleaningPath()" style="flex-grow: 1; flex-basis: 200%;">🧹Avvia Pulizia</button>
-    </div>
-
-    <div class="request-list">
-      <h2>Richieste in attesa️</h2>
-
-      <app-request-item-card
-        [smartBinRequest]=smartbinRequest
-        *ngFor="let smartbinRequest of this.smartBinRequestService.smartBinRequests"
-        [showDecisionControls]="true">
-      </app-request-item-card>
-
-    </div>
-
-
-  </div>
-</div>
-
+  <div style="height: 50px;"></div>
 
 </body>
