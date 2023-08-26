@@ -39,6 +39,8 @@ import { CitizenInfoComponent } from './pages/citizen/citizen-info/citizen-info.
 import { DisposalsComponent } from './pages/citizen/disposals/disposals.component';
 import { CitizenDisposalsMunicipalOfficeComponent } from './pages/municipal_office/citizen-disposals-municipal-office/citizen-disposals-municipal-office.component';
 import { NavbarCitizenComponent } from './pages/components/navbar-citizen/navbar-citizen.component';
+import { NavbarWasteManagementCompanyComponent } from './pages/components/navbar-waste-management-company/navbar-waste-management-company.component';
+import { WasteTypesWmcComponent } from './pages/waste_management_company/waste-types-wmc/waste-types-wmc.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { NavbarCitizenComponent } from './pages/components/navbar-citizen/navbar
     CitizenInfoComponent,
     DisposalsComponent,
     CitizenDisposalsMunicipalOfficeComponent,
-    NavbarCitizenComponent
+    NavbarCitizenComponent,
+    NavbarWasteManagementCompanyComponent,
+    WasteTypesWmcComponent
   ],
     imports: [
         BrowserModule,

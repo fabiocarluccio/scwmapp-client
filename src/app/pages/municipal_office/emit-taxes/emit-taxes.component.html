@@ -3,19 +3,36 @@
 <body>
   <h1>Emissione Tasse</h1>
 
-  <p>Imposta la tariffa per kg di rifiuto.</p>
+  <p *ngIf="!this.showForm">Tasse già emesse per l'anno corrente. Attendere il prossimo anno.</p>
 
-  <form #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)" class="cool-background">
+  <p *ngIf="this.showForm">Imposta la tariffa per kg di rifiuto.</p>
+
+  <form *ngIf="this.showForm" #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)" class="cool-background">
     <div class="form-inputs-container">
+
+      <div class="form-group" *ngFor="let type of this.wasteTypes; let i = index">
+        <label for="inputWasteFee">Tariffa {{type.name}} (per kg)</label>
+        <input
+          [(ngModel)]="feeAmounts[i]" name="{{type.name}}"
+          required
+          #inputWasteFee = "ngModel"
+          [ngClass]="{'is-invalid': inputWasteFee.errors && inputWasteFee.touched}"
+          type="number" class="form-control" id="inputWasteFee" placeholder="Valore (€)">
+        <!--{{user.name}}-->
+        <div class="invalid-feedback">
+          Inserisci un valore valido.
+        </div>
+      </div>
+
+      <!--
       <div class="form-group">
-        <label for="inputMixedWaste">Tariffa indifferenziata (per kg)</label>
+        <label for="inputMixedWaste1">Tariffa indifferenziata (per kg)</label>
         <input
           [(ngModel)]="indifferenziata" name="mixedWaste"
           required
-          #inputMixedWaste = "ngModel"
-          [ngClass]="{'is-invalid': inputMixedWaste.errors && inputMixedWaste.touched}"
-          type="number" class="form-control" id="inputMixedWaste" placeholder="Valore (€)">
-        <!--{{user.name}}-->
+          #inputMixedWaste1 = "ngModel"
+          [ngClass]="{'is-invalid': inputMixedWaste1.errors && inputMixedWaste1.touched}"
+          type="number" class="form-control" id="inputMixedWaste1" placeholder="Valore (€)">
         <div class="invalid-feedback">
           Inserisci un valore valido.
         </div>
@@ -28,7 +45,6 @@
           #inputGlass = "ngModel"
           [ngClass]="{'is-invalid': inputGlass.errors && inputGlass.touched}"
           type="number" class="form-control" id="inputGlass" placeholder="Valore (€)">
-        <!--{{user.name}}-->
         <div class="invalid-feedback">
           Inserisci un valore valido.
         </div>
@@ -41,12 +57,13 @@
           #inputPlastic = "ngModel"
           [ngClass]="{'is-invalid': inputPlastic.errors && inputPlastic.touched}"
           type="number" class="form-control" id="inputPlastic" placeholder="Valore (€)">
-        <!--{{user.name}}-->
         <div class="invalid-feedback">
           Inserisci un valore valido.
         </div>
       </div>
+      -->
     </div>
+
 
 
     <button

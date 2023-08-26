@@ -14,8 +14,8 @@ import {ExceptionManagerService} from "../../../services/exception-manager.servi
 export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
   //smartBins: SmartBin[] = []
-  get smartBinsSorted(): SmartBin[] {
-    this.sortBins();
+  get smartBinsSorted(): SmartBin[] { // inutile questo nel caso in cui non si inserisce filtraggio/ordinamento
+    //this.sortBins();
     //return this.smartBins;
     return this.smartBinService.smartBins;
   }
@@ -91,7 +91,8 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
   }
 
   private sortBins() {
-    // La funzione per ordinare gli SmartBin
+    // La funzione per ordinare gli SmartBin (è fiacca perche va ordinata la capacita corrente in percentuale!! ma comunque
+    // ho implementato il metodo dentro il servizio degli smartbins
     this.smartBinService.smartBins.sort((a, b) => b.currentCapacity! - a.currentCapacity!);
   }
 

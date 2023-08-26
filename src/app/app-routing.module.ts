@@ -24,6 +24,7 @@ import {DisposalsComponent} from "./pages/citizen/disposals/disposals.component"
 import {
   CitizenDisposalsMunicipalOfficeComponent
 } from "./pages/municipal_office/citizen-disposals-municipal-office/citizen-disposals-municipal-office.component";
+import {WasteTypesWmcComponent} from "./pages/waste_management_company/waste-types-wmc/waste-types-wmc.component";
 
 const routes: Routes = [ // questo sarà un array di hops (di paths che sono supportati dall'applicazione)
   { path: '', component: UsersComponent },              // Ogni route è definita da due attributi:
@@ -41,7 +42,9 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'municipal_office/emit-taxes', component: EmitTaxesComponent },
   { path: 'citizen', component: CitizenInfoComponent },
   { path: 'citizen/disposals', component: DisposalsComponent },
-  { path: 'municipal_office/citizen-info/disposals/:citizenId', component: CitizenDisposalsMunicipalOfficeComponent }
+  { path: 'municipal_office/citizen-info/disposals/:citizenId', component: CitizenDisposalsMunicipalOfficeComponent },
+  { path: 'waste_management_company/waste-types', component: WasteTypesWmcComponent
+  }
 ]
 
 @NgModule({

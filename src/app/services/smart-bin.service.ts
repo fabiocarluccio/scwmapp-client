@@ -87,4 +87,20 @@ export class SmartBinService {
 
     return "purple"
   }
+
+  addNewWasteType(wasteType: WasteType) {
+
+    return firstValueFrom(this.http.post(this.baseUrl + 'type/add', wasteType, this.httpOptions).pipe(
+      tap(response => {
+        console.log('Richiesta POST riuscita:', response);
+        // Gestisci la risposta dal server qui, se necessario
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        // Gestisci l'errore qui, se necessario
+        throw error; // Rilancia l'errore come promessa respinta
+      })
+    ));
+  }
+
 }
