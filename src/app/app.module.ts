@@ -41,6 +41,7 @@ import { CitizenDisposalsMunicipalOfficeComponent } from './pages/municipal_offi
 import { NavbarCitizenComponent } from './pages/components/navbar-citizen/navbar-citizen.component';
 import { NavbarWasteManagementCompanyComponent } from './pages/components/navbar-waste-management-company/navbar-waste-management-company.component';
 import { WasteTypesWmcComponent } from './pages/waste_management_company/waste-types-wmc/waste-types-wmc.component';
+import { LightPayComponent } from './pages/external/light-pay/light-pay.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { WasteTypesWmcComponent } from './pages/waste_management_company/waste-t
     CitizenDisposalsMunicipalOfficeComponent,
     NavbarCitizenComponent,
     NavbarWasteManagementCompanyComponent,
-    WasteTypesWmcComponent
+    WasteTypesWmcComponent,
+    LightPayComponent
   ],
     imports: [
         BrowserModule,

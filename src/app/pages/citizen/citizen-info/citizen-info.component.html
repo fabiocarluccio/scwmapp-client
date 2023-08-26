@@ -20,11 +20,12 @@
       <th>Importo (€)<div class="column-border"></div></th>
       <th>Scadenza pagamento<div class="column-border"></div></th>
       <th>Data pagamento<div class="column-border"></div></th>
+      <th>Ricevuta pagamento<div class="column-border"></div></th>
       <th>Stato</th>
     </tr>
 
     <tr>
-      <td colspan="6"><div class="separator"></div></td>
+      <td colspan="7"><div class="separator"></div></td>
     </tr>
     <tr *ngFor="let tax of this.taxes">
       <td>{{tax.id}}</td>
@@ -32,8 +33,10 @@
       <td>{{tax.amount}}</td>
       <td>{{tax.expireDate}}</td>
       <td>{{tax.paymentDate ? tax.paymentDate : "-"}}</td>
+      <td *ngIf="tax.paymentDate"><a href="https://google.it">{{tax.id + "2930098"}}</a></td>
+      <td *ngIf="!tax.paymentDate">-</td>
       <td *ngIf="tax.paymentDate">Pagato</td>
-      <td *ngIf="!tax.paymentDate"><a href="https://google.it">Non Pagato</a></td>
+      <td *ngIf="!tax.paymentDate"><a href="http://localhost:4200/external/light-pay/{{tax.id}}">Non Pagato</a></td>
     </tr>
 
   </table>
