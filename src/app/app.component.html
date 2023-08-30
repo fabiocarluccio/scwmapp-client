@@ -4,5 +4,8 @@
 <a routerLink="/contact" routerLinkActive="active">Contact</a>
 -->
 
+<app-navbar-municipal-office *ngIf="localStorage.getItem('currentRole') == 'MunicipalOffice'"></app-navbar-municipal-office>
+<app-navbar-waste-management-company *ngIf="localStorage.getItem('currentRole') == 'WasteManagementCompany'"></app-navbar-waste-management-company>
+<app-navbar-citizen *ngIf="localStorage.getItem('currentRole') == 'Citizen'"></app-navbar-citizen>
 
 <router-outlet></router-outlet>

@@ -20,7 +20,9 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService,
-              private disposalService: DisposalService) {}
+              private disposalService: DisposalService) {
+    localStorage.setItem('currentRole', "MunicipalOffice")
+  }
 
   ngOnInit(): void {
 

@@ -42,6 +42,8 @@ import { NavbarCitizenComponent } from './pages/components/navbar-citizen/navbar
 import { NavbarWasteManagementCompanyComponent } from './pages/components/navbar-waste-management-company/navbar-waste-management-company.component';
 import { WasteTypesWmcComponent } from './pages/waste_management_company/waste-types-wmc/waste-types-wmc.component';
 import { LightPayComponent } from './pages/external/light-pay/light-pay.component';
+import {rxStompServiceFactory} from "./stomp/rx-stomp-service-factory";
+import {RxStompService} from "./stomp/rx-stomp.service";
 
 @NgModule({
   declarations: [
@@ -81,7 +83,7 @@ import { LightPayComponent } from './pages/external/light-pay/light-pay.componen
         RouterOutlet,
         RouterLink,
         RouterLinkActive,
-        NgChartsModule
+        NgChartsModule,
     ],
   providers: [
     UsersService,
@@ -93,7 +95,11 @@ import { LightPayComponent } from './pages/external/light-pay/light-pay.componen
     CommunicationService,
     CitizenService,
     DisposalService,
-    TaxService
+    TaxService,
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+    },
   ],
   bootstrap: [
     AppComponent

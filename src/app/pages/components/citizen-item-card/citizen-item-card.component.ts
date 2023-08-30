@@ -8,7 +8,7 @@ import {Citizen} from "../../../models/citizen";
 })
 export class CitizenItemCardComponent {
 
-    @Input() citizen!: Citizen;
+  @Input() citizen!: Citizen;
 
 
   protected readonly Citizen = Citizen;

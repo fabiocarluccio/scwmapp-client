@@ -20,6 +20,7 @@ export class DisposalsComponent implements OnInit {
               private citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService,
               private disposalService: DisposalService) {
+    localStorage.setItem('currentRole', "Citizen")
 
     this.disposalService.loadDisposals(this.citizenId!).then(response => {
 

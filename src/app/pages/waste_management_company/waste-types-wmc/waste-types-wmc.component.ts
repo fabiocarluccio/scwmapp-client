@@ -18,7 +18,7 @@ export class WasteTypesWmcComponent implements OnInit{
 
   constructor(private smartBinService: SmartBinService,
               private exceptionManager: ExceptionManagerService) {
-
+    localStorage.setItem('currentRole', "WasteManagementCompany")
 
   }
 

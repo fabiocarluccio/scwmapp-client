@@ -15,6 +15,7 @@ export class NavbarCitizenComponent {
   logout() {
 
     localStorage.removeItem('currentUser')
+    localStorage.removeItem('currentRole')
     this.userService.user = {} as User
 
     this.route.navigateByUrl('login-page');

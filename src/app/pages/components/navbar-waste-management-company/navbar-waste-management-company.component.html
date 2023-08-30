@@ -13,3 +13,16 @@
     <button type="button" class="logout-button" (click)="logout()">Esci</button>
   </div>
 </nav>
+<div *ngIf="showBanner && this.binAlarms.length >= 1" class="banner">
+
+  <div class="message">
+    <h6 style="margin: 0">
+      ⚠️ Avviso saturazione capienza SmartBin
+    </h6>
+    {{this.binAlarmsNumber}} SmartBins eccedono il limite di capienza. Si consiglia di istanziare un percorso di pulizia.
+  </div>
+
+  <div class="countdown-container">
+    <div class="filler"></div>
+  </div>
+</div>

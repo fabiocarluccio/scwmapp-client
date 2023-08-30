@@ -27,7 +27,9 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
               private exceptionManager: ExceptionManagerService,
               private disposalService: DisposalService,
               private taxService: TaxService,
-              public smartBinService: SmartBinService) { }
+              public smartBinService: SmartBinService) {
+    localStorage.setItem('currentRole', "MunicipalOffice")
+  }
 
   ngOnInit(): void {
     this.citizenId = this.route.snapshot.paramMap.get('citizenId');

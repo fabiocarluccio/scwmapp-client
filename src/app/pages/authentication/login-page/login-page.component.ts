@@ -48,16 +48,20 @@ export class LoginPageComponent {
             switch (this.userService.user.role) {
               case "Admin":
                 console.log("i am an Admin")
+                localStorage.setItem('currentRole', "Admin")
                 break
               case "MunicipalOffice":
                 console.log("i am a MunicipalOffice")
-                this.route.navigateByUrl('municipal_office/citizens-list');
+                this.route.navigateByUrl('municipal_office/citizens-list')
+                localStorage.setItem('currentRole', "MunicipalOffice")
                 break
               case "WasteManagementCompany":
                 console.log("i am a WasteManagementCompany")
+                localStorage.setItem('currentRole', "WasteManagementCompany")
                 break
               case "Citizen":
                 console.log("i am a Citizen")
+                localStorage.setItem('currentRole', "Citizen")
                 break
               default:
                 window.alert(this.exceptionManager.getExceptionMessage(0, "A"));

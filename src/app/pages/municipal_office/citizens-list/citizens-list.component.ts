@@ -22,7 +22,7 @@ export class CitizensListComponent implements OnInit {
 
   constructor(public citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService) {
-
+    localStorage.setItem('currentRole', "MunicipalOffice")
   }
 
   ngOnInit() {

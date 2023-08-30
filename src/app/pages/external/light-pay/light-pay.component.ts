@@ -15,7 +15,7 @@ export class LightPayComponent {
 
   finalizePayment() {
 
-    console.log("effettuo il pagamento")
+    console.log("effettuo il pagamento della tassa " + this.taxId)
     this.route.navigateByUrl('/citizen');
   }
 }
