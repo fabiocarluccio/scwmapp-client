@@ -15,7 +15,7 @@ import {Message} from "@stomp/stompjs";
 })
 export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
-  private subscription: Subscription = new Subscription();
+  //private subscription: Subscription = new Subscription();
 
 
   //smartBins: SmartBin[] = []
@@ -40,7 +40,6 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
 
     this.smartBinService.loadAllocatedBins().then(response => {
-
       //this.smartBins = this.smartBinService.smartBins                             // load smartbins
 
       this.smartBinRequestService.loadPendingRequests().then(response => {

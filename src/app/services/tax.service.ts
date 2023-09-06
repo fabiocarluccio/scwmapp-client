@@ -30,7 +30,6 @@ export class TaxService {
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
         this.taxes = response
-        console.log(response)
 
       }),
       catchError(error => {

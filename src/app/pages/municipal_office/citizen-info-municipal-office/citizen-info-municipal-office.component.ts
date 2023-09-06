@@ -33,32 +33,23 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
 
   ngOnInit(): void {
     this.citizenId = this.route.snapshot.paramMap.get('citizenId');
-    console.log(this.citizenId);
+    //console.log(this.citizenId);
 
     // get citizen data (citizen info + taxes + disposal
     this.citizenService.loadCitizen(this.citizenId!).then(response => {
 
-      console.log(this.citizenService.citizen)
+      //console.log(this.citizenService.citizen)
       this.citizen = this.citizenService.citizen
 
       this.disposalService.loadLastDisposals(this.citizenId!).then(response => {
 
-        console.log(this.disposalService.disposals)
+        //console.log(this.disposalService.disposals)
         this.disposals = this.disposalService.disposals
 
         this.taxService.loadTaxes(this.citizenId!).then(response => {
 
-          console.log(this.taxService.taxes)
+          //console.log(this.taxService.taxes)
           this.taxes = this.taxService.taxes
-
-          this.smartBinService.loadWasteTypes().then(response => {
-
-            // nothing to do
-
-          }).catch(error => {
-            // Mostro errore
-            window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
-          });
 
         }).catch(error => {
           // Mostro errore

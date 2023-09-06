@@ -44,7 +44,6 @@ export class CitizenService {
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
         this.citizen = response
-        console.log(response)
 
       }),
       catchError(error => {

@@ -50,7 +50,7 @@ export class SmartBinService {
         console.log('Richiesta GET riuscita:', response);
         this.wasteTypes = response as WasteType[]
 
-        console.log(response)
+        //console.log(response)
       }),
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
@@ -68,6 +68,16 @@ export class SmartBinService {
   }
 
 
+  getWasteColorByName(wasteName: string): string {
+    // si da per scontato che l'array delle tipologie sia già stato scaricato
+    let type = this.wasteTypes.filter(type => type.name === wasteName)
+    if (type.length == 1) {
+      return type[0].color
+    }
+
+    return "purple"
+  }
+  /*
   getWasteColorByName(wasteName: string): string {
     // 1. ricerca in array e restituire se esiste
     // 2. get tramite API dei tipi (nel caso in cui non sia stato ancora fatto) - approccio lazy
@@ -87,7 +97,7 @@ export class SmartBinService {
 
     return "purple"
   }
-
+*/
   addNewWasteType(wasteType: WasteType) {
 
     return firstValueFrom(this.http.post(this.baseUrl + 'type/add', wasteType, this.httpOptions).pipe(

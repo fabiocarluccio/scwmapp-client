@@ -29,7 +29,6 @@ export class DisposalService {
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
         this.disposals = response
-        console.log(response)
 
       }),
       catchError(error => {
@@ -44,7 +43,6 @@ export class DisposalService {
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
         this.disposals = response
-        console.log(response)
 
       }),
       catchError(error => {
