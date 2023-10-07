@@ -20,8 +20,6 @@ export class NavbarMunicipalOfficeComponent {
     localStorage.removeItem('wasteTypes')
     localStorage.removeItem('citizen')
 
-    this.userService.user = {} as User
-
     this.route.navigateByUrl('login-page');
 
   }
