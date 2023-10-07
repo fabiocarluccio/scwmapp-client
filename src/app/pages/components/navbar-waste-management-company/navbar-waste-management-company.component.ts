@@ -71,6 +71,7 @@ export class NavbarWasteManagementCompanyComponent implements OnInit, OnDestroy 
     localStorage.removeItem('currentRole')
     localStorage.removeItem('userId')
     localStorage.removeItem('wasteTypes')
+    localStorage.removeItem('citizen')
 
     this.userService.user = {} as User
 

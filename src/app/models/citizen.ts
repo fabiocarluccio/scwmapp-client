@@ -144,3 +144,5 @@ interface GeneratedVolume {
   mixedWaste: number
   sortedWaste: { [key: string]: number }
 }
+
+

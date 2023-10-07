@@ -5,6 +5,7 @@ import {CitizenService} from "../../../services/citizen.service";
 import {ExceptionManagerService} from "../../../services/exception-manager.service";
 import {DisposalService} from "../../../services/disposal.service";
 import {Citizen} from "../../../models/citizen";
+import {SmartBinService} from "../../../services/smart-bin.service";
 
 @Component({
   selector: 'app-citizen-disposals-municipal-office',
@@ -14,12 +15,13 @@ import {Citizen} from "../../../models/citizen";
 export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
   citizenId: string | null = null
   citizen: Citizen = {} as Citizen
-  disposals: Disposal[] = []
+  disposals: Disposal[] | null = null
 
   constructor(private route: ActivatedRoute,
               private citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService,
-              private disposalService: DisposalService) {
+              private disposalService: DisposalService,
+              public smartBinService: SmartBinService) {
     localStorage.setItem('currentRole', "MunicipalOffice")
   }
 
@@ -31,8 +33,8 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
     // get citizen data (citizen info + taxes + disposal
     this.citizenService.loadCitizen(this.citizenId!).then(response => {
 
-      console.log(this.citizenService.citizen)
-      this.citizen = this.citizenService.citizen
+      console.log(response)
+      this.citizen = response
 
       this.disposalService.loadDisposals(this.citizenId!).then(response => {
 

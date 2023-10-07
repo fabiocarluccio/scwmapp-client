@@ -4,6 +4,7 @@ import {CitizenService} from "../../../services/citizen.service";
 import {ExceptionManagerService} from "../../../services/exception-manager.service";
 import {DisposalService} from "../../../services/disposal.service";
 import {Disposal} from "../../../models/disposal";
+import {SmartBinService} from "../../../services/smart-bin.service";
 
 @Component({
   selector: 'app-disposals',
@@ -12,15 +13,18 @@ import {Disposal} from "../../../models/disposal";
 })
 export class DisposalsComponent implements OnInit {
 
-  disposals: Disposal[] = []
+  disposals: Disposal[] | null = null
 
   constructor(private route: ActivatedRoute,
               private citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService,
-              private disposalService: DisposalService) {
-    localStorage.setItem('currentRole', "Citizen")
+              private disposalService: DisposalService,
+              public smartBinService: SmartBinService) {
 
-    this.disposalService.loadDisposals(this.citizenService.citizen.id!).then(response => {
+  }
+
+  ngOnInit(): void {
+    this.disposalService.loadDisposals(JSON.parse(localStorage.getItem("citizen")!).id).then(response => {
 
       console.log(this.disposalService.disposals)
       this.disposals = this.disposalService.disposals
@@ -29,11 +33,6 @@ export class DisposalsComponent implements OnInit {
       // Mostro errore
       window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
     });
-
-  }
-
-  ngOnInit(): void {
-
   }
 
   protected readonly Disposal = Disposal;

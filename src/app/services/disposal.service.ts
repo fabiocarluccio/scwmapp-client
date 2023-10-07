@@ -45,6 +45,20 @@ export class DisposalService {
 
   constructor(private http: HttpClient) { }
 
+
+  loadWasteMetricsForYear(year: number) {
+    return firstValueFrom(this.http.get(this.baseUrl + 'metrics/year/' + year, this.httpOptions).pipe(
+      tap((response: any) => {
+        console.log('Richiesta GET riuscita:', response);
+
+
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        throw error;
+      })
+    ));
+  }
   loadWasteMetrics(citizenId: string) {
     return firstValueFrom(this.http.get(this.baseUrl + 'metrics/citizen/' + citizenId, this.httpOptions).pipe(
       tap((response: any) => {
@@ -112,4 +126,7 @@ export class DisposalService {
       })
     ));
   }
+
+
+
 }

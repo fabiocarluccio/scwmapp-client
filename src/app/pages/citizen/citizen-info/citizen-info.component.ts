@@ -45,8 +45,8 @@ export class CitizenInfoComponent implements OnInit {
 
       this.citizenService.loadCitizen(this.citizenId!).then(response => {
 
-        console.log(this.citizenService.citizen)
-        this.citizen = this.citizenService.citizen
+        console.log(response)
+        this.citizen = response
 
         this.userService.getCitizenToken(this.citizen!.id!).then(response => {
 

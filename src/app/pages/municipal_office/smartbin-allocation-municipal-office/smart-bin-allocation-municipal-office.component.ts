@@ -43,13 +43,7 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
 
         //this.smartBinRequests = this.smartBinRequestService.smartBinRequests    // load allocation requests
 
-        this.smartBinService.loadWasteTypes().then(response => {        // load waste types
 
-
-        }).catch(error => {
-          // Mostro errore
-          window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
-        });
       }).catch(error => {
         // Mostro errore
         window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));

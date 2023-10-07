@@ -20,22 +20,20 @@ export class EmitTaxesComponent implements OnInit {
 
 
   constructor(private smartBinService: SmartBinService,
+              private taxService: TaxService,
               private exceptionManager: ExceptionManagerService) {
     localStorage.setItem('currentRole', "MunicipalOffice")
   }
 
   ngOnInit(): void {
-      this.smartBinService.loadWasteTypes().then(response => {
-        this.wasteTypes = this.smartBinService.getWasteTypes()
-        //this.wasteTypes = [this.smartBinService.wasteTypes[0]]
+    this.wasteTypes = this.smartBinService.getWasteTypes()
+    this.taxService.getTaxStatus().then(response => {
+      this.showForm = response == "To emit";
 
-        // TODO - fare richiesta get in modo da capire se mostrare il form o meno
-        this.showForm = true
-
-      }).catch(error => {
-        // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
-      });
+    }).catch(error => {
+      // Mostro errore
+      window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+    });
   }
 
   onSubmit(emitTaxesForm: any) {

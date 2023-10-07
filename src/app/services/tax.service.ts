@@ -14,7 +14,8 @@ export class TaxService {
   taxes: Tax[] = [] as Tax[];
   //tax: Tax = {} as Tax
 
-  baseUrl:string = "http://localhost:8085/api/taxStatus/";
+  baseUrlCitizen:string = "http://localhost:8085/api/taxStatus/";
+  baseUrl:string = "http://localhost:8085/api/tax/";
 
   private _httpOptions: any
 
@@ -45,8 +46,25 @@ export class TaxService {
 
   constructor(private http: HttpClient) { }
 
+  getTaxStatus() {
+    return firstValueFrom(this.http.get(this.baseUrl + 'taxStatus', this.httpOptions).pipe(
+      tap((response: any) => {
+        console.log('Richiesta GET riuscita:', response);
+
+      }),
+      catchError(error => {
+        if(error && error.error && error.error.name != "CitizenNotFoundException") {
+          console.error('Errore durante la richiesta GET:', error);
+          throw error; // Rilancia l'errore come promessa respinta
+        }
+        throw error;
+      })
+    ));
+  }
+
+
   loadTaxes(citizenId: string) {
-    return firstValueFrom(this.http.get(this.baseUrl + citizenId, this.httpOptions).pipe(
+    return firstValueFrom(this.http.get(this.baseUrlCitizen + citizenId, this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
         this.taxes = response
@@ -54,7 +72,7 @@ export class TaxService {
       }),
       catchError(error => {
         if(error && error.error && error.error.name != "CitizenNotFoundException") {
-          console.error('Errore durante la richiesta POST:', error);
+          console.error('Errore durante la richiesta GET:', error);
           throw error; // Rilancia l'errore come promessa respinta
         }
         throw error;

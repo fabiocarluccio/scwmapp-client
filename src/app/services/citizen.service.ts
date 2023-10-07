@@ -12,7 +12,6 @@ export class CitizenService {
   citizensPath: string = '/assets/data/citizens.json';
   citizenPath: string = '/assets/data/citizen.json';
   citizens: Citizen[] = [] as Citizen[];
-  citizen: Citizen = {} as Citizen // sarà usato per caricare le info del cittadino nella schermata delle sue info
 
   baseUrl:string = "http://localhost:8082/api/citizen/";
 
@@ -23,7 +22,6 @@ export class CitizenService {
     this._httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        //'Authorization':'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsiaHR0cDovL3NtYXJ0Qmluc01hbmFnZW1lbnRTZXJ2aWNlOjgwODEiLCJodHRwOi8vY2l0aXplbk1hbmFnZW1lbnRTZXJ2aWNlOjgwODIiLCJodHRwOi8vZGlzcG9zYWxNYW5hZ2VtZW50U2VydmljZTo4MDgzIiwiaHR0cDovL3RheFNlcnZpY2U6ODA4NSJdLCJyb2xlIjoiQURNSU4iLCJzdWIiOiJhZG1pbm9vbyIsImlhdCI6MTY5NjMxNzQ0OSwiaXNzIjoiaHR0cDovL2xvZ2luU2VydmljZTo4MDgwIiwiZXhwIjoxNjk2MzUzNDQ5fQ.KtGbnsmZMMGKxOavKH3KdnLGtricxXNuxJStLBuUIAE'
         'Authorization': 'Bearer ' + this.getTokenJWT()
       })
     }
@@ -112,8 +110,7 @@ export class CitizenService {
     return firstValueFrom(this.http.get(this.baseUrl + citizenId, this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
-        this.citizen = response
-
+        localStorage.setItem("citizen", JSON.stringify(response))
       }),
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);

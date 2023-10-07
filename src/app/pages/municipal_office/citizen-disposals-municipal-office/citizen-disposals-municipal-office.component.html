@@ -4,22 +4,28 @@
 </div>
 
 <h2>Conferimenti</h2>
-<div>
+<p *ngIf="this.disposals && this.disposals.length == 0" style="color:#444444; font-size: 1rem;">
+  ⏱️ Nessun conferimento è stato ancora effettuato nell'anno corrente.
+</p>
+<div *ngIf="this.disposals && this.disposals.length != 0">
   <table>
     <tr class="table-header">
-      <th>Data</th>
-      <th>Codice Conferimento<div class="column-border"></div></th>
       <th>Tipologia rifiuto<div class="column-border"></div></th>
       <th>Volume (kg)<div class="column-border"></div></th>
+      <th>Data</th>
+      <th>Codice Conferimento<div class="column-border"></div></th>
     </tr>
     <tr>
       <td colspan="4"><div class="separator"></div></td>
     </tr>
     <tr *ngFor="let disposal of this.disposals">
+      <td style="display: flex; align-items: center;">
+        <div class="wasteType-color" style="{{'background: '+ this.smartBinService.getWasteColorByName(disposal.type)}};"></div>
+        {{disposal.type}}
+      </td>
+      <td>{{disposal.amount}}</td>
       <td>{{Disposal.getDateTime(disposal.timestamp)}}</td>
       <td>{{disposal.id}}</td>
-      <td>{{disposal.type}}</td>
-      <td>{{disposal.amount}}</td>
     </tr>
   </table>
 </div>

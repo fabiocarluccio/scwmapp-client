@@ -3,6 +3,7 @@ import {CitizenService} from "../../../services/citizen.service";
 import {ExceptionManagerService} from "../../../services/exception-manager.service";
 import {Citizen} from "../../../models/citizen";
 import {CitizenFilter, CitizenSorting} from "../../../models/citizen-filtering-enum";
+import {DisposalService} from "../../../services/disposal.service";
 
 @Component({
   selector: 'app-citizens-list',
@@ -21,6 +22,7 @@ export class CitizensListComponent implements OnInit {
 
 
   constructor(public citizenService: CitizenService,
+              public disposalService: DisposalService,
               private exceptionManager: ExceptionManagerService) {
     localStorage.setItem('currentRole', "MunicipalOffice")
   }
@@ -34,11 +36,35 @@ export class CitizensListComponent implements OnInit {
           "sortedWaste": {}
         };
       });
-      this.orderByName()
 
-      // TODO inserire logica per avvalorare i campi relativi a performance e stato tasse
+      // Ottengo metriche anno corrente di tutti i cittadini e le assegno ai cittadini)
+      this.disposalService.loadWasteMetricsForYear(new Date().getFullYear()).then(response => {
+        console.log(response)
 
-      console.log(this.citizenService.citizens)
+        // Eseguo mapping Cittadino-WasteMetrics
+        if (Array.isArray(response)) {
+          response.forEach((item: any) => {
+            // Effettuo ricerca cittadino per citizenID
+            const foundCitizen = this.citizenService.citizens.find((citizen) => citizen.id === item.citizenID)
+            if (!foundCitizen) {
+              console.log('Cittadino', item.citizenID,' non trovato.');
+            } else {
+              foundCitizen.generatedVolume = item.yearlyVolumes[0]
+            }
+
+
+          });
+        }
+
+
+        this.orderByName()
+
+        console.log(this.citizenService.citizens)
+
+      }).catch(error => {
+        // Mostro errore
+        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      });
       // nothing to do
     }).catch(error => {
       // Mostro errore

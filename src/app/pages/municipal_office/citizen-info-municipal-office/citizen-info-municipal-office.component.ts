@@ -38,8 +38,8 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
     // get citizen data (citizen info + taxes + disposal
     this.citizenService.loadCitizen(this.citizenId!).then(response => {
 
-      console.log(this.citizenService.citizen)
-      this.citizen = this.citizenService.citizen
+      console.log(response)
+      this.citizen = response
 
       this.disposalService.loadLastDisposals(this.citizenId!).then(response => {
 
