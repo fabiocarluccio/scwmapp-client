@@ -61,7 +61,7 @@
         <td>{{Disposal.getDateTime(disposal.timestamp)}}</td>
         <td>{{disposal.id}}</td>
         <td>{{disposal.type}}</td>
-        <td>{{disposal.amount}} kg</td>
+        <td>{{disposal.amount}}</td>
       </tr>
 
     </table>
@@ -114,7 +114,7 @@
       [separationPerformancePercentage]="Citizen.getSeparationPerformance(citizen)"
       [wasteTypes]="Citizen.getWasteTypeNames(citizen)"
       [wasteVolumeGenerated]="Citizen.getWasteVolumeGenerated(citizen)"
-      [customColors]="Citizen.getWasteTypeColors(Citizen.getWasteTypeNames(citizen), this.smartBinService.wasteTypes)"
+      [customColors]="Citizen.getWasteTypeColors(Citizen.getWasteTypeNames(citizen), this.smartBinService.getWasteTypes())"
     >
     </app-pie-chart>
 

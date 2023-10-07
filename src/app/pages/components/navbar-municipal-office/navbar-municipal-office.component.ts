@@ -17,6 +17,7 @@ export class NavbarMunicipalOfficeComponent {
     localStorage.removeItem('currentUser')
     localStorage.removeItem('currentRole')
     localStorage.removeItem('userId')
+    localStorage.removeItem('wasteTypes')
 
     this.userService.user = {} as User
 

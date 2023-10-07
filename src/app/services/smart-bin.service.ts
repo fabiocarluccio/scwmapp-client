@@ -14,7 +14,7 @@ export class SmartBinService {
   path: string = '/assets/data/smartbins.json';
   smartBins: SmartBin[] = [] as SmartBin[];
   allocationRequests: AllocationRequest[] = [] as AllocationRequest[];
-  wasteTypes: WasteType[] = [] as WasteType[];
+  //wasteTypes: WasteType[] = [] as WasteType[];
 
   private _httpOptions: any
 
@@ -68,8 +68,13 @@ export class SmartBinService {
     return firstValueFrom(this.http.get(this.baseUrl + 'type/', this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
-        this.wasteTypes = response as WasteType[]
+        let wasteTypes = response as WasteType[]
 
+        // metto in testa la tipologia "Indifferenziata"
+        let types = wasteTypes.filter((wasteType) => wasteType.name != "Indifferenziata")
+        types.unshift(wasteTypes.filter(wasteType => wasteType.name == "Indifferenziata")[0])
+
+        localStorage.setItem("wasteTypes", JSON.stringify(types))
         //console.log(response)
       }),
       catchError(error => {
@@ -79,18 +84,10 @@ export class SmartBinService {
     ));
   }
 
-  getBinTypeColor(type: string): string { //TODO da rimuovere
-    switch(type) {
-      case "Indifferenziata": return "black";
-      case "Vetro": return "green"
-      default: return "purple";
-    }
-  }
-
 
   getWasteColorByName(wasteName: string): string {
     // si da per scontato che l'array delle tipologie sia già stato scaricato
-    let type = this.wasteTypes.filter(type => type.name === wasteName)
+    let type = this.getWasteTypes().filter(type => type.name === wasteName)
     if (type.length == 1) {
       return type[0].color
     }
@@ -133,10 +130,10 @@ export class SmartBinService {
     ));
   }
 
-  // restituisce tutti i tipi di rifiuti, mettendo in testa la tipologia "Indifferenziata"
-  getWasteTypes() {
-    let wasteTypess = this.wasteTypes.filter((wasteType) => wasteType.name != "Indifferenziata")
-    wasteTypess.unshift(this.wasteTypes.filter(wasteType => wasteType.name == "Indifferenziata")[0])
-    return wasteTypess
+
+  getWasteTypes(){
+    let wasteTypes: WasteType[] = JSON.parse(localStorage.getItem("wasteTypes")!)
+    return wasteTypes
   }
+
 }

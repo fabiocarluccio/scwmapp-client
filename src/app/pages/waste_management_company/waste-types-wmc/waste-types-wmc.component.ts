@@ -26,7 +26,7 @@ export class WasteTypesWmcComponent implements OnInit{
 
     this.smartBinService.loadWasteTypes().then(response => {
 
-      this.wasteTypes = this.smartBinService.wasteTypes
+      this.wasteTypes = this.smartBinService.getWasteTypes()
 
     }).catch(error => {
       // Mostro errore
