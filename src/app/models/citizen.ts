@@ -42,7 +42,7 @@ export class Citizen {
 
   static getWasteVolumeGenerated(citizen: Citizen): number[] {
     let wasteVolumeGenerated: number[] = [citizen.generatedVolume.mixedWaste]
-
+    //console.log(citizen.generatedVolume)
     for(let typeName of Object.keys(citizen.generatedVolume.sortedWaste)) {
       wasteVolumeGenerated.push(citizen.generatedVolume.sortedWaste[typeName])
     }
@@ -53,6 +53,10 @@ export class Citizen {
   static getSeparationPerformance(citizen: Citizen): number {
     let mixedWaste = citizen.generatedVolume?.mixedWaste
     let sortedWaste = 0
+
+    if(!mixedWaste || mixedWaste == 0) {
+      return 100
+    }
 
     for (const key in citizen.generatedVolume?.sortedWaste) {
       //console.log(key)
@@ -77,6 +81,19 @@ export class Citizen {
     const totalWaste = sortedWaste + mixedWaste
     const percentageOfTotal = weight/totalWaste * 100
     return Number(percentageOfTotal.toFixed(1))
+  }
+
+  static getPercentageOverSortedWaste(weight: number, citizen: Citizen): number {
+    let sortedWaste = 0
+
+    for (const key in citizen.generatedVolume!.sortedWaste) {
+      //console.log(key)
+      //console.log(citizen.generatedVolume!.sortedWaste[key])
+      sortedWaste += citizen.generatedVolume!.sortedWaste[key]
+    }
+
+    const percentageOnMixedWaste = weight/sortedWaste * 100
+    return Number(percentageOnMixedWaste.toFixed(1))
   }
 
   static getWasteTypeColors(wasteTypeNames: string[], wasteTypes: WasteType[]): string[] {
@@ -112,6 +129,8 @@ export class Citizen {
     }
     return "#FF6961"
   }
+
+
 }
 
 interface Address {

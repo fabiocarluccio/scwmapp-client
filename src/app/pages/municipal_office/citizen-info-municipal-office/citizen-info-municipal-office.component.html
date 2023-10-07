@@ -58,10 +58,10 @@
         <td colspan="4"><div class="separator"></div></td>
       </tr>
       <tr *ngFor="let disposal of this.disposals">
-        <td>{{disposal.date}}</td>
+        <td>{{Disposal.getDateTime(disposal.timestamp)}}</td>
         <td>{{disposal.id}}</td>
-        <td>{{disposal.wasteType}}</td>
-        <td>{{disposal.disposalVolume}} kg</td>
+        <td>{{disposal.type}}</td>
+        <td>{{disposal.amount}} kg</td>
       </tr>
 
     </table>
@@ -83,7 +83,7 @@
         <th>Tipologia rifiuto<div class="column-border"></div></th>
         <th>Volume generato (kg)<div class="column-border"></div></th>
         <th>Percentuale su totale<div class="column-border"></div></th>
-        <th>Percentuale su indifferenziata</th>
+        <th>Percentuale su differenziata</th>
       </tr>
       <tr>
         <td colspan="4"><div class="separator"></div></td>
@@ -95,7 +95,7 @@
         </td>
         <td>{{citizen.generatedVolume.sortedWaste[wasteName]}}</td>
         <td>{{Citizen.getPercentageOfTotalWaste(citizen.generatedVolume.sortedWaste[wasteName], citizen)}}%</td>
-        <td>{{Number(citizen.generatedVolume.sortedWaste[wasteName] / citizen.generatedVolume.mixedWaste * 100).toFixed(1)}}%</td>
+        <td>{{Citizen.getPercentageOverSortedWaste(citizen.generatedVolume.sortedWaste[wasteName], citizen)}}%</td>
       </tr>
       <tr>
         <td style="display: flex; align-items: center;">

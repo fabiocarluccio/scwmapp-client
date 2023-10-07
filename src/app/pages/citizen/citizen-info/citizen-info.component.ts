@@ -58,8 +58,8 @@ export class CitizenInfoComponent implements OnInit {
             this.disposals = this.disposalService.disposals
 
             this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
-              console.log("wastemetrics:"+response)
-              this.citizen!.generatedVolume = response
+              console.log("wastemetrics:"+response.yearlyVolumes[0])
+              this.citizen!.generatedVolume = response.yearlyVolumes[0]
 
               this.taxService.loadTaxes(this.citizenId!).then(response => {
 
@@ -96,8 +96,8 @@ export class CitizenInfoComponent implements OnInit {
 
   }
 
-
   protected readonly Object = Object;
   protected readonly Number = Number;
   protected readonly Citizen = Citizen;
+  protected readonly Disposal = Disposal;
 }

@@ -49,4 +49,6 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
       window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
     });
   }
+
+  protected readonly Disposal = Disposal;
 }

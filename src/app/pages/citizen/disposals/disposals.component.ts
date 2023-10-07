@@ -35,4 +35,6 @@ export class DisposalsComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  protected readonly Disposal = Disposal;
 }

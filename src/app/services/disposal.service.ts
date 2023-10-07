@@ -53,12 +53,7 @@ export class DisposalService {
 
       }),
       catchError(error => {
-        // Se ricevo CitizenNotFoundException (code:20), significa che non sono ancora presenti le metriche
-        // ma che comunque va bene lo stesso
-        if(error && error.error && error.error.name != "CitizenNotFoundException") {
-          console.error('Errore durante la richiesta POST:', error);
-          throw error; // Rilancia l'errore come promessa respinta
-        }
+        console.error('Errore durante la richiesta POST:', error);
         throw error;
       })
     ));
