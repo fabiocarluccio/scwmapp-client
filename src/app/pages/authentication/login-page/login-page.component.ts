@@ -11,6 +11,7 @@ import {SmartBinService} from "../../../services/smart-bin.service";
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent {
+  user:User = {} as User;
 
   constructor(private userService:UserService,
               private route:Router,
@@ -24,14 +25,13 @@ export class LoginPageComponent {
   }
 
   loginUser() {
-    let user = {} as User
     console.log("loginUser() called")
-    console.log(user)
-    this.userService.authenticate(user).then(response => {
+    console.log(this.user)
+    this.userService.authenticate(this.user).then(response => {
       // Salvataggio token jwt in localstorage e inizializzazione utente corrente
       localStorage.setItem('currentUser', JSON.stringify({token: response.jwt}))
 
-      this.userService.getInfo(user).then(response => {
+      this.userService.getInfo(this.user).then(response => {
         let user = response as User
         console.log(user)
 
