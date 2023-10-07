@@ -12,8 +12,7 @@ import {Citizen} from "../../../models/citizen";
   styleUrls: ['./citizen-disposals-municipal-office.component.scss']
 })
 export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
-  citizenId: string | null = null // TODO: credo che conviene salvare in localstorage l'id del cittadino che ha effettuato l'accesso
-  // TODO per quanto riguarda la stessa schermata, ma per il municipio, l'id del cittadino sarà passato nella get: ?citizenId=CITTADAINOID
+  citizenId: string | null = null
   citizen: Citizen = {} as Citizen
   disposals: Disposal[] = []
 

@@ -24,7 +24,7 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
 
   showRequestForm = false
 
-  wasteTypes: WasteType[] = [] as WasteType[];
+  //wasteTypes: WasteType[] = [] as WasteType[];
 
   constructor(private http: HttpClient,
               public smartBinService: SmartBinService,
@@ -43,11 +43,17 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
 
         //this.smartBinRequests = this.smartBinRequestService.smartBinRequests    // load allocation requests
 
-        this.wasteTypes = this.smartBinService.wasteTypes                     // load waste types
+        this.smartBinService.loadWasteTypes().then(response => {        // load waste types
+
+
         }).catch(error => {
           // Mostro errore
           window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
         });
+      }).catch(error => {
+        // Mostro errore
+        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      });
     }).catch(error => {
       // Mostro errore
       window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));

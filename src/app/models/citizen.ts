@@ -20,6 +20,17 @@ export class Citizen {
     }
   }
 
+  static showSeparationPerformance(citizen: Citizen): boolean {
+    if(citizen.generatedVolume == null) return false
+    let showSeparationPerformance = false
+    Citizen.getWasteVolumeGenerated(citizen).forEach(wasteVolume => {
+      if (wasteVolume > 0) {
+        showSeparationPerformance = true
+      }
+    });
+    return showSeparationPerformance
+  }
+
   static getWasteTypeNames(citizen: Citizen): string[] {
     let wasteTypeNames: string[] = ["Indifferenziata"]
 
@@ -84,6 +95,9 @@ export class Citizen {
 
   static getSeparationPerformanceColor(separationPerformancePercentage: number): string {
 
+    if(isNaN(separationPerformancePercentage)) {
+      return "#444444"
+    }
     if(separationPerformancePercentage > 80) {
       return "#18AC91"
     }

@@ -5,6 +5,10 @@
 
     <div class="bin-list">
       <h2>SmartBins attivi</h2>
+
+      <p *ngIf="this.smartBins.length==0" style="color:#444444; font-size: 1rem;">
+        ⏱️ Nessuno SmartBin è stato ancora allocato.
+      </p>
       <app-smart-bin-item-card [smartBin]=smartbin *ngFor="let smartbin of this.smartBins"></app-smart-bin-item-card>
     </div>
 
@@ -18,8 +22,6 @@
       <!--<button *ngFor="let smartbin of this.smartBins" (click)="highlightBinItem(smartbin.id!)">Evidenzia {{smartbin.name}}</button>-->
 
       <form #allocateNewBinForm="ngForm" *ngIf="this.showRequestForm" class="cool-background">
-        <!--<p>Now, type your new, fresh password 😊</p>-->
-
         <h5>Alloca nuovo SmartBin</h5>
 
         <div class="form-group">
@@ -48,7 +50,7 @@
             #inputSmartBinName = "ngModel"
             class="form-control" id="inputSmartBinType">
             <option value="" disabled selected>Seleziona tipologia di rifiuto</option>
-            <option *ngFor="let wasteType of this.wasteTypes" value="{{wasteType.name}}">{{wasteType.name}}</option>
+            <option *ngFor="let wasteType of this.smartBinService.getWasteTypes()" value="{{wasteType.name}}">{{wasteType.name}}</option>
           </select>
 
 
@@ -82,6 +84,9 @@
       <div class="request-list">
         <h2>Richieste in attesa️</h2>
 
+        <p *ngIf="this.smartBinRequestService.smartBinRequests == null || this.smartBinRequestService.smartBinRequests.length == 0" style="color:#444444; font-size: 1rem;">
+          ✅ Nessuna richiesta in attesa.
+        </p>
         <app-request-item-card
           [smartBinRequest]=smartbinRequest
           *ngFor="let smartbinRequest of this.smartBinRequestService.smartBinRequests">

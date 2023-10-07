@@ -18,6 +18,20 @@ export class UserService {
     })
   }
 
+  getTokenJWT(): string {
+    const item = localStorage.getItem("currentUser")
+    if (item != null) {
+      const array = JSON.parse(item)
+      if (array != null) {
+        const token = array.token
+        if(token != null)
+          return "Bearer " + token
+      }
+    }
+
+    return ""
+  }
+
   constructor(private http:HttpClient) {
     // TODO il token va preso mediante chiamata API diretta (authentication)
     //localStorage.setItem('currentUser', JSON.stringify({token:'sduinyqwec789d23ycueqwibhceqdijuy'}))
@@ -85,6 +99,26 @@ export class UserService {
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
         // Gestisci l'errore qui, se necessario
+        throw error; // Rilancia l'errore come promessa respinta
+      })
+    ));
+  }
+
+  getCitizenToken(citizenId: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Authorization':'' + this.getTokenJWT()
+      })
+    }
+
+    return firstValueFrom(this.http.get(this.baseUrl + "getCitizenToken/" + citizenId, httpOptions).pipe(
+      tap((response: any) => {
+        console.log('Richiesta GET riuscita:', response);
+
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));

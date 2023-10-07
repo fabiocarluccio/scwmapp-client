@@ -14,17 +14,54 @@ export class TaxService {
   taxes: Tax[] = [] as Tax[];
   //tax: Tax = {} as Tax
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json',
-      'Authorization':''
-    })
+  baseUrl:string = "http://localhost:8085/api/taxStatus/";
+
+  private _httpOptions: any
+
+  get httpOptions() {
+    this._httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        //'Authorization':'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsiaHR0cDovL3NtYXJ0Qmluc01hbmFnZW1lbnRTZXJ2aWNlOjgwODEiLCJodHRwOi8vY2l0aXplbk1hbmFnZW1lbnRTZXJ2aWNlOjgwODIiLCJodHRwOi8vZGlzcG9zYWxNYW5hZ2VtZW50U2VydmljZTo4MDgzIiwiaHR0cDovL3RheFNlcnZpY2U6ODA4NSJdLCJyb2xlIjoiQURNSU4iLCJzdWIiOiJhZG1pbm9vbyIsImlhdCI6MTY5NjMxNzQ0OSwiaXNzIjoiaHR0cDovL2xvZ2luU2VydmljZTo4MDgwIiwiZXhwIjoxNjk2MzUzNDQ5fQ.KtGbnsmZMMGKxOavKH3KdnLGtricxXNuxJStLBuUIAE'
+        'Authorization': 'Bearer ' + this.getTokenJWT()
+      })
+    }
+    return this._httpOptions
   }
 
-  baseUrl:string = "http://localhost:8082/api/tax/";
+  getTokenJWT(): string {
+    const item = localStorage.getItem("currentUser")
+    if (item != null) {
+      const array = JSON.parse(item)
+      if (array != null) {
+        const token = array.token
+        if(token != null)
+          return token
+      }
+    }
+
+    return ""
+  }
 
   constructor(private http: HttpClient) { }
 
+  loadTaxes(citizenId: string) {
+    return firstValueFrom(this.http.get(this.baseUrl + citizenId, this.httpOptions).pipe(
+      tap((response: any) => {
+        console.log('Richiesta GET riuscita:', response);
+        this.taxes = response
+
+      }),
+      catchError(error => {
+        if(error && error.error && error.error.name != "CitizenNotFoundException") {
+          console.error('Errore durante la richiesta POST:', error);
+          throw error; // Rilancia l'errore come promessa respinta
+        }
+        throw error;
+      })
+    ));
+  }
+  /*
   loadTaxes(citizenId: string) {
     return firstValueFrom(this.http.get(this.taxesPath).pipe(
       tap((response: any) => {
@@ -37,5 +74,5 @@ export class TaxService {
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));
-  }
+  }*/
 }

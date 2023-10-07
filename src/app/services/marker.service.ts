@@ -25,6 +25,8 @@ export class MarkerService {
   makeBinCircleMarkers(map: L.Map): void {
 
     this.smartBinService.loadAllocatedBins().then(response => {
+      if(response == null) return;
+
       for (const bin of response) {
         const lon = bin.position.coordinates[0];
         const lat = bin.position.coordinates[1];

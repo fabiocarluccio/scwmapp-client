@@ -17,7 +17,7 @@ import {SmartBinService} from "../../../services/smart-bin.service";
 export class CitizenInfoMunicipalOfficeComponent implements OnInit {
 
   citizenId: string | null = null
-  citizen: Citizen = new Citizen()
+  citizen: Citizen | null = null
   disposals: Disposal[] = []
   taxes: Tax[]= []
 
@@ -38,19 +38,27 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
     // get citizen data (citizen info + taxes + disposal
     this.citizenService.loadCitizen(this.citizenId!).then(response => {
 
-      //console.log(this.citizenService.citizen)
+      console.log(this.citizenService.citizen)
       this.citizen = this.citizenService.citizen
 
       this.disposalService.loadLastDisposals(this.citizenId!).then(response => {
 
-        //console.log(this.disposalService.disposals)
+        console.log(this.disposalService.disposals)
         this.disposals = this.disposalService.disposals
 
-        this.taxService.loadTaxes(this.citizenId!).then(response => {
+        this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
+          console.log("wastemetrics:"+response)
+          this.citizen!.generatedVolume = response
 
-          //console.log(this.taxService.taxes)
-          this.taxes = this.taxService.taxes
+          this.taxService.loadTaxes(this.citizenId!).then(response => {
 
+            console.log(this.taxService.taxes)
+            this.taxes = this.taxService.taxes
+
+          }).catch(error => {
+            // Mostro errore
+            window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+          });
         }).catch(error => {
           // Mostro errore
           window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));

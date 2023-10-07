@@ -12,4 +12,5 @@ export class CitizenItemCardComponent {
 
 
   protected readonly Citizen = Citizen;
+    protected readonly isNaN = isNaN;
 }

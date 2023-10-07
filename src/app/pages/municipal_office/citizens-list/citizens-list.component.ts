@@ -27,8 +27,17 @@ export class CitizensListComponent implements OnInit {
 
   ngOnInit() {
     this.citizenService.loadCitizens().then(response => {
+      this.citizenService.citizens.forEach(cittadino => {
+        cittadino.taxesStatus = true;
+        cittadino.generatedVolume = {
+          "mixedWaste": 0,
+          "sortedWaste": {}
+        };
+      });
       this.orderByName()
-      console.log('dio')
+
+      // TODO inserire logica per avvalorare i campi relativi a performance e stato tasse
+
       console.log(this.citizenService.citizens)
       // nothing to do
     }).catch(error => {
@@ -42,6 +51,8 @@ export class CitizensListComponent implements OnInit {
   // region Citizen Form
   addNewCitizen() {
     console.log("Aggiungo cittadino in db")
+    this.citizenService.addCitizen(this.citizen)
+    this.toggleCitizenForm()
   }
 
   toggleCitizenForm() {

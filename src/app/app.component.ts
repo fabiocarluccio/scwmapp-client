@@ -13,8 +13,6 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    // load waste types
-    this.smartBinService.loadWasteTypes()
   }
 
   protected readonly localStorage = localStorage;

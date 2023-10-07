@@ -1,15 +1,19 @@
-<body>
+<body *ngIf="citizen">
   <div style="margin-bottom: 10px;">
     <a routerLink="/municipal_office/citizens-list">◂ Indietro</a>
   </div>
 
   <h4>{{citizen.surname + " " + citizen.name}}</h4>
-  <p>🏠 <b>{{citizen.address?.city + " - " + citizen.address?.streetName + ", " + citizen.address?.streetNumber}}</b></p>
+  <p>🏠 <b>{{citizen.address?.city + " - Via " + citizen.address?.streetName + ", " + citizen.address?.streetNumber}}</b></p>
   <p>🐌 <i>{{citizen.email}}</i></p>
 
 
   <h2>Stato tasse</h2>
-  <div>
+
+  <p *ngIf="!this.taxes || this.taxes.length == 0" style="color:#444444; font-size: 1rem;">
+    ✅ Nessuna tassa è stata ancora emessa.
+  </p>
+  <div *ngIf="this.taxes && this.taxes.length != 0">
     <table>
       <tr class="table-header">
         <th>Codice Tassa<div class="column-border"></div></th>
@@ -39,7 +43,10 @@
 
 
   <h2>Ultimi conferimenti</h2>
-  <div>
+  <p *ngIf="!this.disposals || this.disposals.length == 0" style="color:#444444; font-size: 1rem;">
+    ⏱️ Nessun conferimento è stato ancora effettuato nell'anno corrente.
+  </p>
+  <div *ngIf="this.disposals && this.disposals.length != 0">
     <table>
       <tr class="table-header">
         <th>Data</th>
@@ -59,14 +66,18 @@
 
     </table>
   </div>
-  <div style="margin-top: 10px">
+  <div *ngIf="this.disposals && this.disposals.length != 0" style="margin-top: 10px">
     <a routerLink="/municipal_office/citizen-info/disposals/{{citizen.id}}">Mostra conferimenti meno recenti</a>
   </div>
 
 
 
-  <h2>Performance separazione rifiuti ({{Citizen.getSeparationPerformance(citizen)}}%)</h2>
-  <div>
+  <h2 *ngIf="Citizen.showSeparationPerformance(citizen) == false">Performance separazione rifiuti</h2>
+  <p *ngIf="Citizen.showSeparationPerformance(citizen) == false" style="color:#444444; font-size: 1rem;">
+    ⏱️ In attesa che vengano effettuati conferimenti.
+  </p>
+  <h2 *ngIf="Citizen.showSeparationPerformance(citizen)">Performance separazione rifiuti ({{Citizen.getSeparationPerformance(citizen)}}%)</h2>
+  <div *ngIf="Citizen.showSeparationPerformance(citizen)">
     <table>
       <tr class="table-header">
         <th>Tipologia rifiuto<div class="column-border"></div></th>
@@ -99,7 +110,7 @@
     </table>
 
     <!--Grafico a torta con testo che indica se è un bravo cittadino-->
-    <app-pie-chart
+    <app-pie-chart *ngIf="Citizen.showSeparationPerformance(citizen)"
       [separationPerformancePercentage]="Citizen.getSeparationPerformance(citizen)"
       [wasteTypes]="Citizen.getWasteTypeNames(citizen)"
       [wasteVolumeGenerated]="Citizen.getWasteVolumeGenerated(citizen)"

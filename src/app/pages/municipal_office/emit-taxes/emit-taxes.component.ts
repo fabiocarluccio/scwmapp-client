@@ -26,7 +26,7 @@ export class EmitTaxesComponent implements OnInit {
 
   ngOnInit(): void {
       this.smartBinService.loadWasteTypes().then(response => {
-        this.wasteTypes = this.smartBinService.wasteTypes
+        this.wasteTypes = this.smartBinService.getWasteTypes()
         //this.wasteTypes = [this.smartBinService.wasteTypes[0]]
 
         // TODO - fare richiesta get in modo da capire se mostrare il form o meno

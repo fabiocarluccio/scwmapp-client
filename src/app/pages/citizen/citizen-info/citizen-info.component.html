@@ -1,120 +1,131 @@
-<body>
-<!--
-<div style="margin-bottom: 10px;">
-  <a routerLink="/citizen">◂ Indietro</a>
-</div>
--->
-<h4>{{citizen.surname + " " + citizen.name}}</h4>
-<p>🏠 <b>{{citizen.address?.city + " - " + citizen.address?.streetName + ", " + citizen.address?.streetNumber}}</b></p>
-<p>🐌 <i>{{citizen.email}}</i></p>
-<p>🔑 Token: <b>{{citizen.token}}</b></p>
+<body *ngIf="citizen">
+  <!--
+  <div style="margin-bottom: 10px;">
+    <a routerLink="/citizen">◂ Indietro</a>
+  </div>
+  -->
+  <h4>{{citizen.surname + " " + citizen.name}}</h4>
+  <p>🏠 <b>{{citizen.address?.city + " - Via " + citizen.address?.streetName + ", " + citizen.address?.streetNumber}}</b></p>
+  <p>🐌 <i>{{citizen.email}}</i></p>
+  <p>🔑 Token: <b>{{citizen.token}}</b></p>
 
-<h2>Stato tasse</h2>
-<div>
-  <table>
-    <tr class="table-header">
-      <th>Codice Tassa<div class="column-border"></div></th>
-      <th>Anno<div class="column-border"></div></th>
-      <th>Importo (€)<div class="column-border"></div></th>
-      <th>Scadenza pagamento<div class="column-border"></div></th>
-      <th>Data pagamento<div class="column-border"></div></th>
-      <th>Ricevuta pagamento<div class="column-border"></div></th>
-      <th>Stato</th>
-    </tr>
+  <h2>Stato tasse</h2>
 
-    <tr>
-      <td colspan="7"><div class="separator"></div></td>
-    </tr>
-    <tr *ngFor="let tax of this.taxes">
-      <td>{{tax.id}}</td>
-      <td>{{tax.year}}</td>
-      <td>{{tax.amount}}</td>
-      <td>{{tax.expireDate}}</td>
-      <td>{{tax.paymentDate ? tax.paymentDate : "-"}}</td>
-      <td *ngIf="tax.paymentDate"><a href="https://google.it">{{tax.id + "2930098"}}</a></td>
-      <td *ngIf="!tax.paymentDate">-</td>
-      <td *ngIf="tax.paymentDate">Pagato</td>
-      <td *ngIf="!tax.paymentDate"><a href="http://localhost:4200/external/light-pay/{{tax.id}}">Non Pagato</a></td>
-    </tr>
+  <p *ngIf="!this.taxes || this.taxes.length == 0" style="color:#444444; font-size: 1rem;">
+    ✅ Nessuna tassa è stata ancora emessa.
+  </p>
+  <div *ngIf="this.taxes && this.taxes.length != 0">
+    <table>
+      <tr class="table-header">
+        <th>Codice Tassa<div class="column-border"></div></th>
+        <th>Anno<div class="column-border"></div></th>
+        <th>Importo (€)<div class="column-border"></div></th>
+        <th>Scadenza pagamento<div class="column-border"></div></th>
+        <th>Data pagamento<div class="column-border"></div></th>
+        <th>Ricevuta pagamento<div class="column-border"></div></th>
+        <th>Stato</th>
+      </tr>
 
-  </table>
+      <tr>
+        <td colspan="7"><div class="separator"></div></td>
+      </tr>
+      <tr *ngFor="let tax of this.taxes">
+        <td>{{tax.id}}</td>
+        <td>{{tax.year}}</td>
+        <td>{{tax.amount}}</td>
+        <td>{{tax.expireDate}}</td>
+        <td>{{tax.paymentDate ? tax.paymentDate : "-"}}</td>
+        <td *ngIf="tax.paymentDate"><a href="https://google.it">{{tax.id + "2930098"}}</a></td>
+        <td *ngIf="!tax.paymentDate">-</td>
+        <td *ngIf="tax.paymentDate">Pagato</td>
+        <td *ngIf="!tax.paymentDate"><a href="http://localhost:4200/external/light-pay/{{tax.id}}">Non Pagato</a></td>
+      </tr>
 
-
-</div>
-
-
-<h2>Ultimi conferimenti</h2>
-<div>
-  <table>
-    <tr class="table-header">
-      <th>Data</th>
-      <th>Codice Conferimento<div class="column-border"></div></th>
-      <th>Tipologia rifiuto<div class="column-border"></div></th>
-      <th>Volume (kg)<div class="column-border"></div></th>
-    </tr>
-    <tr>
-      <td colspan="4"><div class="separator"></div></td>
-    </tr>
-    <tr *ngFor="let disposal of this.disposals">
-      <td>{{disposal.date}}</td>
-      <td>{{disposal.id}}</td>
-      <td>{{disposal.wasteType}}</td>
-      <td>{{disposal.disposalVolume}} kg</td>
-    </tr>
-
-  </table>
-</div>
-<!--
-<div style="margin-top: 10px">
-  <a routerLink="/citizen/disposals">Mostra conferimenti meno recenti</a>
-</div>
--->
+    </table>
 
 
-<h2>Performance separazione rifiuti ({{Citizen.getSeparationPerformance(citizen)}}%)</h2>
-<div>
-  <table>
-    <tr class="table-header">
-      <th>Tipologia rifiuto<div class="column-border"></div></th>
-      <th>Volume generato (kg)<div class="column-border"></div></th>
-      <th>Percentuale su totale<div class="column-border"></div></th>
-      <th>Percentuale su indifferenziata</th>
-    </tr>
-    <tr>
-      <td colspan="4"><div class="separator"></div></td>
-    </tr>
-    <tr *ngFor="let wasteName of Object.keys(citizen.generatedVolume.sortedWaste)">
-      <td style="display: flex; align-items: center;">
-        <div class="wasteType-color" style="{{'background: '+ this.smartBinService.getWasteColorByName(wasteName)}};"></div>
-        {{wasteName}}
-      </td>
-      <td>{{citizen.generatedVolume.sortedWaste[wasteName]}}</td>
-      <td>{{Citizen.getPercentageOfTotalWaste(citizen.generatedVolume.sortedWaste[wasteName], citizen)}}%</td>
-      <td>{{Number(citizen.generatedVolume.sortedWaste[wasteName] / citizen.generatedVolume.mixedWaste * 100).toFixed(1)}}%</td>
-    </tr>
-    <tr>
-      <td style="display: flex; align-items: center;">
-        <div class="wasteType-color" style="{{'background: '+ this.smartBinService.getWasteColorByName('Indifferenziata')}};"></div>
-        Indifferenziata
-      </td>
-      <td>{{citizen.generatedVolume.mixedWaste}}</td>
-      <td>{{Citizen.getPercentageOfTotalWaste(citizen.generatedVolume.mixedWaste, citizen)}}%</td>
-      <td>-</td>
-    </tr>
-
-  </table>
-
-  <!--Grafico a torta con testo che indica se è un bravo cittadino-->
-  <app-pie-chart
-    [separationPerformancePercentage]="Citizen.getSeparationPerformance(citizen)"
-    [wasteTypes]="Citizen.getWasteTypeNames(citizen)"
-    [wasteVolumeGenerated]="Citizen.getWasteVolumeGenerated(citizen)"
-    [customColors]="Citizen.getWasteTypeColors(Citizen.getWasteTypeNames(citizen), this.smartBinService.wasteTypes)"
-  >
-  </app-pie-chart>
+  </div>
 
 
-  <div style="height: 50px;"></div>
+  <h2>Ultimi conferimenti</h2>
+  <p *ngIf="!this.disposals || this.disposals.length == 0" style="color:#444444; font-size: 1rem;">
+    ⏱️ Nessun conferimento è stato ancora effettuato nell'anno corrente.
+  </p>
+  <div *ngIf="this.disposals && this.disposals.length != 0">
+    <table>
+      <tr class="table-header">
+        <th>Data</th>
+        <th>Codice Conferimento<div class="column-border"></div></th>
+        <th>Tipologia rifiuto<div class="column-border"></div></th>
+        <th>Volume (kg)<div class="column-border"></div></th>
+      </tr>
+      <tr>
+        <td colspan="4"><div class="separator"></div></td>
+      </tr>
+      <tr *ngFor="let disposal of this.disposals">
+        <td>{{disposal.date}}</td>
+        <td>{{disposal.id}}</td>
+        <td>{{disposal.wasteType}}</td>
+        <td>{{disposal.disposalVolume}} kg</td>
+      </tr>
 
-</div>
+    </table>
+  </div>
+  <!--
+  <div style="margin-top: 10px">
+    <a routerLink="/citizen/disposals">Mostra conferimenti meno recenti</a>
+  </div>
+  -->
+
+
+  <h2 *ngIf="Citizen.showSeparationPerformance(citizen) == false">Performance separazione rifiuti</h2>
+  <p *ngIf="Citizen.showSeparationPerformance(citizen) == false" style="color:#444444; font-size: 1rem;">
+    ⏱️ In attesa che vengano effettuati conferimenti.
+  </p>
+  <h2 *ngIf="Citizen.showSeparationPerformance(citizen)">Performance separazione rifiuti ({{Citizen.getSeparationPerformance(citizen)}}%)</h2>
+  <div *ngIf="Citizen.showSeparationPerformance(citizen)">
+    <table>
+      <tr class="table-header">
+        <th>Tipologia rifiuto<div class="column-border"></div></th>
+        <th>Volume generato (kg)<div class="column-border"></div></th>
+        <th>Percentuale su totale<div class="column-border"></div></th>
+        <th>Percentuale su indifferenziata</th>
+      </tr>
+      <tr>
+        <td colspan="4"><div class="separator"></div></td>
+      </tr>
+      <tr *ngFor="let wasteName of Object.keys(citizen.generatedVolume.sortedWaste)">
+        <td style="display: flex; align-items: center;">
+          <div class="wasteType-color" style="{{'background: '+ this.smartBinService.getWasteColorByName(wasteName)}};"></div>
+          {{wasteName}}
+        </td>
+        <td>{{citizen.generatedVolume.sortedWaste[wasteName]}}</td>
+        <td>{{Citizen.getPercentageOfTotalWaste(citizen.generatedVolume.sortedWaste[wasteName], citizen)}}%</td>
+        <td>{{Number(citizen.generatedVolume.sortedWaste[wasteName] / citizen.generatedVolume.mixedWaste * 100).toFixed(1)}}%</td>
+      </tr>
+      <tr>
+        <td style="display: flex; align-items: center;">
+          <div class="wasteType-color" style="{{'background: '+ this.smartBinService.getWasteColorByName('Indifferenziata')}};"></div>
+          Indifferenziata
+        </td>
+        <td>{{citizen.generatedVolume.mixedWaste}}</td>
+        <td>{{Citizen.getPercentageOfTotalWaste(citizen.generatedVolume.mixedWaste, citizen)}}%</td>
+        <td>-</td>
+      </tr>
+
+    </table>
+
+    <!--Grafico a torta con testo che indica se è un bravo cittadino-->
+    <app-pie-chart *ngIf="Citizen.showSeparationPerformance(citizen)"
+      [separationPerformancePercentage]="Citizen.getSeparationPerformance(citizen)"
+      [wasteTypes]="Citizen.getWasteTypeNames(citizen)"
+      [wasteVolumeGenerated]="Citizen.getWasteVolumeGenerated(citizen)"
+      [customColors]="Citizen.getWasteTypeColors(Citizen.getWasteTypeNames(citizen), this.smartBinService.wasteTypes)"
+    >
+    </app-pie-chart>
+
+
+    <div style="height: 50px;"></div>
+
+  </div>
 </body>

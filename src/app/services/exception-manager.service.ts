@@ -23,7 +23,10 @@ export class ExceptionManagerService {
       "A": "Utente inesistente"
     },
     5: {
-      "A": "Accesso negato"
+      "A": "Accesso negato" // Accesso al sistema (login)
+    },
+    6: {
+      "A": "Accesso non consentito" // Accesso ad una risorsa
     }
   };
 

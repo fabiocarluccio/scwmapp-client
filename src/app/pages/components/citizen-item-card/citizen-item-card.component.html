@@ -7,7 +7,7 @@
       <div class="item-type">
         <div class="item-indicator" style="{{'background: '+ Citizen.getSeparationPerformanceColor(Citizen.getSeparationPerformance(citizen))}};">
         </div>
-        Performance Separazione: <b>{{Citizen.getSeparationPerformance(citizen) + "%"}}</b>
+        Performance Separazione: <b>{{isNaN(Citizen.getSeparationPerformance(citizen))? "-" : Citizen.getSeparationPerformance(citizen) + "%"}}</b>
       </div>
 
       <div class="item-type">

@@ -5,6 +5,9 @@
 
     <div class="bin-list">
       <h2>SmartBins attivi</h2>
+      <p *ngIf="this.smartBinsSorted.length==0" style="color:#444444; font-size: 1rem;">
+        ⏱️ Nessuno SmartBin è stato ancora allocato.
+      </p>
       <app-smart-bin-item-card
         *ngFor="let smartbin of this.smartBinsSorted"
         [smartBin]=smartbin
@@ -32,6 +35,9 @@
       <div class="request-list">
         <h2>Richieste in attesa️</h2>
 
+        <p *ngIf="this.smartBinRequestService.smartBinRequests == null || this.smartBinRequestService.smartBinRequests.length == 0" style="color:#444444; font-size: 1rem;">
+          ✅ Nessuna richiesta in attesa.
+        </p>
         <app-request-item-card
           [smartBinRequest]=smartbinRequest
           *ngFor="let smartbinRequest of this.smartBinRequestService.smartBinRequests"

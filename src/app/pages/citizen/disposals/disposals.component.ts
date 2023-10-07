@@ -12,8 +12,6 @@ import {Disposal} from "../../../models/disposal";
 })
 export class DisposalsComponent implements OnInit {
 
-  citizenId: string = "dio" // TODO: credo che conviene salvare in localstorage l'id del cittadino che ha effettuato l'accesso
-  // TODO per quanto riguarda la stessa schermata, ma per il municipio, l'id del cittadino sarà passato nella get: ?citizenId=CITTADAINOID
   disposals: Disposal[] = []
 
   constructor(private route: ActivatedRoute,
@@ -22,7 +20,7 @@ export class DisposalsComponent implements OnInit {
               private disposalService: DisposalService) {
     localStorage.setItem('currentRole', "Citizen")
 
-    this.disposalService.loadDisposals(this.citizenId!).then(response => {
+    this.disposalService.loadDisposals(this.citizenService.citizen.id!).then(response => {
 
       console.log(this.disposalService.disposals)
       this.disposals = this.disposalService.disposals

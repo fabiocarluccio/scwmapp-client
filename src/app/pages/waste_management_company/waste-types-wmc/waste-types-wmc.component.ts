@@ -23,6 +23,7 @@ export class WasteTypesWmcComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
     this.smartBinService.loadWasteTypes().then(response => {
 
       this.wasteTypes = this.smartBinService.wasteTypes

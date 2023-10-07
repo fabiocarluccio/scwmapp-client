@@ -8,6 +8,8 @@ import {DisposalService} from "../../../services/disposal.service";
 import {TaxService} from "../../../services/tax.service";
 import {SmartBinService} from "../../../services/smart-bin.service";
 import {Citizen} from "../../../models/citizen";
+import {UserService} from "../../../services/user.service";
+import {User} from "../../../models/user";
 
 @Component({
   selector: 'app-citizen-info',
@@ -16,12 +18,13 @@ import {Citizen} from "../../../models/citizen";
 })
 export class CitizenInfoComponent implements OnInit {
   citizenId: string | null = null
-  citizen: Citizen = new Citizen()
+  citizen: Citizen | null = null
   disposals: Disposal[] = []
   taxes: Tax[]= []
 
 
-  constructor(private route: ActivatedRoute,
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
               private citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService,
               private disposalService: DisposalService,
@@ -31,40 +34,65 @@ export class CitizenInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.citizenId = this.route.snapshot.paramMap.get('citizenId');
-    console.log("CitizenId=" + this.citizenId);
+    //this.citizenId = this.route.snapshot.paramMap.get('citizenId');
+    const userId: string = localStorage.getItem("userId")!
 
-    // get citizen data (citizen info + taxes + disposal
-    this.citizenService.loadCitizen(this.citizenId!).then(response => {
+    // get citizen data (citizen Id + citizen token + citizen info + taxes + disposal
+    this.citizenService.getCitizenId(userId).then(response => {
+      this.citizenId = response.data
+      //this.citizenId= "651efee037d6e9236b12133e"
+      console.log("CitizenId=" + this.citizenId);
 
-      //console.log(this.citizenService.citizen)
-      this.citizen = this.citizenService.citizen
+      this.citizenService.loadCitizen(this.citizenId!).then(response => {
 
-      this.disposalService.loadLastDisposals(this.citizenId!).then(response => {
+        console.log(this.citizenService.citizen)
+        this.citizen = this.citizenService.citizen
 
-        //console.log(this.disposalService.disposals)
-        this.disposals = this.disposalService.disposals
+        this.userService.getCitizenToken(this.citizen!.id!).then(response => {
 
-        this.taxService.loadTaxes(this.citizenId!).then(response => {
+          this.citizen!.token = response.data
 
-          //console.log(this.taxService.taxes)
-          this.taxes = this.taxService.taxes
+          this.disposalService.loadLastDisposals(this.citizenId!).then(response => {
 
+            console.log(this.disposalService.disposals)
+            this.disposals = this.disposalService.disposals
+
+            this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
+              console.log("wastemetrics:"+response)
+              this.citizen!.generatedVolume = response
+
+              this.taxService.loadTaxes(this.citizenId!).then(response => {
+
+                console.log(this.taxService.taxes)
+                this.taxes = this.taxService.taxes
+
+              }).catch(error => {
+                // Mostro errore
+                window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+              });
+            }).catch(error => {
+              // Mostro errore
+              window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+            });
+
+          }).catch(error => {
+            // Mostro errore
+            window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+          });
         }).catch(error => {
           // Mostro errore
           window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
         });
 
+
       }).catch(error => {
         // Mostro errore
         window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
       });
-
     }).catch(error => {
       // Mostro errore
       window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
     });
-
 
   }
 

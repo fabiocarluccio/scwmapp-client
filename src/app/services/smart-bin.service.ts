@@ -16,11 +16,31 @@ export class SmartBinService {
   allocationRequests: AllocationRequest[] = [] as AllocationRequest[];
   wasteTypes: WasteType[] = [] as WasteType[];
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':'application/json',
-      'Authorization':''
-    })
+  private _httpOptions: any
+
+  get httpOptions() {
+    this._httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        //'Authorization':'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOlsiaHR0cDovL3NtYXJ0Qmluc01hbmFnZW1lbnRTZXJ2aWNlOjgwODEiLCJodHRwOi8vY2l0aXplbk1hbmFnZW1lbnRTZXJ2aWNlOjgwODIiLCJodHRwOi8vZGlzcG9zYWxNYW5hZ2VtZW50U2VydmljZTo4MDgzIiwiaHR0cDovL3RheFNlcnZpY2U6ODA4NSJdLCJyb2xlIjoiQURNSU4iLCJzdWIiOiJhZG1pbm9vbyIsImlhdCI6MTY5NjMxNzQ0OSwiaXNzIjoiaHR0cDovL2xvZ2luU2VydmljZTo4MDgwIiwiZXhwIjoxNjk2MzUzNDQ5fQ.KtGbnsmZMMGKxOavKH3KdnLGtricxXNuxJStLBuUIAE'
+        'Authorization': 'Bearer ' + this.getTokenJWT()
+      })
+    }
+    return this._httpOptions
+  }
+
+  getTokenJWT(): string {
+    const item = localStorage.getItem("currentUser")
+    if (item != null) {
+      const array = JSON.parse(item)
+      if (array != null) {
+        const token = array.token
+        if(token != null)
+          return token
+      }
+    }
+
+    return ""
   }
 
   baseUrl:string = "http://localhost:8081/api/smartbin/";
@@ -28,12 +48,13 @@ export class SmartBinService {
   constructor(private http: HttpClient) { }
 
   loadAllocatedBins() {
-    return firstValueFrom(this.http.get(this.baseUrl + 'state?state=ALLOCATED').pipe(
+    return firstValueFrom(this.http.get(this.baseUrl + 'state?state=ALLOCATED', this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
         this.smartBins = response
         // ordino per percentuale di capienza
-        this.smartBins = this.smartBins.sort((a, b) => b.currentCapacity! / b.totalCapacity! - a.currentCapacity! / a.totalCapacity!)
+        if(this.smartBins != null)
+          this.smartBins = this.smartBins.sort((a, b) => b.currentCapacity! / b.totalCapacity! - a.currentCapacity! / a.totalCapacity!)
 
       }),
       catchError(error => {
@@ -44,9 +65,8 @@ export class SmartBinService {
   }
 
   loadWasteTypes() {
-
     return firstValueFrom(this.http.get(this.baseUrl + 'type/', this.httpOptions).pipe(
-      tap(response => {
+      tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
         this.wasteTypes = response as WasteType[]
 
@@ -113,4 +133,10 @@ export class SmartBinService {
     ));
   }
 
+  // restituisce tutti i tipi di rifiuti, mettendo in testa la tipologia "Indifferenziata"
+  getWasteTypes() {
+    let wasteTypess = this.wasteTypes.filter((wasteType) => wasteType.name != "Indifferenziata")
+    wasteTypess.unshift(this.wasteTypes.filter(wasteType => wasteType.name == "Indifferenziata")[0])
+    return wasteTypess
+  }
 }
