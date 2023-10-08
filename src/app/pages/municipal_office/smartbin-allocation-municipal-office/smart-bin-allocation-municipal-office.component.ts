@@ -32,7 +32,6 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
               public smartBinRequestService: SmartBinRequestService,
               private exceptionManager: ExceptionManagerService,
               private communicationService: CommunicationService) {
-    localStorage.setItem('currentRole', "MunicipalOffice")
   }
 
   ngOnInit(): void {

@@ -34,7 +34,6 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
               public smartBinService: SmartBinService,
               public smartBinRequestService: SmartBinRequestService,
               private exceptionManager: ExceptionManagerService) {
-    localStorage.setItem('currentRole', "WasteManagementCompany")
   }
 
   ngOnInit(): void {

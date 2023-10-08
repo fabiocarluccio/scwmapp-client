@@ -30,7 +30,6 @@ export class CitizenInfoComponent implements OnInit {
               private disposalService: DisposalService,
               private taxService: TaxService,
               public smartBinService: SmartBinService) {
-    localStorage.setItem('currentRole', "Citizen")
   }
 
   ngOnInit(): void {

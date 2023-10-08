@@ -24,7 +24,6 @@ export class CitizensListComponent implements OnInit {
   constructor(public citizenService: CitizenService,
               public disposalService: DisposalService,
               private exceptionManager: ExceptionManagerService) {
-    localStorage.setItem('currentRole', "MunicipalOffice")
   }
 
   ngOnInit() {

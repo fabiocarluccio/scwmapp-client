@@ -22,7 +22,6 @@ export class EmitTaxesComponent implements OnInit {
   constructor(private smartBinService: SmartBinService,
               private taxService: TaxService,
               private exceptionManager: ExceptionManagerService) {
-    localStorage.setItem('currentRole', "MunicipalOffice")
   }
 
   ngOnInit(): void {

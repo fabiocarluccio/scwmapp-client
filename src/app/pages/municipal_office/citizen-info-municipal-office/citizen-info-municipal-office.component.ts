@@ -28,7 +28,6 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
               private disposalService: DisposalService,
               private taxService: TaxService,
               public smartBinService: SmartBinService) {
-    localStorage.setItem('currentRole', "MunicipalOffice")
   }
 
   ngOnInit(): void {

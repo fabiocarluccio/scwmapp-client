@@ -22,7 +22,6 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
               private exceptionManager: ExceptionManagerService,
               private disposalService: DisposalService,
               public smartBinService: SmartBinService) {
-    localStorage.setItem('currentRole', "MunicipalOffice")
   }
 
   ngOnInit(): void {
