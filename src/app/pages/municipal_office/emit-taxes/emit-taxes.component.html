@@ -6,10 +6,26 @@
   <p *ngIf="this.showForm">Imposta la tariffa per kg di rifiuto.</p>
 
   <form *ngIf="this.showForm" #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)" class="cool-background">
+
+    <div class="form-group" style="padding-left: 15px; padding-top: 15px;">
+      <label for="inputBaseFee"><b>Tariffa base</b></label>
+      <input
+        [(ngModel)]="baseFee" name="inputBaseFee"
+        required
+        #inputBaseFee = "ngModel"
+        [ngClass]="{'is-invalid': inputBaseFee.errors && inputBaseFee.touched}"
+        type="number" class="form-control" id="inputBaseFee" placeholder="Valore (€)">
+      <!--{{user.name}}-->
+      <div class="invalid-feedback">
+        Inserisci un valore valido.
+      </div>
+    </div>
+
+
     <div class="form-inputs-container">
 
       <div class="form-group" *ngFor="let type of this.wasteTypes; let i = index">
-        <label for="inputWasteFee">Tariffa {{type.name}} (per kg)</label>
+        <label for="inputWasteFee">Tariffa <b>{{type.name}}</b> (per kg)</label>
         <input
           [(ngModel)]="feeAmounts[i]" name="{{type.name}}"
           required
@@ -61,7 +77,6 @@
       </div>
       -->
     </div>
-
 
 
     <button

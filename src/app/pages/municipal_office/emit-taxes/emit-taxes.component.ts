@@ -13,6 +13,7 @@ export class EmitTaxesComponent implements OnInit {
 
   wasteTypes: WasteType[] = []
   feeAmounts: number[] = []
+  baseFee: number | null = null
 
   showForm: boolean = false
 
@@ -27,7 +28,7 @@ export class EmitTaxesComponent implements OnInit {
   ngOnInit(): void {
     this.wasteTypes = this.smartBinService.getWasteTypes()
     this.taxService.getTaxStatus().then(response => {
-      this.showForm = response == "To emit";
+      this.showForm = !response.data;
 
     }).catch(error => {
       // Mostro errore

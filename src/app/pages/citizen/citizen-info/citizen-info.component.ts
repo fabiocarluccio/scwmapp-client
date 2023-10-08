@@ -83,7 +83,6 @@ export class CitizenInfoComponent implements OnInit {
           window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
         });
 
-
       }).catch(error => {
         // Mostro errore
         window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
