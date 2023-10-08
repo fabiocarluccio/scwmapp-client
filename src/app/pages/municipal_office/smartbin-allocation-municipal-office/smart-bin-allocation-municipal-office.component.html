@@ -49,8 +49,8 @@
             required
             #inputSmartBinName = "ngModel"
             class="form-control" id="inputSmartBinType">
-            <option value="" disabled selected>Seleziona tipologia di rifiuto</option>
-            <option *ngFor="let wasteType of this.smartBinService.getWasteTypes()" value="{{wasteType.name}}">{{wasteType.name}}</option>
+            <option value="" disabled selected>Seleziona</option>
+            <option *ngFor="let wasteType of this.wasteTypes" value="{{wasteType.name}}">{{wasteType.name}}</option>
           </select>
 
 

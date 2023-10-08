@@ -19,6 +19,7 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
 
   smartBins: SmartBin[] = []
   newRequest: AllocationRequest = {} as AllocationRequest;
+  wasteTypes: WasteType[] = []
 
   //smartBinRequests: AllocationRequest[] = []
 
@@ -35,6 +36,7 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   }
 
   ngOnInit(): void {
+    this.wasteTypes = this.smartBinService.getWasteTypes()
     this.smartBinService.loadAllocatedBins().then(response => {
 
       this.smartBins = this.smartBinService.smartBins                             // load smartbins
