@@ -1,0 +1,92 @@
+<body>
+  <h1>Pagamento Tassa</h1>
+
+  <form #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)" class="cool-background">
+
+    <h5 style="padding-left: 2rem; padding-top: 1.5rem; padding-bottom: 1rem;">Dati pagamento</h5>
+
+    <section style="padding-left: 2.5rem">
+      <p style="margin-bottom: 2px; color: darkslategray">Codice tassa</p>
+      <p style="font-size: 1rem; margin-top: 0; color: darkslategray"><b>6522b6627c9c7c0db1718797</b></p>
+
+      <p style="margin-bottom: 2px; color: darkslategray">Importo</p>
+      <p style="font-size: 1rem; margin-top: 0; color: darkslategray"><b>50.99 EUR</b></p>
+    </section>
+
+
+    <div class="form-inputs-container">
+
+
+      <div class="form-group">
+        <label for="inputAccountHolder">Nome Titolare</label>
+        <input
+          [(ngModel)]="accountHolder" name="inputAccountHolder"
+          required
+          #inputAccountHolder = "ngModel"
+          [ngClass]="{'is-invalid': inputAccountHolder.errors && inputAccountHolder.touched}"
+          type="text" class="form-control" id="inputAccountHolder" placeholder="Nome e Cognome">
+        <div class="invalid-feedback">
+          Inserisci un valore valido.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inputCardNumber">Numero carta</label>
+        <input
+          required
+          minlength="19"
+          maxlength="19"
+          [(ngModel)]="cardNumber" name="inputCardNumber"
+          (input)="handleSpaces($event)"
+          #inputCardNumber = "ngModel"
+          [ngClass]="{'is-invalid': inputCardNumber.errors && inputCardNumber.touched}"
+          type="text" class="form-control" id="inputCardNumber" placeholder="**** **** **** ****">
+        <div class="invalid-feedback">
+          Inserisci un valore valido.
+        </div>
+      </div>
+
+      <div class="form-group expireandcvv-container">
+        <div class="">
+          <label for="inputExpireDate">Scadenza</label>
+          <input
+            minlength="5"
+            maxlength="5"
+            [(ngModel)]="expireDate" name="inputExpireDate"
+            required
+            #inputExpireDate = "ngModel"
+            [ngClass]="{'is-invalid': inputExpireDate.errors && inputExpireDate.touched}"
+            type="text" class="form-control" id="inputExpireDate" placeholder="MM/YY">
+          <div class="invalid-feedback">
+            Inserisci un valore valido.
+          </div>
+        </div>
+
+        <div class="">
+          <label for="inputCVV">CVV</label>
+          <input
+            minlength="3"
+            maxlength="3"
+            [(ngModel)]="cvv" name="inputCVV"
+            required
+            #inputCVV = "ngModel"
+            [ngClass]="{'is-invalid': inputCVV.errors && inputCVV.touched}"
+            type="string" class="form-control" id="inputCVV" placeholder="CVV">
+          <div class="invalid-feedback">
+            Inserisci un valore valido.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <button [disabled] = "!emitTaxesForm.valid"
+            type="submit"
+            class="btn btn-primary">Paga Tassa</button>
+    <p style="display: flex; justify-content: center;"><a style="color: #333" routerLink="/citizen">Torna indietro</a></p>
+
+  </form>
+
+
+
+</body>

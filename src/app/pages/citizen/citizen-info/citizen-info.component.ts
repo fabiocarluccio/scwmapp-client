@@ -98,4 +98,11 @@ export class CitizenInfoComponent implements OnInit {
   protected readonly Number = Number;
   protected readonly Citizen = Citizen;
   protected readonly Disposal = Disposal;
+
+  isExpired(expireDate: string) {
+    const date = new Date(expireDate);
+    const now = new Date();
+
+    return date < now
+  }
 }

@@ -3,6 +3,7 @@ import {Disposal} from "../models/disposal";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, firstValueFrom, tap} from "rxjs";
 import {Tax} from "../models/tax";
+import {AllocationRequest} from "../models/allocationRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,7 @@ export class TaxService {
 
   constructor(private http: HttpClient) { }
 
+  // Serve per capire se le tasse sono state emesse o meno per l'anno corrente TODO (correggere "corrente" con "precedente" una volta sistemata la cosa dell'anno delle tasse
   getTaxStatus() {
     return firstValueFrom(this.http.get(this.baseUrl + 'taxStatus', this.httpOptions).pipe(
       tap((response: any) => {
@@ -62,12 +64,11 @@ export class TaxService {
     ));
   }
 
-
-  loadTaxes(citizenId: string) {
-    return firstValueFrom(this.http.get(this.baseUrlCitizen + citizenId, this.httpOptions).pipe(
+  // Ottieni la lista di tutti i
+  getCitizensTaxStatus() {
+    return firstValueFrom(this.http.get(this.baseUrlCitizen, this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
-        this.taxes = response
 
       }),
       catchError(error => {
@@ -76,6 +77,24 @@ export class TaxService {
           throw error; // Rilancia l'errore come promessa respinta
         }
         throw error;
+      })
+    ));
+  }
+
+
+  loadTaxes(citizenId: string) {
+    return firstValueFrom(this.http.get(this.baseUrl + "citizen/" + citizenId, this.httpOptions).pipe(
+      tap((response: any) => {
+        console.log('Richiesta GET riuscita:', response);
+        this.taxes = response
+
+      }),
+      catchError(error => {
+        //if(error && error.error && error.error.name != "CitizenNotFoundException") {
+        console.error('Errore durante la richiesta GET:', error);
+        throw error; // Rilancia l'errore come promessa respinta
+        //}
+        //throw error;
       })
     ));
   }
@@ -93,4 +112,34 @@ export class TaxService {
       })
     ));
   }*/
+
+  emitTaxes(payload: Record<string, number>) {
+    console.log(payload)
+    return firstValueFrom(this.http.post(this.baseUrl + 'emit', payload, this.httpOptions).pipe(
+      tap(response => {
+        console.log('Richiesta POST riuscita:', response);
+        // Gestisci la risposta dal server qui, se necessario
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        // Gestisci l'errore qui, se necessario
+        throw error; // Rilancia l'errore come promessa respinta
+      })
+    ));
+  }
+
+
+  getTax(taxId: string) {
+    return firstValueFrom(this.http.get(this.baseUrl + "citizen/" + taxId, this.httpOptions).pipe(
+      tap((response: any) => {
+        console.log('Richiesta GET riuscita:', response);
+
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta GET:', error);
+        throw error; // Rilancia l'errore come promessa respinta
+
+      })
+    ));
+  }
 }

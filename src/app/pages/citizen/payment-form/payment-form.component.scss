@@ -1,0 +1,128 @@
+body {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //align-items: center;
+  //border: 1px solid red;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+body > div {
+  width: 100%;
+}
+
+.item-description {
+  flex-direction: column;
+}
+
+
+form {
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: #9af2;
+  //border: 3px solid #0002;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px 4px rgba(0, 100, 200, 0.1);
+
+  width: 22rem;
+  //width: 70vw;
+  //max-width: 710px;
+}
+
+.form-inputs-container {
+  display: flex;
+  flex-direction: column;
+  //flex-wrap: wrap;
+
+  flex-grow: 1;
+  flex-shrink: 1;
+
+
+  align-items: center;
+  justify-content: space-between;
+  //padding-top: 1rem;
+  padding-inline: 1rem;
+  //background: red;
+}
+
+.expireandcvv-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: 1rem;
+}
+
+.cool-backgroundio {
+  background: linear-gradient(45deg,
+    #3c31,
+    #09c1,
+    #30c1,
+    #60c1,
+    #90c1);
+  background-size: 150% 150%;
+}
+.cool-background {
+  background: white;
+  background-size: 150% 150%;
+}
+
+button {
+  height: 50px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+
+.form-group {
+  //background: yellow;
+  margin: 0.5rem;
+  margin-inline: 1rem;
+  align-self: stretch;
+  //height: 4rem;
+}
+
+.form-group > label {
+  margin-left: 0.5rem;
+  color: #000;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+form > button {
+  margin: 1rem;
+  margin-inline: 2rem;
+  //width: 50%;
+}
+
+
+
+input {
+  width: 11rem;
+}
+
+
+
+body, input, button {
+  font-size: 0.8rem;
+}
+
+
+h4{
+  font-size: 1.2rem;
+}
+
+
+#inputExpireDate {
+  width: 5.5rem;
+}
+#inputCVV {
+  width: 4.5rem;
+}
+

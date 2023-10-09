@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Color} from "chart.js";
 import {Citizen} from "../../../models/citizen";
 
@@ -7,13 +7,19 @@ import {Citizen} from "../../../models/citizen";
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss']
 })
-export class PieChartComponent {  // https://www.digitalocean.com/community/tutorials/angular-chartjs-ng2-charts
-  @Input() separationPerformancePercentage: number = 0
+export class PieChartComponent implements OnInit{  // https://www.digitalocean.com/community/tutorials/angular-chartjs-ng2-charts
+  @Input() separationPerformancePercentage!: number
   @Input() wasteTypes!: string[]
   @Input() wasteVolumeGenerated!: number[]
 
   @Input() customColors: Color[] = ['#333', '#FF5733', '#36A2EB', '#55aa44', '#FFC107', '#9C27B0']
 
+  separationPerformanceColor: string | null = null
+
+  ngOnInit(): void {
+    this.separationPerformanceColor = Citizen.getSeparationPerformanceColor(this.separationPerformancePercentage)
+
+  }
 
   /* spostato in html dato che da problemi quando aggiungo altri plugins
   chartOptions = {
@@ -27,4 +33,6 @@ export class PieChartComponent {  // https://www.digitalocean.com/community/tuto
   }
   */
   protected readonly Citizen = Citizen;
+
+
 }

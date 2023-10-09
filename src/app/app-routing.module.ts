@@ -26,6 +26,7 @@ import {
 } from "./pages/municipal_office/citizen-disposals-municipal-office/citizen-disposals-municipal-office.component";
 import {WasteTypesWmcComponent} from "./pages/waste_management_company/waste-types-wmc/waste-types-wmc.component";
 import {LightPayComponent} from "./pages/external/light-pay/light-pay.component";
+import {PaymentFormComponent} from "./pages/citizen/payment-form/payment-form.component";
 
 const routes: Routes = [ // questo sarà un array di hops (di paths che sono supportati dall'applicazione)
   { path: '', component: UsersComponent },              // Ogni route è definita da due attributi:
@@ -45,8 +46,8 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'citizen/disposals', component: DisposalsComponent },
   { path: 'municipal_office/citizen-info/disposals/:citizenId', component: CitizenDisposalsMunicipalOfficeComponent },
   { path: 'waste_management_company/waste-types', component: WasteTypesWmcComponent },
-  { path: 'external/light-pay/:taxId', component: LightPayComponent
-  }
+  { path: 'external/light-pay/:taxId', component: LightPayComponent},
+  { path: 'citizen/payment-form/:taxId', component: PaymentFormComponent}
 ]
 
 @NgModule({

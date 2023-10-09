@@ -44,6 +44,7 @@ import { WasteTypesWmcComponent } from './pages/waste_management_company/waste-t
 import { LightPayComponent } from './pages/external/light-pay/light-pay.component';
 import {rxStompServiceFactory} from "./stomp/rx-stomp-service-factory";
 import {RxStompService} from "./stomp/rx-stomp.service";
+import { PaymentFormComponent } from './pages/citizen/payment-form/payment-form.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import {RxStompService} from "./stomp/rx-stomp.service";
     NavbarCitizenComponent,
     NavbarWasteManagementCompanyComponent,
     WasteTypesWmcComponent,
-    LightPayComponent
+    LightPayComponent,
+    PaymentFormComponent
   ],
     imports: [
         BrowserModule,

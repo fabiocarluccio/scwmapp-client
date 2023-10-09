@@ -4,6 +4,7 @@ import {ExceptionManagerService} from "../../../services/exception-manager.servi
 import {Citizen} from "../../../models/citizen";
 import {CitizenFilter, CitizenSorting} from "../../../models/citizen-filtering-enum";
 import {DisposalService} from "../../../services/disposal.service";
+import {TaxService} from "../../../services/tax.service";
 
 @Component({
   selector: 'app-citizens-list',
@@ -23,6 +24,7 @@ export class CitizensListComponent implements OnInit {
 
   constructor(public citizenService: CitizenService,
               public disposalService: DisposalService,
+              private taxService: TaxService,
               private exceptionManager: ExceptionManagerService) {
   }
 
@@ -55,10 +57,34 @@ export class CitizensListComponent implements OnInit {
           });
         }
 
+        // Ottengo stato tasse di tutti i cittadini
+        this.taxService.getCitizensTaxStatus().then(response => {
 
-        this.orderByName()
+          // Eseguo mapping Cittadino-stato tasse
+          console.log(response)
 
-        console.log(this.citizenService.citizens)
+          if (Array.isArray(response)) {
+            response.forEach((item: any) => {
+              // Effettuo ricerca cittadino per citizenID
+              const foundCitizen = this.citizenService.citizens.find((citizen) => citizen.id === item.citizenID)
+              if (!foundCitizen) {
+                console.log('Cittadino', item.citizenID,' non trovato.');
+              } else {
+                foundCitizen.taxesStatus = item.taxStatus
+              }
+            });
+          }
+
+
+          this.orderByName()
+
+          console.log(this.citizenService.citizens)
+
+
+        }).catch(error => {
+          // Mostro errore
+          window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+        });
 
       }).catch(error => {
         // Mostro errore

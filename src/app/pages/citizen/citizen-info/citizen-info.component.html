@@ -30,7 +30,7 @@
         <td colspan="7"><div class="separator"></div></td>
       </tr>
       <tr *ngFor="let tax of this.taxes">
-        <td>{{tax.id}}</td>
+        <td>{{tax.taxCode}}</td>
         <td>{{tax.year}}</td>
         <td>{{tax.amount}}</td>
         <td>{{tax.expireDate}}</td>
@@ -38,7 +38,9 @@
         <td *ngIf="tax.paymentDate"><a href="https://google.it">{{tax.id + "2930098"}}</a></td>
         <td *ngIf="!tax.paymentDate">-</td>
         <td *ngIf="tax.paymentDate">Pagato</td>
-        <td *ngIf="!tax.paymentDate"><a href="http://localhost:4200/external/light-pay/{{tax.id}}">Non Pagato</a></td>
+        <td *ngIf="!tax.paymentDate && isExpired(tax.expireDate)">Scaduto</td>
+        <td *ngIf="!tax.paymentDate && !isExpired(tax.expireDate)"><a href="http://localhost:4200/external/light-pay/{{tax.id}}">Non Pagato</a></td>
+        <td *ngIf="!tax.paymentDate && !isExpired(tax.expireDate)"><a routerLink="/citizen/payment-form/{{tax.id}}">Non Pagato</a></td>
       </tr>
 
     </table>

@@ -4,7 +4,7 @@
   </div>
 </div>
 -->
-<div class="container" *ngIf="this.wasteVolumeGenerated && this.customColors && this.wasteTypes">
+<div class="container" *ngIf="this.wasteVolumeGenerated && this.customColors && this.wasteTypes && separationPerformanceColor">
   <canvas
     baseChart
     [type]="'doughnut'"
@@ -34,7 +34,7 @@
   >
   </canvas>
 
-  <div class="percentage" style="{{'background: '+ Citizen.getSeparationPerformanceColor(separationPerformancePercentage)}};">
+  <div class="percentage" style="{{'background: '+ separationPerformanceColor}};">
     <h1>{{separationPerformancePercentage}}%</h1>
   </div>
 
