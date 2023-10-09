@@ -1,4 +1,4 @@
-interface PaymentRequest {
+export interface PaymentData {
   email: string
   fullName: string
   amount: number

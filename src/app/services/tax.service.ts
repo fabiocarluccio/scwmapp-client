@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, firstValueFrom, tap} from "rxjs";
 import {Tax} from "../models/tax";
 import {AllocationRequest} from "../models/allocationRequest";
+import {PaymentData} from "../models/payment-request";
 
 @Injectable({
   providedIn: 'root'
@@ -139,6 +140,22 @@ export class TaxService {
         console.error('Errore durante la richiesta GET:', error);
         throw error; // Rilancia l'errore come promessa respinta
 
+      })
+    ));
+  }
+
+
+  payTax(taxId: string, paymentData: PaymentData) {
+
+    return firstValueFrom(this.http.post(this.baseUrl + 'pay/' + taxId, paymentData, this.httpOptions).pipe(
+      tap(response => {
+        console.log('Richiesta POST riuscita:', response);
+        // Gestisci la risposta dal server qui, se necessario
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        // Gestisci l'errore qui, se necessario
+        throw error; // Rilancia l'errore come promessa respinta
       })
     ));
   }

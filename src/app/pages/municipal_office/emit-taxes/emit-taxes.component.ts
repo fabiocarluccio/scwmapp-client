@@ -37,6 +37,8 @@ export class EmitTaxesComponent implements OnInit {
     });
   }
 
+
+
   onSubmit(emitTaxesForm: any) {
     console.log(this.wasteTypes)
     console.log(this.feeAmounts)

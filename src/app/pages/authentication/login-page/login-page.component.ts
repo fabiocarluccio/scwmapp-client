@@ -14,7 +14,7 @@ export class LoginPageComponent {
   user:User = {} as User;
 
   constructor(private userService:UserService,
-              private route:Router,
+              private router:Router,
               private exceptionManager:ExceptionManagerService,
               private smartBinService: SmartBinService) {
   }
@@ -51,17 +51,17 @@ export class LoginPageComponent {
           case "MunicipalOffice":
             console.log("i am a MunicipalOffice")
             localStorage.setItem('currentRole', "MunicipalOffice")
-            this.route.navigateByUrl('municipal_office/citizens-list')
+            this.router.navigateByUrl('municipal_office/citizens-list')
             break
           case "WasteManagementCompany":
             console.log("i am a WasteManagementCompany")
             localStorage.setItem('currentRole', "WasteManagementCompany")
-            this.route.navigateByUrl('waste_management_company/smartbin-dashboard')
+            this.router.navigateByUrl('waste_management_company/smartbin-dashboard')
             break
           case "Citizen":
             console.log("i am a Citizen")
             localStorage.setItem('currentRole', "Citizen")
-            this.route.navigateByUrl('citizen')
+            this.router.navigateByUrl('citizen')
             break
           default:
             console.log("i am an ADMIN")
