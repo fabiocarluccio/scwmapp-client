@@ -42,7 +42,7 @@ export class PaymentFormComponent implements OnInit{
   }
 
   onSubmit(emitTaxesForm: any) {
-
+    console.log("inviare dati a stripe")
   }
 
   handleSpaces($event: Event | undefined) {

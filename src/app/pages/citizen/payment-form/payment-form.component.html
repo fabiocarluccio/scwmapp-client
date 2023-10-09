@@ -1,4 +1,4 @@
-<body>
+<body *ngIf="tax">
   <h1>Pagamento Tassa</h1>
 
   <form #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)" class="cool-background">
@@ -7,10 +7,10 @@
 
     <section style="padding-left: 2.5rem">
       <p style="margin-bottom: 2px; color: darkslategray">Codice tassa</p>
-      <p style="font-size: 1rem; margin-top: 0; color: darkslategray"><b>6522b6627c9c7c0db1718797</b></p>
+      <p style="font-size: 1rem; margin-top: 0; color: darkslategray"><b>{{tax.taxCode}}</b></p>
 
       <p style="margin-bottom: 2px; color: darkslategray">Importo</p>
-      <p style="font-size: 1rem; margin-top: 0; color: darkslategray"><b>50.99 EUR</b></p>
+      <p style="font-size: 1rem; margin-top: 0; color: darkslategray"><b>{{tax.amount}} EUR</b></p>
     </section>
 
 

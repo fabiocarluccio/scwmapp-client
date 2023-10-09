@@ -130,7 +130,7 @@ export class TaxService {
 
 
   getTax(taxId: string) {
-    return firstValueFrom(this.http.get(this.baseUrl + "citizen/" + taxId, this.httpOptions).pipe(
+    return firstValueFrom(this.http.get(this.baseUrl + taxId, this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
 
