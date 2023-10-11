@@ -52,8 +52,9 @@
           <input
             minlength="5"
             maxlength="5"
-            [(ngModel)]="expireDate" name="inputExpireDate"
             required
+            [(ngModel)]="expireDate" name="inputExpireDate"
+            (input)="handleSlash($event)"
             #inputExpireDate = "ngModel"
             [ngClass]="{'is-invalid': inputExpireDate.errors && inputExpireDate.touched}"
             type="text" class="form-control" id="inputExpireDate" placeholder="MM/YY">

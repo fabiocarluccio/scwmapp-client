@@ -102,4 +102,51 @@ export class PaymentFormComponent implements OnInit{
       this.cardNumber = spacedValue;
     }
   }
+
+  handleSlash(event: Event) {
+    // Accedi all'evento di input
+    const inputEvent = event as InputEvent;
+
+    // Ottieni l'elemento di input corrente
+    const inputElement = inputEvent.target as HTMLInputElement;
+
+    // Ottieni il valore corrente dell'input
+    let inputValue = inputElement.value;
+
+    // Rimuovi tutti i caratteri non numerici
+    inputValue = inputValue.replace(/\D/g, '');
+
+    // Salva la posizione del cursore prima dell'aggiornamento
+    const cursorPosition = inputElement.selectionStart || 0;
+
+    // Se l'utente ha premuto il tasto Cancella (Backspace)
+    if (inputEvent.inputType === 'deleteContentBackward') {
+      if (((inputEvent.target as HTMLInputElement).value).length == 2) {
+        inputValue = inputValue.slice(0, 1);
+      } else if (inputValue.length == 2) {
+        inputValue = inputValue.slice(0, 2) + '/';
+      } else if (inputValue.length > 2) {
+        inputValue = inputValue.slice(0, 2) + '/' + inputValue.slice(2);
+      }
+    } else {
+      // Inserisci lo slash tra i primi due e gli ultimi due caratteri
+      if (inputValue.length === 2 && cursorPosition === 2) {
+        inputValue = inputValue.slice(0, 2) + '/' + inputValue.slice(2);
+      } else if (inputValue.length === 4 && cursorPosition === 2) {
+        inputValue = inputValue.slice(0, 2) + '/' + inputValue.slice(2);
+      } else if (inputValue.length > 2) {
+        inputValue = inputValue.slice(0, 2) + '/' + inputValue.slice(2);
+      }
+    }
+
+    // Assegna il valore modificato all'input
+    this.expireDate = inputValue;
+
+    // Ripristina la posizione del cursore dopo l'aggiornamento
+    inputElement.setSelectionRange(cursorPosition, cursorPosition);
+  }
+
+
+
+
 }
