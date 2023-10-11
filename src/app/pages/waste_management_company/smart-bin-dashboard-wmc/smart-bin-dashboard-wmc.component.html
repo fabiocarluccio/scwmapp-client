@@ -29,7 +29,7 @@
       <button style="margin-top: 10px;" class="btn btn-primary" (click)="toggleCleaningMode()" *ngIf="!cleaningMode">🧹Istanzia Pulizia</button>
       <div style="margin-top: 10px;" class ="cleaning-buttons" *ngIf="cleaningMode">
         <button class="btn btn-danger" (click)="toggleCleaningMode()">Annulla</button>
-        <button class="btn btn-primary" (click)="executeCleaningPath()" style="flex-grow: 1; flex-basis: 200%;">🧹Avvia Pulizia</button>
+        <button class="btn btn-primary" (click)="executeCleaningPath()" [disabled]="smartBinCleaningPath.length == 0" style="flex-grow: 1; flex-basis: 200%;">🧹Istanzia Pulizia</button>
       </div>
 
       <div class="request-list">

@@ -14,6 +14,7 @@ export class SmartBinService {
 
   path: string = '/assets/data/smartbins.json';
   baseUrl:string = '';//"http://localhost:8081/api/smartbin/";
+  baseUrlCleaningPath: string = '';
   smartBins: SmartBin[] = [] as SmartBin[];
   allocationRequests: AllocationRequest[] = [] as AllocationRequest[];
   //wasteTypes: WasteType[] = [] as WasteType[];
@@ -50,6 +51,7 @@ export class SmartBinService {
   constructor(private http: HttpClient,
               private hostConfigService: HostConfigService) {
     this.baseUrl = hostConfigService.SMARTBINMS_BASEURL
+    this.baseUrlCleaningPath = hostConfigService. SMARTBINCleaningPathMS_BASEURL
   }
 
   loadAllocatedBins() {
@@ -139,6 +141,33 @@ export class SmartBinService {
   getWasteTypes(){
     let wasteTypes: WasteType[] = JSON.parse(localStorage.getItem("wasteTypes")!)
     return wasteTypes
+  }
+
+  addCleaningPath(smartBinCleaningPath: SmartBin[]) {
+
+    // Creazione array cleaningPath
+    const cleaningPath: string[]= []
+    for (const smartBin of smartBinCleaningPath) {
+      cleaningPath.push(smartBin.id!)
+    }
+
+
+    const body = {
+      "smartBinIDPath": cleaningPath,
+      "timestamp": new Date
+    }
+
+    return firstValueFrom(this.http.post(this.baseUrlCleaningPath + 'add', body, this.httpOptions).pipe(
+      tap(response => {
+        console.log('Richiesta POST riuscita:', response);
+        // Gestisci la risposta dal server qui, se necessario
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        // Gestisci l'errore qui, se necessario
+        throw error; // Rilancia l'errore come promessa respinta
+      })
+    ));
   }
 
 }

@@ -18,6 +18,7 @@ export class HostConfigService {
 
   LOGINMS_BASEURL = ''
   SMARTBINMS_BASEURL = ''
+  SMARTBINCleaningPathMS_BASEURL = ''
   CITIZENMS_BASEURL = ''
   DISPOSALMS_BASEURL = ''
   //TODO nonesisteALARMMS_BASEURL = 'http://' + this.HOST + ':' + this.ALARMMS_PORT + '/api/alarm/'
@@ -31,6 +32,7 @@ export class HostConfigService {
   updateEndpoints() {
     this.LOGINMS_BASEURL = 'http://' + this.HOST + ':' + this.LOGINMS_PORT + '/api/authentication/'
     this.SMARTBINMS_BASEURL = 'http://' + this.HOST + ':' + this.SMARTBINMS_PORT + '/api/smartbin/'
+    this.SMARTBINCleaningPathMS_BASEURL = 'http://' + this.HOST + ':' + this.SMARTBINMS_PORT + '/api/cleaningPath/'
     this.CITIZENMS_BASEURL = 'http://' + this.HOST + ':' + this.CITIZENMS_PORT + '/api/citizen/'
     this.DISPOSALMS_BASEURL = 'http://' + this.HOST + ':' + this.DISPOSALMS_PORT + '/api/disposal/'
     //TODO nonesisteALARMMS_BASEURL = 'http://' + this.HOST + ':' + this.ALARMMS_PORT + '/api/alarm/'

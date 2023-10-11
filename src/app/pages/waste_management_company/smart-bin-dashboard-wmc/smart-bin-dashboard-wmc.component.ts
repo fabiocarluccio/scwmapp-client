@@ -84,15 +84,11 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
     this.toggleCleaningMode()
   }
 
-  cleanPath() { // TODO - Da riaggiornare con comunicazione con MS
+  cleanPath() {
+    // Aggiunta percorso pulizia
+    this.smartBinService.addCleaningPath(this.smartBinCleaningPath)
 
-    for (const smartBin of this.smartBinService.smartBins) {
-      if (this.smartBinCleaningPath.includes(smartBin)) {
-        smartBin.currentCapacity = 0
-        // TODO - come aggiorno la mappa?
-      }
-    }
-
+    // TODO aggiornare eventuale lista percorsi pulizia
   }
 
   private sortBins() {
