@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Host, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {SmartBin} from "../models/smartbin";
 import {catchError, firstValueFrom, tap} from "rxjs";
 import {AllocationRequest} from "../models/allocationRequest";
 import {WasteType} from "../models/wasteType";
 import {CommunicationService} from "./communication.service";
+import {HostConfigService} from "./host-config.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import {CommunicationService} from "./communication.service";
 export class SmartBinService {
 
   path: string = '/assets/data/smartbins.json';
+  baseUrl:string = '';//"http://localhost:8081/api/smartbin/";
   smartBins: SmartBin[] = [] as SmartBin[];
   allocationRequests: AllocationRequest[] = [] as AllocationRequest[];
   //wasteTypes: WasteType[] = [] as WasteType[];
@@ -43,9 +45,12 @@ export class SmartBinService {
     return ""
   }
 
-  baseUrl:string = "http://localhost:8081/api/smartbin/";
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient,
+              private hostConfigService: HostConfigService) {
+    this.baseUrl = hostConfigService.SMARTBINMS_BASEURL
+  }
 
   loadAllocatedBins() {
     return firstValueFrom(this.http.get(this.baseUrl + 'state?state=ALLOCATED', this.httpOptions).pipe(

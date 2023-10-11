@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {User} from "../models/user";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, firstValueFrom, tap, throwError} from "rxjs";
+import {HostConfigService} from "./host-config.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  baseUrl:string = "http://localhost:8080/api/authentication/";
+  baseUrl:string = '';//"http://localhost:8080/api/authentication/";
   user:User = {} as User;
 
   httpOptions = {
@@ -32,7 +33,10 @@ export class UserService {
     return ""
   }
 
-  constructor(private http:HttpClient) {
+  constructor(private http: HttpClient,
+              hostConfigService: HostConfigService) {
+    this.baseUrl = hostConfigService.LOGINMS_BASEURL
+
     // TODO il token va preso mediante chiamata API diretta (authentication)
     //localStorage.setItem('currentUser', JSON.stringify({token:'sduinyqwec789d23ycueqwibhceqdijuy'}))
 

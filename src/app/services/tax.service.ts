@@ -5,6 +5,7 @@ import {catchError, firstValueFrom, tap} from "rxjs";
 import {Tax} from "../models/tax";
 import {AllocationRequest} from "../models/allocationRequest";
 import {PaymentData} from "../models/payment-request";
+import {HostConfigService} from "./host-config.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class TaxService {
   taxes: Tax[] = [] as Tax[];
   //tax: Tax = {} as Tax
 
-  baseUrlCitizen:string = "http://localhost:8085/api/taxStatus/";
-  baseUrl:string = "http://localhost:8085/api/tax/";
+  baseUrlCitizen:string = '';//"http://localhost:8085/api/taxStatus/";
+  baseUrl:string = '';//"http://localhost:8085/api/tax/";
 
   private _httpOptions: any
 
@@ -46,7 +47,11 @@ export class TaxService {
     return ""
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private hostConfigService: HostConfigService) {
+    this.baseUrl = hostConfigService.TAXMS_BASEURL
+    this.baseUrlCitizen = hostConfigService.TAXCitizenMS_BASEURL
+  }
 
   // Serve per capire se le tasse sono state emesse o meno per l'anno corrente TODO (correggere "corrente" con "precedente" una volta sistemata la cosa dell'anno delle tasse
   getTaxStatus() {

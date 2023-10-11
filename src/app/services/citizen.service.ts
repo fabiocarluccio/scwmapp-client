@@ -3,6 +3,7 @@ import {Citizen} from "../models/citizen";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, firstValueFrom, tap} from "rxjs";
 import {AllocationRequest} from "../models/allocationRequest";
+import {HostConfigService} from "./host-config.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class CitizenService {
   citizenPath: string = '/assets/data/citizen.json';
   citizens: Citizen[] = [] as Citizen[];
 
-  baseUrl:string = "http://localhost:8082/api/citizen/";
+  baseUrl:string = '';//"http://localhost:8082/api/citizen/";
 
 
   private _httpOptions: any
@@ -42,7 +43,10 @@ export class CitizenService {
     return ""
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private hostConfigService: HostConfigService) {
+    this.baseUrl = hostConfigService.CITIZENMS_BASEURL
+  }
 
   addCitizen(citizen: Citizen) {
     console.log(citizen)

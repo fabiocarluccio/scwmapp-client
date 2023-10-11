@@ -30,7 +30,6 @@ export class NavbarWasteManagementCompanyComponent implements OnInit, OnDestroy 
 
   ngOnInit(): void {
 
-
     this.topicSubscription = this.rxStompService
       .watch('/topic/alarm')
       .subscribe((message: Message) => {

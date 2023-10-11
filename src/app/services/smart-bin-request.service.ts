@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AllocationRequest} from "../models/allocationRequest";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, firstValueFrom, pipe, tap} from "rxjs";
+import {HostConfigService} from "./host-config.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {catchError, firstValueFrom, pipe, tap} from "rxjs";
 export class SmartBinRequestService {
 
   path: string = '/assets/data/allocation_requests.json';
-  baseUrl:string = "http://localhost:8081/api/smartbin/";
+  baseUrl:string = '';//"http://localhost:8081/api/smartbin/";
 
   smartBinRequests: AllocationRequest[] = [] as AllocationRequest[];
 
@@ -40,7 +41,10 @@ export class SmartBinRequestService {
     return ""
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private hostConfigService: HostConfigService) {
+    this.baseUrl = hostConfigService.SMARTBINMS_BASEURL
+  }
 
   sendAllocationRequest(allocationRequest: AllocationRequest) {
     console.log(allocationRequest)

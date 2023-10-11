@@ -45,6 +45,7 @@ import { LightPayComponent } from './pages/external/light-pay/light-pay.componen
 import {rxStompServiceFactory} from "./stomp/rx-stomp-service-factory";
 import {RxStompService} from "./stomp/rx-stomp.service";
 import { PaymentFormComponent } from './pages/citizen/payment-form/payment-form.component';
+import {HostConfigService} from "./services/host-config.service";
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { PaymentFormComponent } from './pages/citizen/payment-form/payment-form.
       provide: RxStompService,
       useFactory: rxStompServiceFactory,
     },
+    HostConfigService
   ],
   bootstrap: [
     AppComponent

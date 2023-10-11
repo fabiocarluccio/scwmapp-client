@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SmartBinService} from "./services/smart-bin.service";
+import {HostConfigService} from "./services/host-config.service";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,9 @@ import {SmartBinService} from "./services/smart-bin.service";
 export class AppComponent implements OnInit{
   title = 'scwmapp';
 
-  constructor(private smartBinService: SmartBinService) {
+  constructor(private hostConfigService: HostConfigService) {
+    hostConfigService.updateEndpoints()
+    console.log("Endpoints aggiornati")
   }
 
   ngOnInit(): void {

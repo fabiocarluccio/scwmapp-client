@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, firstValueFrom, tap} from "rxjs";
 import {Disposal} from "../models/disposal";
+import {HostConfigService} from "./host-config.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class DisposalService {
   //disposal: Disposal = {} as Disposal
 
   //localhost:8083/api/disposal/metrics/651effb337d6e9236b121340/performance/2023
-  baseUrl:string = "http://localhost:8083/api/disposal/";
+  baseUrl:string = '';//"http://localhost:8083/api/disposal/";
 
   private _httpOptions: any
 
@@ -43,7 +44,10 @@ export class DisposalService {
     return ""
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private hostConfigService: HostConfigService) {
+    this.baseUrl = hostConfigService.DISPOSALMS_BASEURL
+  }
 
 
   loadWasteMetricsForYear(year: number) {
