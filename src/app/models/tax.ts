@@ -5,4 +5,5 @@ export interface Tax {
   amount: number
   expireDate: string
   paymentDate?: string
+  receipt?: string
 }
