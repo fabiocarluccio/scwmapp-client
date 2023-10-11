@@ -80,8 +80,8 @@
 
 
     <button
-      [disabled] = "!emitTaxesForm.valid"
+      [disabled] = "!emitTaxesForm.valid || isEmittingTaxes"
       type="submit"
-      class="btn btn-primary">Emetti tasse per anno 2023</button>
+      class="btn btn-primary">{{paymentButtonMessage}}</button>
   </form>
 </body>

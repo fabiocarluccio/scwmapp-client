@@ -18,12 +18,17 @@ export class EmitTaxesComponent implements OnInit {
 
   showForm: boolean = false
 
+  previousYear = new Date().getFullYear() - 1;
+  paymentButtonMessage = ""
+  isEmittingTaxes = false
 
 
 
   constructor(private smartBinService: SmartBinService,
               private taxService: TaxService,
               private exceptionManager: ExceptionManagerService) {
+    this.paymentButtonMessage = "Emetti tasse per l'anno " + this.previousYear
+
   }
 
   ngOnInit(): void {
@@ -40,6 +45,9 @@ export class EmitTaxesComponent implements OnInit {
 
 
   onSubmit(emitTaxesForm: any) {
+    this.isEmittingTaxes = true
+    this.paymentButtonMessage = "Emissione tasse..."
+
     console.log(this.wasteTypes)
     console.log(this.feeAmounts)
 
@@ -56,13 +64,18 @@ export class EmitTaxesComponent implements OnInit {
 
     this.taxService.emitTaxes(payload).then(response => {
       console.log(response)
+      this.isEmittingTaxes = false
+      this.paymentButtonMessage = "Emetti tasse per l'anno " + this.previousYear
       this.showForm = false
     })
     .catch(error => {
+      this.isEmittingTaxes = false
+      this.paymentButtonMessage = "Emetti tasse per l'anno " + this.previousYear
       // Mostro errore
       window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
     });
   }
 
 
+  protected readonly Date = Date;
 }
