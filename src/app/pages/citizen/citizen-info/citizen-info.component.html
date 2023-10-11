@@ -35,11 +35,11 @@
         <td>{{tax.amount}}</td>
         <td>{{tax.expireDate}}</td>
         <td>{{tax.paymentDate ? tax.paymentDate : "-"}}</td>
-        <td *ngIf="tax.paymentDate"><a href="https://google.it">{{tax.id + "2930098"}}</a></td>
-        <td *ngIf="!tax.paymentDate">-</td>
+        <td *ngIf="tax.receipt"><a href="{{tax.receipt}}">Ricevuta</a></td>
+        <td *ngIf="!tax.receipt">-</td>
         <td *ngIf="tax.paymentDate">Pagato</td>
         <td *ngIf="!tax.paymentDate && isExpired(tax.expireDate)">Scaduto</td>
-        <td *ngIf="!tax.paymentDate && !isExpired(tax.expireDate)"><a href="http://localhost:4200/external/light-pay/{{tax.id}}">Non Pagato</a></td>
+        <!--<td *ngIf="!tax.paymentDate && !isExpired(tax.expireDate)"><a href="http://localhost:4200/external/light-pay/{{tax.id}}">Non Pagato</a></td>-->
         <td *ngIf="!tax.paymentDate && !isExpired(tax.expireDate)"><a routerLink="/citizen/payment-form/{{tax.id}}">Non Pagato</a></td>
       </tr>
 
@@ -118,7 +118,7 @@
     </table>
 
     <!--Grafico a torta con testo che indica se è un bravo cittadino-->
-    <app-pie-chart
+    <app-pie-chart style="margin-left: -10px; margin-top: 20px;"
       [separationPerformancePercentage]="Citizen.getSeparationPerformance(citizen)"
       [wasteTypes]="Citizen.getWasteTypeNames(citizen)"
       [wasteVolumeGenerated]="Citizen.getWasteVolumeGenerated(citizen)"
