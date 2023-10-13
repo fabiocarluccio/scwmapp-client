@@ -28,12 +28,20 @@ button {
 }
 
 .cool-background {
+
   background: linear-gradient(45deg,
-    #3c31,
-    #09c1,
-    #30c1,
-    #60c1,
-    #90c1);
+    #6f5e9933,
+    #6f5e9929,
+    #6f5e9921,
+    #6f5e9931,
+    #6f5e9911);
+  /*background: linear-gradient(45deg,
+    #5f9ea099,
+    #5f9ea055,
+    #5f9ea044,
+    #5f9ea099,
+    #5f9ea099);
+*/
   background-size: 150% 150%;
 }
 
@@ -52,6 +60,10 @@ button {
 
 
 form {
+
+  box-shadow: 0px 4px 8px 4px rgba(150, 150, 150, 0.1);
+
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -59,7 +71,7 @@ form {
   max-width: 546px;
   //align-items: center;
   background-color: #9af2;
-  border: 1px solid #0007;
+  border: 1px solid #6f5e9966;
   border-radius: 8px;
   align-self: center;
 }
@@ -154,6 +166,7 @@ td {
   height: 2px;
   width: 100%;
   background: cadetblue;
+  background: #6f5e99ff;
 }
 
 .table-header {
@@ -169,4 +182,18 @@ td {
   background: black;
   display: inline-block;
   margin-right: 3px;
+}
+
+
+button {
+  background: #6f5e99ff;
+  color: white;
+}
+button:disabled {
+  background: #6f5e99ff;
+  color: white;
+}
+button:hover {
+  background: #635489ff;
+  color: white;
 }

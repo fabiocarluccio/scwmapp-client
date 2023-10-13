@@ -46,6 +46,7 @@ import {rxStompServiceFactory} from "./stomp/rx-stomp-service-factory";
 import {RxStompService} from "./stomp/rx-stomp.service";
 import { PaymentFormComponent } from './pages/citizen/payment-form/payment-form.component';
 import {HostConfigService} from "./services/host-config.service";
+import { CleaningPathItemCardComponent } from './pages/components/cleaning-path-item-card/cleaning-path-item-card.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import {HostConfigService} from "./services/host-config.service";
     NavbarWasteManagementCompanyComponent,
     WasteTypesWmcComponent,
     LightPayComponent,
-    PaymentFormComponent
+    PaymentFormComponent,
+    CleaningPathItemCardComponent
   ],
     imports: [
         BrowserModule,

@@ -6,6 +6,7 @@ import {AllocationRequest} from "../models/allocationRequest";
 import {WasteType} from "../models/wasteType";
 import {CommunicationService} from "./communication.service";
 import {HostConfigService} from "./host-config.service";
+import {CleaningPath} from "../models/cleaning-path";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class SmartBinService {
   baseUrlCleaningPath: string = '';
   smartBins: SmartBin[] = [] as SmartBin[];
   allocationRequests: AllocationRequest[] = [] as AllocationRequest[];
+  cleaningPathList: CleaningPath[] = [] as CleaningPath[];
   //wasteTypes: WasteType[] = [] as WasteType[];
 
   private _httpOptions: any
@@ -62,7 +64,6 @@ export class SmartBinService {
         // ordino per percentuale di capienza
         if(this.smartBins != null)
           this.smartBins = this.smartBins.sort((a, b) => b.currentCapacity! / b.totalCapacity! - a.currentCapacity! / a.totalCapacity!)
-
       }),
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
@@ -169,5 +170,20 @@ export class SmartBinService {
       })
     ));
   }
+
+  loadCleaningPathList() {
+    return firstValueFrom(this.http.get(this.baseUrlCleaningPath + 'status?done=false', this.httpOptions).pipe(
+      tap((response: any) => {
+        console.log('Richiesta GET riuscita:', response);
+        this.cleaningPathList = response as CleaningPath[]
+      }),
+      catchError(error => {
+        console.error('Errore durante la richiesta POST:', error);
+        throw error; // Rilancia l'errore come promessa respinta
+      })
+    ));
+  }
+
+
 
 }

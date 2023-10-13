@@ -33,7 +33,21 @@
       </div>
 
       <div class="request-list">
-        <h2>Richieste in attesa️</h2>
+        <h2>Percorsi di pulizia in attesa di completamento️</h2>
+
+        <p *ngIf="this.smartBinService.cleaningPathList == null || this.smartBinService.cleaningPathList.length == 0" style="color:#444444; font-size: 1rem;">
+          ✅ Tutti i percorsi di pulizia sono stati effettuati.
+        </p>
+        <div *ngIf="this.smartBinService.cleaningPathList && this.smartBinService.cleaningPathList.length > 0">
+          <app-cleaning-path-item-card
+            *ngFor="let cleaningPath of this.smartBinService.cleaningPathList"
+            [cleaningPath]=cleaningPath
+            [isCollapsed]="true">
+          </app-cleaning-path-item-card>
+        </div>
+      </div>
+      <div class="request-list">
+        <h2>Richieste allocazione in attesa️</h2>
 
         <p *ngIf="this.smartBinRequestService.smartBinRequests == null || this.smartBinRequestService.smartBinRequests.length == 0" style="color:#444444; font-size: 1rem;">
           ✅ Nessuna richiesta in attesa.

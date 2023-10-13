@@ -180,3 +180,23 @@ body, button {
 button {
   height: auto;
 }
+
+
+.btn-primary {
+  background: #6f5e99ff;
+  border: 0;
+  color: white;
+}
+.btn-primary:disabled {
+  background: #6f5e99ff;
+  border: 0;
+  color: white;
+}
+.btn-primary:hover {
+  background: #635489ff;
+  border: 0;
+  color: white;
+}
+
+
+

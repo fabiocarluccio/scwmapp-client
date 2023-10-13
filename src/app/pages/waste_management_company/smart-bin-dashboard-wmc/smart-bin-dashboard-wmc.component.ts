@@ -7,6 +7,7 @@ import {SmartBinRequestService} from "../../../services/smart-bin-request.servic
 import {ExceptionManagerService} from "../../../services/exception-manager.service";
 import {Subscription} from "rxjs";
 import {Message} from "@stomp/stompjs";
+import {CleaningPath} from "../../../models/cleaning-path";
 
 @Component({
   selector: 'app-smart-bin-dashboard-wmc',
@@ -42,9 +43,14 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
       //this.smartBins = this.smartBinService.smartBins                             // load smartbins
 
       this.smartBinRequestService.loadPendingRequests().then(response => {
-
         //this.smartBinRequests = this.smartBinRequestService.smartBinRequests      // load allocation requests
 
+        this.smartBinService.loadCleaningPathList().then(response => {              // load cleaning path list
+
+        }).catch(error => {
+          // Mostro errore
+          window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+        });
       }).catch(error => {
         // Mostro errore
         window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
@@ -89,12 +95,6 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
     this.smartBinService.addCleaningPath(this.smartBinCleaningPath)
 
     // TODO aggiornare eventuale lista percorsi pulizia
-  }
-
-  private sortBins() {
-    // La funzione per ordinare gli SmartBin (è fiacca perche va ordinata la capacita corrente in percentuale!! ma comunque
-    // ho implementato il metodo dentro il servizio degli smartbins
-    this.smartBinService.smartBins.sort((a, b) => b.currentCapacity! - a.currentCapacity!);
   }
 
 

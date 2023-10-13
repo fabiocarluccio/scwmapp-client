@@ -1,0 +1,9 @@
+<body *ngIf="cleaningPath">
+<div class="item-card ">
+
+  <div class="bin-item-content clickable" (click)="toggleCollapseView()">
+    <h4>{{getFormattedDate()}}</h4>
+    <p style="">Numero SmartBins: <b>{{getNumberOfBins()}}</b></p>
+  </div>
+</div>
+</body>

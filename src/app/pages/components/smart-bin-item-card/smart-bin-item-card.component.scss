@@ -22,11 +22,15 @@
 }
 .bin-item-card-selection-mode {
   border: 1px solid #0004;
+  border: 1px solid #0004;
   user-select: none;
 }
 .bin-item-card-selected {
   border: 1px solid #0073dd;
   background: #0073dd33;
+
+  border: 1px solid #6f5e99ff;
+  background: #6f5e9933;
 }
 .bin-item-content {
   min-width: 300px;
@@ -89,6 +93,7 @@
 
 .number-banner-selected {
   background-color: #0073dd;
+  background-color: #6f5e99ff;
   border: none;
 }
 
@@ -144,3 +149,5 @@ button {
 h4{
   font-size: 1.2rem;
 }
+
+

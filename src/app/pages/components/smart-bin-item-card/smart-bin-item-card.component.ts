@@ -61,4 +61,6 @@ export class SmartBinItemCardComponent {
     if(this.isSelected) style += " bin-item-card-selected "
     return style
   }
+
+  protected readonly localStorage = localStorage;
 }

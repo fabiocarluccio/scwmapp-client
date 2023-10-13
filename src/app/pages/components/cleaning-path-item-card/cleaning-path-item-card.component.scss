@@ -1,0 +1,129 @@
+app-map {
+  flex-shrink: 0;
+}
+
+.map-frame {
+  flex-basis: 150px;
+
+  border-radius: 8px;
+  border: 2px solid #0003;
+  margin-top: 5px;
+}
+
+.item-card {
+  border: 1px solid #0004;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  //padding-bottom: 13px;
+
+  margin-bottom: 10px;
+}
+.bin-item-content {
+  //width: 400px;
+  //background: #00eeff33;
+  //border: 1px solid #ccc;
+  border-radius: 4px;
+  //margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+
+  display: flex;
+  flex-direction: column;
+  //gap: 8px;
+  //justify-content: space-between;
+
+  flex-grow: 1;
+}
+.bin-item-description {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}
+.bin-type {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.bin-indicator {
+  width: 15px;
+  height: 15px;
+  //background: red;
+  border-radius: 4px;
+  display: inline-block;
+}
+.clickable {
+  cursor: pointer;
+}
+.clickable > h4 {
+  cursor: pointer;
+}
+
+
+ul, li {
+  list-style: none;
+}
+
+ul {
+
+  display: flex;
+  gap: 32px;
+  //background: pink;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: space-between;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  //background: red;
+}
+
+.allocation-decision {
+  display: flex;
+  justify-content: space-around;
+
+  gap: 10px;
+
+  margin-top: 10px;
+  //margin-left: 15px;
+  //margin-right: 15px;
+
+}
+.allocation-decision > * {
+  flex-grow: 1;
+}
+
+
+
+
+.green {
+  background-color: green;
+}
+.black {
+  background-color: black;
+}
+.purple {
+  background-color: purple;
+}
+
+
+body {
+  font-size: 0.8rem;
+}
+button {
+  font-size: 0.8rem;
+  padding: 3px;
+}
+
+
+h4{
+  font-size: 1.2rem;
+}
