@@ -24,6 +24,9 @@
            [style.height]="this.getCapacityPercentage()"
            [style.background-color]="this.getColorCapacity()">
       </div>
+      <div class="threshold-indicator"
+        [style.top]="(1-smartBin.capacityThreshold!) * 100 + '%'">
+      </div>
     </div>
   </div>
 </body>

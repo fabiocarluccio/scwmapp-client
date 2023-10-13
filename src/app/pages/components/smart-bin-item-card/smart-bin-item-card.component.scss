@@ -138,6 +138,17 @@
   border-radius: 4px;
 }
 
+.threshold-indicator {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  right: 0;
+  //top: 0%;
+  //height: 20%; /* Altezza minore rispetto al rettangolo posteriore */
+  background-color: #6f5e99ff;
+  border-radius: 4px;
+}
+
 body {
   font-size: 0.8rem;
 }
