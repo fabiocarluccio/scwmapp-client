@@ -1,7 +1,7 @@
 <body>
-  <div class="item-card ">
+  <div class="item-card clickable" (click)="toggleMapView()">
 
-    <div class="bin-item-content clickable" (click)="toggleMapView()">
+    <div class="bin-item-content clickable">
       <h4>{{this.smartBinRequest.smartBinName}}</h4>
 
       <div class="bin-item-description">
