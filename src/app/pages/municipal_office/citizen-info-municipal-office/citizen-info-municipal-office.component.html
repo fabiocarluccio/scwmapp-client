@@ -113,7 +113,7 @@
     </table>
 
     <!--Grafico a torta con testo che indica se è un bravo cittadino-->
-    <app-pie-chart
+    <app-pie-chart style="margin-left: -10px; margin-top: 20px;"
       [separationPerformancePercentage]="Citizen.getSeparationPerformance(citizen)"
       [wasteTypes]="Citizen.getWasteTypeNames(citizen)"
       [wasteVolumeGenerated]="Citizen.getWasteVolumeGenerated(citizen)"
