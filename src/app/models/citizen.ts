@@ -51,21 +51,8 @@ export class Citizen {
 
 
   static getSeparationPerformance(citizen: Citizen): number {
-    let mixedWaste = citizen.generatedVolume?.mixedWaste
-    let sortedWaste = 0
+    return 100 - Citizen.getPercentageOfTotalWaste(citizen.generatedVolume.mixedWaste, citizen)
 
-    if(!mixedWaste || mixedWaste == 0) {
-      return 100
-    }
-
-    for (const key in citizen.generatedVolume?.sortedWaste) {
-      //console.log(key)
-      //console.log(citizen.generatedVolume!.sortedWaste[key])
-      sortedWaste += citizen.generatedVolume?.sortedWaste[key]
-    }
-
-    const separationPerformance = sortedWaste/mixedWaste! * 100
-    return Number(separationPerformance.toFixed(0))
   }
 
   static getPercentageOfTotalWaste(weight: number, citizen: Citizen): number {
@@ -79,6 +66,7 @@ export class Citizen {
     }
 
     const totalWaste = sortedWaste + mixedWaste
+    console.log("weight: "+ weight + "; totalWaste: "+ totalWaste)
     const percentageOfTotal = weight/totalWaste * 100
     return Number(percentageOfTotal.toFixed(1))
   }
