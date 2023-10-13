@@ -9,7 +9,16 @@
       <p *ngIf="this.smartBins.length==0" style="color:#444444; font-size: 1rem;">
         ⏱️ Nessuno SmartBin è stato ancora allocato.
       </p>
-      <app-smart-bin-item-card [smartBin]=smartbin *ngFor="let smartbin of this.smartBins"></app-smart-bin-item-card>
+      <app-smart-bin-item-card
+        [smartBin]=smartbin *ngFor="let smartbin of this.smartBinsOverThreshold">
+      </app-smart-bin-item-card>
+
+      <div style="align-self: center;margin-top: 0.5rem; margin-bottom: 1rem; width: 90%; height: 2px; border-radius: 2px; background: cadetblue">
+      </div>
+
+      <app-smart-bin-item-card
+        [smartBin]=smartbin *ngFor="let smartbin of this.smartBinsUnderThreshold">
+      </app-smart-bin-item-card>
     </div>
 
     <div class="right-column">

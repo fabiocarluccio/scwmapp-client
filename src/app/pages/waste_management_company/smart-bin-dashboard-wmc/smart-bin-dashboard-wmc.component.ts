@@ -20,11 +20,25 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
 
   //smartBins: SmartBin[] = []
+
   get smartBinsSorted(): SmartBin[] { // inutile questo nel caso in cui non si inserisce filtraggio/ordinamento
     //this.sortBins();
     //return this.smartBins;
     return this.smartBinService.smartBins;
   }
+
+
+  get smartBinsOverThreshold(): SmartBin[] {
+    const smartBins = this.smartBinService.smartBins
+    const filteredSmartBins = smartBins.filter((smartBin) => smartBin.currentCapacity!/smartBin.totalCapacity! >= smartBin.capacityThreshold!)
+    return filteredSmartBins;
+  }
+  get smartBinsUnderThreshold(): SmartBin[] {
+    const smartBins = this.smartBinService.smartBins
+    const filteredSmartBins = smartBins.filter((smartBin) => smartBin.currentCapacity!/smartBin.totalCapacity! < smartBin.capacityThreshold!)
+    return filteredSmartBins;
+  }
+
 
   //smartBinRequests: AllocationRequest[] = []
 

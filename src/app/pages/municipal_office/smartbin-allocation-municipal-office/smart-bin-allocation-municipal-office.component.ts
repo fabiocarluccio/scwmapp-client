@@ -34,6 +34,18 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
               private communicationService: CommunicationService) {
   }
 
+
+  get smartBinsOverThreshold(): SmartBin[] {
+    const smartBins = this.smartBins
+    const filteredSmartBins = smartBins.filter((smartBin) => smartBin.currentCapacity!/smartBin.totalCapacity! >= smartBin.capacityThreshold!)
+    return filteredSmartBins;
+  }
+  get smartBinsUnderThreshold(): SmartBin[] {
+    const smartBins = this.smartBins
+    const filteredSmartBins = smartBins.filter((smartBin) => smartBin.currentCapacity!/smartBin.totalCapacity! < smartBin.capacityThreshold!)
+    return filteredSmartBins;
+  }
+
   ngOnInit(): void {
     this.wasteTypes = this.smartBinService.getWasteTypes()
     this.smartBinService.loadAllocatedBins().then(response => {
