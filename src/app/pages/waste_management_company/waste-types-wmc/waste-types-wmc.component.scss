@@ -1,5 +1,5 @@
 body {
-  margin-top: 32px;
+  margin-top: 92px;
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -193,7 +193,7 @@ button:disabled {
   background: #6f5e99ff;
   color: white;
 }
-button:hover {
+button:hover, button:focus {
   background: #635489ff;
   color: white;
 }

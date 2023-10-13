@@ -1,5 +1,5 @@
 body {
-  margin-top: 32px;
+  margin-top: 92px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -126,3 +126,19 @@ h4{
   width: 4.5rem;
 }
 
+
+.btn-primary {
+  background: #778899ff;
+  border: 0;
+  color: white;
+}
+.btn-primary:disabled {
+  background: #778899ff;
+  border: 0;
+  color: white;
+}
+.btn-primary:hover {//6f5e99->635489
+  background: #708389ff;
+  border: 0;
+  color: white;
+}

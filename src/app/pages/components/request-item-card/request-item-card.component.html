@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="map-frame" id="RequestMap-{{this.smartBinRequest.id}}" *ngIf="this.showMapView">
+    <div class="map-frame map-frame{{getCurrentRole()}}" id="RequestMap-{{this.smartBinRequest.id}}" *ngIf="this.showMapView">
       <app-map  [mapId]="'RequestMap-' + this.smartBinRequest.id" [focusLocation]="[this.smartBinRequest.position!.coordinates[1], this.smartBinRequest.position!.coordinates[0]]"></app-map>
     </div>
 

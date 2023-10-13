@@ -9,6 +9,12 @@ app-map {
   border: 2px solid #0003;
   margin-top: 5px;
 }
+.map-frame--MunicipalOffice {
+  border: 2px solid #5f9ea0aa;
+}
+.map-frame--WasteManagementCompany {
+  border: 2px solid #6f5e99aa;
+}
 
 .item-card {
   border: 1px solid #0004;
@@ -126,4 +132,21 @@ button {
 
 h4{
   font-size: 1.2rem;
+}
+
+
+.btn-primary {
+  background: #6f5e99ff;
+  border: 0;
+  color: white;
+}
+.btn-primary:disabled {
+  background: #6f5e99ff;
+  border: 0;
+  color: white;
+}
+.btn-primary:hover {
+  background: #635489ff;
+  border: 0;
+  color: white;
 }

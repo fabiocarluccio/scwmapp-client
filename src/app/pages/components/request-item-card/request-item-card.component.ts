@@ -63,4 +63,12 @@ export class RequestItemCardComponent {
       });
     console.log('accept')
   }
+
+  getCurrentRole() {
+    const currentRole = localStorage.getItem('currentRole')
+    if (currentRole) {
+      return "--" + currentRole
+    }
+    return ""
+  }
 }

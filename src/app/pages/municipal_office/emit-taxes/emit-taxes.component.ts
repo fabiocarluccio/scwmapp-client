@@ -35,7 +35,7 @@ export class EmitTaxesComponent implements OnInit {
     this.wasteTypes = this.smartBinService.getWasteTypes()
     this.taxService.getTaxStatus().then(response => {
       this.showForm = !response.data;
-
+      this.showForm = true // TODO DA RIMUOVEREEEE
     }).catch(error => {
       // Mostro errore
       window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));

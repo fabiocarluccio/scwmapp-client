@@ -11,10 +11,10 @@ nav {
 
   flex-wrap: wrap;
 
-  /*position: fixed;
+  position: fixed;
   width: 100%;
   top: 0;
-  z-index: 1000;*/
+  z-index: 1000;
 }
 
 .buttons-container > * {
@@ -48,7 +48,7 @@ button:hover {
   margin-left: 100px;
 }
 .logout-button:hover {
-  color: #f66;
+  //color: #f66;
 }
 
 

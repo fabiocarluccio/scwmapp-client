@@ -101,21 +101,15 @@ export class Citizen {
   static getSeparationPerformanceColor(separationPerformancePercentage: number): string {
 
     if(isNaN(separationPerformancePercentage)) {
-      return "#444444"
+      return "#222"
     }
-    if(separationPerformancePercentage > 80) {
-      return "#18AC91"
-    }
-    if(separationPerformancePercentage > 60) {
+    if(separationPerformancePercentage > 70) {
       return "#78BC81"
     }
     if(separationPerformancePercentage > 40) {
       return "#FFBE60"
     }
-    if(separationPerformancePercentage > 20) {
-      return "#FF8961"
-    }
-    return "#FF6961"
+    return "tomato"//"#EF7357"
   }
 
 

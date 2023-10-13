@@ -1,5 +1,5 @@
 body {
-  margin-top: 32px;
+  margin-top: 92px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,7 +36,7 @@ body {
   flex-basis: 350px;
   flex-shrink: 0;
   border-radius: 8px;
-  border: 2px solid #0003;
+  border: 2px solid #5f9ea0aa;
 }
 
 .info {// il <p> da problemi. come sta adesso va bene, ma se si fa un confronto tra quando commento il <p> e quando lo abilito, si noterà che la mappa cambia larghezza

@@ -17,7 +17,6 @@ export class SmartBinItemCardComponent {
 
   @Output() selectionEvent = new EventEmitter<any>();
 
-
   constructor(public smartBinService: SmartBinService) { }
 
   getCapacityPercentage(): string {
@@ -33,8 +32,8 @@ export class SmartBinItemCardComponent {
       case capacityPercentage < 0.25: return "#78BC81";
       case capacityPercentage < 0.5: return "#FFBE60";
       case capacityPercentage < 0.75: return "#FF8961";
-      case capacityPercentage < 1 && capacityPercentage != 1: return "#FF6961";
-      default: return "purple"
+      case capacityPercentage < 1 && capacityPercentage != 1: return "tomato";
+      default: return "#513"
     }
   }
 

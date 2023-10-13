@@ -96,6 +96,16 @@ body {
 
 .item-card {
   background: #eee;
+  //box-shadow: 0px 4px 8px 4px rgba(150, 150, 150, 0.05);
+  border: 1px solid #0004;
+  //background: gainsboro;
+  //background: #e0efcf;
+}
+
+.item-card-wmc { // non implementato in nessuna parte
+  background: #eee;
+  //box-shadow: 0px 4px 8px 4px rgba(150, 150, 150, 0.05);
+  border: 1px solid #6f5e99ff;
   //background: gainsboro;
   //background: #e0efcf;
 }
