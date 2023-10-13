@@ -7,6 +7,7 @@ export interface SmartBin {
 
   currentCapacity?: number
   totalCapacity?: number
+  capacityThreshold?: number
 }
 
 interface GeoJSON {
