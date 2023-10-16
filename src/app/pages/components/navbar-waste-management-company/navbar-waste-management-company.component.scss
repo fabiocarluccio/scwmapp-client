@@ -14,7 +14,7 @@ nav {
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 1000;
+  z-index: 2000; // to avoid map controllers to overlapse the navigation controller
 }
 
 .buttons-container > * {
@@ -63,8 +63,9 @@ button:hover {
 }
 
 .banner {
+  //margin-top: 60px;
   padding-top: 10px;
-  background-color: tomato;
+  //background-color: tomato;
   color: white;
 
   display: flex;
@@ -72,6 +73,11 @@ button:hover {
   justify-content: center;
   align-items: center;
   gap: 10px;
+
+  position: fixed;
+  width: 100%;
+  top: 60px;
+  z-index: 1000;
 }
 
 .epileptic-background {
@@ -104,7 +110,7 @@ button:hover {
 .countdown-container {
   width: 100%;
   height: 10px;
-  background-color: tomato;
+  //background-color: tomato;
   overflow: hidden;
   padding: 0;
   margin: 0;
@@ -113,7 +119,7 @@ button:hover {
 .filler {
   width: 100%;
   height: 100%;
-  background-color: #e74c3c;
+  //background-color: #e74c3c;
   animation: countdown-animation 20s linear forwards;
   padding: 0;
   margin: 0;
@@ -130,4 +136,29 @@ button:hover {
 
 h1, h2 {
   color: #eee;
+}
+
+
+.background-DANGER {
+  background-color: tomato;
+  color: black;
+}
+
+.filler-DANGER {
+  background-color: #e74c3c;
+}
+
+.background-WARNING {
+  background-color: #ffd800;
+  color: black;
+}
+.filler-WARNING {
+  background-color: #eec800;
+}
+.background-SUCCESS {
+  background-color: #3cd371;
+  color: black;
+}
+.filler-SUCCESS {
+  background-color: mediumseagreen;
 }

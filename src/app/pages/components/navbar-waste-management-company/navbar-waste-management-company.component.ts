@@ -5,7 +5,7 @@ import {User} from "../../../models/user";
 import {RxStompService} from "../../../stomp/rx-stomp.service";
 import {Message} from "@stomp/stompjs";
 import {Subscription} from "rxjs";
-import {BinAlarm} from "../../../models/bin-alarm";
+import {Alarm} from "../../../models/alarm";
 
 @Component({
   selector: 'app-navbar-waste-management-company',
@@ -19,28 +19,30 @@ export class NavbarWasteManagementCompanyComponent implements OnInit, OnDestroy 
 
   showBanner = false
 
-  binAlarms: BinAlarm[] = []
-  binAlarmsNumber = 0
+  alarms: Alarm[] = []
+
 
   constructor(private userService:UserService,
               private route:Router,
               private rxStompService: RxStompService) {
-    localStorage.setItem('currentRole', "WasteManagementCompany")
   }
 
   ngOnInit(): void {
 
+
     this.topicSubscription = this.rxStompService
-      .watch('/topic/alarm')
+      .watch('/topic/capacityAlarm')
       .subscribe((message: Message) => {
         //this.receivedMessages.push(message.body);
+
         console.log("ricevo mx")
         console.log(message.body)
 
         // conversione da json in oggetto
-        const newAlarm = JSON.parse(message.body) as BinAlarm
-        this.binAlarmsNumber = newAlarm.binsNumber
-        this.binAlarms.push(newAlarm)
+        const newAlarm = JSON.parse(message.body) as Alarm
+
+
+        this.alarms.push(newAlarm)
 
 
         if(this.showBanner) { // caso in cui sia già in mostra il banner
@@ -76,15 +78,26 @@ export class NavbarWasteManagementCompanyComponent implements OnInit, OnDestroy 
 
   }
 
-  hideBanner(newAlarm: BinAlarm) {
+  hideBanner(newAlarm: Alarm) {
     // se questo è l'ultimo allarme ricevuto, allora disattiva il banner; altrimenti no
-    if (this.binAlarms[this.binAlarms.length - 1] == newAlarm) {
+    if (this.alarms[this.alarms.length - 1] == newAlarm) {
       console.log("chiudo il banner")
       this.showBanner = false
     }
     else {
       console.log("lascio aperto il banner")
     }
+  }
+
+  /*
+    Returns one of 'DANGER', 'WARNING', 'SUCCESS', ''
+    Used for assigning color to banner notification.
+   */
+  getBannerTypology() {
+    if (this.alarms.length > 0) {
+      return this.alarms[this.alarms.length - 1].messageType
+    }
+    return ""
   }
 
 }

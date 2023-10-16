@@ -52,7 +52,9 @@ export class MapComponent implements AfterViewInit {
     if(this.mapId == "SmartBinsMap") {
       this.map = L.map(this.mapId, {
         center: this.focusLocation,
-        zoom: 17
+        zoom: 17,
+        scrollWheelZoom: true,
+        zoomControl: true
       });
     } else {
       this.map = L.map(this.mapId, {

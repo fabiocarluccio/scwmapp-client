@@ -13,7 +13,7 @@
         [smartBin]=smartbin *ngFor="let smartbin of this.smartBinsOverThreshold">
       </app-smart-bin-item-card>
 
-      <div style="align-self: center;margin-top: 0.5rem; margin-bottom: 1rem; width: 90%; height: 2px; border-radius: 2px; background: cadetblue">
+      <div *ngIf="this.smartBinsOverThreshold.length != 0" style="align-self: center;margin-top: 0.5rem; margin-bottom: 1rem; width: 90%; height: 2px; border-radius: 2px; background: cadetblue">
       </div>
 
       <app-smart-bin-item-card

@@ -2,7 +2,7 @@ import { RxStompConfig } from '@stomp/rx-stomp';
 
 export const myRxStompConfig: RxStompConfig = {
   // Which server?
-  brokerURL: 'ws://127.0.0.1:15674/ws',
+  brokerURL: 'ws://127.0.0.1:15674/ws',//61613
 
   // Headers
   // Typical keys: login, passcode, host
@@ -25,6 +25,6 @@ export const myRxStompConfig: RxStompConfig = {
   // It can be quite verbose, not recommended in production
   // Skip this key to stop logging to console
   debug: (msg: string): void => {
-    //console.log(new Date(), msg);
+    console.log(new Date(), msg);
   },
 };

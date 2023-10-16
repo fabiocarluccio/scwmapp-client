@@ -16,7 +16,7 @@
         (selectionEvent)="handleSelectionEvent($event)"
         [selectionOrder]="getSelectionOrder(smartbin)">
       </app-smart-bin-item-card>
-      <div style="align-self: center;margin-top: 0.5rem; margin-bottom: 1rem; width: 90%; height: 2px; border-radius: 2px; background: #6f5e99ff">
+      <div *ngIf="this.smartBinsOverThreshold.length != 0" style="align-self: center;margin-top: 0.5rem; margin-bottom: 1rem; width: 90%; height: 2px; border-radius: 2px; background: #6f5e99ff">
       </div>
       <app-smart-bin-item-card
         *ngFor="let smartbin of this.smartBinsUnderThreshold"
@@ -43,7 +43,7 @@
       </div>
 
       <div class="request-list">
-        <h2>Percorsi di pulizia in attesa di completamento️</h2>
+        <h2>Percorsi di pulizia programmatii️</h2>
 
         <p *ngIf="this.smartBinService.cleaningPathList == null || this.smartBinService.cleaningPathList.length == 0" style="color:#444444; font-size: 1rem;">
           ✅ Tutti i percorsi di pulizia sono stati effettuati.
