@@ -1,6 +1,6 @@
 export interface CleaningPath {
   id: string
   smartBinIDPath: string[]
-  timestamp: Date
+  scheduledDate: Date
   done: boolean
 }

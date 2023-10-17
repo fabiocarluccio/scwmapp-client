@@ -24,7 +24,7 @@ export class CleaningPathItemCardComponent implements OnInit {
 
 
   getFormattedDate(): string {
-    const timestamp = new Date(this.cleaningPath.timestamp)
+    const timestamp = new Date(this.cleaningPath.scheduledDate)
     const day = String(timestamp.getDate()).padStart(2, '0');
     const month = String(timestamp.getMonth() + 1).padStart(2, '0');
     const year = timestamp.getFullYear();

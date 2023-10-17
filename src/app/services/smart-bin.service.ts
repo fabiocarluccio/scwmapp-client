@@ -155,7 +155,7 @@ export class SmartBinService {
 
     const body = {
       "smartBinIDPath": cleaningPath,
-      "timestamp": new Date
+      "scheduledDate": new Date
     }
 
     return firstValueFrom(this.http.post(this.baseUrlCleaningPath + 'add', body, this.httpOptions).pipe(
