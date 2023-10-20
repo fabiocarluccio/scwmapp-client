@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CleaningPath} from "../../../models/cleaning-path";
 import {SmartBinService} from "../../../services/smart-bin.service";
 import {ExceptionManagerService} from "../../../services/exception-manager.service";
+import {SmartBin} from "../../../models/smartbin";
 
 @Component({
   selector: 'app-cleaning-path-item-card',
@@ -12,8 +13,20 @@ export class CleaningPathItemCardComponent implements OnInit {
   @Input() cleaningPath!: CleaningPath
   @Input() isCollapsed!: boolean
 
+  smartBinList: SmartBin[] = []
+
 
   constructor() {
+    const smartBin: SmartBin = {}
+    smartBin.id = "diocpo"
+    smartBin.type = "Indifferenziata"
+    smartBin.name = "SmartBin nome"
+    smartBin.currentCapacity = 1.3
+    smartBin.totalCapacity = 5
+
+
+
+    this.smartBinList.push(smartBin)
   }
   ngOnInit(): void {
   }
@@ -22,8 +35,7 @@ export class CleaningPathItemCardComponent implements OnInit {
     this.isCollapsed = !this.isCollapsed
   }
 
-
-  getFormattedDate(): string {
+  getFormattedDateTime(): string {
     const timestamp = new Date(this.cleaningPath.scheduledDate)
     const day = String(timestamp.getDate()).padStart(2, '0');
     const month = String(timestamp.getMonth() + 1).padStart(2, '0');
@@ -34,6 +46,19 @@ export class CleaningPathItemCardComponent implements OnInit {
     return `${day}/${month}/${year} ${hours}:${minutes}`;
 
   }
+
+  getFormattedDate(): string {
+    const opzioniData: Intl.DateTimeFormatOptions = { /*year: 'numeric', */month: 'long', day: 'numeric' };
+    const dataConvertita = new Date(this.cleaningPath.scheduledDate);
+    return dataConvertita.toLocaleDateString('it-IT', opzioniData).replace(/\b\w/g, (match) => match.toUpperCase());;
+  }
+  getFormattedTime(): string {
+    const timestamp = new Date(this.cleaningPath.scheduledDate)
+    const hours = String(timestamp.getHours()).padStart(2, '0');
+    const minutes = String(timestamp.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  }
+
 
   getNumberOfBins() {
     return this.cleaningPath.smartBinIDPath.length

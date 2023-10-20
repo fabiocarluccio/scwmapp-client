@@ -172,16 +172,48 @@ export class SmartBinService {
   }
 
   loadCleaningPathList() {
-    return firstValueFrom(this.http.get(this.baseUrlCleaningPath + 'status?done=false', this.httpOptions).pipe(
+    const date = this.dateOfOtherDay()
+    console.log(this.baseUrlCleaningPath + 'date?from=' + date)
+    return firstValueFrom(this.http.get(this.baseUrlCleaningPath + 'date?from=' + date, this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
         this.cleaningPathList = response as CleaningPath[]
+
+        // Mapping smartBinList - smartBinIDPath (necessario che loadAllocatedBins venga chiamato prima di chiamare questo)
+        for (const cleaningPath of this.cleaningPathList) {
+          cleaningPath.smartBinList = []
+          for (const smartBinID of cleaningPath.smartBinIDPath) {
+            // Cerco lo SmartBin con ID=smartBinID
+            for (const smartBin of this.smartBins) {
+              if (smartBin.id == smartBinID) {
+                cleaningPath.smartBinList!.push(smartBin)
+                break
+              }
+            }
+          }
+
+          }
+
       }),
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));
+  }
+  dateOfOtherDay() {
+    const oggi = new Date();
+    const giornoMilleSecondi = 1000 * 60 * 60 * 24; // Un giorno in millisecondi
+
+    // Sottrai due giorni in millisecondi per ottenere la data dell'altro ieri
+    const altroIeri = new Date(oggi.getTime() - 2 * giornoMilleSecondi);
+
+    // Formatta la data in "dd/MM/yyyy"
+    const giorno = String(altroIeri.getDate()).padStart(2, '0');
+    const mese = String(altroIeri.getMonth() + 1).padStart(2, '0'); // Mese è basato su zero, quindi aggiungiamo 1.
+    const anno = altroIeri.getFullYear();
+
+    return `${giorno}/${mese}/${anno}`;
   }
 
 

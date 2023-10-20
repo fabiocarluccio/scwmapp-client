@@ -1,9 +1,44 @@
-<body *ngIf="cleaningPath">
-<div class="item-card clickable"  (click)="toggleCollapseView()">
+<body *ngIf="cleaningPath" style="user-select: none;">
+<div class="item-card clickable" (click)="toggleCollapseView()">
+  <div class="item-body">
+    <div class="item-header clickable">
+      <div style="display: flex; justify-content: space-between">
+        <div class="flex-row clickable" style="gap: 5px;">
+          <h3>🚛</h3>
+          <div class="flex-column clickable">
+            <h4 style="line-height: 1rem;">{{getFormattedDate()}}</h4> <!--{{getFormattedDateTime()}}-->
+            <h6>{{getFormattedTime()}}</h6>
+          </div>
+        </div>
 
-  <div class="bin-item-content clickable">
-    <h4>🚛 {{getFormattedDate()}}</h4>
-    <p style="">Numero SmartBins: <b>{{getNumberOfBins()}}</b></p>
+        <div class="indicator indicator-{{cleaningPath.done ? 'GREEN' : 'RED'}}">
+          <b>{{cleaningPath.done ? "Completato" : "Da effettuare"}}</b>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-bottom: 0.6rem;">Numero SmartBins: <b>{{getNumberOfBins()}}</b></p>
+
+    <table *ngIf="!isCollapsed" style="margin-bottom: 0.6rem;">
+      <tr class="table-header">
+        <th>Ordine<div class="column-border"></div></th>
+        <th>SmartBin<div class="column-border"></div></th>
+        <th>Tipologia<div class="column-border"></div></th>
+        <th>Capacità</th>
+      </tr>
+
+      <tr>
+        <td colspan="6"><div class="separator"></div></td>
+      </tr>
+
+      <tr *ngFor="let smartBin of cleaningPath.smartBinList; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{smartBin.name}}</td>
+        <td>{{smartBin.type}}</td>
+        <td>{{smartBin.currentCapacity}}/{{smartBin.totalCapacity}} kg</td>
+      </tr>
+
+    </table>
   </div>
 </div>
 </body>

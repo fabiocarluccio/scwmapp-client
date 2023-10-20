@@ -1,36 +1,27 @@
-app-map {
-  flex-shrink: 0;
-}
-
-.map-frame {
-  flex-basis: 150px;
-
-  border-radius: 8px;
-  border: 2px solid #0003;
-  margin-top: 5px;
-}
-
 .item-card {
   border: 1px solid #0004;
   border-radius: 4px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
-  padding-top: 8px;
+  padding-top: 0.6rem;
   padding-left: 16px;
   padding-right: 16px;
   //padding-bottom: 13px;
 
   margin-bottom: 10px;
 }
-.bin-item-content {
+.item-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.item-header {
   //width: 400px;
   //background: #00eeff33;
   //border: 1px solid #ccc;
   border-radius: 4px;
   //margin-bottom: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
 
   display: flex;
   flex-direction: column;
@@ -38,6 +29,9 @@ app-map {
   //justify-content: space-between;
 
   flex-grow: 1;
+}
+.item-content {
+
 }
 .bin-item-description {
   flex-grow: 1;
@@ -60,7 +54,7 @@ app-map {
 .clickable {
   cursor: pointer;
 }
-.clickable > h4 {
+.clickable > * {
   cursor: pointer;
 }
 
@@ -102,19 +96,6 @@ li {
 }
 
 
-
-
-.green {
-  background-color: green;
-}
-.black {
-  background-color: black;
-}
-.purple {
-  background-color: purple;
-}
-
-
 body {
   font-size: 0.8rem;
 }
@@ -124,6 +105,59 @@ button {
 }
 
 
-h4{
+h3 {
+  font-size: 2.3rem;
+  margin-bottom: 0;
+}
+h4 {
   font-size: 1.2rem;
+  margin-bottom: 0;
+}
+h1, h6 {
+  margin-bottom: 0;
+  color: #000c;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
+}
+
+
+.indicator {
+  position: relative;
+  min-width: 18px;
+  height: 18px;
+  //margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  //height: 60px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #0003;
+  border-radius: 9px;
+
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+  color: white;
+}
+
+.indicator-RED {
+  //background: darkred;
+  //background: indianred;
+  background: tomato;
+}
+.indicator-GREEN {
+  //background: darkgreen;
+  background: #78BC81;
 }

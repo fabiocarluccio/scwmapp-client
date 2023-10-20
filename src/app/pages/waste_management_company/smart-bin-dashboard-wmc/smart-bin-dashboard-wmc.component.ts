@@ -100,17 +100,19 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
   }
 
   executeCleaningPath() {
-    this.cleanPath()
+    this.insertCleaningPath()
     this.toggleCleaningMode()
   }
 
-  cleanPath() {
+  insertCleaningPath() {
     // Aggiunta percorso pulizia
-    this.smartBinService.addCleaningPath(this.smartBinCleaningPath)
+    this.smartBinService.addCleaningPath(this.smartBinCleaningPath).then(response => {
+      this.smartBinService.loadCleaningPathList()
+    })
+    .catch(error => {
+      // Mostro errore
+      window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+    });
 
-    // TODO aggiornare eventuale lista percorsi pulizia
   }
-
-
-
 }
