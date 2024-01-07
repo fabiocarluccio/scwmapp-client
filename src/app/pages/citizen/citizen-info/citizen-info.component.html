@@ -5,25 +5,25 @@
   </div>
   -->
   <h4>{{citizen.surname + " " + citizen.name}}</h4>
-  <p>🏠 <b>{{citizen.address?.city + " - Via " + citizen.address?.streetName + ", " + citizen.address?.streetNumber}}</b></p>
+  <p>🏠 <b>{{citizen.address?.city + " - " + citizen.address?.streetName + " Street, " + citizen.address?.streetNumber}}</b></p>
   <p>🐌 <i>{{citizen.email}}</i></p>
   <p>🔑 Token: <b style="color: darkslategray;">{{citizen.token}}</b></p>
 
-  <h2>Stato tasse</h2>
+  <h2>Tax status</h2>
 
   <p *ngIf="!this.taxes || this.taxes.length == 0" style="color:#444444; font-size: 1rem;">
-    ✅ Nessuna tassa è stata ancora emessa.
+    ✅ No tax has been issued yet.
   </p>
   <div *ngIf="this.taxes && this.taxes.length != 0">
     <table>
       <tr class="table-header">
-        <th>Codice Tassa<div class="column-border"></div></th>
-        <th>Anno<div class="column-border"></div></th>
-        <th>Importo (€)<div class="column-border"></div></th>
-        <th>Scadenza pagamento<div class="column-border"></div></th>
-        <th>Data pagamento<div class="column-border"></div></th>
-        <th>Ricevuta pagamento<div class="column-border"></div></th>
-        <th>Stato</th>
+        <th>Tax ID<div class="column-border"></div></th>
+        <th>Year<div class="column-border"></div></th>
+        <th>Amount (€)<div class="column-border"></div></th>
+        <th>Payment deadline<div class="column-border"></div></th>
+        <th>Payment date<div class="column-border"></div></th>
+        <th>Payment receipt<div class="column-border"></div></th>
+        <th>Status</th>
       </tr>
 
       <tr>
@@ -35,12 +35,12 @@
         <td>{{tax.amount}}</td>
         <td>{{tax.expireDate}}</td>
         <td>{{tax.paymentDate ? tax.paymentDate : "-"}}</td>
-        <td *ngIf="tax.receipt"><a href="{{tax.receipt}}">Ricevuta</a></td>
+        <td *ngIf="tax.receipt"><a href="{{tax.receipt}}">Receipt</a></td>
         <td *ngIf="!tax.receipt">-</td>
-        <td *ngIf="tax.paymentDate">Pagato</td>
-        <td *ngIf="!tax.paymentDate && isExpired(tax.expireDate)">Scaduto</td>
+        <td *ngIf="tax.paymentDate">Paid</td>
+        <td *ngIf="!tax.paymentDate && isExpired(tax.expireDate)">Expired</td>
         <!--<td *ngIf="!tax.paymentDate && !isExpired(tax.expireDate)"><a href="http://localhost:4200/external/light-pay/{{tax.id}}">Non Pagato</a></td>-->
-        <td *ngIf="!tax.paymentDate && !isExpired(tax.expireDate)"><a routerLink="/citizen/payment-form/{{tax.id}}">Non Pagato</a></td>
+        <td *ngIf="!tax.paymentDate && !isExpired(tax.expireDate)"><a routerLink="/citizen/payment-form/{{tax.id}}">Not paid</a></td>
       </tr>
 
     </table>
@@ -49,17 +49,17 @@
   </div>
 
 
-  <h2>Ultimi conferimenti</h2>
+  <h2>Last disposals</h2>
   <p *ngIf="!this.disposals || this.disposals.length == 0" style="color:#444444; font-size: 1rem;">
-    ⏱️ Nessun conferimento è stato ancora effettuato nell'anno corrente.
+    ⏱️ No disposal has been made yet in the current year.
   </p>
   <div *ngIf="this.disposals && this.disposals.length != 0">
     <table>
       <tr class="table-header">
-        <th>Tipologia rifiuto<div class="column-border"></div></th>
+        <th>Waste type<div class="column-border"></div></th>
         <th>Volume (kg)<div class="column-border"></div></th>
-        <th>Data</th>
-        <th>Codice Conferimento<div class="column-border"></div></th>
+        <th>Date</th>
+        <th>Disposal ID<div class="column-border"></div></th>
       </tr>
       <tr>
         <td colspan="4"><div class="separator"></div></td>
@@ -79,19 +79,19 @@
 
 
 
-  <h2 *ngIf="Citizen.showSeparationPerformance(citizen) == false">Performance separazione rifiuti</h2>
+  <h2 *ngIf="Citizen.showSeparationPerformance(citizen) == false">Waste separation performance</h2>
   <p *ngIf="Citizen.showSeparationPerformance(citizen) == false" style="color:#444444; font-size: 1rem;">
-    ⏱️ In attesa che vengano effettuati conferimenti.
+    ⏱️ Waiting for deliveries to be made.
   </p>
 
-  <h2 *ngIf="Citizen.showSeparationPerformance(citizen)">Performance separazione rifiuti ({{Citizen.getSeparationPerformance(citizen)}}%)</h2>
+  <h2 *ngIf="Citizen.showSeparationPerformance(citizen)">Separation performance ({{Citizen.getSeparationPerformance(citizen)}}%)</h2>
   <div *ngIf="Citizen.showSeparationPerformance(citizen)">
     <table>
       <tr class="table-header">
-        <th>Tipologia rifiuto<div class="column-border"></div></th>
-        <th>Volume generato (kg)<div class="column-border"></div></th>
-        <th>Percentuale su totale<div class="column-border"></div></th>
-        <th>Percentuale su differenziata</th>
+        <th>Waste type<div class="column-border"></div></th>
+        <th>Volume generated (kg)<div class="column-border"></div></th>
+        <th>Percentage on total<div class="column-border"></div></th>
+        <th>Percentage on recycled</th>
       </tr>
       <tr>
         <td colspan="4"><div class="separator"></div></td>
@@ -108,7 +108,7 @@
       <tr>
         <td style="display: flex; align-items: center;">
           <div class="wasteType-color" style="{{'background: '+ this.smartBinService.getWasteColorByName('Indifferenziata')}};"></div>
-          Indifferenziata
+          Mixed waste
         </td>
         <td>{{citizen.generatedVolume.mixedWaste}}</td>
         <td>{{Citizen.getPercentageOfTotalWaste(citizen.generatedVolume.mixedWaste, citizen)}}%</td>

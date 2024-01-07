@@ -12,19 +12,19 @@
         </div>
 
         <div class="indicator indicator-{{cleaningPath.done ? 'GREEN' : 'RED'}}">
-          <b>{{cleaningPath.done ? "Completato" : "Da effettuare"}}</b>
+          <b>{{cleaningPath.done ? "Completed" : "To be done"}}</b>
         </div>
       </div>
     </div>
 
-    <p style="margin-bottom: 0.6rem;">Numero SmartBins: <b>{{getNumberOfBins()}}</b></p>
+    <p style="margin-bottom: 0.6rem;">SmartBins Number: <b>{{getNumberOfBins()}}</b></p>
 
     <table *ngIf="!isCollapsed" style="margin-bottom: 0.6rem;">
       <tr class="table-header">
-        <th>Ordine<div class="column-border"></div></th>
+        <th>Order<div class="column-border"></div></th>
         <th>SmartBin<div class="column-border"></div></th>
-        <th>Tipologia<div class="column-border"></div></th>
-        <th>Capacità</th>
+        <th>Type<div class="column-border"></div></th>
+        <th>Capacity</th>
       </tr>
 
       <tr>

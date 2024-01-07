@@ -7,10 +7,10 @@
   </div>
   <div class="buttons-container">
     <button type="button" routerLink="/waste_management_company/smartbin-dashboard">Home</button>
-    <button type="button" routerLink="/waste_management_company/waste-types">Tipologie rifiuti</button>
+    <button type="button" routerLink="/waste_management_company/waste-types">Waste types</button>
   </div>
   <div class="logout-container">
-    <button type="button" class="logout-button" (click)="logout()">Esci</button>
+    <button type="button" class="logout-button" (click)="logout()">Log out</button>
   </div>
 </nav>
 <div *ngIf="showBanner && this.alarms.length >= 1" class="banner background-{{getBannerTypology()}}">

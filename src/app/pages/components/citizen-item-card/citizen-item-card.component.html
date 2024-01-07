@@ -7,13 +7,13 @@
       <div class="item-type">
         <div class="item-indicator" style="{{'background: '+ Citizen.getSeparationPerformanceColor(Citizen.getSeparationPerformance(citizen))}};">
         </div>
-        Performance Separazione: <b>{{isNaN(Citizen.getSeparationPerformance(citizen))? "-" : Citizen.getSeparationPerformance(citizen) + "%"}}</b>
+        Separation Performance: <b>{{isNaN(Citizen.getSeparationPerformance(citizen))? "-" : Citizen.getSeparationPerformance(citizen) + "%"}}</b>
       </div>
 
       <div class="item-type">
         <div class="item-indicator" style="{{'background: ' + (citizen.taxesStatus ? '#78BC81' : 'tomato')}}"><!--seagreen-->
         </div>
-        Stato Tasse: <b>{{citizen.taxesStatus ? "Regolare" : "Non Regolare"}}</b>
+        Tax status: <b>{{citizen.taxesStatus ? "Regular" : "Not Regular"}}</b>
       </div>
       <!--<button routerLink="/about/{{user.id}}">about</button>
       <button (click)="goToDetail(user.id)">about_businessLogic</button>-->

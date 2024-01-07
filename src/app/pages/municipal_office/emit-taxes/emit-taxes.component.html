@@ -1,23 +1,23 @@
 <body>
   <h1>Emissione Tasse</h1>
 
-  <p *ngIf="!this.showForm">✅ Tasse emesse per l'anno corrente. Attendere il prossimo anno.</p>
+  <p *ngIf="!this.showForm">✅ Taxes issued for the current year. Please wait until next year.</p>
 
-  <p *ngIf="this.showForm">Imposta la tariffa per kg di rifiuto.</p>
+  <p *ngIf="this.showForm">Set the fee per kg of waste.</p>
 
   <form *ngIf="this.showForm" #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)" class="cool-background">
 
     <div class="form-group" style="padding-left: 15px; padding-top: 15px;">
-      <label for="inputBaseFee"><b>Tariffa base</b></label>
+      <label for="inputBaseFee"><b>Base Fee</b></label>
       <input
         [(ngModel)]="baseFee" name="inputBaseFee"
         required
         #inputBaseFee = "ngModel"
         [ngClass]="{'is-invalid': inputBaseFee.errors && inputBaseFee.touched}"
-        type="number" class="form-control" id="inputBaseFee" placeholder="Valore (€)">
+        type="number" class="form-control" id="inputBaseFee" placeholder="Amount (€)">
       <!--{{user.name}}-->
       <div class="invalid-feedback">
-        Inserisci un valore valido.
+        Please enter a valid value.
       </div>
     </div>
 
@@ -25,16 +25,16 @@
     <div class="form-inputs-container">
 
       <div class="form-group" *ngFor="let type of this.wasteTypes; let i = index">
-        <label for="inputWasteFee">Tariffa <b>{{type.name}}</b> (per kg)</label>
+        <label for="inputWasteFee"><b>{{type.name}}</b>'s Fee (per kg)</label>
         <input
           [(ngModel)]="feeAmounts[i]" name="{{type.name}}"
           required
           #inputWasteFee = "ngModel"
           [ngClass]="{'is-invalid': inputWasteFee.errors && inputWasteFee.touched}"
-          type="number" class="form-control" id="inputWasteFee" placeholder="Valore (€)">
+          type="number" class="form-control" id="inputWasteFee" placeholder="Amount (€)">
         <!--{{user.name}}-->
         <div class="invalid-feedback">
-          Inserisci un valore valido.
+          Please enter a valid value.
         </div>
       </div>
 

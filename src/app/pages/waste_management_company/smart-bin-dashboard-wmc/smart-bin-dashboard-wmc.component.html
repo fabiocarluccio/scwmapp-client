@@ -4,9 +4,9 @@
   <div class="layout">
 
     <div class="bin-list">
-      <h2>SmartBins attivi</h2>
+      <h2>Active SmartBins</h2>
       <p *ngIf="this.smartBinsSorted.length==0" style="color:#444444; font-size: 1rem;">
-        ⏱️ Nessuno SmartBin è stato ancora allocato.
+        ⏱️ No SmartBin has been allocated yet.
       </p>
       <app-smart-bin-item-card
         *ngFor="let smartbin of this.smartBinsOverThreshold"
@@ -36,17 +36,14 @@
 
       <!--<button *ngFor="let smartbin of this.smartBins" (click)="highlightBinItem(smartbin.id!)">Evidenzia {{smartbin.name}}</button>-->
 
-      <button style="margin-top: 10px;" class="btn btn-primary" (click)="toggleCleaningMode()" *ngIf="!cleaningMode">🧹Istanzia Pulizia</button>
+      <button style="margin-top: 10px;" class="btn btn-primary" (click)="toggleCleaningMode()" *ngIf="!cleaningMode">🧹Schedule Cleaning</button>
       <form #insertNewCleaningPathForm="ngForm" *ngIf="cleaningMode" >
 
         <div>
           <p style="margin-top: 1rem;
           margin-bottom: 0;
           line-height: 0.5rem;
-
-
-
-">Data di programmazione</p>
+          ">Scheduled date</p>
 
 
           <div class="form-group">
@@ -60,22 +57,22 @@
           <input type="time" name="data" id="time" value="{{programmedTime}}">
 
             <div class="invalid-feedback">
-              Inserire il nome.
+              Insert the scheduled time.
             </div>
           </div>
         </div>
         <div style="margin-top: 10px;" class ="cleaning-buttons">
-          <button class="btn btn-danger" (click)="toggleCleaningMode()">Annulla</button>
-          <button class="btn btn-primary" (click)="executeCleaningPath()" [disabled]="smartBinCleaningPath.length == 0" style="flex-grow: 1; flex-basis: 200%;">🧹Istanzia Pulizia</button>
+          <button class="btn btn-danger" (click)="toggleCleaningMode()">Cancel</button>
+          <button class="btn btn-primary" (click)="executeCleaningPath()" [disabled]="smartBinCleaningPath.length == 0" style="flex-grow: 1; flex-basis: 200%;">🧹Schedule Cleaning</button>
         </div>
 
       </form>
 
       <div class="request-list">
-        <h2>Percorsi di pulizia programmati</h2>
+        <h2>Cleaning Paths Scheduled</h2>
 
         <p *ngIf="this.smartBinService.cleaningPathList == null || this.smartBinService.cleaningPathList.length == 0" style="color:#444444; font-size: 1rem;">
-          ✅ Tutti i percorsi di pulizia sono stati effettuati.
+          ✅ All cleaning paths have been completed.
         </p>
         <div *ngIf="this.smartBinService.cleaningPathList && this.smartBinService.cleaningPathList.length > 0">
           <app-cleaning-path-item-card
@@ -86,10 +83,10 @@
         </div>
       </div>
       <div class="request-list" style="margin-top: calc(2rem - 10px);">
-        <h2>Richieste allocazione in attesa️</h2>
+        <h2>Pending Allocation Requests️</h2>
 
         <p *ngIf="this.smartBinRequestService.smartBinRequests == null || this.smartBinRequestService.smartBinRequests.length == 0" style="color:#444444; font-size: 1rem;">
-          ✅ Nessuna richiesta in attesa.
+          ✅ No pending request.
         </p>
         <app-request-item-card
           [smartBinRequest]=smartbinRequest

@@ -1,15 +1,15 @@
 <body>
-<h1>Tipologie di rifiuti</h1>
+<h1>Waste Types</h1>
   <div style="display: flex; flex-wrap: wrap; gap: 3rem;">
     <form #addNewWasteTypeForm="ngForm" class="cool-background">
       <!--<p>Now, type your new, fresh password 😊</p>-->
 
-      <h5>Introduci nuova tipologia di rifiuto</h5>
+      <h5>Insert new waste type</h5>
 
       <div class="input-container" style="display: flex; flex-wrap: wrap;">
         <div class="left-inputs">
           <div class="form-group">
-            <label for="inputTypeName">Nome</label>
+            <label for="inputTypeName">Name</label>
             <input
               [(ngModel)]="newWasteType.name" name="typeName"
               required
@@ -17,31 +17,31 @@
               pattern=".*"
               #inputTypeName = "ngModel"
               [ngClass]="{'is-invalid': inputTypeName.errors && inputTypeName.touched}"
-              type="text" class="form-control" id="inputTypeName" placeholder="Nome tipologia">
+              type="text" class="form-control" id="inputTypeName" placeholder="Type name">
 
             <div class="invalid-feedback">
-              Inserire il nome della tipologia.
+              Insert waste type name.
             </div>
           </div>
 
           <div class="form-group">
-            <label for="inputTypeColor">Colore Tipologia</label>
+            <label for="inputTypeColor">Color</label>
             <input
               [(ngModel)]="newWasteType.color" name="typeColor"
               required
               #inputTypeColor="ngModel"
               [ngClass]="{'is-invalid': inputTypeColor.errors && inputTypeColor.touched}"
-              type="color" class="form-control" id="inputTypeColor" placeholder="Colore tipologia">
+              type="color" class="form-control" id="inputTypeColor" placeholder="Type color">
 
             <div class="invalid-feedback">
-              Inserire il colore della tipologia.
+              Insert waste type color.
             </div>
           </div>
         </div>
 
 
           <div class="form-group">
-            <label for="inputTypeDescription">Descrizione</label>
+            <label for="inputTypeDescription">Description</label>
             <textarea
               [(ngModel)]="newWasteType.description" name="typeDescription"
               required
@@ -50,11 +50,11 @@
               rows="4"
               #inputTypeDescription="ngModel"
               [ngClass]="{'is-invalid': inputTypeDescription.errors && inputTypeDescription.touched}"
-              class="form-control" id="inputTypeDescription" placeholder="Descrizione tipologia">
+              class="form-control" id="inputTypeDescription" placeholder="Type description">
             </textarea>
 
             <div class="invalid-feedback">
-              Inserire la descrizione della tipologia.
+              Insert description of waste type
             </div>
           </div>
 
@@ -63,13 +63,13 @@
       <!--[disabled]="this.markerService.markers.length != 1"-->
       <button
         [disabled] = "!addNewWasteTypeForm.valid"
-        type="submit" (click)="addNewWasteType()" class="btn">📍 Aggiungi nuova Tipologia</button>
+        type="submit" (click)="addNewWasteType()" class="btn">📍 Add new waste Type</button>
     </form>
 
     <table>
       <tr class="table-header">
-        <th style="padding-right: 3vw;">Tipologia rifiuto</th>
-        <th>Descrizione</th>
+        <th style="padding-right: 3vw;">Waste Type</th>
+        <th>Description</th>
       </tr>
       <tr>
         <td colspan="2"><div class="separator"></div></td>

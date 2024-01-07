@@ -24,7 +24,7 @@ export class PaymentFormComponent implements OnInit{
   cvc: string = "";
 
   isDoingPayment = false
-  paymentButtonMessage = "Paga Tassa"
+  paymentButtonMessage = "Pay Tax"
 
 
   constructor(private router: Router,

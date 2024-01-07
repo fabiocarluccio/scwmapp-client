@@ -1,17 +1,17 @@
 <body>
   <div>
     <header>
-      <h1>Elenco Cittadini</h1>
+      <h1>Citizens List</h1>
 
       <div id="actionButtonsDiv">
       <button class="btn btn-primary"
               [disabled]="this.showCitizenForm"
               (click)="toggleCitizenForm()">
-        Inserisci Cittadini
+        Register Citizens
       </button>
 
       <div class="dropdown">
-        <button class="arrange_button">Ordina per</button>
+        <button class="arrange_button">Order by</button>
         <div class="dropdown-content">
           <div class="dropdown-item clickable" (click)="orderByPerformanceDescendent()">
 
@@ -37,7 +37,7 @@
       </div>
 
       <div class="dropdown">
-        <button class="arrange_button">Filtra per</button>
+        <button class="arrange_button">Filter by</button>
         <div class="dropdown-content">
           <div class="dropdown-item clickable" (click)="toggleFilterByTaxesPayed()">
 
@@ -83,17 +83,17 @@
         <form #addCitizenForm="ngForm" *ngIf="this.showCitizenForm" class="cool-background">
         <!--Street name, street number, postal code, city-->
         <div class="header-form">
-          <h5>Inserisci nuovo cittadino</h5>
+          <h5>Register new citizen</h5>
 
           <button class="btn btn-warning"
                   (click)="importCitizensFile()">
-            Importa file Cittadini (.csv)
+            Import citizens File (.csv)
           </button>
         </div>
 
 
         <div class="form-group">
-          <label for="inputCitizenName">Nome</label>
+          <label for="inputCitizenName">Name</label>
           <input
             [(ngModel)]="this.citizen.name" name="citizenName"
             required
@@ -101,15 +101,15 @@
             pattern=".*"
             #inputCitizenName = "ngModel"
             [ngClass]="{'is-invalid': inputCitizenName.errors && inputCitizenName.touched}"
-            type="text" class="form-control" id="inputCitizenName" placeholder="Nome">
+            type="text" class="form-control" id="inputCitizenName" placeholder="Name">
 
           <div class="invalid-feedback">
-            Inserire il nome.
+            Insert the name.
           </div>
         </div>
 
         <div class="form-group">
-          <label for="inputCitizenSurname">Cognome</label>
+          <label for="inputCitizenSurname">Surname</label>
           <input
             [(ngModel)]="this.citizen.surname" name="citizenSurname"
             required
@@ -117,15 +117,15 @@
             pattern=".*"
             #inputCitizenSurname = "ngModel"
             [ngClass]="{'is-invalid': inputCitizenSurname.errors && inputCitizenSurname.touched}"
-            type="text" class="form-control" id="inputCitizenSurname" placeholder="Cognome">
+            type="text" class="form-control" id="inputCitizenSurname" placeholder="Surname">
 
           <div class="invalid-feedback">
-            Inserire il cognome.
+            Insert the surname.
           </div>
         </div>
 
         <div class="form-group">
-          <label for="inputCitizenFiscalCode">Codice Fiscale</label>
+          <label for="inputCitizenFiscalCode">SSN</label>
           <input
             [(ngModel)]="this.citizen.ssn" name="citizenFiscalCode"
             required
@@ -134,10 +134,10 @@
             pattern=".*"
             #inputCitizenFiscalCode = "ngModel"
             [ngClass]="{'is-invalid': inputCitizenFiscalCode.errors && inputCitizenFiscalCode.touched}"
-            type="text" class="form-control" id="inputCitizenFiscalCode" placeholder="Codice fiscale">
+            type="text" class="form-control" id="inputCitizenFiscalCode" placeholder="SSN">
 
           <div class="invalid-feedback">
-            Inserire un codice fiscale valido.
+            Insert a valid SSN.
           </div>
         </div>
 
@@ -153,12 +153,12 @@
             type="email" class="form-control" id="inputCitizenEmail" placeholder="Email">
 
           <div class="invalid-feedback">
-            Inserire una email valida.
+            Insert a valid email.
           </div>
         </div>
 
         <div class="form-group">
-          <label for="inputCitizenStreetName">Via/Viale</label>
+          <label for="inputCitizenStreetName">Street</label>
           <input
             [(ngModel)]="this.citizen.address!.streetName" name="citizenStreetName"
             required
@@ -166,15 +166,15 @@
             pattern=".*"
             #inputCitizenStreetName = "ngModel"
             [ngClass]="{'is-invalid': inputCitizenStreetName.errors && inputCitizenStreetName.touched}"
-            type="text" class="form-control" id="inputCitizenStreetName" placeholder="Residenza">
+            type="text" class="form-control" id="inputCitizenStreetName" placeholder="Residence">
 
           <div class="invalid-feedback">
-            Inserire la residenza.
+            Insert the residence.
           </div>
         </div>
 
         <div class="form-group">
-          <label for="inputCitizenStreetNumber">Numero via</label>
+          <label for="inputCitizenStreetNumber">Street n.</label>
           <input
             [(ngModel)]="this.citizen.address!.streetNumber" name="citizenStreetNumber"
             required
@@ -182,15 +182,15 @@
             pattern=".*"
             #inputCitizenStreetNumber = "ngModel"
             [ngClass]="{'is-invalid': inputCitizenStreetNumber.errors && inputCitizenStreetNumber.touched}"
-            type="text" class="form-control" id="inputCitizenStreetNumber" placeholder="Numero via">
+            type="text" class="form-control" id="inputCitizenStreetNumber" placeholder="Street n.">
 
           <div class="invalid-feedback">
-            Inserire il numero della via.
+            Insert the Street n.
           </div>
         </div>
 
         <div class="form-group">
-          <label for="inputCitizenPostalCode">Codice postale</label>
+          <label for="inputCitizenPostalCode">Postal code</label>
           <input
             [(ngModel)]="this.citizen.address!.postalCode" name="citizenPostalCode"
             required
@@ -198,15 +198,15 @@
             pattern=".*"
             #inputCitizenPostalCode = "ngModel"
             [ngClass]="{'is-invalid': inputCitizenPostalCode.errors && inputCitizenPostalCode.touched}"
-            type="text" class="form-control" id="inputCitizenPostalCode" placeholder="Codice Postale">
+            type="text" class="form-control" id="inputCitizenPostalCode" placeholder="Postal code">
 
           <div class="invalid-feedback">
-            Inserire il codice postale.
+            Insert the postal code.
           </div>
         </div>
 
         <div class="form-group">
-          <label for="inputCitizenCity">Città</label>
+          <label for="inputCitizenCity">City</label>
           <input
             [(ngModel)]="this.citizen.address!.city" name="citizenCity"
             required
@@ -214,22 +214,22 @@
             pattern=".*"
             #inputCitizenCity = "ngModel"
             [ngClass]="{'is-invalid': inputCitizenCity.errors && inputCitizenCity.touched}"
-            type="text" class="form-control" id="inputCitizenCity" placeholder="Città">
+            type="text" class="form-control" id="inputCitizenCity" placeholder="City">
 
           <div class="invalid-feedback">
-            Inserire la città.
+            Insert the city's name.
           </div>
         </div>
 
 
         <div class="form-buttons">
           <button
-            (click)="toggleCitizenForm()" class="btn btn-danger">Annulla
+            (click)="toggleCitizenForm()" class="btn btn-danger">Cancel
           </button>
 
           <button
             [disabled] = "!addCitizenForm.valid"
-            type="submit" (click)="addNewCitizen()" class="btn btn-primary">Aggiungi Cittadino
+            type="submit" (click)="addNewCitizen()" class="btn btn-primary">Add Citizen
           </button>
         </div>
 

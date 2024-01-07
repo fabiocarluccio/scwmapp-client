@@ -1,16 +1,16 @@
 <body>
-  <h1>Allocazione SmartBins</h1>
+  <h1>SmartBins Allocation</h1>
 
   <div class="layout">
 
     <div class="bin-list">
-      <h2>SmartBins attivi</h2>
+      <h2>Active SmartBins</h2>
 
       <p *ngIf="this.smartBins.length == 0 && this.loadSmartBinsError == false" style="color:#444444; font-size: 1rem;">
-        ⏱️ Nessuno SmartBin è stato ancora allocato.
+        ⏱️ No SmartBin has been allocated yet.
       </p>
       <p *ngIf="this.loadSmartBinsError == true" style="color:#444444; font-size: 1rem;">
-        😵 Errore sconosciuto. Impossibile reperire la lista degli SmartBins.
+        😵 Unknown error. Unable to get SmartBins list.
       </p>
       <app-smart-bin-item-card
         [smartBin]=smartbin *ngFor="let smartbin of this.smartBinsOverThreshold">
@@ -30,14 +30,14 @@
         <app-map [mapId]="'SmartBinsMap'" [handleMarkerClickEvent]="true" (markerEvent)="handleMarkerUpdate($event)"></app-map>
       </div>
 
-      <p class="info">Per posizionare un nuovo SmartBin, effettua un click su un punto vuoto della mappa.</p>
+      <p class="info">To allocate a new SmartBin, click on an empty spot on the map.</p>
       <!--<button *ngFor="let smartbin of this.smartBins" (click)="highlightBinItem(smartbin.id!)">Evidenzia {{smartbin.name}}</button>-->
 
       <form #allocateNewBinForm="ngForm" *ngIf="this.showRequestForm" class="cool-background">
-        <h5>Alloca nuovo SmartBin</h5>
+        <h5>Allocate new SmartBin</h5>
 
         <div class="form-group">
-          <label for="inputSmartBinName">Nome SmartBin</label>
+          <label for="inputSmartBinName">SmartBin Name</label>
           <input
                   [(ngModel)]="newRequest.smartBinName" name="smartBinName"
                   required
@@ -45,15 +45,15 @@
                   pattern=".*"
                   #inputSmartBinName = "ngModel"
                   [ngClass]="{'is-invalid': inputSmartBinName.errors && inputSmartBinName.touched}"
-                  type="text" class="form-control" id="inputSmartBinName" placeholder="Inserisci nome dello SmartBin">
+                  type="text" class="form-control" id="inputSmartBinName" placeholder="Insert SmartBin name">
 
           <div class="invalid-feedback">
-            Inserire il nome.
+            Insert the name.
           </div>
         </div>
 
         <div class="form-group">
-          <label for="inputSmartBinType">Tipologia rifiuto</label>
+          <label for="inputSmartBinType">Waste type</label>
 
 
           <select
@@ -61,18 +61,18 @@
             required
             #inputSmartBinName = "ngModel"
             class="form-control" id="inputSmartBinType">
-            <option value="" disabled selected>Seleziona</option>
+            <option value="" disabled selected>Select</option>
             <option *ngFor="let wasteType of this.wasteTypes" value="{{wasteType.name}}">{{wasteType.name}}</option>
           </select>
 
 
           <div class="invalid-feedback">
-            Selezionare la tipologia.
+            Select the typology.
           </div>
         </div>
 
         <div class="form-group">
-          <label for="inputSmartBinCapacity">Capienza (in kg)</label>
+          <label for="inputSmartBinCapacity">Capacity (in kg)</label>
           <input
             [(ngModel)]="newRequest.totalCapacity" name="SmartBinCapacity"
             required
@@ -80,27 +80,27 @@
             pattern=".*"
             #inputSmartBinCapacity = "ngModel"
             [ngClass]="{'is-invalid': inputSmartBinCapacity.errors && inputSmartBinCapacity.touched}"
-            type="number" class="form-control" id="inputSmartBinCapacity" placeholder="Capienza">
+            type="number" class="form-control" id="inputSmartBinCapacity" placeholder="Capacity">
 
           <div class="invalid-feedback">
-            Inserire la capienza.
+            Insert the capacity.
           </div>
         </div>
 
         <!--[disabled]="this.markerService.markers.length != 1"-->
         <button
           [disabled] = "!allocateNewBinForm.valid"
-          type="submit" (click)="allocateNewBin()" class="btn btn-primary">📍 Alloca nuovo SmartBin</button>
+          type="submit" (click)="allocateNewBin()" class="btn btn-primary">📍 Allocate new SmartBin</button>
 
       </form>
       <div class="request-list">
-        <h2>Richieste in attesa️</h2>
+        <h2>Pending Allocation Requests</h2>
 
         <p *ngIf="(this.smartBinRequestService.smartBinRequests == null || this.smartBinRequestService.smartBinRequests.length == 0) && this.loadSmartBinRequestsError == false" style="color:#444444; font-size: 1rem;">
-          ✅ Nessuna richiesta in attesa.
+          ✅ No pending request.
         </p>
         <p *ngIf="this.loadSmartBinRequestsError==true" style="color:#444444; font-size: 1rem;">
-          😵 Errore sconosciuto. Impossibile reperire la lista delle richieste in attesa.
+          😵 Unknown error. Unable to get pending requests list.
         </p>
         <app-request-item-card
           [smartBinRequest]=smartbinRequest

@@ -3,13 +3,13 @@
 
   <form #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)" class="cool-background">
 
-    <h5 style="padding-left: 2rem; padding-top: 1.5rem; padding-bottom: 1rem;">Dati pagamento</h5>
+    <h5 style="padding-left: 2rem; padding-top: 1.5rem; padding-bottom: 1rem;">Payment data</h5>
 
     <section style="padding-left: 2.5rem">
-      <p style="margin-bottom: 2px; color: darkslategray">Codice tassa</p>
+      <p style="margin-bottom: 2px; color: darkslategray">Tax ID</p>
       <p style="font-size: 1rem; margin-top: 0; color: darkslategray"><b>{{tax.taxCode}}</b></p>
 
-      <p style="margin-bottom: 2px; color: darkslategray">Importo</p>
+      <p style="margin-bottom: 2px; color: darkslategray">Amount</p>
       <p style="font-size: 1rem; margin-top: 0; color: darkslategray"><b>{{tax.amount}} EUR</b></p>
     </section>
 
@@ -18,20 +18,20 @@
 
 
       <div class="form-group">
-        <label for="inputAccountHolder">Nome Titolare</label>
+        <label for="inputAccountHolder">Holder's Name</label>
         <input
           [(ngModel)]="accountHolder" name="inputAccountHolder"
           required
           #inputAccountHolder = "ngModel"
           [ngClass]="{'is-invalid': inputAccountHolder.errors && inputAccountHolder.touched}"
-          type="text" class="form-control" id="inputAccountHolder" placeholder="Nome e Cognome">
+          type="text" class="form-control" id="inputAccountHolder" placeholder="Name and Surname">
         <div class="invalid-feedback">
-          Inserisci un valore valido.
+          Please enter a valid value.
         </div>
       </div>
 
       <div class="form-group">
-        <label for="inputCardNumber">Numero carta</label>
+        <label for="inputCardNumber">Card number</label>
         <input
           required
           minlength="19"
@@ -42,13 +42,13 @@
           [ngClass]="{'is-invalid': inputCardNumber.errors && inputCardNumber.touched}"
           type="text" class="form-control" id="inputCardNumber" placeholder="**** **** **** ****">
         <div class="invalid-feedback">
-          Inserisci un valore valido.
+          Please enter a valid value.
         </div>
       </div>
 
       <div class="form-group expireandcvv-container">
         <div class="">
-          <label for="inputExpireDate">Scadenza</label>
+          <label for="inputExpireDate">Expire date</label>
           <input
             minlength="5"
             maxlength="5"
@@ -59,7 +59,7 @@
             [ngClass]="{'is-invalid': inputExpireDate.errors && inputExpireDate.touched}"
             type="text" class="form-control" id="inputExpireDate" placeholder="MM/YY">
           <div class="invalid-feedback">
-            Inserisci un valore valido.
+            Please enter a valid value.
           </div>
         </div>
 
@@ -74,7 +74,7 @@
             [ngClass]="{'is-invalid': inputCVV.errors && inputCVV.touched}"
             type="string" class="form-control" id="inputCVV" placeholder="CVV">
           <div class="invalid-feedback">
-            Inserisci un valore valido.
+            Please enter a valid value.
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
     <button [disabled] = "!emitTaxesForm.valid || isDoingPayment"
             type="submit"
             class="btn btn-primary">{{paymentButtonMessage}}</button>
-    <p style="display: flex; justify-content: center;"><a style="color: #333" routerLink="/citizen">Torna indietro</a></p>
+    <p style="display: flex; justify-content: center;"><a style="color: #333" routerLink="/citizen">Go back</a></p>
 
   </form>
 

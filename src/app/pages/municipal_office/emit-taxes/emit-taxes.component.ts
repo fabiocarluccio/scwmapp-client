@@ -27,7 +27,7 @@ export class EmitTaxesComponent implements OnInit {
   constructor(private smartBinService: SmartBinService,
               private taxService: TaxService,
               private exceptionManager: ExceptionManagerService) {
-    this.paymentButtonMessage = "Emetti tasse per l'anno " + this.previousYear
+    this.paymentButtonMessage = "Emit taxes for the year " + this.previousYear
 
   }
 

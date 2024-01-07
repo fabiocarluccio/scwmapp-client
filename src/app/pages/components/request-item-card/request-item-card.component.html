@@ -10,7 +10,7 @@
                [style.background-color]="this.smartBinService.getWasteColorByName(smartBinRequest.type!)">
           </div>{{this.smartBinRequest.type}}
         </div>
-        <div>Capacità: <b>{{this.smartBinRequest.totalCapacity}} kg</b></div>
+        <div>Capacity: <b>{{this.smartBinRequest.totalCapacity}} kg</b></div>
         <!--<button routerLink="/about/{{user.id}}">about</button>
         <button (click)="goToDetail(user.id)">about_businessLogic</button>-->
       </div>
@@ -21,8 +21,8 @@
     </div>
 
     <div class="allocation-decision" *ngIf="this.showDecisionControls">
-      <button class="btn btn-danger" (click)="revokeRequest()">Rifiuta</button>
-      <button class="btn btn-primary" (click)="acceptRequest()">Accetta</button>
+      <button class="btn btn-danger" (click)="revokeRequest()">Revoke</button>
+      <button class="btn btn-primary" (click)="acceptRequest()">Accept</button>
     </div>
   </div>
 </body>
