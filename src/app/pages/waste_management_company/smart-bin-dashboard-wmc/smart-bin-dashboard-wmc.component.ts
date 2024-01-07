@@ -16,6 +16,8 @@ import {CleaningPath} from "../../../models/cleaning-path";
 })
 export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
+  programmedDate: string = ""
+  programmedTime = "06:00"
   //private subscription: Subscription = new Subscription();
 
 
@@ -49,7 +51,12 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
               public smartBinService: SmartBinService,
               public smartBinRequestService: SmartBinRequestService,
               private exceptionManager: ExceptionManagerService) {
+
+    this.programmedDate = this.getTomorrowDate()
+
   }
+
+
 
   ngOnInit(): void {
 
@@ -63,15 +70,15 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
         }).catch(error => {
           // Mostro errore
-          window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+          window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
         });
       }).catch(error => {
         // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+        window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
   }
 
@@ -100,19 +107,32 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
   }
 
   executeCleaningPath() {
-    this.insertCleaningPath()
+    this.insertNewCleaningPath()
     this.toggleCleaningMode()
   }
 
-  insertCleaningPath() {
+  insertNewCleaningPath() {
     // Aggiunta percorso pulizia
     this.smartBinService.addCleaningPath(this.smartBinCleaningPath).then(response => {
       this.smartBinService.loadCleaningPathList()
     })
     .catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
 
+  }
+
+
+
+  getTomorrowDate() {
+    const oggi = new Date();
+    const domani = new Date(oggi);
+    domani.setDate(oggi.getDate() + 1);
+
+    const anno = domani.getFullYear();
+    const mese = String(domani.getMonth() + 1).padStart(2, "0");
+    const giorno = String(domani.getDate()).padStart(2, "0");
+    return `${anno}-${mese}-${giorno}`;
   }
 }

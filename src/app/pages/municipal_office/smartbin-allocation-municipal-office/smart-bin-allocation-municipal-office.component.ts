@@ -6,7 +6,6 @@ import {SmartBin} from "../../../models/smartbin";
 import {SmartBinRequestService} from "../../../services/smart-bin-request.service";
 import {AllocationRequest} from "../../../models/allocationRequest";
 import {WasteType} from "../../../models/wasteType";
-import {GeoJSON} from "leaflet";
 import {CommunicationService} from "../../../services/communication.service";
 
 @Component({
@@ -24,6 +23,10 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   //smartBinRequests: AllocationRequest[] = []
 
   showRequestForm = false
+
+
+  loadSmartBinsError = false
+  loadSmartBinRequestsError = false
 
   //wasteTypes: WasteType[] = [] as WasteType[];
 
@@ -47,23 +50,29 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   }
 
   ngOnInit(): void {
+    // Load waste types
     this.wasteTypes = this.smartBinService.getWasteTypes()
+
+    // Load SmartBins list
     this.smartBinService.loadAllocatedBins().then(response => {
 
+      this.loadSmartBinsError = false
       this.smartBins = this.smartBinService.smartBins                             // load smartbins
-
-      this.smartBinRequestService.loadPendingRequests().then(response => {
-
-        //this.smartBinRequests = this.smartBinRequestService.smartBinRequests    // load allocation requests
-
-
-      }).catch(error => {
-        // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
-      });
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      this.loadSmartBinsError = true
+      //old_ window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+    });
+
+    // Load SmartBin Requests list
+    this.smartBinRequestService.loadPendingRequests().then(response => {
+
+      this.loadSmartBinRequestsError = false
+      //this.smartBinRequests = this.smartBinRequestService.smartBinRequests    // load allocation requests
+    }).catch(error => {
+      // Mostro errore
+      this.loadSmartBinRequestsError = true
+      //old_ window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
     });
   }
 
@@ -106,7 +115,9 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
       })
       .catch(error => {
         // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+        //old_ window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+        console.log(error.error)
+        window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
   }
 

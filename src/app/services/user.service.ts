@@ -94,7 +94,14 @@ export class UserService {
   }
 
   getInfo(user: User) {
-    return firstValueFrom(this.http.get(this.baseUrl + 'get_info/' + user.username, this.httpOptions).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Authorization':'' + this.getTokenJWT()
+      })
+    }
+
+    return firstValueFrom(this.http.get(this.baseUrl + 'get_info/' + user.username, httpOptions).pipe(
       tap(response => {
         console.log('Richiesta GET riuscita:', response);
         // Gestisci la risposta dal server qui, se necessario

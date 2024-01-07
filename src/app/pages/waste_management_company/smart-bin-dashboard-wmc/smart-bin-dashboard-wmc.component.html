@@ -37,10 +37,39 @@
       <!--<button *ngFor="let smartbin of this.smartBins" (click)="highlightBinItem(smartbin.id!)">Evidenzia {{smartbin.name}}</button>-->
 
       <button style="margin-top: 10px;" class="btn btn-primary" (click)="toggleCleaningMode()" *ngIf="!cleaningMode">🧹Istanzia Pulizia</button>
-      <div style="margin-top: 10px;" class ="cleaning-buttons" *ngIf="cleaningMode">
-        <button class="btn btn-danger" (click)="toggleCleaningMode()">Annulla</button>
-        <button class="btn btn-primary" (click)="executeCleaningPath()" [disabled]="smartBinCleaningPath.length == 0" style="flex-grow: 1; flex-basis: 200%;">🧹Istanzia Pulizia</button>
-      </div>
+      <form #insertNewCleaningPathForm="ngForm" *ngIf="cleaningMode" >
+
+        <div>
+          <p style="margin-top: 1rem;
+          margin-bottom: 0;
+          line-height: 0.5rem;
+
+
+
+">Data di programmazione</p>
+
+
+          <div class="form-group">
+<!--          <label for="inputDate">Data programmazione Pulizia</label>-->
+          <!--class="form-control"-->
+          <input type="date" value="{{programmedDate}}"
+                 [(ngModel)]="programmedDate" name="date" #inputDate = "ngModel" [ngClass]="{'is-invalid': inputDate.errors && inputDate.touched}"
+                 required
+                 min="2023-10-03"
+                  id="inputDate">
+          <input type="time" name="data" id="time" value="{{programmedTime}}">
+
+            <div class="invalid-feedback">
+              Inserire il nome.
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 10px;" class ="cleaning-buttons">
+          <button class="btn btn-danger" (click)="toggleCleaningMode()">Annulla</button>
+          <button class="btn btn-primary" (click)="executeCleaningPath()" [disabled]="smartBinCleaningPath.length == 0" style="flex-grow: 1; flex-basis: 200%;">🧹Istanzia Pulizia</button>
+        </div>
+
+      </form>
 
       <div class="request-list">
         <h2>Percorsi di pulizia programmati</h2>

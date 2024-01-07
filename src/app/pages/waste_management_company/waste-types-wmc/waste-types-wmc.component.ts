@@ -38,7 +38,7 @@ export class WasteTypesWmcComponent implements OnInit{
 
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
 
   }

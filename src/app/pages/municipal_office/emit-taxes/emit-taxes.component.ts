@@ -38,7 +38,7 @@ export class EmitTaxesComponent implements OnInit {
       this.showForm = true // TODO DA RIMUOVEREEEE
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
   }
 
@@ -72,7 +72,7 @@ export class EmitTaxesComponent implements OnInit {
       this.isEmittingTaxes = false
       this.paymentButtonMessage = "Emetti tasse per l'anno " + this.previousYear
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
   }
 

@@ -31,7 +31,7 @@ export class PasswordResetComponent {
       })
       .catch(error => {
         // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+        window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
 
     // qui avvalorare una variabile a true se non ci sono errori e mostrare eventuali errori.

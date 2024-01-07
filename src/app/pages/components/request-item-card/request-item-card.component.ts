@@ -39,7 +39,7 @@ export class RequestItemCardComponent {
       })
       .catch(error => {
         // Mostro errore
-        window.alert(this.exceptionManagerService.getExceptionMessage(error.error.code, "A"));
+        window.alert(this.exceptionManagerService.getExceptionMessage(error.error.name, "A", error.error.description));
       });
 
     console.log("deny")
@@ -59,7 +59,7 @@ export class RequestItemCardComponent {
       })
       .catch(error => {
         // Mostro errore
-        window.alert(this.exceptionManagerService.getExceptionMessage(error.error.code, "A"));
+        window.alert(this.exceptionManagerService.getExceptionMessage(error.error.name, "A", error.error.description));
       });
     console.log('accept')
   }

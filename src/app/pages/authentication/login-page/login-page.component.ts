@@ -64,20 +64,19 @@ export class LoginPageComponent {
             this.router.navigateByUrl('citizen')
             break
           default:
-            console.log("i am an ADMIN")
-            localStorage.setItem('currentRole', "ADMIN") // TODO vecchio: scommentare quello sotto e cancellare queste due righe
-            window.alert(this.exceptionManager.getExceptionMessage(0, "A"));
+            window.alert(this.exceptionManager.getExceptionMessage("Exception", "A", ""));
         }
       })
       .catch(error => {
         // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+        console.log(error)
+        window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
 
-      })
-      .catch(error => {
-        // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
-      });
-  }
+    })
+    .catch(error => {
+      // Mostro errore
+      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+    });
+}
 }

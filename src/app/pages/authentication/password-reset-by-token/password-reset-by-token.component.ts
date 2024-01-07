@@ -43,9 +43,9 @@ export class PasswordResetByTokenComponent implements OnInit {
       .catch(error => {
         // Mostro errore
         if(error.error.code != 1) {
-          window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+          window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
         } else { // Errore interno del server nel caso in cui lo username non esiste
-          window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "B"));
+          window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "B", error.error.description));
         }
       });
   }

@@ -48,7 +48,7 @@ export class SmartBinRequestService {
 
   sendAllocationRequest(allocationRequest: AllocationRequest) {
     console.log(allocationRequest)
-    //return null!
+
     return firstValueFrom(this.http.post(this.baseUrl + 'request/allocation', allocationRequest, this.httpOptions).pipe(
       tap(response => {
         console.log('Richiesta POST riuscita:', response);

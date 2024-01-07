@@ -43,7 +43,7 @@ export class PaymentFormComponent implements OnInit{
 
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
 
   }
@@ -73,13 +73,13 @@ export class PaymentFormComponent implements OnInit{
         })
         .catch(error => {
           // Mostro errore
-          window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+          window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
           this.isDoingPayment = false;
           this.paymentButtonMessage = "Paga Tassa";
         });
 
       } else {
-        console.log(response.error.message);
+        window.alert(this.exceptionManager.getExceptionMessage("Exception", "A", ""));
       }
     });
 

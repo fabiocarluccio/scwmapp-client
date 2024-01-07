@@ -98,7 +98,7 @@ button {
 }
 
 
-
+/*
 form {
   display: flex;
   flex-direction: row;
@@ -141,7 +141,7 @@ form > button {
   margin-inline: 2rem;
   //width: 50%;
 }
-
+*/
 p {
   text-align: justify;
 }
@@ -200,3 +200,23 @@ button {
 
 
 
+input {
+  margin-top: 0.5rem;
+  height: 2rem;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  font-weight: 500;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  border: 1px solid #6f5e99ff;
+  border-radius: 4px;
+}
+
+
+
+.form-date {
+  display: inline;
+}

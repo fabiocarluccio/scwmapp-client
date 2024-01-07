@@ -83,17 +83,17 @@ export class CitizensListComponent implements OnInit {
 
         }).catch(error => {
           // Mostro errore
-          window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+          window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
         });
 
       }).catch(error => {
         // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+        window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
       // nothing to do
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
 
   }
