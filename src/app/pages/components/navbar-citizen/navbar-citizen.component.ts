@@ -20,7 +20,7 @@ export class NavbarCitizenComponent {
     localStorage.removeItem('wasteTypes')
     localStorage.removeItem('citizen')
 
-    this.route.navigateByUrl('login-page');
+    this.route.navigateByUrl('');
 
   }
 }
