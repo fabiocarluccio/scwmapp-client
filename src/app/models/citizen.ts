@@ -66,7 +66,7 @@ export class Citizen {
     }
 
     const totalWaste = sortedWaste + mixedWaste
-    console.log("weight: "+ weight + "; totalWaste: "+ totalWaste)
+    //console.log("weight: "+ weight + "; totalWaste: "+ totalWaste)
     const percentageOfTotal = weight/totalWaste * 100
     return Number(percentageOfTotal.toFixed(1))
   }

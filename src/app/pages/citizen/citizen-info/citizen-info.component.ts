@@ -93,8 +93,8 @@ export class CitizenInfoComponent implements OnInit {
       });
 
       this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
-        console.log("wastemetrics:"+response.yearlyVolumes[response.yearlyVolumes.length - 1])
-        this.citizen!.generatedVolume = response.yearlyVolumes[response.yearlyVolumes.length - 1]
+        if(response.yearlyVolumes[response.yearlyVolumes.length - 1].year == new Date().getFullYear())
+          this.citizen!.generatedVolume = response.yearlyVolumes[response.yearlyVolumes.length - 1]
         this.waitingForSeparationPerformanceData = false
 
       }).catch(error => {
