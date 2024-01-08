@@ -144,7 +144,7 @@ export class SmartBinService {
     return wasteTypes
   }
 
-  addCleaningPath(smartBinCleaningPath: SmartBin[]) {
+  addCleaningPath(smartBinCleaningPath: SmartBin[], programmedDate: string, programmedTime: string) {
 
     // Creazione array cleaningPath
     const cleaningPath: string[]= []
@@ -153,9 +153,20 @@ export class SmartBinService {
     }
 
 
+    // Eseguo parsing data in oggetto di tipo Date
+    const dateString = programmedDate + " " + programmedTime
+
+    // Split della stringa per ottenere la data e l'ora
+    const [datePart, hourPart] = dateString.split(' ');
+    const [year, month, day] = datePart.split('-');
+    const [hour, minute] = hourPart.split(':');
+
+    // Creazione dell'oggetto Date
+    const scheduledDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day), parseInt(hour), parseInt(minute));
+
     const body = {
       "smartBinIDPath": cleaningPath,
-      "scheduledDate": new Date
+      "scheduledDate": scheduledDate
     }
 
     return firstValueFrom(this.http.post(this.baseUrlCleaningPath + 'add', body, this.httpOptions).pipe(
