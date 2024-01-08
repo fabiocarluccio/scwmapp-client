@@ -81,6 +81,7 @@ export class PaymentFormComponent implements OnInit{
 
       } else {
         window.alert(this.exceptionManager.getExceptionMessage("Exception", "A", ""));
+        this.navigationRoute.navigateByUrl('/citizen');
       }
     });
 
