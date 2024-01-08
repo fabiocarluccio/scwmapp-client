@@ -77,11 +77,11 @@ button {
 
 .cool-background {
   background: linear-gradient(45deg,
-    #3c31,
-    #09c1,
-    #30c1,
-    #60c1,
-    #90c1);
+    #5f9ea033,
+    #5f9ea029,
+    #5f9ea021,
+    #5f9ea031,
+    #5f9ea011);
   background-size: 150% 150%;
 }
 
@@ -106,10 +106,19 @@ form {
   width: 450px;
   //align-items: center;
   margin-top: 0.5rem;
-  background-color: #9af2;
-  border: 1px solid #0007;
+  //background-color: #9af2;
+  //border: 1px solid #0007;
   border-radius: 8px;
   align-self: center;
+
+
+  box-shadow: 0px 4px 8px 4px rgba(150, 150, 150, 0.1);
+
+
+  background-color: #9af2;
+  border: 1px solid #5f9ea066;
+
+
 }
 
 form > h5 {
