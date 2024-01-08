@@ -21,6 +21,9 @@ export class CitizensListComponent implements OnInit {
   filters: CitizenFilter[] = [CitizenFilter.noFilter]
   sorting: CitizenSorting = CitizenSorting.alphabetical
 
+  waitingForCitizensList = true
+  loadCitizensError = false;
+
 
   constructor(public citizenService: CitizenService,
               public disposalService: DisposalService,
@@ -59,6 +62,7 @@ export class CitizensListComponent implements OnInit {
 
         // Ottengo stato tasse di tutti i cittadini
         this.taxService.getCitizensTaxStatus().then(response => {
+          this.waitingForCitizensList = false
 
           // Eseguo mapping Cittadino-stato tasse
           console.log(response)
@@ -83,17 +87,20 @@ export class CitizensListComponent implements OnInit {
 
         }).catch(error => {
           // Mostro errore
-          window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+          this.loadCitizensError = true
+          //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
         });
 
       }).catch(error => {
         // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+        this.loadCitizensError = true
+        //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
       // nothing to do
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+      this.loadCitizensError = true
+      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
 
   }

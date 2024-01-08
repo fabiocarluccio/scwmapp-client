@@ -20,7 +20,12 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
   programmedTime = "06:00"
   //private subscription: Subscription = new Subscription();
 
-
+  waitingForSmartBinsList = true
+  waitingForSmartBinRequestsList = true
+  waitingForCleaningPathsList = true
+  loadSmartBinsError = false
+  loadSmartBinRequestsError = false
+  loadCleaningPathsError = false
   //smartBins: SmartBin[] = []
 
   get smartBinsSorted(): SmartBin[] { // inutile questo nel caso in cui non si inserisce filtraggio/ordinamento
@@ -62,23 +67,28 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
     this.smartBinService.loadAllocatedBins().then(response => {
       //this.smartBins = this.smartBinService.smartBins                             // load smartbins
+      this.waitingForSmartBinsList = false
 
       this.smartBinRequestService.loadPendingRequests().then(response => {
         //this.smartBinRequests = this.smartBinRequestService.smartBinRequests      // load allocation requests
+        this.waitingForSmartBinRequestsList = false
 
         this.smartBinService.loadCleaningPathList().then(response => {              // load cleaning path list
-
+          this.waitingForCleaningPathsList = false
         }).catch(error => {
           // Mostro errore
-          window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+          this.loadCleaningPathsError = true
+          //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
         });
       }).catch(error => {
         // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+        this.loadSmartBinRequestsError = true
+        //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+      this.loadSmartBinsError = true
+      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
   }
 

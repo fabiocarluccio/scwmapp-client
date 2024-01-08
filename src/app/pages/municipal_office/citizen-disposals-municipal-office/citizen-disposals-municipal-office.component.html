@@ -4,10 +4,18 @@
 </div>
 
 <h2>Disposals</h2>
-<p *ngIf="this.disposals && this.disposals.length == 0" style="color:#444444; font-size: 1rem;">
+
+<p *ngIf="this.waitingForDisposalsList" style="color:#444444; font-size: 1rem;">
+  ⏱️ Updating..
+</p>
+<p *ngIf="this.disposals && this.disposals.length == 0 && this.waitingForDisposalsList == false && this.loadDisposalsError == false" style="color:#444444; font-size: 1rem;">
   ⏱️ No disposal has been made yet in the current year.
 </p>
-<div *ngIf="this.disposals && this.disposals.length != 0">
+<p *ngIf="this.loadDisposalsError == true" style="color:#444444; font-size: 1rem;">
+  😵 Unknown error. Unable to get Disposals list.
+</p>
+
+<div *ngIf="this.disposals && this.disposals.length != 0 && this.loadDisposalsError == false && this.waitingForDisposalsList == false">
   <table>
     <tr class="table-header">
       <th>Waste type<div class="column-border"></div></th>

@@ -1,11 +1,20 @@
 <body>
   <h1>Emissione Tasse</h1>
 
-  <p *ngIf="!this.showForm">✅ Taxes issued for the current year. Please wait until next year.</p>
+  <p *ngIf="this.waitingForTaxStatus" style="color:#444444; font-size: 1rem;">
+    ⏱️ Updating..
+  </p>
+  <p *ngIf="!this.showForm && this.waitingForTaxStatus == false && this.loadTaxStatusError == false" style="color:#444444; font-size: 1rem;">
+    ✅ Taxes issued for the current year. Please wait until next year.
+  </p>
+  <p *ngIf="this.loadTaxStatusError == true" style="color:#444444; font-size: 1rem;">
+    😵 Unknown error. Unable to get Tax status.
+  </p>
 
-  <p *ngIf="this.showForm">Set the fee per kg of waste.</p>
 
-  <form *ngIf="this.showForm" #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)" class="cool-background">
+  <p *ngIf="this.showForm && this.waitingForTaxStatus == false && this.loadTaxStatusError == false">Set the fee per kg of waste.</p>
+
+  <form *ngIf="this.showForm && this.waitingForTaxStatus == false && this.loadTaxStatusError == false" #emitTaxesForm="ngForm" (ngSubmit)="onSubmit(emitTaxesForm)" class="cool-background">
 
     <div class="form-group" style="padding-left: 15px; padding-top: 15px;">
       <label for="inputBaseFee"><b>Base Fee</b></label>

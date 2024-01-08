@@ -15,6 +15,9 @@ export class DisposalsComponent implements OnInit {
 
   disposals: Disposal[] | null = null
 
+  waitingForDisposalsList = true
+  loadDisposalsError = false
+
   constructor(private route: ActivatedRoute,
               private citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService,
@@ -25,13 +28,14 @@ export class DisposalsComponent implements OnInit {
 
   ngOnInit(): void {
     this.disposalService.loadDisposals(JSON.parse(localStorage.getItem("citizen")!).id).then(response => {
-
       console.log(this.disposalService.disposals)
       this.disposals = this.disposalService.disposals
+      this.waitingForDisposalsList = false
 
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+      this.loadDisposalsError = true
+      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
   }
 

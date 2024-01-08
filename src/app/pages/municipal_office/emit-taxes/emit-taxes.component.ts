@@ -4,6 +4,7 @@ import {WasteType} from "../../../models/wasteType";
 import {SmartBinService} from "../../../services/smart-bin.service";
 import {ExceptionManagerService} from "../../../services/exception-manager.service";
 import {AllocationRequest} from "../../../models/allocationRequest";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-emit-taxes',
@@ -22,10 +23,13 @@ export class EmitTaxesComponent implements OnInit {
   paymentButtonMessage = ""
   isEmittingTaxes = false
 
+  waitingForTaxStatus = true
+  loadTaxStatusError = false
 
 
   constructor(private smartBinService: SmartBinService,
               private taxService: TaxService,
+              private route:Router,
               private exceptionManager: ExceptionManagerService) {
     this.paymentButtonMessage = "Emit taxes for the year " + this.previousYear
 
@@ -36,9 +40,12 @@ export class EmitTaxesComponent implements OnInit {
     this.taxService.getTaxStatus().then(response => {
       this.showForm = !response.data;
       this.showForm = true // TODO DA RIMUOVEREEEE
+      this.waitingForTaxStatus = false
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+      this.loadTaxStatusError = true
+      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+      //this.route.navigateByUrl('/municipal_office/smartbin-allocation');
     });
   }
 

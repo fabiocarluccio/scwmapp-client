@@ -17,6 +17,9 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
   citizen: Citizen = {} as Citizen
   disposals: Disposal[] | null = null
 
+  waitingForDisposalsList = true
+  loadDisposalsError = false
+
   constructor(private route: ActivatedRoute,
               private citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService,
@@ -31,23 +34,24 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
 
     // get citizen data (citizen info + taxes + disposal
     this.citizenService.loadCitizen(this.citizenId!).then(response => {
-
       console.log(response)
       this.citizen = response
 
       this.disposalService.loadDisposals(this.citizenId!).then(response => {
-
         console.log(this.disposalService.disposals)
         this.disposals = this.disposalService.disposals
+        this.waitingForDisposalsList = false
 
       }).catch(error => {
         // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+        this.loadDisposalsError = true
+        //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
 
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+      this.loadDisposalsError = true
+      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
   }
 

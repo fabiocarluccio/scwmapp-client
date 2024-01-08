@@ -21,6 +21,14 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
   disposals: Disposal[] = []
   taxes: Tax[]= []
 
+  waitingForCitizenInfo = true
+  waitingForTaxesList = true
+  waitingForDisposalsList = true
+  waitingForSeparationPerformanceData = true
+  loadCitizenInfoError = false
+  loadTaxesError = false
+  loadDisposalsError = false
+  loadSeparationPerformanceError = false
 
   constructor(private route: ActivatedRoute,
               private citizenService: CitizenService,
@@ -36,41 +44,47 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
 
     // get citizen data (citizen info + taxes + disposal
     this.citizenService.loadCitizen(this.citizenId!).then(response => {
-
       console.log(response)
       this.citizen = response
-
-      this.disposalService.loadLastDisposals(this.citizenId!).then(response => {
-
-        console.log(this.disposalService.disposals)
-        this.disposals = this.disposalService.disposals
-
-        this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
-          console.log("wastemetrics:"+response.yearlyVolumes[0])
-          this.citizen!.generatedVolume = response.yearlyVolumes[0]
-
-          this.taxService.loadTaxes(this.citizenId!).then(response => {
-
-            console.log(this.taxService.taxes)
-            this.taxes = this.taxService.taxes
-
-          }).catch(error => {
-            // Mostro errore
-            window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
-          });
-        }).catch(error => {
-          // Mostro errore
-          window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
-        });
-
-      }).catch(error => {
-        // Mostro errore
-        window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
-      });
+      this.waitingForCitizenInfo = false
 
     }).catch(error => {
       // Mostro errore
-      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+      this.loadCitizenInfoError = true
+      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+    });
+
+    this.taxService.loadTaxes(this.citizenId!).then(response => {
+      console.log(this.taxService.taxes)
+      this.taxes = this.taxService.taxes
+      this.waitingForTaxesList = false
+
+    }).catch(error => {
+      // Mostro errore
+      this.loadTaxesError = true
+      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+    });
+
+    this.disposalService.loadLastDisposals(this.citizenId!).then(response => {
+      console.log(this.disposalService.disposals)
+      this.disposals = this.disposalService.disposals
+      this.waitingForDisposalsList = false
+
+    }).catch(error => {
+      // Mostro errore
+      this.loadDisposalsError = true
+      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+    });
+
+    this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
+      console.log("wastemetrics:"+response.yearlyVolumes[0])
+      this.citizen!.generatedVolume = response.yearlyVolumes[0]
+      this.waitingForSeparationPerformanceData = false
+
+    }).catch(error => {
+      // Mostro errore
+      this.loadSeparationPerformanceError = true
+      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
 
 

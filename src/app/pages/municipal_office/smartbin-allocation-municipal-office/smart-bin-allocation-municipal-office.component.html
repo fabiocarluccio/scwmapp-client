@@ -6,22 +6,28 @@
     <div class="bin-list">
       <h2>Active SmartBins</h2>
 
-      <p *ngIf="this.smartBins.length == 0 && this.loadSmartBinsError == false" style="color:#444444; font-size: 1rem;">
+      <p *ngIf="this.waitingForSmartBinsList" style="color:#444444; font-size: 1rem;">
+        ⏱️ Updating..
+      </p>
+      <p *ngIf="this.smartBins.length == 0 && this.loadSmartBinsError == false && this.waitingForSmartBinsList == false" style="color:#444444; font-size: 1rem;">
         ⏱️ No SmartBin has been allocated yet.
       </p>
       <p *ngIf="this.loadSmartBinsError == true" style="color:#444444; font-size: 1rem;">
         😵 Unknown error. Unable to get SmartBins list.
       </p>
-      <app-smart-bin-item-card
-        [smartBin]=smartbin *ngFor="let smartbin of this.smartBinsOverThreshold">
-      </app-smart-bin-item-card>
 
-      <div *ngIf="this.smartBinsOverThreshold.length != 0" style="align-self: center;margin-top: 0.5rem; margin-bottom: 1rem; width: 90%; height: 2px; border-radius: 2px; background: cadetblue">
-      </div>
+      <ng-container *ngIf="loadSmartBinsError == false && this.waitingForSmartBinsList == false">
+        <app-smart-bin-item-card
+          [smartBin]=smartbin *ngFor="let smartbin of this.smartBinsOverThreshold">
+        </app-smart-bin-item-card>
+        <div *ngIf="this.smartBinsOverThreshold.length != 0" style="align-self: center;margin-top: 0.5rem; margin-bottom: 1rem; width: 90%; height: 2px; border-radius: 2px; background: cadetblue">
+        </div>
 
-      <app-smart-bin-item-card
-        [smartBin]=smartbin *ngFor="let smartbin of this.smartBinsUnderThreshold">
-      </app-smart-bin-item-card>
+        <app-smart-bin-item-card
+          [smartBin]=smartbin *ngFor="let smartbin of this.smartBinsUnderThreshold">
+        </app-smart-bin-item-card>
+
+      </ng-container>
     </div>
 
     <div class="right-column">
@@ -96,17 +102,22 @@
       <div class="request-list">
         <h2>Pending Allocation Requests</h2>
 
-        <p *ngIf="(this.smartBinRequestService.smartBinRequests == null || this.smartBinRequestService.smartBinRequests.length == 0) && this.loadSmartBinRequestsError == false" style="color:#444444; font-size: 1rem;">
+        <p *ngIf="this.waitingForSmartBinRequestsList" style="color:#444444; font-size: 1rem;">
+          ⏱️ Updating..
+        </p>
+        <p *ngIf="(this.smartBinRequestService.smartBinRequests == null || this.smartBinRequestService.smartBinRequests.length == 0) && this.loadSmartBinRequestsError == false && !waitingForSmartBinRequestsList" style="color:#444444; font-size: 1rem;">
           ✅ No pending request.
         </p>
         <p *ngIf="this.loadSmartBinRequestsError==true" style="color:#444444; font-size: 1rem;">
           😵 Unknown error. Unable to get pending requests list.
         </p>
-        <app-request-item-card
-          [smartBinRequest]=smartbinRequest
-          *ngFor="let smartbinRequest of this.smartBinRequestService.smartBinRequests">
-        </app-request-item-card>
 
+        <ng-container *ngIf="loadSmartBinRequestsError == false && !waitingForSmartBinRequestsList">
+          <app-request-item-card
+            [smartBinRequest]=smartbinRequest
+            *ngFor="let smartbinRequest of this.smartBinRequestService.smartBinRequests">
+          </app-request-item-card>
+        </ng-container>
       </div>
 
 

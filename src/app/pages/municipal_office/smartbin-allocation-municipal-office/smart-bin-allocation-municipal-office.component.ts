@@ -24,7 +24,8 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
 
   showRequestForm = false
 
-
+  waitingForSmartBinsList = true
+  waitingForSmartBinRequestsList = true
   loadSmartBinsError = false
   loadSmartBinRequestsError = false
 
@@ -55,9 +56,8 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
 
     // Load SmartBins list
     this.smartBinService.loadAllocatedBins().then(response => {
-
-      this.loadSmartBinsError = false
       this.smartBins = this.smartBinService.smartBins                             // load smartbins
+      this.waitingForSmartBinsList = false
     }).catch(error => {
       // Mostro errore
       this.loadSmartBinsError = true
@@ -66,8 +66,7 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
 
     // Load SmartBin Requests list
     this.smartBinRequestService.loadPendingRequests().then(response => {
-
-      this.loadSmartBinRequestsError = false
+      this.waitingForSmartBinRequestsList = false
       //this.smartBinRequests = this.smartBinRequestService.smartBinRequests    // load allocation requests
     }).catch(error => {
       // Mostro errore

@@ -5,27 +5,37 @@
 
     <div class="bin-list">
       <h2>Active SmartBins</h2>
-      <p *ngIf="this.smartBinsSorted.length==0" style="color:#444444; font-size: 1rem;">
+
+      <p *ngIf="this.waitingForSmartBinsList" style="color:#444444; font-size: 1rem;">
+        ⏱️ Updating..
+      </p>
+      <p *ngIf="this.smartBinsSorted.length==0 && this.loadSmartBinsError == false && this.waitingForSmartBinsList == false" style="color:#444444; font-size: 1rem;">
         ⏱️ No SmartBin has been allocated yet.
       </p>
-      <app-smart-bin-item-card
-        *ngFor="let smartbin of this.smartBinsOverThreshold"
-        [smartBin]=smartbin
-        [isInSelectionMode]="cleaningMode"
-        [isSelected]="this.smartBinCleaningPath.indexOf(smartbin) != -1"
-        (selectionEvent)="handleSelectionEvent($event)"
-        [selectionOrder]="getSelectionOrder(smartbin)">
-      </app-smart-bin-item-card>
-      <div *ngIf="this.smartBinsOverThreshold.length != 0" style="align-self: center;margin-top: 0.5rem; margin-bottom: 1rem; width: 90%; height: 2px; border-radius: 2px; background: #6f5e99ff">
-      </div>
-      <app-smart-bin-item-card
-        *ngFor="let smartbin of this.smartBinsUnderThreshold"
-        [smartBin]=smartbin
-        [isInSelectionMode]="cleaningMode"
-        [isSelected]="this.smartBinCleaningPath.indexOf(smartbin) != -1"
-        (selectionEvent)="handleSelectionEvent($event)"
-        [selectionOrder]="getSelectionOrder(smartbin)">
-      </app-smart-bin-item-card>
+      <p *ngIf="this.loadSmartBinsError == true" style="color:#444444; font-size: 1rem;">
+        😵 Unknown error. Unable to get SmartBins list.
+      </p>
+
+      <ng-container *ngIf="loadSmartBinRequestsError == false && this.waitingForSmartBinsList == false">
+        <app-smart-bin-item-card
+          *ngFor="let smartbin of this.smartBinsOverThreshold"
+          [smartBin]=smartbin
+          [isInSelectionMode]="cleaningMode"
+          [isSelected]="this.smartBinCleaningPath.indexOf(smartbin) != -1"
+          (selectionEvent)="handleSelectionEvent($event)"
+          [selectionOrder]="getSelectionOrder(smartbin)">
+        </app-smart-bin-item-card>
+        <div *ngIf="this.smartBinsOverThreshold.length != 0" style="align-self: center;margin-top: 0.5rem; margin-bottom: 1rem; width: 90%; height: 2px; border-radius: 2px; background: #6f5e99ff">
+        </div>
+        <app-smart-bin-item-card
+          *ngFor="let smartbin of this.smartBinsUnderThreshold"
+          [smartBin]=smartbin
+          [isInSelectionMode]="cleaningMode"
+          [isSelected]="this.smartBinCleaningPath.indexOf(smartbin) != -1"
+          (selectionEvent)="handleSelectionEvent($event)"
+          [selectionOrder]="getSelectionOrder(smartbin)">
+        </app-smart-bin-item-card>
+      </ng-container>
     </div>
 
     <div class="right-column">
@@ -71,10 +81,17 @@
       <div class="request-list">
         <h2>Cleaning Paths Scheduled</h2>
 
-        <p *ngIf="this.smartBinService.cleaningPathList == null || this.smartBinService.cleaningPathList.length == 0" style="color:#444444; font-size: 1rem;">
-          ✅ All cleaning paths have been completed.
+        <p *ngIf="this.waitingForCleaningPathsList" style="color:#444444; font-size: 1rem;">
+          ⏱️ Updating..
         </p>
-        <div *ngIf="this.smartBinService.cleaningPathList && this.smartBinService.cleaningPathList.length > 0">
+        <p *ngIf="this.smartBinService.cleaningPathList == null || this.smartBinService.cleaningPathList.length == 0 && this.loadCleaningPathsError == false && this.waitingForCleaningPathsList == false" style="color:#444444; font-size: 1rem;">
+          ✅ All Cleaning Paths have been completed.
+        </p>
+        <p *ngIf="this.loadCleaningPathsError == true" style="color:#444444; font-size: 1rem;">
+          😵 Unknown error. Unable to get Cleaning Paths list.
+        </p>
+
+        <div *ngIf="this.smartBinService.cleaningPathList && this.smartBinService.cleaningPathList.length > 0 && this.loadCleaningPathsError == false && this.waitingForCleaningPathsList == false">
           <app-cleaning-path-item-card
             *ngFor="let cleaningPath of this.smartBinService.cleaningPathList"
             [cleaningPath]=cleaningPath
@@ -85,15 +102,22 @@
       <div class="request-list" style="margin-top: calc(2rem - 10px);">
         <h2>Pending Allocation Requests️</h2>
 
-        <p *ngIf="this.smartBinRequestService.smartBinRequests == null || this.smartBinRequestService.smartBinRequests.length == 0" style="color:#444444; font-size: 1rem;">
+        <p *ngIf="this.waitingForSmartBinRequestsList" style="color:#444444; font-size: 1rem;">
+          ⏱️ Updating..
+        </p>
+        <p *ngIf="(this.smartBinRequestService.smartBinRequests == null || this.smartBinRequestService.smartBinRequests.length == 0) && this.loadSmartBinRequestsError == false && this.waitingForSmartBinRequestsList == false" style="color:#444444; font-size: 1rem;">
           ✅ No pending request.
         </p>
-        <app-request-item-card
-          [smartBinRequest]=smartbinRequest
-          *ngFor="let smartbinRequest of this.smartBinRequestService.smartBinRequests"
-          [showDecisionControls]="true">
-        </app-request-item-card>
-
+        <p *ngIf="this.loadSmartBinRequestsError == true" style="color:#444444; font-size: 1rem;">
+          😵 Unknown error. Unable to get SmartBins list.
+        </p>
+        <ng-container *ngIf="loadSmartBinRequestsError == false  && this.waitingForSmartBinRequestsList == false">
+          <app-request-item-card
+            [smartBinRequest]=smartbinRequest
+            *ngFor="let smartbinRequest of this.smartBinRequestService.smartBinRequests"
+            [showDecisionControls]="true">
+          </app-request-item-card>
+        </ng-container>
       </div>
 
 

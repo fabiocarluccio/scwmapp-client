@@ -29,6 +29,7 @@ export class PaymentFormComponent implements OnInit{
 
   constructor(private router: Router,
               private route: ActivatedRoute,
+              private navigationRoute:Router,
               private taxService: TaxService,
               private exceptionManager: ExceptionManagerService) {
   }
@@ -37,13 +38,13 @@ export class PaymentFormComponent implements OnInit{
     this.taxId = this.route.snapshot.paramMap.get('taxId');
 
     this.taxService.getTax(this.taxId!).then(response => {
-
       console.log(response)
       this.tax = response
 
     }).catch(error => {
       // Mostro errore
       window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+      this.navigationRoute.navigateByUrl('/citizen');
     });
 
   }
