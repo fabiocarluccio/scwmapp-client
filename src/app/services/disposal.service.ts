@@ -68,7 +68,6 @@ export class DisposalService {
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
 
-
       }),
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);

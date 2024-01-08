@@ -77,8 +77,8 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
     });
 
     this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
-      console.log("wastemetrics:"+response.yearlyVolumes[0])
-      this.citizen!.generatedVolume = response.yearlyVolumes[0]
+      console.log("wastemetrics:"+response.yearlyVolumes[response.yearlyVolumes.length - 1])
+      this.citizen!.generatedVolume = response.yearlyVolumes[response.yearlyVolumes.length - 1]
       this.waitingForSeparationPerformanceData = false
 
     }).catch(error => {
