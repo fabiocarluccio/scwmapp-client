@@ -35,7 +35,10 @@ export class CitizensListComponent implements OnInit {
 
   ngOnInit() {
     // Check Token JWT - se non è definito, lo redirigo nella pagina di login
-    if(localStorage.getItem("currentUser") == null) this.router.navigateByUrl("/")
+    if(localStorage.getItem("currentUser") == null) {
+      this.router.navigateByUrl("/")
+      return
+    }
 
     this.citizenService.loadCitizens().then(response => {
       this.citizenService.citizens.forEach(cittadino => {

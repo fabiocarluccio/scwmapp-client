@@ -36,7 +36,10 @@ export class PaymentFormComponent implements OnInit{
 
   ngOnInit(): void {
     // Check Token JWT - se non è definito, lo redirigo nella pagina di login
-    if(localStorage.getItem("currentUser") == null) this.router.navigateByUrl("/")
+    if(localStorage.getItem("currentUser") == null) {
+      this.router.navigateByUrl("/")
+      return
+    }
 
     this.taxId = this.route.snapshot.paramMap.get('taxId');
 

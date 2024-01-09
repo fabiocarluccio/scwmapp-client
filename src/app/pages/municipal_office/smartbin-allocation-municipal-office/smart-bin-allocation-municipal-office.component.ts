@@ -55,7 +55,10 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   ngOnInit(): void {
 
     // Check Token JWT - se non è definito, lo redirigo nella pagina di login
-    if(localStorage.getItem("currentUser") == null) this.router.navigateByUrl("/")
+    if(localStorage.getItem("currentUser") == null) {
+      this.router.navigateByUrl("/")
+      return
+    }
 
     // Load waste types
     this.wasteTypes = this.smartBinService.getWasteTypes()

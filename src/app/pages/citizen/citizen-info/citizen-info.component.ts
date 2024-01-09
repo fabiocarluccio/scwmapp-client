@@ -43,12 +43,15 @@ export class CitizenInfoComponent implements OnInit {
 
   ngOnInit(): void {
     // Check Token JWT - se non è definito, lo redirigo nella pagina di login
-    if(localStorage.getItem("currentUser") == null) this.router.navigateByUrl("/")
+    if (localStorage.getItem("currentUser") == null) {
+      this.router.navigateByUrl("/")
+      return
+    }
 
     //this.citizenId = this.route.snapshot.paramMap.get('citizenId');
     const userId: string = localStorage.getItem("userId")!
 
-    if(this.citizen == null) this.navigationRoute.navigateByUrl('/');
+    if(userId == null) this.navigationRoute.navigateByUrl('/');
 
     // get citizen data (citizen Id + citizen token + citizen info + taxes + disposal
     this.citizenService.getCitizenId(userId).then(response => {

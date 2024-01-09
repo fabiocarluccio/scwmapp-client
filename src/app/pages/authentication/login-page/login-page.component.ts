@@ -22,8 +22,14 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     // Controlla se l'URL contiene una route wildcard '**'
     if (this.router.url != "/") {
-      // Reindirizza manualmente a '/'
-      this.router.navigateByUrl('/');
+      // Reindirizza manualmente
+      if(localStorage.getItem('currentRole') == 'Citizen')
+        this.router.navigateByUrl('/citizen');
+      else if(localStorage.getItem('currentRole') == 'MunicipalOffice')
+        this.router.navigateByUrl('/municipal_office/citizens-list');
+      else if(localStorage.getItem('currentRole') == 'WasteManagementCompany')
+        this.router.navigateByUrl('/waste_management_company/smartbin-dashboard');
+      else this.router.navigateByUrl('/');
     }
   }
 

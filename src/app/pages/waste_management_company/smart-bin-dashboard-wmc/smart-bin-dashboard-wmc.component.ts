@@ -67,7 +67,10 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     // Check Token JWT - se non è definito, lo redirigo nella pagina di login
-    if(localStorage.getItem("currentUser") == null) this.router.navigateByUrl("/")
+    if(localStorage.getItem("currentUser") == null) {
+      this.router.navigateByUrl("/")
+      return
+    }
 
     this.smartBinService.loadAllocatedBins().then(response => {
       //this.smartBins = this.smartBinService.smartBins                             // load smartbins

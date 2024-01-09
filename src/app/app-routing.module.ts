@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Router, RouterModule, Routes} from "@angular/router";
+import { RouterModule, Routes} from "@angular/router";
 import {UsersComponent} from "./pages/unused/users/users.component";
 import {AboutComponent} from "./pages/unused/about/about.component";
 import {ContactComponent} from "./pages/unused/contact/contact.component";
@@ -34,7 +34,6 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'contact', component: ContactComponent },     // - il componente associato a quel path.
   { path: 'about/:userid', component: AboutComponent },
   { path: '', component: LoginPageComponent },
-  { path: '**', component: LoginPageComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'password-reset-token-validation', component: PasswordResetTokenValidationComponent },
   { path: 'password-reset-by-token', component: PasswordResetByTokenComponent },
@@ -48,7 +47,8 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'municipal_office/citizen-info/disposals/:citizenId', component: CitizenDisposalsMunicipalOfficeComponent },
   { path: 'waste_management_company/waste-types', component: WasteTypesWmcComponent },
   { path: 'external/light-pay/:taxId', component: LightPayComponent},
-  { path: 'citizen/payment-form/:taxId', component: PaymentFormComponent}
+  { path: 'citizen/payment-form/:taxId', component: PaymentFormComponent},
+  { path: '**', component: LoginPageComponent }
 ]
 
 @NgModule({

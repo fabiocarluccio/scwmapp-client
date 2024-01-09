@@ -24,6 +24,9 @@ export class MarkerService {
 
   makeBinCircleMarkers(map: L.Map): void {
 
+    if(localStorage.getItem("currentUser") == null)
+      return
+
     this.smartBinService.loadAllocatedBins().then(response => {
       if(response == null) return;
 

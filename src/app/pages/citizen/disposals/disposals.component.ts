@@ -28,6 +28,12 @@ export class DisposalsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Check Token JWT - se non è definito, lo redirigo nella pagina di login
+    if(localStorage.getItem("currentUser") == null) {
+      this.router.navigateByUrl("/")
+      return
+    }
+
     this.disposalService.loadDisposals(JSON.parse(localStorage.getItem("citizen")!).id).then(response => {
       console.log(this.disposalService.disposals)
       this.disposals = this.disposalService.disposals
