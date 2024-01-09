@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../../models/user";
 import {Router} from "@angular/router";
 import {UserService} from "../../../services/user.service";
@@ -10,7 +10,7 @@ import {SmartBinService} from "../../../services/smart-bin.service";
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit {
   user:User = {} as User;
 
   constructor(private userService:UserService,
@@ -19,6 +19,13 @@ export class LoginPageComponent {
               private smartBinService: SmartBinService) {
   }
 
+  ngOnInit() {
+    // Controlla se l'URL contiene una route wildcard '**'
+    if (this.router.url != "/") {
+      // Reindirizza manualmente a '/'
+      this.router.navigateByUrl('/');
+    }
+  }
 
   onSubmit(userForm: any) {
     console.log("onSubmit() called")

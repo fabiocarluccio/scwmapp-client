@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Disposal} from "../../../models/disposal";
 import {Tax} from "../../../models/tax";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CitizenService} from "../../../services/citizen.service";
 import {ExceptionManagerService} from "../../../services/exception-manager.service";
 import {DisposalService} from "../../../services/disposal.service";
@@ -9,7 +9,6 @@ import {TaxService} from "../../../services/tax.service";
 import {SmartBinService} from "../../../services/smart-bin.service";
 import {Citizen} from "../../../models/citizen";
 import {UserService} from "../../../services/user.service";
-import {User} from "../../../models/user";
 
 @Component({
   selector: 'app-citizen-info',
@@ -33,6 +32,8 @@ export class CitizenInfoComponent implements OnInit {
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
+              private router: Router,
+              private navigationRoute: Router,
               private citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService,
               private disposalService: DisposalService,
@@ -41,8 +42,13 @@ export class CitizenInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Check Token JWT - se non è definito, lo redirigo nella pagina di login
+    if(localStorage.getItem("currentUser") == null) this.router.navigateByUrl("/")
+
     //this.citizenId = this.route.snapshot.paramMap.get('citizenId');
     const userId: string = localStorage.getItem("userId")!
+
+    if(this.citizen == null) this.navigationRoute.navigateByUrl('/');
 
     // get citizen data (citizen Id + citizen token + citizen info + taxes + disposal
     this.citizenService.getCitizenId(userId).then(response => {

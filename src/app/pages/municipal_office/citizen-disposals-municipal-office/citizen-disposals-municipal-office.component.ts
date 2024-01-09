@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Disposal} from "../../../models/disposal";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CitizenService} from "../../../services/citizen.service";
 import {ExceptionManagerService} from "../../../services/exception-manager.service";
 import {DisposalService} from "../../../services/disposal.service";
@@ -21,6 +21,7 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
   loadDisposalsError = false
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService,
               private disposalService: DisposalService,
@@ -28,6 +29,8 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Check Token JWT - se non è definito, lo redirigo nella pagina di login
+    if(localStorage.getItem("currentUser") == null) this.router.navigateByUrl("/")
 
     this.citizenId = this.route.snapshot.paramMap.get('citizenId');
     console.log(this.citizenId);

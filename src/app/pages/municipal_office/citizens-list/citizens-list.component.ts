@@ -5,6 +5,7 @@ import {Citizen} from "../../../models/citizen";
 import {CitizenFilter, CitizenSorting} from "../../../models/citizen-filtering-enum";
 import {DisposalService} from "../../../services/disposal.service";
 import {TaxService} from "../../../services/tax.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-citizens-list',
@@ -28,10 +29,14 @@ export class CitizensListComponent implements OnInit {
   constructor(public citizenService: CitizenService,
               public disposalService: DisposalService,
               private taxService: TaxService,
+              private router: Router,
               private exceptionManager: ExceptionManagerService) {
   }
 
   ngOnInit() {
+    // Check Token JWT - se non è definito, lo redirigo nella pagina di login
+    if(localStorage.getItem("currentUser") == null) this.router.navigateByUrl("/")
+
     this.citizenService.loadCitizens().then(response => {
       this.citizenService.citizens.forEach(cittadino => {
         cittadino.taxesStatus = true;

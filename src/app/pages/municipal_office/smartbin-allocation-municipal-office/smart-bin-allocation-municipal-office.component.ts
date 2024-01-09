@@ -7,6 +7,7 @@ import {SmartBinRequestService} from "../../../services/smart-bin-request.servic
 import {AllocationRequest} from "../../../models/allocationRequest";
 import {WasteType} from "../../../models/wasteType";
 import {CommunicationService} from "../../../services/communication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-smartbin-allocation-municipal-office',
@@ -35,7 +36,8 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
               public smartBinService: SmartBinService,
               public smartBinRequestService: SmartBinRequestService,
               private exceptionManager: ExceptionManagerService,
-              private communicationService: CommunicationService) {
+              private communicationService: CommunicationService,
+              private router: Router) {
   }
 
 
@@ -51,6 +53,10 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
   }
 
   ngOnInit(): void {
+
+    // Check Token JWT - se non è definito, lo redirigo nella pagina di login
+    if(localStorage.getItem("currentUser") == null) this.router.navigateByUrl("/")
+
     // Load waste types
     this.wasteTypes = this.smartBinService.getWasteTypes()
 

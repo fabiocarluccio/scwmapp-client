@@ -14,7 +14,7 @@ export class PasswordResetByTokenComponent implements OnInit {
 
   constructor(private userService:UserService, private route: Router, private exceptionManager: ExceptionManagerService) {
     if(userService.user.username == null || userService.user.passwordResetToken == null) {
-      this.route.navigateByUrl('/login-page');
+      this.route.navigateByUrl('/');
     }
 
     this.user = userService.user
@@ -38,7 +38,7 @@ export class PasswordResetByTokenComponent implements OnInit {
         // Show alert and go back to login page
         window.alert('Password reimpostata.');
         this.userService.user = {} as User;
-        this.route.navigateByUrl('/login-page');
+        this.route.navigateByUrl('/');
       })
       .catch(error => {
         // Mostro errore

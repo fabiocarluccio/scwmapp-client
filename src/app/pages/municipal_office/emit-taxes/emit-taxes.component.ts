@@ -29,13 +29,17 @@ export class EmitTaxesComponent implements OnInit {
 
   constructor(private smartBinService: SmartBinService,
               private taxService: TaxService,
-              private route:Router,
+              private router:Router,
               private exceptionManager: ExceptionManagerService) {
     this.paymentButtonMessage = "Emit taxes for the year " + this.previousYear
 
   }
 
   ngOnInit(): void {
+
+    // Check Token JWT - se non è definito, lo redirigo nella pagina di login
+    if(localStorage.getItem("currentUser") == null) this.router.navigateByUrl("/")
+
     this.wasteTypes = this.smartBinService.getWasteTypes()
     this.taxService.getTaxStatus().then(response => {
       this.showForm = !response.data;

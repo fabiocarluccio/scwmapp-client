@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CitizenService} from "../../../services/citizen.service";
 import {ExceptionManagerService} from "../../../services/exception-manager.service";
 import {DisposalService} from "../../../services/disposal.service";
@@ -19,6 +19,7 @@ export class DisposalsComponent implements OnInit {
   loadDisposalsError = false
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private citizenService: CitizenService,
               private exceptionManager: ExceptionManagerService,
               private disposalService: DisposalService,

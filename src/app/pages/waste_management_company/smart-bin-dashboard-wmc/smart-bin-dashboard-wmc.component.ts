@@ -8,6 +8,7 @@ import {ExceptionManagerService} from "../../../services/exception-manager.servi
 import {Subscription} from "rxjs";
 import {Message} from "@stomp/stompjs";
 import {CleaningPath} from "../../../models/cleaning-path";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-smart-bin-dashboard-wmc',
@@ -55,6 +56,7 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
   constructor(private http: HttpClient,
               public smartBinService: SmartBinService,
               public smartBinRequestService: SmartBinRequestService,
+              private router: Router,
               private exceptionManager: ExceptionManagerService) {
 
     this.programmedDate = this.getTomorrowDate()
@@ -64,6 +66,8 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
+    // Check Token JWT - se non è definito, lo redirigo nella pagina di login
+    if(localStorage.getItem("currentUser") == null) this.router.navigateByUrl("/")
 
     this.smartBinService.loadAllocatedBins().then(response => {
       //this.smartBins = this.smartBinService.smartBins                             // load smartbins

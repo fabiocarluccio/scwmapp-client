@@ -34,6 +34,7 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'contact', component: ContactComponent },     // - il componente associato a quel path.
   { path: 'about/:userid', component: AboutComponent },
   { path: '', component: LoginPageComponent },
+  { path: '**', component: LoginPageComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'password-reset-token-validation', component: PasswordResetTokenValidationComponent },
   { path: 'password-reset-by-token', component: PasswordResetByTokenComponent },
