@@ -141,6 +141,9 @@ export class UserService {
     localStorage.clear()
     this.router.navigateByUrl("/")
   }
+  goToRoot() {
+    this.router.navigateByUrl("/")
+  }
 }
 
 interface MyResponse {

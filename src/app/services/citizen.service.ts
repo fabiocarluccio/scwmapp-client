@@ -62,7 +62,8 @@ export class CitizenService {
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
         // Gestisci l'errore qui, se necessario
-        if(error.status == "401" || error.status == "403") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
+        if(error.status == "403") this.userService.goToRoot() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));
@@ -79,7 +80,8 @@ export class CitizenService {
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
 
-        if(error.status == "401" || error.status == "403") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
+        if(error.status == "403") this.userService.goToRoot() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));
@@ -124,7 +126,8 @@ export class CitizenService {
       }),
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
-        if(error.status == "401" || error.status == "403") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
+        if(error.status == "403") this.userService.goToRoot() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));
@@ -138,7 +141,8 @@ export class CitizenService {
       }),
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
-        if(error.status == "401" || error.status == "403") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
+        if(error.status == "403") this.userService.goToRoot() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));

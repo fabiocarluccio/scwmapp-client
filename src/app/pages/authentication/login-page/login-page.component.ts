@@ -30,6 +30,13 @@ export class LoginPageComponent implements OnInit {
       else if(localStorage.getItem('currentRole') == 'WasteManagementCompany')
         this.router.navigateByUrl('/waste_management_company/smartbin-dashboard');
       else this.router.navigateByUrl('/');
+    } else { // controllo se l'utente abbia già effettuato l'accesso
+      if(localStorage.getItem('currentRole') == 'Citizen')
+        this.router.navigateByUrl('/citizen');
+      else if(localStorage.getItem('currentRole') == 'MunicipalOffice')
+        this.router.navigateByUrl('/municipal_office/citizens-list');
+      else if(localStorage.getItem('currentRole') == 'WasteManagementCompany')
+        this.router.navigateByUrl('/waste_management_company/smartbin-dashboard');
     }
   }
 
