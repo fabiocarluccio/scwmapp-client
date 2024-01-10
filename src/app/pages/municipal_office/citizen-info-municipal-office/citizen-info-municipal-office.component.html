@@ -11,7 +11,7 @@
     <p>🏠 <b>{{citizen.address?.city + " - " + citizen.address?.streetName + " Street, " + citizen.address?.streetNumber}}</b></p>
     <p>🐌 <i>{{citizen.email}}</i></p>
   </ng-container>
-
+  <ng-container *ngIf="!loadCitizenInfoError && !waitingForCitizenInfo">
   <h2>Tax status</h2>
 
   <p *ngIf="this.waitingForTaxesList" style="color:#444444; font-size: 1rem;">
@@ -152,4 +152,5 @@
     <div style="height: 50px;"></div>
 
   </div>
+  </ng-container>
 </body>
