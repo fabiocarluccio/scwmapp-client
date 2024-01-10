@@ -6,6 +6,7 @@ import {Tax} from "../models/tax";
 import {AllocationRequest} from "../models/allocationRequest";
 import {PaymentData} from "../models/payment-request";
 import {HostConfigService} from "./host-config.service";
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +49,8 @@ export class TaxService {
   }
 
   constructor(private http: HttpClient,
-              private hostConfigService: HostConfigService) {
+              private hostConfigService: HostConfigService,
+              private userService: UserService) {
     this.baseUrl = hostConfigService.TAXMS_BASEURL
     this.baseUrlCitizen = hostConfigService.TAXCitizenMS_BASEURL
   }
@@ -61,11 +63,9 @@ export class TaxService {
 
       }),
       catchError(error => {
-        if(error && error.error && error.error.name != "CitizenNotFoundException") {
-          console.error('Errore durante la richiesta GET:', error);
-          throw error; // Rilancia l'errore come promessa respinta
-        }
-        throw error;
+        console.error('Errore durante la richiesta GET:', error);
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
+        throw error; // Rilancia l'errore come promessa respinta
       })
     ));
   }
@@ -78,11 +78,9 @@ export class TaxService {
 
       }),
       catchError(error => {
-        if(error && error.error && error.error.name != "CitizenNotFoundException") {
-          console.error('Errore durante la richiesta GET:', error);
-          throw error; // Rilancia l'errore come promessa respinta
-        }
-        throw error;
+        console.error('Errore durante la richiesta GET:', error);
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
+        throw error; // Rilancia l'errore come promessa respinta
       })
     ));
   }
@@ -98,6 +96,7 @@ export class TaxService {
       catchError(error => {
         //if(error && error.error && error.error.name != "CitizenNotFoundException") {
         console.error('Errore durante la richiesta GET:', error);
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
         //}
         //throw error;
@@ -129,6 +128,7 @@ export class TaxService {
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
         // Gestisci l'errore qui, se necessario
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));
@@ -143,6 +143,7 @@ export class TaxService {
       }),
       catchError(error => {
         console.error('Errore durante la richiesta GET:', error);
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
 
       })
@@ -160,6 +161,7 @@ export class TaxService {
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
         // Gestisci l'errore qui, se necessario
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));

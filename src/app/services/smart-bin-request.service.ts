@@ -3,6 +3,7 @@ import {AllocationRequest} from "../models/allocationRequest";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, firstValueFrom, pipe, tap} from "rxjs";
 import {HostConfigService} from "./host-config.service";
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,8 @@ export class SmartBinRequestService {
   }
 
   constructor(private http: HttpClient,
-              private hostConfigService: HostConfigService) {
+              private hostConfigService: HostConfigService,
+              private userService: UserService) {
     this.baseUrl = hostConfigService.SMARTBINMS_BASEURL
   }
 
@@ -57,6 +59,7 @@ export class SmartBinRequestService {
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
         // Gestisci l'errore qui, se necessario
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));
@@ -72,6 +75,7 @@ export class SmartBinRequestService {
       }),
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));
@@ -87,6 +91,7 @@ export class SmartBinRequestService {
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
         // Gestisci l'errore qui, se necessario
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));
@@ -101,6 +106,7 @@ export class SmartBinRequestService {
       catchError(error => {
         console.error('Errore durante la richiesta POST:', error);
         // Gestisci l'errore qui, se necessario
+        if(error.status == "401") this.userService.logoutUser() // se token jwt è scaduto, o è non autenticato
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));

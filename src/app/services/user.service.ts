@@ -3,6 +3,7 @@ import {User} from "../models/user";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, firstValueFrom, tap, throwError} from "rxjs";
 import {HostConfigService} from "./host-config.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,8 @@ export class UserService {
   }
 
   constructor(private http: HttpClient,
-              hostConfigService: HostConfigService) {
+              hostConfigService: HostConfigService,
+              private router: Router) {
     this.baseUrl = hostConfigService.LOGINMS_BASEURL
 
     // TODO il token va preso mediante chiamata API diretta (authentication)
@@ -133,6 +135,11 @@ export class UserService {
         throw error; // Rilancia l'errore come promessa respinta
       })
     ));
+  }
+
+  logoutUser() {
+    localStorage.clear()
+    this.router.navigateByUrl("/")
   }
 }
 

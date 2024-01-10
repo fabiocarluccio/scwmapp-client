@@ -68,13 +68,7 @@ export class NavbarWasteManagementCompanyComponent implements OnInit, OnDestroy 
 
   logout() {
 
-    localStorage.removeItem('currentUser')
-    localStorage.removeItem('currentRole')
-    localStorage.removeItem('userId')
-    localStorage.removeItem('wasteTypes')
-    localStorage.removeItem('citizen')
-
-    this.route.navigateByUrl('');
+    this.userService.logoutUser()
 
   }
 
