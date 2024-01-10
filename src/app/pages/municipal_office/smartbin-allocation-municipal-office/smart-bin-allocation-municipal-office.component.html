@@ -7,7 +7,7 @@
       <h2>Active SmartBins</h2>
 
       <p *ngIf="this.waitingForSmartBinsList" style="color:#444444; font-size: 1rem;">
-        ⏱️ Updating..
+        ⏱️ Loading..
       </p>
       <p *ngIf="this.smartBins.length == 0 && this.loadSmartBinsError == false && this.waitingForSmartBinsList == false" style="color:#444444; font-size: 1rem;">
         ⏱️ No SmartBin has been allocated yet.
@@ -103,7 +103,7 @@
         <h2>Pending Allocation Requests</h2>
 
         <p *ngIf="this.waitingForSmartBinRequestsList" style="color:#444444; font-size: 1rem;">
-          ⏱️ Updating..
+          ⏱️ Loading..
         </p>
         <p *ngIf="(this.smartBinRequestService.smartBinRequests == null || this.smartBinRequestService.smartBinRequests.length == 0) && this.loadSmartBinRequestsError == false && !waitingForSmartBinRequestsList" style="color:#444444; font-size: 1rem;">
           ✅ No pending request.

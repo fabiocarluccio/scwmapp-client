@@ -73,7 +73,7 @@
     <div class="main-layout">
 
       <p *ngIf="waitingForCitizensList" style="color:#444444; font-size: 1rem;">
-        ⏱️ Updating..
+        ⏱️ Loading..
       </p>
       <p *ngIf="this.citizens.length == 0 && this.loadCitizensError == false && !waitingForCitizensList" style="color:#444444; font-size: 1rem;">
         ⏱️ No Citizens registered yet.

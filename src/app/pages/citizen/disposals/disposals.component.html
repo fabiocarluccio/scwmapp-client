@@ -7,7 +7,7 @@
   <h2>Disposals</h2>
 
   <p *ngIf="this.waitingForDisposalsList" style="color:#444444; font-size: 1rem;">
-    ⏱️ Updating..
+    ⏱️ Loading..
   </p>
   <p *ngIf="this.disposals && this.disposals.length == 0 && this.waitingForDisposalsList == false && this.loadDisposalsError == false" style="color:#444444; font-size: 1rem;">
     ⏱️ No disposal has been made yet in the current year.

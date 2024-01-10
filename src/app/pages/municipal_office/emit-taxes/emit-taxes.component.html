@@ -2,7 +2,7 @@
   <h1>Emissione Tasse</h1>
 
   <p *ngIf="this.waitingForTaxStatus" style="color:#444444; font-size: 1rem;">
-    ⏱️ Updating..
+    ⏱️ Loading..
   </p>
   <p *ngIf="!this.showForm && this.waitingForTaxStatus == false && this.loadTaxStatusError == false" style="color:#444444; font-size: 1rem;">
     ✅ Taxes issued for the current year. Please wait until next year.
