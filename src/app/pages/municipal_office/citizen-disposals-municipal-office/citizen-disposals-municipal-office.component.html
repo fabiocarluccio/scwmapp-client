@@ -1,11 +1,12 @@
 <body>
 <div style="margin-bottom: 10px;">
-  <a routerLink="/municipal_office/citizen-info/{{citizenId}}">◂ {{this.citizen.surname + " " + this.citizen.name}}</a>
+  <a *ngIf="this.waitingForDisposalsList" routerLink="/municipal_office/citizens">◂ Go back</a>
+  <a *ngIf="!this.waitingForDisposalsList" routerLink="/municipal_office/citizen-info/{{citizenId}}">◂ {{this.citizen.surname + " " + this.citizen.name}}</a>
 </div>
 
 <h2>Disposals</h2>
 
-<p *ngIf="this.waitingForDisposalsList" style="color:#444444; font-size: 1rem;">
+<p *ngIf="this.waitingForDisposalsList && this.loadCitizenInfoError == false" style="color:#444444; font-size: 1rem;">
   ⏱️ Updating..
 </p>
 <p *ngIf="this.disposals && this.disposals.length == 0 && this.waitingForDisposalsList == false && this.loadDisposalsError == false" style="color:#444444; font-size: 1rem;">
@@ -13,6 +14,9 @@
 </p>
 <p *ngIf="this.loadDisposalsError == true" style="color:#444444; font-size: 1rem;">
   😵 Unknown error. Unable to get Disposals list.
+</p>
+<p *ngIf="this.loadCitizenInfoError" style="color:#444444; font-size: 1rem;">
+  😵 {{this.loadCitizenInfoErrorDescription}}
 </p>
 
 <div *ngIf="this.disposals && this.disposals.length != 0 && this.loadDisposalsError == false && this.waitingForDisposalsList == false">

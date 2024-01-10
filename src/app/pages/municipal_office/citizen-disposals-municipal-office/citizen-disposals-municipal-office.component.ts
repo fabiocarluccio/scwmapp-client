@@ -17,8 +17,11 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
   citizen: Citizen = {} as Citizen
   disposals: Disposal[] | null = null
 
+  waitingForCitizenInfo = true
   waitingForDisposalsList = true
   loadDisposalsError = false
+  loadCitizenInfoError = false
+  loadCitizenInfoErrorDescription = ""
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -42,6 +45,7 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
     this.citizenService.loadCitizen(this.citizenId!).then(response => {
       console.log(response)
       this.citizen = response
+      this.waitingForCitizenInfo = false
 
       this.disposalService.loadDisposals(this.citizenId!).then(response => {
         console.log(this.disposalService.disposals)
@@ -56,7 +60,8 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
 
     }).catch(error => {
       // Mostro errore
-      this.loadDisposalsError = true
+      this.loadCitizenInfoErrorDescription = error.error.description
+      this.loadCitizenInfoError = true
       //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
   }

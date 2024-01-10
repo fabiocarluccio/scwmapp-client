@@ -1,12 +1,12 @@
-<body *ngIf="citizen">
+<body>
   <div style="margin-bottom: 10px;">
     <a routerLink="/municipal_office/citizens-list">◂ Go back</a>
   </div>
 
   <p *ngIf="loadCitizenInfoError" style="color:#444444; font-size: 1rem;">
-    😵 Unknown error. Unable to get Citizen info.
+    😵 {{this.loadCitizenInfoErrorDescription}}
   </p>
-  <ng-container *ngIf="!loadCitizenInfoError">
+  <ng-container *ngIf="!loadCitizenInfoError && !waitingForCitizenInfo && citizen">
     <h4>{{citizen.surname + " " + citizen.name}}</h4>
     <p>🏠 <b>{{citizen.address?.city + " - " + citizen.address?.streetName + " Street, " + citizen.address?.streetNumber}}</b></p>
     <p>🐌 <i>{{citizen.email}}</i></p>
@@ -15,7 +15,7 @@
   <h2>Tax status</h2>
 
   <p *ngIf="this.waitingForTaxesList" style="color:#444444; font-size: 1rem;">
-    ⏱️ Updating..
+    ⏱️ Loading..
   </p>
   <p *ngIf="(!this.taxes || this.taxes.length == 0) && this.waitingForTaxesList == false && this.loadTaxesError == false" style="color:#444444; font-size: 1rem;">
     ✅ No tax has been issued yet.
@@ -56,7 +56,7 @@
   <h2>Last disposals</h2>
 
   <p *ngIf="this.waitingForDisposalsList" style="color:#444444; font-size: 1rem;">
-    ⏱️ Updating..
+    ⏱️ Loading..
   </p>
   <p *ngIf="(!this.disposals || this.disposals.length == 0) && this.waitingForDisposalsList == false && this.loadDisposalsError == false" style="color:#444444; font-size: 1rem;">
     ⏱️ No disposal has been made yet in the current year.
@@ -88,26 +88,26 @@
 
     </table>
   </div>
-  <div *ngIf="this.disposals && this.disposals.length != 0" style="margin-top: 10px">
+  <div *ngIf="this.disposals && this.disposals.length != 0 && citizen" style="margin-top: 10px">
     <a routerLink="/municipal_office/citizen-info/disposals/{{citizen.id}}">Mostra conferimenti meno recenti</a>
   </div>
 
 
 
-  <h2 *ngIf="Citizen.showSeparationPerformance(citizen) == false">Waste separation performance</h2>
+  <h2 *ngIf="(citizen && Citizen.showSeparationPerformance(citizen) == false) || this.waitingForSeparationPerformanceData">Waste separation performance</h2>
 
   <p *ngIf="this.waitingForSeparationPerformanceData" style="color:#444444; font-size: 1rem;">
-    ⏱️ Updating..
+    ⏱️ Loading..
   </p>
-  <p *ngIf="Citizen.showSeparationPerformance(citizen) == false && this.waitingForSeparationPerformanceData == false && this.loadSeparationPerformanceError == false" style="color:#444444; font-size: 1rem;">
+  <p *ngIf="citizen && Citizen.showSeparationPerformance(citizen) == false && this.waitingForSeparationPerformanceData == false && this.loadSeparationPerformanceError == false" style="color:#444444; font-size: 1rem;">
     ⏱️ Waiting for deliveries to be made.
   </p>
   <p *ngIf="this.loadSeparationPerformanceError == true" style="color:#444444; font-size: 1rem;">
     😵 Unknown error. Unable to get Separation performances.
   </p>
 
-  <h2 *ngIf="Citizen.showSeparationPerformance(citizen)">Separation performance ({{Citizen.getSeparationPerformance(citizen)}}%)</h2>
-  <div *ngIf="Citizen.showSeparationPerformance(citizen)">
+  <h2 *ngIf="citizen && Citizen.showSeparationPerformance(citizen)">Separation performance ({{Citizen.getSeparationPerformance(citizen)}}%)</h2>
+  <div *ngIf="citizen && Citizen.showSeparationPerformance(citizen)">
     <table>
       <tr class="table-header">
         <th>Waste type<div class="column-border"></div></th>

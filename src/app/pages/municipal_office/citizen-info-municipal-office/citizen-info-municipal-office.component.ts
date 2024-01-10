@@ -29,6 +29,7 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
   loadTaxesError = false
   loadDisposalsError = false
   loadSeparationPerformanceError = false
+  loadCitizenInfoErrorDescription = ""
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -56,44 +57,48 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
       this.citizen = response
       this.waitingForCitizenInfo = false
 
+      this.taxService.loadTaxes(this.citizenId!).then(response => {
+        console.log(this.taxService.taxes)
+        this.taxes = this.taxService.taxes
+        this.waitingForTaxesList = false
+
+      }).catch(error => {
+        // Mostro errore
+        this.loadTaxesError = true
+        //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+      });
+
+      this.disposalService.loadLastDisposals(this.citizenId!).then(response => {
+        console.log(this.disposalService.disposals)
+        this.disposals = this.disposalService.disposals
+        this.waitingForDisposalsList = false
+
+      }).catch(error => {
+        // Mostro errore
+        this.loadDisposalsError = true
+        //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+      });
+
+      this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
+        if(response.yearlyVolumes[response.yearlyVolumes.length - 1].year == new Date().getFullYear())
+          this.citizen!.generatedVolume = response.yearlyVolumes[response.yearlyVolumes.length - 1]
+        this.waitingForSeparationPerformanceData = false
+
+      }).catch(error => {
+        // Mostro errore
+        this.loadSeparationPerformanceError = true
+        //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+      });
+
+
     }).catch(error => {
       // Mostro errore
+      this.loadCitizenInfoErrorDescription = error.error.description
       this.loadCitizenInfoError = true
       //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
 
-    this.taxService.loadTaxes(this.citizenId!).then(response => {
-      console.log(this.taxService.taxes)
-      this.taxes = this.taxService.taxes
-      this.waitingForTaxesList = false
 
-    }).catch(error => {
-      // Mostro errore
-      this.loadTaxesError = true
-      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
-    });
-
-    this.disposalService.loadLastDisposals(this.citizenId!).then(response => {
-      console.log(this.disposalService.disposals)
-      this.disposals = this.disposalService.disposals
-      this.waitingForDisposalsList = false
-
-    }).catch(error => {
-      // Mostro errore
-      this.loadDisposalsError = true
-      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
-    });
-
-    this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
-      if(response.yearlyVolumes[response.yearlyVolumes.length - 1].year == new Date().getFullYear())
-        this.citizen!.generatedVolume = response.yearlyVolumes[response.yearlyVolumes.length - 1]
-      this.waitingForSeparationPerformanceData = false
-
-    }).catch(error => {
-      // Mostro errore
-      this.loadSeparationPerformanceError = true
-      //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
-    });
 
 
   }

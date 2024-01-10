@@ -29,10 +29,10 @@ import {LightPayComponent} from "./pages/external/light-pay/light-pay.component"
 import {PaymentFormComponent} from "./pages/citizen/payment-form/payment-form.component";
 
 const routes: Routes = [ // questo sarà un array di hops (di paths che sono supportati dall'applicazione)
-  { path: 'old_index', component: UsersComponent },              // Ogni route è definita da due attributi:
-  { path: 'about', component: AboutComponent },         // - il path come stringa,
-  { path: 'contact', component: ContactComponent },     // - il componente associato a quel path.
-  { path: 'about/:userid', component: AboutComponent },
+  //{ path: 'old_index', component: UsersComponent },              // Ogni route è definita da due attributi:
+  //{ path: 'about', component: AboutComponent },         // - il path come stringa,
+  //{ path: 'contact', component: ContactComponent },     // - il componente associato a quel path.
+  //{ path: 'about/:userid', component: AboutComponent },
   { path: '', component: LoginPageComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'password-reset-token-validation', component: PasswordResetTokenValidationComponent },
@@ -46,7 +46,7 @@ const routes: Routes = [ // questo sarà un array di hops (di paths che sono sup
   { path: 'citizen/disposals', component: DisposalsComponent },
   { path: 'municipal_office/citizen-info/disposals/:citizenId', component: CitizenDisposalsMunicipalOfficeComponent },
   { path: 'waste_management_company/waste-types', component: WasteTypesWmcComponent },
-  { path: 'external/light-pay/:taxId', component: LightPayComponent},
+  //{ path: 'external/light-pay/:taxId', component: LightPayComponent},
   { path: 'citizen/payment-form/:taxId', component: PaymentFormComponent},
   { path: '**', component: LoginPageComponent }
 ]
