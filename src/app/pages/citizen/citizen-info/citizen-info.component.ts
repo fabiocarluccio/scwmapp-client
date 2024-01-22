@@ -72,9 +72,22 @@ export class CitizenInfoComponent implements OnInit {
           this.loadCitizenInfoError = true
           //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
         });
+
+        this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
+          if(response.yearlyVolumes[response.yearlyVolumes.length - 1].year == new Date().getFullYear())
+            this.citizen!.generatedVolume = response.yearlyVolumes[response.yearlyVolumes.length - 1]
+          this.waitingForSeparationPerformanceData = false
+
+        }).catch(error => {
+          // Mostro errore
+          this.loadSeparationPerformanceError = true
+          //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+        });
+
       }).catch(error => {
         // Mostro errore
         this.loadCitizenInfoError = true
+        this.loadSeparationPerformanceError = true
         //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
 
@@ -98,17 +111,6 @@ export class CitizenInfoComponent implements OnInit {
       }).catch(error => {
         // Mostro errore
         this.loadDisposalsError = true
-        //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
-      });
-
-      this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
-        if(response.yearlyVolumes[response.yearlyVolumes.length - 1].year == new Date().getFullYear())
-          this.citizen!.generatedVolume = response.yearlyVolumes[response.yearlyVolumes.length - 1]
-        this.waitingForSeparationPerformanceData = false
-
-      }).catch(error => {
-        // Mostro errore
-        this.loadSeparationPerformanceError = true
         //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
 
