@@ -198,7 +198,10 @@ export class SmartBinService {
     return firstValueFrom(this.http.get(this.baseUrlCleaningPath + 'date?from=' + date, this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
-        this.cleaningPathList = response as CleaningPath[]
+        if (response == null)
+          this.cleaningPathList = []
+        else
+          this.cleaningPathList = response as CleaningPath[]
 
         // Mapping smartBinList - smartBinIDPath (necessario che loadAllocatedBins venga chiamato prima di chiamare questo)
         for (const cleaningPath of this.cleaningPathList) {
@@ -213,7 +216,7 @@ export class SmartBinService {
             }
           }
 
-          }
+        }
 
       }),
       catchError(error => {
