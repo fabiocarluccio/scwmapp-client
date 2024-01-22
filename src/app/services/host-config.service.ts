@@ -6,7 +6,7 @@ import {catchError, firstValueFrom, tap} from "rxjs";
 })
 export class HostConfigService {
 
-  HOST = 'nn9im8cie6.execute-api.us-east-1.amazonaws.com' // 'localhost'
+  HOST = 'nn9im8cie6.execute-api.us-east-1.amazonaws.com/prod' // 'localhost'
 
   LOGINMS_PORT = '8080'
   SMARTBINMS_PORT = '8081'
