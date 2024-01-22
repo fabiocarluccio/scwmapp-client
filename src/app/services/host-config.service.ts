@@ -12,16 +12,15 @@ export class HostConfigService {
   SMARTBINMS_PORT = '8081'
   CITIZENMS_PORT = '8082'
   DISPOSALMS_PORT = '8083'
-  ALARMMS_PORT = '8084' // TODO una volta implementato l'allarme
+  //ALARMMS_PORT = '8084' // TODO configurazione allarme in my-rx-stomp-config.tx
   TAXMS_PORT = '8085'
-  RABBITMQ_PORT = '27017' // TODO una volta implementato l'allarme
+  //RABBITMQ_PORT = '27017' // TODO configurazione allarme in my-rx-stomp-config.tx
 
   LOGINMS_BASEURL = ''
   SMARTBINMS_BASEURL = ''
   SMARTBINCleaningPathMS_BASEURL = ''
   CITIZENMS_BASEURL = ''
   DISPOSALMS_BASEURL = ''
-  //TODO nonesisteALARMMS_BASEURL = 'http://' + this.HOST + ':' + this.ALARMMS_PORT + '/api/alarm/'
   TAXMS_BASEURL = ''
   TAXCitizenMS_BASEURL = ''
 
@@ -35,7 +34,6 @@ export class HostConfigService {
     this.SMARTBINCleaningPathMS_BASEURL = 'http://' + this.HOST + ':' + this.SMARTBINMS_PORT + '/api/cleaningPath/'
     this.CITIZENMS_BASEURL = 'http://' + this.HOST + ':' + this.CITIZENMS_PORT + '/api/citizen/'
     this.DISPOSALMS_BASEURL = 'http://' + this.HOST + ':' + this.DISPOSALMS_PORT + '/api/disposal/'
-    //TODO nonesisteALARMMS_BASEURL = 'http://' + this.HOST + ':' + this.ALARMMS_PORT + '/api/alarm/'
     this.TAXMS_BASEURL = 'http://' + this.HOST + ':' + this.TAXMS_PORT + '/api/tax/'
     this.TAXCitizenMS_BASEURL = 'http://' + this.HOST + ':' + this.TAXMS_PORT + '/api/taxStatus/'
   }

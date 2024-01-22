@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {User} from "../../../models/user";
-import {UsersService} from "../../../services/unused/users.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../../services/user.service";
 import {ExceptionManagerService} from "../../../services/exception-manager.service";

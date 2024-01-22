@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
-import {UsersService} from "./services/unused/users.service";
 import {HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
@@ -85,7 +84,6 @@ import { CleaningPathItemCardComponent } from './pages/components/cleaning-path-
         NgChartsModule,
     ],
   providers: [
-    UsersService,
     ExceptionManagerService,
     //MarkerService,
     PopupService,

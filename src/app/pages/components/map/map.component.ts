@@ -111,9 +111,7 @@ export class MapComponent implements AfterViewInit {
       this.router.navigate([currentRoute]); // Naviga alla stessa route
     });
   }
-// TODO - al posto di far reperire i bins tramite api, li faccio reperire tramite @Input() in modo
-  // TODO - da evitare di fare la doppia richiesta api e in modo da aggiornare la mappa ogni volta un array/proprieta dello
-  // TODO - smartbin varia
+
   private addMapClickEvent(): void {
     this.map.on('click', (event: L.LeafletMouseEvent) => {
       const lat = event.latlng.lat;

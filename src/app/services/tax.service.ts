@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Disposal} from "../models/disposal";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, firstValueFrom, tap} from "rxjs";
 import {Tax} from "../models/tax";
-import {AllocationRequest} from "../models/allocationRequest";
 import {PaymentData} from "../models/payment-request";
 import {HostConfigService} from "./host-config.service";
 import {UserService} from "./user.service";
@@ -55,7 +53,7 @@ export class TaxService {
     this.baseUrlCitizen = hostConfigService.TAXCitizenMS_BASEURL
   }
 
-  // Serve per capire se le tasse sono state emesse o meno per l'anno corrente TODO (correggere "corrente" con "precedente" una volta sistemata la cosa dell'anno delle tasse
+  // Serve per capire se le tasse sono state emesse o meno per l'anno corrente
   getTaxStatus() {
     return firstValueFrom(this.http.get(this.baseUrl + 'taxStatus', this.httpOptions).pipe(
       tap((response: any) => {
@@ -71,7 +69,7 @@ export class TaxService {
     ));
   }
 
-  // Ottieni la lista di tutti i
+  // Ottieni la lista di tutti gli stati tassa dei cittadini
   getCitizensTaxStatus() {
     return firstValueFrom(this.http.get(this.baseUrlCitizen, this.httpOptions).pipe(
       tap((response: any) => {
@@ -106,20 +104,7 @@ export class TaxService {
       })
     ));
   }
-  /*
-  loadTaxes(citizenId: string) {
-    return firstValueFrom(this.http.get(this.taxesPath).pipe(
-      tap((response: any) => {
-        console.log('Richiesta GET riuscita:', response);
-        this.taxes = response
 
-      }),
-      catchError(error => {
-        console.error('Errore durante la richiesta POST:', error);
-        throw error; // Rilancia l'errore come promessa respinta
-      })
-    ));
-  }*/
 
   emitTaxes(payload: Record<string, number>) {
     console.log(payload)

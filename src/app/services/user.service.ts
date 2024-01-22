@@ -39,16 +39,6 @@ export class UserService {
               private router: Router) {
     this.baseUrl = hostConfigService.LOGINMS_BASEURL
 
-    // TODO il token va preso mediante chiamata API diretta (authentication)
-    //localStorage.setItem('currentUser', JSON.stringify({token:'sduinyqwec789d23ycueqwibhceqdijuy'}))
-
-    /*this.user = {
-        id: "1",
-        username: "Roberto",
-        email: "roberto.vergallo@unisalento.it",
-        password: "123",
-        role: "ADMIN"
-    };*/
   }
 
   sendPasswordResetToken(user: User): Promise<any> {

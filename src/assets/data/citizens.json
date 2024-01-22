@@ -3,12 +3,12 @@
     "id": "28349441958490acee98fec98",
     "name": "Fabio",
     "surname": "Carluccio",
-    "ssn": "CRL4567890123456",
-    "email": "fabio98.ccarluccio@gmail.com",
+    "ssn": "CAL4567890123456",
+    "email": "fabiocarluccio@gmail.com",
     "address": {
-      "streetName": "Via della Mignotta",
+      "streetName": "Via Verdi",
       "streetNumber": "69",
-      "city": "Lecco",
+      "city": "Castro",
       "postalCode": "05535"
     },
     "taxesStatus": true,
@@ -26,9 +26,9 @@
     "name": "Carmine",
     "surname": "Accogli",
     "ssn": "ACG4567890123456",
-    "email": "carmine@jacoajoscjas",
+    "email": "carmine@gmail.com",
     "address": {
-      "streetName": "Via del pesce",
+      "streetName": "Via del Molo",
       "streetNumber": "33",
       "city": "Gerusalemme",
       "postalCode": "777"
@@ -48,9 +48,9 @@
     "name": "Lorenzo",
     "surname": "Santo",
     "ssn": "SNT4567890123456",
-    "email": "lorenzo@jacoajoscjas",
+    "email": "lorenzo@gmail.com",
     "address": {
-      "streetName": "Via del pisello",
+      "streetName": "Via del Cubo",
       "streetNumber": "33",
       "city": "Torino",
       "postalCode": "20093"
