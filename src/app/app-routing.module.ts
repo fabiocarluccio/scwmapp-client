@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes} from "@angular/router";
-import {UsersComponent} from "./pages/unused/users/users.component";
-import {AboutComponent} from "./pages/unused/about/about.component";
-import {ContactComponent} from "./pages/unused/contact/contact.component";
 import {LoginPageComponent} from "./pages/authentication/login-page/login-page.component";
 import {PasswordResetComponent} from "./pages/authentication/password-reset/password-reset.component";
 import {
@@ -28,11 +25,7 @@ import {WasteTypesWmcComponent} from "./pages/waste_management_company/waste-typ
 import {LightPayComponent} from "./pages/external/light-pay/light-pay.component";
 import {PaymentFormComponent} from "./pages/citizen/payment-form/payment-form.component";
 
-const routes: Routes = [ // questo sarà un array di hops (di paths che sono supportati dall'applicazione)
-  //{ path: 'old_index', component: UsersComponent },              // Ogni route è definita da due attributi:
-  //{ path: 'about', component: AboutComponent },         // - il path come stringa,
-  //{ path: 'contact', component: ContactComponent },     // - il componente associato a quel path.
-  //{ path: 'about/:userid', component: AboutComponent },
+const routes: Routes = [
   { path: '', component: LoginPageComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'password-reset-token-validation', component: PasswordResetTokenValidationComponent },

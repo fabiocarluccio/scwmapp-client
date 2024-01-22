@@ -2,13 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { UsersComponent } from './pages/unused/users/users.component';
 import {FormsModule} from "@angular/forms";
 import {UsersService} from "./services/unused/users.service";
 import {HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
-import { AboutComponent } from './pages/unused/about/about.component';
-import { ContactComponent } from './pages/unused/contact/contact.component';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import { LoginPageComponent } from './pages/authentication/login-page/login-page.component';
 import { PasswordResetComponent } from './pages/authentication/password-reset/password-reset.component';
@@ -51,9 +48,6 @@ import { CleaningPathItemCardComponent } from './pages/components/cleaning-path-
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent,
-    AboutComponent,
-    ContactComponent,
     LoginPageComponent,
     PasswordResetComponent,
     PasswordResetTokenValidationComponent,
