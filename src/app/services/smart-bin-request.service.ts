@@ -118,7 +118,7 @@ export class SmartBinRequestService {
 
   getBinTypeColor(type: string): string {
     switch(type) {
-      case "Indifferenziata": return "black";
+      case "Mixed waste": return "black";
       case "Vetro": return "green"
       default: return "purple";
     }

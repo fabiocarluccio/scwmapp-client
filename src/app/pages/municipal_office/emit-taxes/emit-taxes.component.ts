@@ -68,7 +68,7 @@ export class EmitTaxesComponent implements OnInit {
 
     const payload: Record<string, number> = {
       FixedFee: this.baseFee!,
-      Indifferenziata: this.feeAmounts[0]
+      MixedWaste: this.feeAmounts[0]
     };
 
     for (let i = 1; i < this.wasteTypes.length; i++) {

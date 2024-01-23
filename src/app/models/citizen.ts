@@ -32,7 +32,7 @@ export class Citizen {
   }
 
   static getWasteTypeNames(citizen: Citizen): string[] {
-    let wasteTypeNames: string[] = ["Indifferenziata"]
+    let wasteTypeNames: string[] = ["Mixed waste"]
 
     for(let typeName of Object.keys(citizen.generatedVolume.sortedWaste)) {
       wasteTypeNames.push(typeName)

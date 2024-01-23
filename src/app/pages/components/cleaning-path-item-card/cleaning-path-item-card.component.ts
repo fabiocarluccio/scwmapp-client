@@ -19,7 +19,7 @@ export class CleaningPathItemCardComponent implements OnInit {
   constructor() {
     const smartBin: SmartBin = {}
     smartBin.id = "diocpo"
-    smartBin.type = "Indifferenziata"
+    smartBin.type = "Mixed waste"
     smartBin.name = "SmartBin nome"
     smartBin.currentCapacity = 1.3
     smartBin.totalCapacity = 5
