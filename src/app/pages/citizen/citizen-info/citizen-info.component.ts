@@ -74,7 +74,7 @@ export class CitizenInfoComponent implements OnInit {
         });
 
         this.disposalService.loadWasteMetrics(this.citizenId!).then(response => {
-          if(response.yearlyVolumes[response.yearlyVolumes.length - 1].year == new Date().getFullYear())
+          if(response != null && response.yearlyVolumes[response.yearlyVolumes.length - 1].year == new Date().getFullYear())
             this.citizen!.generatedVolume = response.yearlyVolumes[response.yearlyVolumes.length - 1]
           this.waitingForSeparationPerformanceData = false
 

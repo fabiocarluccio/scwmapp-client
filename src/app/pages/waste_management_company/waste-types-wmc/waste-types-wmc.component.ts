@@ -38,7 +38,7 @@ export class WasteTypesWmcComponent implements OnInit{
 
     this.smartBinService.addNewWasteType(this.newWasteType).then(response => {
 
-      window.alert("La tipologia di rifiuti \"" + this.newWasteType.name + "\" è stata registrata corretatmente.");
+      window.alert("Waste typology \"" + this.newWasteType.name + "\" registered successfully.");
       this.wasteTypes.push(Object.assign({}, this.newWasteType))
       this.addNewWasteTypeForm.reset()
       //this.newWasteType = {} as WasteType

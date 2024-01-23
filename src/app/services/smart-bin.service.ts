@@ -62,7 +62,12 @@ export class SmartBinService {
     return firstValueFrom(this.http.get(this.baseUrl + 'state?state=ALLOCATED', this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
-        this.smartBins = response
+
+        if (response == null)
+          this.smartBins = []
+        else
+          this.smartBins = response
+
         // ordino per percentuale di capienza
         if(this.smartBins != null)
           this.smartBins = this.smartBins.sort((a, b) => b.currentCapacity! / b.totalCapacity! - a.currentCapacity! / a.totalCapacity!)
@@ -80,11 +85,17 @@ export class SmartBinService {
     return firstValueFrom(this.http.get(this.baseUrl + 'type/', this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
+
+        if (response == null) {
+          localStorage.setItem("wasteTypes", "[]")
+          return
+        }
+
         let wasteTypes = response as WasteType[]
 
         // metto in testa la tipologia "Indifferenziata"
-        let types = wasteTypes.filter((wasteType) => wasteType.name != "Indifferenziata")
-        types.unshift(wasteTypes.filter(wasteType => wasteType.name == "Indifferenziata")[0])
+        let types = wasteTypes.filter((wasteType) => wasteType.name != "Mixed waste")
+        types.unshift(wasteTypes.filter(wasteType => wasteType.name == "Mixed waste")[0])
 
         localStorage.setItem("wasteTypes", JSON.stringify(types))
         //console.log(response)

@@ -6,6 +6,7 @@ import {CitizenFilter, CitizenSorting} from "../../../models/citizen-filtering-e
 import {DisposalService} from "../../../services/disposal.service";
 import {TaxService} from "../../../services/tax.service";
 import {Router} from "@angular/router";
+import {AllocationRequest} from "../../../models/allocationRequest";
 
 @Component({
   selector: 'app-citizens-list',
@@ -117,12 +118,27 @@ export class CitizensListComponent implements OnInit {
   // region Citizen Form
   addNewCitizen() {
     console.log("Aggiungo cittadino in db")
-    this.citizenService.addCitizen(this.citizen)
-    this.toggleCitizenForm()
+    this.citizenService.addCitizen(this.citizen).then(response => {
+      console.log(response)
+      window.alert("Citizen registered with success.");
+
+      this.citizen.id = (response as any).data
+      this.citizenService.citizens.push(this.citizen)
+      this.toggleCitizenForm()
+      //this.router.navigateByUrl("/municipal_office/citizens-list")
+    })
+    .catch(error => {
+      // Mostro errore
+      //old_ window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
+      console.log(error.error)
+      window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
+    });
+
   }
 
   toggleCitizenForm() {
     this.citizen = {} as Citizen
+    this.citizen.id = ""
     this.citizen.name = ""
     this.citizen.surname = ""
     this.citizen.ssn = ""
@@ -132,6 +148,11 @@ export class CitizensListComponent implements OnInit {
     this.citizen.address.streetNumber = ""
     this.citizen.address.postalCode = ""
     this.citizen.address.city = ""
+    this.citizen.taxesStatus = true;
+    this.citizen.generatedVolume = {
+      "mixedWaste": 0,
+      "sortedWaste": {}
+    };
 
     this.showCitizenForm = !this.showCitizenForm
   }

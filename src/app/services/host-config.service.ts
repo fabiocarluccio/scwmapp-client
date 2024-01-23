@@ -8,13 +8,13 @@ export class HostConfigService {
 
   HOST = 'nn9im8cie6.execute-api.us-east-1.amazonaws.com/prod' // 'localhost'
 
-  LOGINMS_PORT = '8080'
-  SMARTBINMS_PORT = '8081'
-  CITIZENMS_PORT = '8082'
-  DISPOSALMS_PORT = '8083'
-  //ALARMMS_PORT = '8084' // TODO configurazione allarme in my-rx-stomp-config.tx
-  TAXMS_PORT = '8085'
-  //RABBITMQ_PORT = '27017' // TODO configurazione allarme in my-rx-stomp-config.tx
+  LOGINMS_PORT = '' //':8080'
+  SMARTBINMS_PORT = '' //':8081'
+  CITIZENMS_PORT = '' //':8082'
+  DISPOSALMS_PORT = '' //':8083'
+  //ALARMMS_PORT = '' //':8084' // TODO configurazione allarme in my-rx-stomp-config.tx
+  TAXMS_PORT = '' //':8085'
+  //RABBITMQ_PORT = '' //':27017' // TODO configurazione allarme in my-rx-stomp-config.tx
 
   LOGINMS_BASEURL = ''
   SMARTBINMS_BASEURL = ''
@@ -29,13 +29,13 @@ export class HostConfigService {
   constructor() { }
 
   updateEndpoints() {
-    this.LOGINMS_BASEURL = 'https://' + this.HOST + ':' + this.LOGINMS_PORT + '/api/authentication/'
-    this.SMARTBINMS_BASEURL = 'https://' + this.HOST + ':' + this.SMARTBINMS_PORT + '/api/smartbin/'
-    this.SMARTBINCleaningPathMS_BASEURL = 'https://' + this.HOST + ':' + this.SMARTBINMS_PORT + '/api/cleaningPath/'
-    this.CITIZENMS_BASEURL = 'https://' + this.HOST + ':' + this.CITIZENMS_PORT + '/api/citizen/'
-    this.DISPOSALMS_BASEURL = 'https://' + this.HOST + ':' + this.DISPOSALMS_PORT + '/api/disposal/'
-    this.TAXMS_BASEURL = 'https://' + this.HOST + ':' + this.TAXMS_PORT + '/api/tax/'
-    this.TAXCitizenMS_BASEURL = 'https://' + this.HOST + ':' + this.TAXMS_PORT + '/api/taxStatus/'
+    this.LOGINMS_BASEURL = 'https://' + this.HOST + this.LOGINMS_PORT + '/api/authentication/'
+    this.SMARTBINMS_BASEURL = 'https://' + this.HOST + this.SMARTBINMS_PORT + '/api/smartbin/'
+    this.SMARTBINCleaningPathMS_BASEURL = 'https://' + this.HOST + this.SMARTBINMS_PORT + '/api/cleaningPath/'
+    this.CITIZENMS_BASEURL = 'https://' + this.HOST + this.CITIZENMS_PORT + '/api/citizen/'
+    this.DISPOSALMS_BASEURL = 'https://' + this.HOST + this.DISPOSALMS_PORT + '/api/disposal/'
+    this.TAXMS_BASEURL = 'https://' + this.HOST + this.TAXMS_PORT + '/api/tax/'
+    this.TAXCitizenMS_BASEURL = 'https://' + this.HOST + this.TAXMS_PORT + '/api/taxStatus/'
   }
 
 }

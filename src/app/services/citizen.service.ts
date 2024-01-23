@@ -73,7 +73,10 @@ export class CitizenService {
     return firstValueFrom(this.http.get(this.baseUrl, this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
-        this.citizens = response
+        if (response == null)
+          this.citizens = []
+        else
+          this.citizens = response
         console.log(response)
 
       }),

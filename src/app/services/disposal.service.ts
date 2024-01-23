@@ -128,7 +128,11 @@ export class DisposalService {
     return firstValueFrom(this.http.get(this.baseUrl + 'citizen/' + citizenId, this.httpOptions).pipe(
       tap((response: any) => {
         console.log('Richiesta GET riuscita:', response);
-        this.disposals = response
+
+        if (response == null)
+          this.disposals = []
+        else
+          this.disposals = response
 
       }),
       catchError(error => {

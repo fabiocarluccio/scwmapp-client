@@ -112,7 +112,6 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
         console.log(response)
         // aggiungo richiesta in lista
         console.log(this.newRequest)
-        console.log("diooooo")
         this.smartBinRequestService.loadPendingRequests()
         //this.smartBinRequests.unshift(this.newRequest)
 
