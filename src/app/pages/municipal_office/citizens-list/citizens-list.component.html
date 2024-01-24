@@ -1,7 +1,7 @@
 <body>
   <div>
     <header>
-      <h1>Citizens List</h1>
+      <h1>Home</h1>
 
       <div id="actionButtonsDiv">
       <button class="btn btn-primary"
@@ -72,182 +72,233 @@
     </header>
     <div class="main-layout">
 
-      <p *ngIf="waitingForCitizensList" style="color:#444444; font-size: 1rem;">
-        ⏱️ Loading..
-      </p>
-      <p *ngIf="this.citizens.length == 0 && this.loadCitizensError == false && !waitingForCitizensList" style="color:#444444; font-size: 1rem;">
-        ⏱️ No Citizens registered yet.
-      </p>
-      <p *ngIf="this.loadCitizensError == true" style="color:#444444; font-size: 1rem;">
-        😵 Unknown error. Unable to get Citizens list.
-      </p>
-
-      <div class="item-list" *ngIf="!this.waitingForCitizensList && !this.loadCitizensError">
-
-        <app-citizen-item-card *ngFor="let citizen of this.citizens"
-                               routerLink="/municipal_office/citizen-info/{{citizen.id}}"
-                               [citizen] = "citizen">
-        </app-citizen-item-card>
-      </div>
-
       <div class="form-container">
         <form #addCitizenForm="ngForm" *ngIf="this.showCitizenForm" class="cool-background">
-        <!--Street name, street number, postal code, city-->
-        <div class="header-form">
-          <h5>Register new citizen</h5>
+          <!--Street name, street number, postal code, city-->
+          <div class="header-form">
+            <h5>Register new citizen</h5>
 
-          <!--<button class="btn btn-warning"
-                  (click)="importCitizensFile()">
-            Import citizens File (.csv)
-          </button>-->
-        </div>
-
-
-        <div class="form-group">
-          <label for="inputCitizenName">Name</label>
-          <input
-            [(ngModel)]="this.citizen.name" name="citizenName"
-            required
-            minlength="3"
-            pattern=".*"
-            #inputCitizenName = "ngModel"
-            [ngClass]="{'is-invalid': inputCitizenName.errors && inputCitizenName.touched}"
-            type="text" class="form-control" id="inputCitizenName" placeholder="Name">
-
-          <div class="invalid-feedback">
-            Insert the name.
+            <!--<button class="btn btn-warning"
+                    (click)="importCitizensFile()">
+              Import citizens File (.csv)
+            </button>-->
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="inputCitizenSurname">Surname</label>
-          <input
-            [(ngModel)]="this.citizen.surname" name="citizenSurname"
-            required
-            minlength="3"
-            pattern=".*"
-            #inputCitizenSurname = "ngModel"
-            [ngClass]="{'is-invalid': inputCitizenSurname.errors && inputCitizenSurname.touched}"
-            type="text" class="form-control" id="inputCitizenSurname" placeholder="Surname">
 
-          <div class="invalid-feedback">
-            Insert the surname.
+          <div class="form-group">
+            <label for="inputCitizenName">Name</label>
+            <input
+              [(ngModel)]="this.citizen.name" name="citizenName"
+              required
+              minlength="3"
+              pattern=".*"
+              #inputCitizenName = "ngModel"
+              [ngClass]="{'is-invalid': inputCitizenName.errors && inputCitizenName.touched}"
+              type="text" class="form-control" id="inputCitizenName" placeholder="Name">
+
+            <div class="invalid-feedback">
+              Insert the name.
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="inputCitizenFiscalCode">SSN</label>
-          <input
-            [(ngModel)]="this.citizen.ssn" name="citizenFiscalCode"
-            required
-            minlength="16"
-            maxlength="16"
-            pattern=".*"
-            #inputCitizenFiscalCode = "ngModel"
-            [ngClass]="{'is-invalid': inputCitizenFiscalCode.errors && inputCitizenFiscalCode.touched}"
-            type="text" class="form-control" id="inputCitizenFiscalCode" placeholder="SSN">
+          <div class="form-group">
+            <label for="inputCitizenSurname">Surname</label>
+            <input
+              [(ngModel)]="this.citizen.surname" name="citizenSurname"
+              required
+              minlength="3"
+              pattern=".*"
+              #inputCitizenSurname = "ngModel"
+              [ngClass]="{'is-invalid': inputCitizenSurname.errors && inputCitizenSurname.touched}"
+              type="text" class="form-control" id="inputCitizenSurname" placeholder="Surname">
 
-          <div class="invalid-feedback">
-            Insert a valid SSN.
+            <div class="invalid-feedback">
+              Insert the surname.
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="inputCitizenEmail">Email</label>
-          <input
-            [(ngModel)]="this.citizen.email" name="citizenEmail"
-            required
-            minlength="3"
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-            #inputCitizenEmail = "ngModel"
-            [ngClass]="{'is-invalid': inputCitizenEmail.errors && inputCitizenEmail.touched}"
-            type="email" class="form-control" id="inputCitizenEmail" placeholder="Email">
+          <div class="form-group">
+            <label for="inputCitizenFiscalCode">SSN</label>
+            <input
+              [(ngModel)]="this.citizen.ssn" name="citizenFiscalCode"
+              required
+              minlength="16"
+              maxlength="16"
+              pattern=".*"
+              #inputCitizenFiscalCode = "ngModel"
+              [ngClass]="{'is-invalid': inputCitizenFiscalCode.errors && inputCitizenFiscalCode.touched}"
+              type="text" class="form-control" id="inputCitizenFiscalCode" placeholder="SSN">
 
-          <div class="invalid-feedback">
-            Insert a valid email.
+            <div class="invalid-feedback">
+              Insert a valid SSN.
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="inputCitizenStreetName">Street</label>
-          <input
-            [(ngModel)]="this.citizen.address!.streetName" name="citizenStreetName"
-            required
-            minlength="3"
-            pattern=".*"
-            #inputCitizenStreetName = "ngModel"
-            [ngClass]="{'is-invalid': inputCitizenStreetName.errors && inputCitizenStreetName.touched}"
-            type="text" class="form-control" id="inputCitizenStreetName" placeholder="Residence">
+          <div class="form-group">
+            <label for="inputCitizenEmail">Email</label>
+            <input
+              [(ngModel)]="this.citizen.email" name="citizenEmail"
+              required
+              minlength="3"
+              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              #inputCitizenEmail = "ngModel"
+              [ngClass]="{'is-invalid': inputCitizenEmail.errors && inputCitizenEmail.touched}"
+              type="email" class="form-control" id="inputCitizenEmail" placeholder="Email">
 
-          <div class="invalid-feedback">
-            Insert the residence.
+            <div class="invalid-feedback">
+              Insert a valid email.
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="inputCitizenStreetNumber">Street n.</label>
-          <input
-            [(ngModel)]="this.citizen.address!.streetNumber" name="citizenStreetNumber"
-            required
-            minlength="1"
-            pattern=".*"
-            #inputCitizenStreetNumber = "ngModel"
-            [ngClass]="{'is-invalid': inputCitizenStreetNumber.errors && inputCitizenStreetNumber.touched}"
-            type="text" class="form-control" id="inputCitizenStreetNumber" placeholder="Street n.">
+          <div class="form-group">
+            <label for="inputCitizenStreetName">Street</label>
+            <input
+              [(ngModel)]="this.citizen.address!.streetName" name="citizenStreetName"
+              required
+              minlength="3"
+              pattern=".*"
+              #inputCitizenStreetName = "ngModel"
+              [ngClass]="{'is-invalid': inputCitizenStreetName.errors && inputCitizenStreetName.touched}"
+              type="text" class="form-control" id="inputCitizenStreetName" placeholder="Residence">
 
-          <div class="invalid-feedback">
-            Insert the Street n.
+            <div class="invalid-feedback">
+              Insert the residence.
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="inputCitizenPostalCode">Postal code</label>
-          <input
-            [(ngModel)]="this.citizen.address!.postalCode" name="citizenPostalCode"
-            required
-            minlength="3"
-            pattern=".*"
-            #inputCitizenPostalCode = "ngModel"
-            [ngClass]="{'is-invalid': inputCitizenPostalCode.errors && inputCitizenPostalCode.touched}"
-            type="text" class="form-control" id="inputCitizenPostalCode" placeholder="Postal code">
+          <div class="form-group">
+            <label for="inputCitizenStreetNumber">Street n.</label>
+            <input
+              [(ngModel)]="this.citizen.address!.streetNumber" name="citizenStreetNumber"
+              required
+              minlength="1"
+              pattern=".*"
+              #inputCitizenStreetNumber = "ngModel"
+              [ngClass]="{'is-invalid': inputCitizenStreetNumber.errors && inputCitizenStreetNumber.touched}"
+              type="text" class="form-control" id="inputCitizenStreetNumber" placeholder="Street n.">
 
-          <div class="invalid-feedback">
-            Insert the postal code.
+            <div class="invalid-feedback">
+              Insert the Street n.
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="inputCitizenCity">City</label>
-          <input
-            [(ngModel)]="this.citizen.address!.city" name="citizenCity"
-            required
-            minlength="3"
-            pattern=".*"
-            #inputCitizenCity = "ngModel"
-            [ngClass]="{'is-invalid': inputCitizenCity.errors && inputCitizenCity.touched}"
-            type="text" class="form-control" id="inputCitizenCity" placeholder="City">
+          <div class="form-group">
+            <label for="inputCitizenPostalCode">Postal code</label>
+            <input
+              [(ngModel)]="this.citizen.address!.postalCode" name="citizenPostalCode"
+              required
+              minlength="3"
+              pattern=".*"
+              #inputCitizenPostalCode = "ngModel"
+              [ngClass]="{'is-invalid': inputCitizenPostalCode.errors && inputCitizenPostalCode.touched}"
+              type="text" class="form-control" id="inputCitizenPostalCode" placeholder="Postal code">
 
-          <div class="invalid-feedback">
-            Insert the city's name.
+            <div class="invalid-feedback">
+              Insert the postal code.
+            </div>
           </div>
-        </div>
+
+          <div class="form-group">
+            <label for="inputCitizenCity">City</label>
+            <input
+              [(ngModel)]="this.citizen.address!.city" name="citizenCity"
+              required
+              minlength="3"
+              pattern=".*"
+              #inputCitizenCity = "ngModel"
+              [ngClass]="{'is-invalid': inputCitizenCity.errors && inputCitizenCity.touched}"
+              type="text" class="form-control" id="inputCitizenCity" placeholder="City">
+
+            <div class="invalid-feedback">
+              Insert the city's name.
+            </div>
+          </div>
 
 
-        <div class="form-buttons">
-          <button
-            (click)="toggleCitizenForm()" class="btn btn-danger">Cancel
-          </button>
+          <div class="form-buttons">
+            <button
+              (click)="toggleCitizenForm()" class="btn btn-danger">Cancel
+            </button>
 
-          <button
-            [disabled] = "!addCitizenForm.valid"
-            type="submit" (click)="addNewCitizen()" class="btn btn-primary">Add Citizen
-          </button>
-        </div>
+            <button
+              [disabled] = "!addCitizenForm.valid"
+              type="submit" (click)="addNewCitizen()" class="btn btn-primary">Add Citizen
+            </button>
+          </div>
 
 
-      </form>
+        </form>
       </div>
 
+      <div class="horizontal-layout">
+        <p *ngIf="waitingForCitizensList" style="color:#444444; font-size: 1rem;">
+          ⏱️ Loading..
+        </p>
+        <p *ngIf="this.citizens.length == 0 && this.loadCitizensError == false && !waitingForCitizensList" style="color:#444444; font-size: 1rem;">
+          ⏱️ No Citizens registered yet.
+        </p>
+        <p *ngIf="this.loadCitizensError == true" style="color:#444444; font-size: 1rem;">
+          😵 Unknown error. Unable to get Citizens list.
+        </p>
+
+        <div class="item-list" *ngIf="!this.waitingForCitizensList && !this.loadCitizensError">
+
+          <app-citizen-item-card *ngFor="let citizen of this.citizens"
+                                 routerLink="/municipal_office/citizen-info/{{citizen.id}}"
+                                 [citizen] = "citizen">
+          </app-citizen-item-card>
+        </div>
+
+
+        <div class="separation-performance-box cool-background" *ngIf="fantoccio.generatedVolume">
+          <h2>Overall separation performance (100%)</h2>
+
+          <div>
+            <table>
+              <tr class="table-header">
+                <th>Waste type<div class="column-border"></div></th>
+                <th>Volume generated (kg)<div class="column-border"></div></th>
+                <th>Percentage on total<div class="column-border"></div></th>
+                <th>Percentage on recycled</th>
+              </tr>
+              <tr>
+                <td colspan="4"><div class="separator"></div></td>
+              </tr>
+
+              <tr *ngFor="let wasteName of Object.keys(this.fantoccio.generatedVolume.sortedWaste)">
+                <td style="display: flex; align-items: center;">
+                  <div class="wasteType-color" style="{{'background: '+ this.smartBinService.getWasteColorByName(wasteName)}};"></div>
+                  {{wasteName}}
+                </td>
+                <td>{{this.fantoccio.generatedVolume.sortedWaste[wasteName]}}</td>
+                <td>{{Citizen.getPercentageOfTotalWaste(this.fantoccio.generatedVolume.sortedWaste[wasteName], this.fantoccio)}}%</td>
+                <td>{{Citizen.getPercentageOverSortedWaste(this.fantoccio.generatedVolume.sortedWaste[wasteName], this.fantoccio)}}%</td>
+              </tr>
+              <tr>
+                <td style="display: flex; align-items: center;">
+                  <div class="wasteType-color" style="{{'background: '+ this.smartBinService.getWasteColorByName('Mixed waste')}};"></div>
+                  Mixed waste
+                </td>
+                <td>{{this.fantoccio.generatedVolume.mixedWaste}}</td>
+                <td>{{Citizen.getPercentageOfTotalWaste(this.fantoccio.generatedVolume.mixedWaste, this.fantoccio)}}%</td>
+                <td>-</td>
+              </tr>
+            </table>
+
+            <!--Grafico a torta con testo che indica se è un bravo cittadino-->
+            <app-pie-chart style="margin-left: -10px; margin-top: 20px;"
+                           [separationPerformancePercentage]="Citizen.getSeparationPerformance(this.fantoccio)"
+                           [wasteTypes]="Citizen.getWasteTypeNames(this.fantoccio)"
+                           [wasteVolumeGenerated]="Citizen.getWasteVolumeGenerated(this.fantoccio)"
+                           [customColors]="Citizen.getWasteTypeColors(Citizen.getWasteTypeNames(this.fantoccio), this.smartBinService.getWasteTypes())"
+            >
+            </app-pie-chart>
+
+
+          </div>
+
+        </div>
+      </div>
     </div>
 
   </div>

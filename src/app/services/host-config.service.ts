@@ -6,6 +6,8 @@ import {catchError, firstValueFrom, tap} from "rxjs";
 })
 export class HostConfigService {
 
+
+  PROTOCOL = 'https' // 'https' // 'http'
   HOST = 'nn9im8cie6.execute-api.us-east-1.amazonaws.com/prod' // 'localhost'
 
   LOGINMS_PORT = '' //':8080'
@@ -24,18 +26,16 @@ export class HostConfigService {
   TAXMS_BASEURL = ''
   TAXCitizenMS_BASEURL = ''
 
-
-
   constructor() { }
 
   updateEndpoints() {
-    this.LOGINMS_BASEURL = 'https://' + this.HOST + this.LOGINMS_PORT + '/api/authentication/'
-    this.SMARTBINMS_BASEURL = 'https://' + this.HOST + this.SMARTBINMS_PORT + '/api/smartbin/'
-    this.SMARTBINCleaningPathMS_BASEURL = 'https://' + this.HOST + this.SMARTBINMS_PORT + '/api/cleaningPath/'
-    this.CITIZENMS_BASEURL = 'https://' + this.HOST + this.CITIZENMS_PORT + '/api/citizen/'
-    this.DISPOSALMS_BASEURL = 'https://' + this.HOST + this.DISPOSALMS_PORT + '/api/disposal/'
-    this.TAXMS_BASEURL = 'https://' + this.HOST + this.TAXMS_PORT + '/api/tax/'
-    this.TAXCitizenMS_BASEURL = 'https://' + this.HOST + this.TAXMS_PORT + '/api/taxStatus/'
+    this.LOGINMS_BASEURL = this.PROTOCOL + '://' + this.HOST + this.LOGINMS_PORT + '/api/authentication/'
+    this.SMARTBINMS_BASEURL = this.PROTOCOL + '://' + this.HOST + this.SMARTBINMS_PORT + '/api/smartbin/'
+    this.SMARTBINCleaningPathMS_BASEURL = this.PROTOCOL + '://' + this.HOST + this.SMARTBINMS_PORT + '/api/cleaningPath/'
+    this.CITIZENMS_BASEURL = this.PROTOCOL + '://' + this.HOST + this.CITIZENMS_PORT + '/api/citizen/'
+    this.DISPOSALMS_BASEURL = this.PROTOCOL + '://' + this.HOST + this.DISPOSALMS_PORT + '/api/disposal/'
+    this.TAXMS_BASEURL = this.PROTOCOL + '://' + this.HOST + this.TAXMS_PORT + '/api/tax/'
+    this.TAXCitizenMS_BASEURL = this.PROTOCOL + '://' + this.HOST + this.TAXMS_PORT + '/api/taxStatus/'
   }
 
 }

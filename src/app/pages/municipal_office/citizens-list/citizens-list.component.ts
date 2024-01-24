@@ -7,6 +7,8 @@ import {DisposalService} from "../../../services/disposal.service";
 import {TaxService} from "../../../services/tax.service";
 import {Router} from "@angular/router";
 import {AllocationRequest} from "../../../models/allocationRequest";
+import {SmartBinService} from "../../../services/smart-bin.service";
+import {WasteType} from "../../../models/wasteType";
 
 @Component({
   selector: 'app-citizens-list',
@@ -19,6 +21,8 @@ export class CitizensListComponent implements OnInit {
   citizens: Citizen [] = [] as Citizen[]
   citizen: Citizen = {} as Citizen
 
+  overallWasteMetrics: any
+  fantoccio: Citizen = {} as Citizen
 
   filters: CitizenFilter[] = [CitizenFilter.noFilter]
   sorting: CitizenSorting = CitizenSorting.alphabetical
@@ -29,6 +33,7 @@ export class CitizensListComponent implements OnInit {
 
   constructor(public citizenService: CitizenService,
               public disposalService: DisposalService,
+              public smartBinService: SmartBinService,
               private taxService: TaxService,
               private router: Router,
               private exceptionManager: ExceptionManagerService) {
@@ -54,8 +59,23 @@ export class CitizensListComponent implements OnInit {
       this.disposalService.loadWasteMetricsForYear(new Date().getFullYear()).then(response => {
         console.log(response)
 
-        // Eseguo mapping Cittadino-WasteMetrics
+        // Eseguo mapping Cittadino-WasteMetrics + eseguo calcolo performances totali
         if (Array.isArray(response)) {
+
+          // Inizializzo il conteggio del peso di tutte le tipologie di rifiuti a 0
+          this.fantoccio.generatedVolume = {
+            "mixedWaste": 0,
+            "sortedWaste": {}
+          };
+          const wasteTypes = this.smartBinService.getWasteTypes()
+          wasteTypes.forEach((type: any) => {
+            //console.log(this.smartBinService.getWasteTypes())
+            if (type.name != "Mixed waste")
+              this.fantoccio.generatedVolume.sortedWaste[type.name] = 0
+            ///console.log(type.name+"+"+this.fantoccio.generatedVolume.sortedWaste[type.name])
+          })
+
+
           response.forEach((item: any) => {
             // Effettuo ricerca cittadino per citizenID
             const foundCitizen = this.citizenService.citizens.find((citizen) => citizen.id === item.citizenID)
@@ -63,10 +83,18 @@ export class CitizensListComponent implements OnInit {
               console.log('Cittadino', item.citizenID,' non trovato.');
             } else {
               foundCitizen.generatedVolume = item.yearlyVolumes[0]
+
+              // Eseguo calcolo performances totali
+              this.fantoccio.generatedVolume.mixedWaste += foundCitizen.generatedVolume.mixedWaste
+              for (let wasteTypeName in foundCitizen.generatedVolume.sortedWaste) {
+                //console.log(wasteTypeName)
+                //console.log(foundCitizen.generatedVolume.sortedWaste)
+                //console.log(foundCitizen.generatedVolume.sortedWaste[wasteTypeName])
+                this.fantoccio.generatedVolume.sortedWaste[wasteTypeName] += foundCitizen.generatedVolume.sortedWaste[wasteTypeName]
+              }
             }
-
-
           });
+
         }
 
         // Ottengo stato tasse di tutti i cittadini
@@ -282,4 +310,5 @@ export class CitizensListComponent implements OnInit {
   protected readonly CitizenSorting = CitizenSorting;
   protected readonly CitizenFilter = CitizenFilter;
   protected readonly Citizen = Citizen;
+  protected readonly Object = Object;
 }
