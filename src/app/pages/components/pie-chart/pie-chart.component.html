@@ -5,7 +5,7 @@
 </div>
 -->
 <div class="container" *ngIf="this.wasteVolumeGenerated && this.customColors && this.wasteTypes && separationPerformanceColor">
-  <canvas
+  <canvas class=" {{showPieChart()}} "
     baseChart
     [type]="'doughnut'"
     [legend]="false"
@@ -29,12 +29,16 @@
         arc: {
           borderWidth: 0
         }
+      },
+      animation: {
+        animateRotate: false,
+        animateScale: false
       }
     }"
   >
   </canvas>
 
-  <div class="percentage" style="{{'background: '+ separationPerformanceColor}};">
+  <div class="percentage {{showPercentage()}} " style="{{'background: '+ separationPerformanceColor}};">
     <h1>{{separationPerformancePercentage}}%</h1>
   </div>
 

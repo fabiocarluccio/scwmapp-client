@@ -1,4 +1,4 @@
-<body *ngIf="citizen">
+<body>
   <!--
   <div style="margin-bottom: 10px;">
     <a routerLink="/citizen">◂ Indietro</a>
@@ -7,7 +7,7 @@
   <p *ngIf="loadCitizenInfoError" style="color:#444444; font-size: 1rem;">
     😵 Unknown error. Unable to get Citizen info.
   </p>
-  <ng-container *ngIf="!loadCitizenInfoError">
+  <ng-container *ngIf="!loadCitizenInfoError && citizen">
     <h4>{{citizen.surname + " " + citizen.name}}</h4>
     <p>🏠 <b>{{citizen.address?.city + " - " + citizen.address?.streetName + " Street, " + citizen.address?.streetNumber}}</b></p>
     <p>🐌 <i>{{citizen.email}}</i></p>
@@ -99,20 +99,20 @@
 
 
 
-  <h2 *ngIf="Citizen.showSeparationPerformance(citizen) == false">Waste separation performance</h2>
+  <h2 *ngIf="citizen && Citizen.showSeparationPerformance(citizen) == false">Waste separation performance</h2>
 
   <p *ngIf="this.waitingForSeparationPerformanceData" style="color:#444444; font-size: 1rem;">
     ⏱️ Loading..
   </p>
-  <p *ngIf="Citizen.showSeparationPerformance(citizen) == false && this.waitingForSeparationPerformanceData == false && this.loadSeparationPerformanceError == false" style="color:#444444; font-size: 1rem;">
+  <p *ngIf="citizen && Citizen.showSeparationPerformance(citizen) == false && this.waitingForSeparationPerformanceData == false && this.loadSeparationPerformanceError == false" style="color:#444444; font-size: 1rem;">
     ⏱️ Waiting for deliveries to be made.
   </p>
   <p *ngIf="this.loadSeparationPerformanceError == true" style="color:#444444; font-size: 1rem;">
     😵 Unknown error. Unable to get Separation performances.
   </p>
 
-  <h2 *ngIf="Citizen.showSeparationPerformance(citizen)">Separation performance ({{Citizen.getSeparationPerformance(citizen)}}%)</h2>
-  <div *ngIf="Citizen.showSeparationPerformance(citizen)">
+  <h2 *ngIf="citizen && Citizen.showSeparationPerformance(citizen)">Separation performance ({{Citizen.getSeparationPerformance(citizen)}}%)</h2>
+  <div *ngIf=" citizen && Citizen.showSeparationPerformance(citizen)">
     <table>
       <tr class="table-header">
         <th>Waste type<div class="column-border"></div></th>

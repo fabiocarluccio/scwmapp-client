@@ -16,9 +16,14 @@ export class PieChartComponent implements OnInit{  // https://www.digitalocean.c
 
   separationPerformanceColor: string | null = null
 
+  pieChartLoaded = false
+
   ngOnInit(): void {
     this.separationPerformanceColor = Citizen.getSeparationPerformanceColor(this.separationPerformancePercentage)
 
+    this.delay(50).then(() => {// TODO ricorda di inserirlo nell'afterviewinit
+      this.pieChartLoaded = true
+    });
   }
 
   /* spostato in html dato che da problemi quando aggiungo altri plugins
@@ -34,5 +39,19 @@ export class PieChartComponent implements OnInit{  // https://www.digitalocean.c
   */
   protected readonly Citizen = Citizen;
 
+  delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  showPieChart(): string {
+    if (this.pieChartLoaded)
+      return " not-transparent "
+    return " transparent "
+  }
+  showPercentage(): string {
+    if (this.pieChartLoaded)
+      return " not-transparent-percentage "
+    return " transparent "
+  }
 
 }

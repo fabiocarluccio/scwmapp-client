@@ -54,12 +54,14 @@ export class CitizenDisposalsMunicipalOfficeComponent implements OnInit {
 
       }).catch(error => {
         // Mostro errore
+        this.waitingForDisposalsList = false
         this.loadDisposalsError = true
         //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
 
     }).catch(error => {
       // Mostro errore
+      this.waitingForCitizenInfo = false
       this.loadCitizenInfoErrorDescription = error.error.description
       this.loadCitizenInfoError = true
       //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));

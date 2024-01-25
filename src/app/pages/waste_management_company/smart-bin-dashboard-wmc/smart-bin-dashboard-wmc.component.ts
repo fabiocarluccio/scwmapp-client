@@ -84,16 +84,19 @@ export class SmartBinDashboardWmcComponent implements OnInit, AfterViewInit {
           this.waitingForCleaningPathsList = false
         }).catch(error => {
           // Mostro errore
+          this.waitingForCleaningPathsList = false
           this.loadCleaningPathsError = true
           //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
         });
       }).catch(error => {
         // Mostro errore
+        this.waitingForSmartBinRequestsList = false
         this.loadSmartBinRequestsError = true
         //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
     }).catch(error => {
       // Mostro errore
+      this.waitingForSmartBinsList = false
       this.loadSmartBinsError = true
       //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });

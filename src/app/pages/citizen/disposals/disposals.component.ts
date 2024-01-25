@@ -41,6 +41,7 @@ export class DisposalsComponent implements OnInit {
 
     }).catch(error => {
       // Mostro errore
+      this.waitingForDisposalsList = false
       this.loadDisposalsError = true
       //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });

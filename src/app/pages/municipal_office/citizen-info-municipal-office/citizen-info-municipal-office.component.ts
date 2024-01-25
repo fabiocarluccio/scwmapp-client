@@ -64,6 +64,7 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
 
       }).catch(error => {
         // Mostro errore
+        this.waitingForTaxesList = false
         this.loadTaxesError = true
         //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
@@ -75,6 +76,7 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
 
       }).catch(error => {
         // Mostro errore
+        this.waitingForDisposalsList = false
         this.loadDisposalsError = true
         //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
@@ -86,6 +88,7 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
 
       }).catch(error => {
         // Mostro errore
+        this.waitingForSeparationPerformanceData = false
         this.loadSeparationPerformanceError = true
         //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });
@@ -93,8 +96,13 @@ export class CitizenInfoMunicipalOfficeComponent implements OnInit {
 
     }).catch(error => {
       // Mostro errore
+      this.waitingForCitizenInfo = false
       this.loadCitizenInfoErrorDescription = error.error.description
       this.loadCitizenInfoError = true
+      this.waitingForTaxesList = false
+      this.loadTaxesError = true
+      this.waitingForDisposalsList = false
+      this.loadDisposalsError = true
       //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
     });
 

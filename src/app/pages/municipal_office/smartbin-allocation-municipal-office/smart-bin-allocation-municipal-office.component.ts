@@ -69,6 +69,7 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
       this.waitingForSmartBinsList = false
     }).catch(error => {
       // Mostro errore
+      this.waitingForSmartBinsList = false
       this.loadSmartBinsError = true
       //old_ window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
     });
@@ -79,6 +80,7 @@ export class SmartBinAllocationMunicipalOfficeComponent implements OnInit, After
       //this.smartBinRequests = this.smartBinRequestService.smartBinRequests    // load allocation requests
     }).catch(error => {
       // Mostro errore
+      this.waitingForSmartBinRequestsList = false
       this.loadSmartBinRequestsError = true
       //old_ window.alert(this.exceptionManager.getExceptionMessage(error.error.code, "A"));
     });

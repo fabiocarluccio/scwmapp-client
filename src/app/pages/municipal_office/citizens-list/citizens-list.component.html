@@ -250,8 +250,8 @@
         </div>
 
 
-        <div class="separation-performance-box cool-background" *ngIf="fantoccio.generatedVolume">
-          <h2>Overall separation performance (100%)</h2>
+        <div class="separation-performance-box cool-background" *ngIf="fantoccio && Citizen.showSeparationPerformance(fantoccio) && fantoccio.generatedVolume && this.waitingForCitizensList == false">
+          <h2>Overall separation performance ({{Citizen.getSeparationPerformance(fantoccio)}}%)</h2>
 
           <div>
             <table>

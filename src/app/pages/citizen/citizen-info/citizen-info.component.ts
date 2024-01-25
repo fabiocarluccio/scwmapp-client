@@ -69,6 +69,7 @@ export class CitizenInfoComponent implements OnInit {
 
         }).catch(error => {
           // Mostro errore
+          this.waitingForCitizenInfo = false
           this.loadCitizenInfoError = true
           //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
         });
@@ -80,12 +81,15 @@ export class CitizenInfoComponent implements OnInit {
 
         }).catch(error => {
           // Mostro errore
+          this.waitingForSeparationPerformanceData = false
           this.loadSeparationPerformanceError = true
           //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
         });
 
       }).catch(error => {
         // Mostro errore
+        this.waitingForCitizenInfo = false
+        this.waitingForSeparationPerformanceData = false
         this.loadCitizenInfoError = true
         this.loadSeparationPerformanceError = true
         //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
@@ -99,6 +103,7 @@ export class CitizenInfoComponent implements OnInit {
 
       }).catch(error => {
         // Mostro errore
+        this.waitingForTaxesList = false
         this.loadTaxesError = true
         //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       });

@@ -51,6 +51,7 @@ export class EmitTaxesComponent implements OnInit {
       this.waitingForTaxStatus = false
     }).catch(error => {
       // Mostro errore
+      this.waitingForTaxStatus = false
       this.loadTaxStatusError = true
       //window.alert(this.exceptionManager.getExceptionMessage(error.error.name, "A", error.error.description));
       //this.route.navigateByUrl('/municipal_office/smartbin-allocation');
