@@ -51,7 +51,7 @@ export class Citizen {
 
 
   static getSeparationPerformance(citizen: Citizen): number {
-    return 100 - Citizen.getPercentageOfTotalWaste(citizen.generatedVolume.mixedWaste, citizen)
+    return Math.floor(100 - Citizen.getPercentageOfTotalWaste(citizen.generatedVolume.mixedWaste, citizen))
 
   }
 
