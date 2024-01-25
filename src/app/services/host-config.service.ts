@@ -7,16 +7,16 @@ import {catchError, firstValueFrom, tap} from "rxjs";
 export class HostConfigService {
 
 
-  PROTOCOL = 'http' // 'https' // 'http'
-  HOST = 'localhost'//'nn9im8cie6.execute-api.us-east-1.amazonaws.com/prod' // 'localhost'
+  PROTOCOL = 'https' // 'https' // 'http'
+  HOST = 'nn9im8cie6.execute-api.us-east-1.amazonaws.com/prod' // 'localhost'
 
-  LOGINMS_PORT = ':8080'
-  SMARTBINMS_PORT = ':8081'
-  CITIZENMS_PORT = ':8082'
-  DISPOSALMS_PORT = ':8083'
-  //ALARMMS_PORT = '':8084' // TODO configurazione allarme in my-rx-stomp-config.tx
-  TAXMS_PORT = ':8085'
-  //RABBITMQ_PORT = '':27017' // TODO configurazione allarme in my-rx-stomp-config.tx
+  LOGINMS_PORT = ''//':8080'
+  SMARTBINMS_PORT = ''//':8081'
+  CITIZENMS_PORT = ''//':8082'
+  DISPOSALMS_PORT = ''//':8083'
+  //ALARMMS_PORT = ''//':8084' // TODO configurazione allarme in my-rx-stomp-config.tx
+  TAXMS_PORT = ''//':8085'
+  //RABBITMQ_PORT = ''//':27017' // TODO configurazione allarme in my-rx-stomp-config.tx
 
   LOGINMS_BASEURL = ''
   SMARTBINMS_BASEURL = ''
