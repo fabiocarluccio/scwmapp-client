@@ -21,7 +21,7 @@ export class PieChartComponent implements OnInit{  // https://www.digitalocean.c
   ngOnInit(): void {
     this.separationPerformanceColor = Citizen.getSeparationPerformanceColor(this.separationPerformancePercentage)
 
-    this.delay(50).then(() => {// TODO ricorda di inserirlo nell'afterviewinit
+    this.delay(50).then(() => {
       this.pieChartLoaded = true
     });
   }

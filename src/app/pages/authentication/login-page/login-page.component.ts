@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit {
               private smartBinService: SmartBinService) {
   }
 
-  ngOnInit() {
+  ngOnInit() { // TODO: Problematica questa implementazione nel caso in cui qualcuno modifica il proprio ruolo in un altro (anche se non loggato). Si va a generare un loop infinito
     // Controlla se l'URL contiene una route wildcard '**'
     if (this.router.url != "/") {
       // Reindirizza manualmente
